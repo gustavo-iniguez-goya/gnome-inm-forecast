@@ -1,0 +1,43 @@
+<Root>
+	<popups>
+		<popup name="button3">
+			<menuitem name="Update" verb="Update" _label="_Update now" pixtype="stock" pixname="gtk-refresh"/>
+			<separator />
+			<menuitem name="Today forecast" verb="TodayForecast" _label="_Today forecast" pixtype="stock" pixname=""/>
+			<menuitem name="Tomorrow forecast" verb="TomorrowForecast" _label="_Tomorrow forecast" pixtype="stock" pixname=""/>
+			<menuitem name="Next days forecast" verb="NextDaysForecast" _label="_Next days forecast" pixtype="stock" pixname=""/>
+			<separator />
+			<menuitem name="SpanishForecastImage"
+			             verb="SpanishForecastImg"
+			           _label="_Spanish Forecast Image"
+			          pixtype="stock"
+			          pixname=""/>
+			<menuitem name="Satellite radar images"
+				verb="SatelliteImages"
+				_label="_Satellite radar images"
+				pixtype="stock"
+				pixname=""/>
+			<separator />
+			<menuitem name="Informe Aludes"
+				verb="InformeAludes"
+				_label="_Informe sobre aludes"
+				pixtype="stock"
+				pixname=""/>
+			<menuitem name="Properties Item"
+				verb="Properties"
+				_label="_Preferences..."
+				pixtype="stock"
+				pixname="gtk-properties"/>
+			<menuitem name="VisitINMwebSite"
+				verb="VisitINM"
+				_label="_Visit INM web site"
+				pixtype="stock"
+				pixname="gnome-stock-link"/>
+			<menuitem name="About Item"
+				verb="About"
+				_label="_About..."
+				pixtype="stock"
+				pixname="gnome-stock-about"/>
+		</popup>
+	</popups>
+</Root>

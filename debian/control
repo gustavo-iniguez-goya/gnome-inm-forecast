@@ -1,0 +1,12 @@
+Source: gnome-inm-forecast
+Section: x11
+Priority: optional
+Maintainer: Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>
+Build-Depends: debhelper (>= 5), autotools-dev
+Standards-Version: 3.7.2
+
+Package: gnome-inm-forecast
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Gnome INM spanish forecast applet
+ An spanish forecast applet for gnome desktop

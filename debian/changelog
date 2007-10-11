@@ -1,0 +1,68 @@
+gnome-inm-forecast (0.1.1-3) unstable; urgency=low
+
+  * Unneeded variables removed
+  * Convert correctly non utf8 strings to utf8. Now it really works.
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Wed, 10 Oct 2007 13:22:45 +0200
+
+gnome-inm-forecast (0.1.1-2) unstable; urgency=low
+
+  * Enable the wind field on the popup window and gettextize it
+  * Display correctly the program logo on the about dialog 
+  * Show the about dialog every time you click on the about menu
+  * Set kurtsik as the official artist ;)
+  * Minor sanity checks and display utf-8 cities correctly on non utf-8
+    systems
+  * Minor compilation warnings removed
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Wed, 03 Oct 2007 22:18:28 +0200
+
+gnome-inm-forecast (0.1.1-1) unstable; urgency=low
+
+  * Added city autocompletion
+  * Spanish translation updated
+  * City name now shown in utf-8 locale
+  * Theme support finished
+  * Minor warnings fixed
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Fri, 28 Sep 2007 00:43:43 +0200
+
+gnome-inm-forecast (0.1.0-5) unstable; urgency=low
+
+  * Added finally an icon for the applet. Thanks to kurtsik <kurtsik@kurtsik.org>
+  * rpm .spec file fixed.  Now should be install correctly on RPM based
+    distributions
+  * Files names gnome_inm renamed to gnome-inm.forecast, for match the applet
+    name
+  * build-stamp, config.guess and config.sub removed from the revision control
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Fri, 03 Aug 2007 20:14:05 +0200
+
+gnome-inm-forecast (0.1.0-4) unstable; urgency=low
+
+  * Update the weather forecast automatically when you change the location
+    code
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Thu, 02 Aug 2007 09:46:23 +0200
+
+gnome-inm-forecast (0.1.0-3) unstable; urgency=low
+
+  * .spec file updated
+  * Non needed libraries removed (libxml2 and libgconf)
+  * Spanish translation updated
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Wed, 13 Jun 2007 10:18:51 +0200
+
+gnome-inm-forecast (0.1.0-2) unstable; urgency=high
+
+  * Important memory leaks fixes
+  * Fix the popup information shown
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Fri, 08 Jun 2007 13:19:20 +0200
+
+gnome-inm-forecast (0.1.0-1) unstable; urgency=low
+
+  * First debian package version
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Wed, 06 Jun 2007 19:51:52 +0200
+

@@ -1,0 +1,25 @@
+<oaf_info> 
+	<oaf_server iid="OAFIID:GnomeINM_Factory" type="exe" location="/usr/libexec/gnome-inm-forecast"> 
+		<oaf_attribute name="repo_ids" type="stringv"> 
+			<item value="IDL:Bonobo/GenericFactory:1.0"/> 
+			<item value="IDL:Bonobo/Unknown:1.0"/> 
+		</oaf_attribute>
+			<oaf_attribute name="name" type="string" value="Gnome INM forecast"/> 
+			<oaf_attribute name="name-es" type="string" value="Pronóstico del tiempo del INM"/> 
+			<oaf_attribute name="description" type="string" value="Applet for get the spanish forecast (http://www.inm.es)"/> 
+			<oaf_attribute name="description-es" type="string" value="Applet para ver el pronóstico del tiempo español (http://www.inm.es)"/> 
+	</oaf_server> 
+	<oaf_server iid="OAFIID:GnomeINM" type="factory" location="OAFIID:GnomeINM_Factory"> 
+		<oaf_attribute name="repo_ids" type="stringv"> 
+			<item value="IDL:GNOME/Vertigo/PanelAppletShell:1.0"/> 
+			<item value="IDL:Bonobo/Control:1.0"/> 
+			<item value="IDL:Bonobo/Unknown:1.0"/> 
+		</oaf_attribute> 
+		<oaf_attribute name="name" type="string" value="Gnome INM forecast applet"/> 
+		<oaf_attribute name="name-es" type="string" value="Pronóstico del tiempo del INM"/>
+		<oaf_attribute name="description" type="string" value="Applet for get the spanish forecast (http://www.inm.es)"/> 
+		<oaf_attribute name="description-es" type="string" value="Applet para ver el pronóstico del tiempo español (http://www.inm.es)"/> 
+		<oaf_attribute name="panel:category" type="string" value="Accessories"/> 
+		<oaf_attribute name="panel:icon" type="string" value="gnome-inm-forecast.png"/> 
+	</oaf_server> 
+</oaf_info>

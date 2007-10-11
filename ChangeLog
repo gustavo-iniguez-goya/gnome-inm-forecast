@@ -1,0 +1,576 @@
+2007-10-08 12:51  ga
+
+	* [r107] src/main.c, src/preferences.c: Remove unneeded variables
+
+2007-10-08 12:48  ga
+
+	* [r106] src/main.c: Convert correctly non utf8 strings to utf8
+
+2007-10-03 20:34  ga
+
+	* [r105] ChangeLog, debian/changelog, .spec, .spec.in: Revision
+	  0.1.1-2 released
+
+2007-10-03 20:34  ga
+
+	* [r104] src/preferences.c: unset the completion tree model before
+	  unreferenced it
+
+2007-10-03 13:26  ga
+
+	* [r103] po/es.po, src/main.c: Gettextize the wind strings and
+	  update the spanish translation
+
+2007-10-03 09:38  ga
+
+	* [r102] po/es.po: Spanish translation updated in order to match
+	  the new wind field added
+
+2007-10-02 22:53  ga
+
+	* [r101] src/main.c, src/main.h: Enable the wind field on the popup
+	  window
+
+2007-10-02 22:53  ga
+
+	* [r100] gnome-inm-glade.glade: Enable the wind field on the popup
+	  window
+
+2007-10-02 16:00  ga
+
+	* [r99] .spec, .spec.in: Update the RPM spec file in order to
+	  install the city codes file
+
+2007-10-01 22:05  ga
+
+	* [r98] src/main.c: Display correctly the program logo on the about
+	  dialog
+	  Show the about dialog every time you click on the about menu
+	  Set kurtsik as the official artist
+
+2007-10-01 22:01  ga
+
+	* [r97] gnome-inm-glade.glade: Added kurtsik as the official artist
+	  ;)
+
+2007-10-01 17:00  ga
+
+	* [r96] src/main.c: Snow information fixed. Some more sanity checks
+
+2007-10-01 11:29  ga
+
+	* [r95] src/main.c: Minor sanity checks and display utf-8 cities
+	  correctly on non utf-8 systems
+
+2007-10-01 10:45  ga
+
+	* [r94] src/main.c, src/main.h: Some compilation warnings removed
+
+2007-09-28 11:04  ga
+
+	* [r93] GNOME_inm-forecast.server, GNOME_inm-forecast.server_rpm:
+	  Set the applet in the accessories category
+
+2007-09-28 09:08  ga
+
+	* [r92] src/main.c: And do not use g_locale_to_utf8() inside
+	  strncpy()
+
+2007-09-28 09:05  ga
+
+	* [r91] src/main.c: Do not check for the moment which locale the
+	  user has. Use by default utf-8
+
+2007-09-28 08:04  ga
+
+	* [r90] src/main.c: Display the long city name on the GUI in utf-8
+
+2007-09-28 07:38  ga
+
+	* [r89] local_codes.txt: New city codes file
+
+2007-09-27 23:08  ga
+
+	* [r88] Makefile.am:
+
+2007-09-27 23:07  ga
+
+	* [r87] ChangeLog, debian/gnome-inm-forecast.install,
+	  local_codes.txt: Added location codes file. ChangeLog updated
+
+2007-09-27 22:41  ga
+
+	* [r86] Makefile.am, configure, configure.in, debian/changelog,
+	  .spec, .spec.in: 0.1.1 version released
+
+2007-09-27 21:01  ga
+
+	* [r85] po/es.po: Spanish translation updated
+
+2007-09-27 15:11  ga
+
+	* [r84] src/main.c, src/main.h: Avoid some ugly warnings deleting
+	  images
+	  Convert city locale to utf-8
+	  If there is no theme, by default use the "inm" one for avoid
+	  missing images on the panel
+
+2007-09-27 15:08  ga
+
+	* [r83] gnome-inm-glade.glade, gnome_inm.schemas,
+	  src/preferences.c, src/preferences.h: Added city autocompletion
+	  Theme support fixed and finished
+
+2007-09-26 11:43  ga
+
+	* [r82] src/main.c: Do not display connection errors as message
+	  boxes. It's annoying. Just do not show the images.
+
+2007-08-05 17:00  ga
+
+	* [r81] .spec, .spec.in: Create /usr/share/pixmaps/ in case is does
+	  not exist
+
+2007-08-03 18:14  ga
+
+	* [r80] ChangeLog, debian/changelog, .spec, .spec.in: 0.1.0-5
+	  version released
+
+2007-08-03 12:57  ga
+
+	* [r79] GNOME_inm-forecast.server_rpm: Added the bonobo server for
+	  rpm distributions
+
+2007-08-03 12:54  ga
+
+	* [r78] GNOME_inm-forecast.server,
+	  debian/gnome-inm-forecast.install, .spec, .spec.in,
+	  gnome-inm-glade.glade, pixmaps/gnome-inm-forecast.png: Added
+	  finally an icon for the applet. Thanks to kurtsik
+	  <kurtsik@kurtsik.org>
+
+2007-08-03 12:43  ga
+
+	* [r77] .spec, .spec.in: Added missing xml menu file
+
+2007-08-03 12:28  ga
+
+	* [r76] .spec, .spec.in: rpmn spec file updated for match the
+	  latest changes
+
+2007-08-03 11:26  ga
+
+	* [r75] .spec, .spec.in: Install the applet binary with execution
+	  permission
+
+2007-08-03 11:15  ga
+
+	* [r74] .lsm: lsm description updated
+
+2007-08-03 11:15  ga
+
+	* [r73] GNOME_inm-forecast.server: Update the location of the
+	  applet executable in the Bonobo server file
+
+2007-08-03 10:47  ga
+
+	* [r72] .1, .lsm, .lsm.in, .spec, .spec.in, gnome_inm.1,
+	  gnome_inm.lsm, gnome_inm.lsm.in, gnome_inm.spec,
+	  gnome_inm.spec.in: * Several files renamed to match the new
+	  package name
+
+2007-08-03 10:41  ga
+
+	* [r71] COPYING, Makefile.am, Makefile.in, aclocal.m4, configure,
+	  configure.in, debian/changelog, debian/copyright,
+	  debian/gnome-inm-forecast.install, gnome_inm.1, gnome_inm.lsm.in,
+	  gnome_inm.spec, gnome_inm.spec.in, po/Makefile.in,
+	  src/Makefile.am, src/Makefile.in, src/config.h: * Package name
+	  renamed from gnome_inm to gnome-inm-forecast.
+	  * GPL license address updated to the newest one.
+	  * RPM description updated
+	  * Several minor changes (descriptions updated, etc)
+
+2007-08-03 09:28  ga
+
+	* [r70] config.guess, config.sub: config.guess and config.sub
+	  should not be under revision control either
+
+2007-08-03 09:24  ga
+
+	* [r69] build-stamp: build-stamp not needed to be under svn
+	  revision
+
+2007-08-02 08:16  ga
+
+	* [r68] ChangeLog, debian/changelog, gnome_inm.spec.in: New version
+	  released
+
+2007-08-02 07:43  ga
+
+	* [r67] src/main.c, src/main.h, src/preferences.c: Update the
+	  weather forecast automatically when you change the location code
+
+2007-06-13 08:30  ga
+
+	* [r66] ChangeLog, debian/changelog, gnome_inm.spec.in: changelogs
+	  updated
+
+2007-06-13 08:24  ga
+
+	* [r65] po/es.po: Spanish translation updated
+
+2007-06-12 15:48  ga
+
+	* [r64] src/callbacks.c, src/main.c, src/main.h:
+	  check_latest_data() for retrieve latest information from
+	  meteorological stations rewritten, but do not enable it yet
+
+2007-06-11 12:14  ga
+
+	* [r63] gnome_inm.spec, gnome_inm.spec.in: .spec file updated
+
+2007-06-11 11:49  ga
+
+	* [r62] configure, configure.in, src/Makefile.am, src/Makefile.in:
+	  Removed non needed libraries
+
+2007-06-11 11:30  ga
+
+	* [r61] gnome_inm.spec: .spec file for build rpm packages updated
+
+2007-06-11 11:30  ga
+
+	* [r60] GNOME_inm-forecast.server: Added spanish translation for
+	  the gnome panel entry
+
+2007-06-08 17:39  ga
+
+	* [r59] gnome-inm-glade.glade: Set correctly the url on the about
+	  dialog
+
+2007-06-08 11:25  ga
+
+	* [r58] ChangeLog, debian/changelog: changelogs updated
+
+2007-06-08 10:52  ga
+
+	* [r57] src/main.c: Important updates:
+	  * Free temporary pixbufs
+	  * Set up correctly daily data (max temp, min, temp, rainfall
+	  prob, etc)
+
+2007-06-08 09:01  ga
+
+	* [r56] src/callbacks.h: Update the callbacks header to match the
+	  new named function
+
+2007-06-08 09:00  ga
+
+	* [r55] src/main.c: Get and delete temporary pixbuf buffers
+
+2007-06-07 22:59  ga
+
+	* [r54] src/callbacks.c, src/main.c: Delete the pixbuf temporary
+	  buffers
+
+2007-06-07 16:43  ga
+
+	* [r53] src/main.c: Fixed an stupid typo
+
+2007-06-07 14:04  ga
+
+	* [r52] po/es.po: Spanish translation updated
+
+2007-06-07 14:03  ga
+
+	* [r51] src/main.c: Display error messages from glib and remove
+	  spanisj sentences
+
+2007-06-07 09:49  ga
+
+	* [r50] GNOME_INM_menu.xml, src/main.c, src/main.h: Add menu item
+	  for load the INM web site
+
+2007-06-07 07:26  ga
+
+	* [r49] src/main.c: Parse the wednesday short name correctly
+
+2007-06-06 22:09  ga
+
+	* [r48] src/main.c: Modify the window popup background color to
+	  white
+
+2007-06-06 22:01  ga
+
+	* [r47] src/main.c: Show the rainfall probability (unless seems to
+	  be unstable). Free the temporary buffer for parse the week days
+	  aswell
+
+2007-06-06 17:49  ga
+
+	* [r46] ChangeLog, debian/changelog, debian/copyright,
+	  debian/gnome-inm-forecast.install, gnome_inm.spec,
+	  gnome_inm.spec.in, po/Makefile.in: Conf files updated
+
+2007-06-06 15:29  ga
+
+	* [r45] src/callbacks.c, src/main.c, src/main.h: Parse week days
+	  for avoid to show html tags. Widgets callbacks to callbacks.c
+
+2007-06-06 15:28  ga
+
+	* [r44] po/es.po: Spanish translation updated
+
+2007-06-06 14:24  ga
+
+	* [r43] po/es.po: spanish translation updated
+
+2007-06-06 14:20  ga
+
+	* [r42] src/main.c: Set properly the images window title
+
+2007-06-06 14:17  ga
+
+	* [r41] src/callbacks.c, src/main.c: Do not show the image window
+	  if we can not get the images
+
+2007-06-06 12:19  ga
+
+	* [r40] gnome-inm-glade.glade: combo theme updated
+
+2007-06-06 12:18  ga
+
+	* [r39] src/main.h, src/preferences.c: Load theme directories
+	  dynamically
+
+2007-06-06 10:45  ga
+
+	* [r38] src/main.c: Get correctly all the data for show it on the
+	  tooltips
+
+2007-06-06 10:44  ga
+
+	* [r37] src/main.c: Package name set correctly on the about dialog
+
+2007-06-06 10:39  ga
+
+	* [r36] src/main.c: Translation support finished. Added latest
+	  changes
+
+2007-06-06 10:38  ga
+
+	* [r35] po/es.po: Translation updated
+
+2007-06-06 09:55  ga
+
+	* [r34] src/main.c: Double free bug getting the forecasts fixed
+
+2007-06-06 08:16  ga
+
+	* [r33] GNOME_INM_menu.xml, debian/gnome-inm-forecast.install,
+	  src/main.c: Load menus from an XML in order to translate them
+
+2007-06-06 08:11  ga
+
+	* [r32] gnome-inm-glade.glade, po/Makefile.in, po/POTFILES,
+	  po/POTFILES.in, po/es.po: Translations fixes
+
+2007-06-06 07:26  ga
+
+	* [r31] .deps, Makefile, config.log, config.status,
+	  config.status.lineno, m4/Makefile, po/Makefile, src/.deps,
+	  src/Makefile: Quite better if we remove temporary files from the
+	  svn
+
+2007-06-05 22:59  ga
+
+	* [r30] src/main.c: Show all the days names and raifalls
+	  probability (unstable)
+
+2007-06-05 22:49  ga
+
+	* [r29] Makefile, config.log, config.status, configure,
+	  configure.in, intltool-merge, po/Makefile, po/Makefile.in,
+	  src/Makefile, src/config.h: package name updated
+
+2007-06-05 22:42  ga
+
+	* [r28] ABOUT-NLS, ChangeLog, aclocal.m4, config.log, config.rpath,
+	  config.status, config.status.lineno, gnome_inm.lsm,
+	  intltool-extract, intltool-extract.in, intltool-merge,
+	  intltool-merge.in, intltool-update, intltool-update.in, m4,
+	  m4/ChangeLog, m4/Makefile, m4/Makefile.am, m4/Makefile.in,
+	  m4/codeset.m4, m4/gettext.m4, m4/glibc2.m4, m4/glibc21.m4,
+	  m4/iconv.m4, m4/intdiv0.m4, m4/intl.m4, m4/intldir.m4,
+	  m4/intmax.m4, m4/inttypes-pri.m4, m4/inttypes_h.m4,
+	  m4/lcmessage.m4, m4/lib-ld.m4, m4/lib-link.m4, m4/lib-prefix.m4,
+	  m4/lock.m4, m4/longdouble.m4, m4/longlong.m4, m4/nls.m4,
+	  m4/po.m4, m4/printf-posix.m4, m4/progtest.m4, m4/size_max.m4,
+	  m4/stdint_h.m4, m4/uintmax_t.m4, m4/ulonglong.m4,
+	  m4/visibility.m4, m4/wchar_t.m4, m4/wint_t.m4, m4/xsize.m4,
+	  src/.deps/callbacks.Po, src/.deps/gconf_callbacks.Po,
+	  src/.deps/main.Po, src/.deps/preferences.Po, src/config.h.in:
+	  Added translation support
+
+2007-06-05 22:40  ga
+
+	* [r27] po, po/ChangeLog, po/LINGUAS, po/Makefile, po/Makefile.in,
+	  po/Makefile.in.in, po/Makevars, po/Makevars.template,
+	  po/POTFILES, po/POTFILES.in, po/Rules-quot, po/boldquot.sed,
+	  po/en@boldquot.header, po/en@quot.header, po/es.po,
+	  po/insert-header.sin, po/quot.sed, po/remove-potcdate.sin,
+	  po/stamp-it: Added translation support
+
+2007-06-05 22:36  ga
+
+	* [r26] src/Makefile, src/Makefile.in, src/config.h: Added
+	  translation support
+
+2007-06-05 22:36  ga
+
+	* [r25] src/main.c, src/main.h: Added translation support
+
+2007-06-05 22:34  ga
+
+	* [r24] Makefile, Makefile.am, Makefile.in, configure,
+	  configure.in: Added translation support
+
+2007-06-05 20:04  ga
+
+	* [r23] src/callbacks.c, src/main.c, src/main.h: Added a function
+	  for load external images synchronously
+
+2007-06-05 17:46  ga
+
+	* [r22] gnome-inm-glade.glade, src/preferences.c: Set the long city
+	  name correctly
+
+2007-06-05 15:59  ga
+
+	* [r21] src/main.c, src/main.h, src/preferences.c: Added code for
+	  show only X days. Will be ready soon
+
+2007-06-05 15:45  ga
+
+	* [r20] src/main.c: Display correctly if it is afternoon or morning
+
+2007-06-05 15:12  ga
+
+	* [r19] src/callbacks.c: Removed double freed variable
+
+2007-06-05 15:09  ga
+
+	* [r18] gnome-inm-glade.glade, src/main.c, src/main.h,
+	  src/preferences.c: Satellite and spanish forecast images broken
+	  at the moment. Added label showing the long name of the choosen
+	  city. Avoid to use xmlNanoHTTP api, use gnome-vfs instead.
+
+2007-06-05 06:45  ga
+
+	* [r17] src/main.c: Use g_strsplit_set() instead of strtok().
+	  Better for maintain the code, easier to read, easier to change
+
+2007-06-05 06:34  ga
+
+	* [r16] src/main.c: Use g_strsplit_set() instead of strtok().
+	  Better for maintain the code, easier to read, easier to change
+
+2007-06-04 18:09  ga
+
+	* [r15] configure.in, src/Makefile.am, src/callbacks.c, src/main.c,
+	  src/main.h: Change the way we get forecast info. Use gnome-vfs
+	  instead of xmlNanoHTTP (handles quite better proxy connections)
+
+2007-06-04 07:50  ga
+
+	* [r14] gnome_inm.schemas: Added default key for the theme
+
+2007-06-04 07:27  ga
+
+	* [r13] src/main.h: Added new structs and urls
+
+2007-06-03 23:15  ga
+
+	* [r12] src/main.c: 2 new functions to check updated data
+
+2007-06-03 01:54  ga
+
+	* [r11] src/main.c: Display correctly the image on the popup window
+
+2007-06-03 01:46  ga
+
+	* [r10] src/main.c, src/main.h: Added spanish forecast img
+
+2007-06-03 01:30  ga
+
+	* [r9] configure.in: Removed unneeded check
+
+2007-06-02 20:28  ga
+
+	* [r8] src/callbacks.c, src/main.c: Fixed a nasty double free bug.
+	  minor changes and print statements commenteds
+
+2007-06-02 18:28  ga
+
+	* [r7] gnome-inm-glade.glade: minor changes to the gui
+
+2007-06-02 11:31  ga
+
+	* [r6] src/callbacks.c, src/main.c: let the user to choose a
+	  dirctory with other images. Themes. and general sanitize checks
+
+2007-06-02 11:30  ga
+
+	* [r5] gnome-inm-glade.glade: new changes to the popup day window
+
+2007-06-01 20:07  ga
+
+	* [r4] gnome-inm-glade.glade: latest changes to the gui
+
+2007-06-01 20:06  ga
+
+	* [r3] src/main.c, src/preferences.c: Do not show precipitacion
+	  field for the moment (it crashes... sssshh)
+
+2007-06-01 16:08  ga
+
+	* [r2] src/callbacks.c, src/callbacks.h, src/main.c: Fix loading
+	  the forecast url and general sanitize checks
+
+2007-06-01 12:43  ga
+
+	* [r1] .deps, .deps/gnome_inm-opt.Po, .deps/gnome_inm.Po,
+	  .deps/xmalloc.Po, AUTHORS, COPYING, ChangeLog,
+	  GNOME_inm-forecast.server, INSTALL, Makefile, Makefile.am,
+	  Makefile.in, NEWS, README, acinclude.m4, aclocal.m4, build-stamp,
+	  config.guess, config.h, config.h.in, config.log, config.status,
+	  config.sub, configure, configure.in, debian,
+	  debian/README.Debian, debian/changelog, debian/compat,
+	  debian/control, debian/copyright, debian/cron.d.ex, debian/dirs,
+	  debian/docs, debian/emacsen-install.ex, debian/emacsen-remove.ex,
+	  debian/emacsen-startup.ex, debian/gnome-inm-forecast-default.ex,
+	  debian/gnome-inm-forecast.doc-base.EX,
+	  debian/gnome-inm-forecast.install, debian/init.d.ex,
+	  debian/manpage.1.ex, debian/manpage.sgml.ex,
+	  debian/manpage.xml.ex, debian/menu.ex, debian/postinst,
+	  debian/postinst.ex, debian/postrm, debian/postrm.ex,
+	  debian/preinst.ex, debian/prerm.ex, debian/rules,
+	  debian/watch.ex, depcomp, gnome-inm-glade.glade, gnome_inm-opt.c,
+	  gnome_inm-opt.def, gnome_inm-opt.h, gnome_inm.1, gnome_inm.c,
+	  gnome_inm.lsm, gnome_inm.lsm.in, gnome_inm.schemas,
+	  gnome_inm.spec, gnome_inm.spec.in, gpl.texinfo, install-sh,
+	  manpage.tpl, missing, mkinstalldirs, pixmaps, pixmaps/inm,
+	  pixmaps/inm/11.png, pixmaps/inm/12.png, pixmaps/inm/13.png,
+	  pixmaps/inm/14.png, pixmaps/inm/15.png, pixmaps/inm/16.png,
+	  pixmaps/inm/23.png, pixmaps/inm/24.png, pixmaps/inm/25.png,
+	  pixmaps/inm/26.png, pixmaps/inm/33.png, pixmaps/inm/34.png,
+	  pixmaps/inm/35.png, pixmaps/inm/36.png, src, src/.deps,
+	  src/.deps/callbacks.Po, src/.deps/gconf_callbacks.Po,
+	  src/.deps/main.Po, src/.deps/preferences.Po, src/.dirstamp,
+	  src/Makefile, src/Makefile.am, src/Makefile.in, src/callbacks.c,
+	  src/callbacks.h, src/config.h, src/config.h.in,
+	  src/gconf_callbacks.c, src/gconf_callbacks.h, src/main.c,
+	  src/main.h, src/preferences.c, src/preferences.h, src/stamp-h1,
+	  stamp-h1, system.h, updater, xmalloc.c, xmalloc.h: First commit
+

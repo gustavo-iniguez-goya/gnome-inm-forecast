@@ -1,0 +1,5 @@
+	../src/main.c \
+	../src/callbacks.c \
+	../src/preferences.c \
+	../gnome-inm-glade.glade \
+	../GNOME_INM_menu.xml

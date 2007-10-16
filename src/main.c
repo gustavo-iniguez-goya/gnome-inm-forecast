@@ -1282,6 +1282,7 @@ void display_about_dialog 		( BonoboUIComponent *uic, gpointer user_data, const 
 		gtk_about_dialog_set_name (GTK_ABOUT_DIALOG(dialog), "Gnome INM forecast - ");
 		gtk_about_dialog_set_version (GTK_ABOUT_DIALOG(dialog), VERSION);
 		gtk_about_dialog_set_logo (GTK_ABOUT_DIALOG(dialog), pix);
+		g_signal_connect (G_OBJECT(dialog), "response", G_CALLBACK(on_window_terminate), NULL);
 		gtk_widget_show (dialog);
 		shown = TRUE;
 	}

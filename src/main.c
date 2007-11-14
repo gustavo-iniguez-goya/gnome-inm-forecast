@@ -86,28 +86,32 @@ char *parse_week_day_name	( const char *day_name )
 	if (day_name){
 		tokens = g_strsplit_set (day_name, " ", -1);
 
-		if (strstr (day_name, "Mi&eacute;rcoles"))
-			snprintf (day_temp, 64, _("Wednesday %s"), tokens[1]);
-		else if (strstr (day_name, "S&aacute;bado"))
-			snprintf (day_temp, 64, _("Saturday %s"), tokens[1]);
-		else if (strstr (day_name, "Lun "))
-			snprintf (day_temp, 64, _("Monday %s"), tokens[1]);
-		else if (strstr (day_name, "Mar "))
-			snprintf (day_temp, 64, _("Tuesday %s"), tokens[1]);
-		else if (strstr (day_name, "Mi&eacute; "))
-			snprintf (day_temp, 64, _("Wednesday %s"), tokens[1]);
-		else if (strstr (day_name, "Jue "))
-			snprintf (day_temp, 64, _("Thursday %s"), tokens[1]);
-		else if (strstr (day_name, "Vie "))
-			snprintf (day_temp, 64, _("Friday %s"), tokens[1]);
-		else if (strstr (day_name, "S&aacute;b "))
-			snprintf (day_temp, 64, _("Saturday %s"), tokens[1]);
-		else if (strstr (day_name, "Dom "))
-			snprintf (day_temp, 64, _("Sunday %s"), tokens[1]);
-		else
-			snprintf (day_temp, 64, "%s", day_name);
+		if (tokens[1]){
+			if (strstr (day_name, "Mi&eacute;rcoles"))
+				snprintf (day_temp, 64, _("Wednesday %s"), tokens[1]);
+			else if (strstr (day_name, "S&aacute;bado"))
+				snprintf (day_temp, 64, _("Saturday %s"), tokens[1]);
+			else if (strstr (day_name, "Lun "))
+				snprintf (day_temp, 64, _("Monday %s"), tokens[1]);
+			else if (strstr (day_name, "Mar "))
+				snprintf (day_temp, 64, _("Tuesday %s"), tokens[1]);
+			else if (strstr (day_name, "Mi&eacute; "))
+				snprintf (day_temp, 64, _("Wednesday %s"), tokens[1]);
+			else if (strstr (day_name, "Jue "))
+				snprintf (day_temp, 64, _("Thursday %s"), tokens[1]);
+			else if (strstr (day_name, "Vie "))
+				snprintf (day_temp, 64, _("Friday %s"), tokens[1]);
+			else if (strstr (day_name, "S&aacute;b "))
+				snprintf (day_temp, 64, _("Saturday %s"), tokens[1]);
+			else if (strstr (day_name, "Dom "))
+				snprintf (day_temp, 64, _("Sunday %s"), tokens[1]);
+			else
+				snprintf (day_temp, 64, "%s", day_name);
+		
+			g_strfreev (tokens);
+		}
+		tokens = 0;
 
-		g_strfreev (tokens);
 	}
 	return day_temp;
 }
@@ -561,9 +565,11 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 				}
 				else if (type == SNOW){
 					tk_snow = g_strsplit_set (tokens[4], ";", 2);
-					strncpy (applet_data->day_info[0].cota_nieve, tk_snow[1], 10);
-					strncpy (applet_data->day_info[1].cota_nieve, tk_snow[1], 10);
-					g_strfreev (tk_snow);
+					if (tk_snow[1]){
+						strncpy (applet_data->day_info[0].cota_nieve, tk_snow[1], 10);
+						strncpy (applet_data->day_info[1].cota_nieve, tk_snow[1], 10);
+						g_strfreev (tk_snow);
+					}
 					tk_snow = 0;
 				}
 			}
@@ -582,9 +588,11 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 				}
 				else if (type == SNOW){
 					tk_snow = g_strsplit_set (tokens[8], ";", 2);
-					strncpy (applet_data->day_info[2].cota_nieve, tk_snow[1], 10);
-					strncpy (applet_data->day_info[3].cota_nieve, tk_snow[1], 10);
-					g_strfreev (tk_snow);
+					if (tk_snow[1]){
+						strncpy (applet_data->day_info[2].cota_nieve, tk_snow[1], 10);
+						strncpy (applet_data->day_info[3].cota_nieve, tk_snow[1], 10);
+						g_strfreev (tk_snow);
+					}
 					tk_snow = 0;
 				}
 			}
@@ -603,9 +611,11 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 				}
 				else if (type == SNOW){
 					tk_snow = g_strsplit_set (tokens[12], ";", 2);
-					strncpy (applet_data->day_info[4].cota_nieve, tk_snow[1], 10);
-					strncpy (applet_data->day_info[5].cota_nieve, tk_snow[1], 10);
-					g_strfreev (tk_snow);
+					if (tk_snow[1]){
+						strncpy (applet_data->day_info[4].cota_nieve, tk_snow[1], 10);
+						strncpy (applet_data->day_info[5].cota_nieve, tk_snow[1], 10);
+						g_strfreev (tk_snow);
+					}
 					tk_snow = 0;
 				}
 			}
@@ -618,8 +628,10 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 					strncpy (applet_data->day_info[6].precip, tokens[16], 4);
 				else if (type == SNOW){
 					tk_snow = g_strsplit_set (tokens[16], ";", 2);
-					strncpy (applet_data->day_info[6].cota_nieve, tk_snow[1], 10);
-					g_strfreev (tk_snow);
+					if (tk_snow[1]){
+						strncpy (applet_data->day_info[6].cota_nieve, tk_snow[1], 10);
+						g_strfreev (tk_snow);
+					}
 					tk_snow = 0;
 				}
 			}
@@ -632,8 +644,10 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 					strncpy (applet_data->day_info[7].precip, tokens[20], 4);
 				else if (type == SNOW){
 					tk_snow = g_strsplit_set (tokens[20], ";", 2);
-					strncpy (applet_data->day_info[7].cota_nieve, tk_snow[1], 10);
-					g_strfreev (tk_snow);
+					if (tk_snow[1]){
+						strncpy (applet_data->day_info[7].cota_nieve, tk_snow[1], 10);
+						g_strfreev (tk_snow);
+					}
 					tk_snow = 0;
 				}
 			}
@@ -646,8 +660,10 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 					strncpy (applet_data->day_info[8].precip, tokens[24], 4);
 				else if (type == SNOW){
 					tk_snow = g_strsplit_set (tokens[24], ";", 2);
-					strncpy (applet_data->day_info[8].cota_nieve, tk_snow[1], 10);
-					g_strfreev (tk_snow);
+					if (tk_snow[1]){
+						strncpy (applet_data->day_info[8].cota_nieve, tk_snow[1], 10);
+						g_strfreev (tk_snow);
+					}
 					tk_snow = 0;
 				}
 			}
@@ -660,8 +676,10 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 					strncpy (applet_data->day_info[9].precip, tokens[28], 4);
 				else if (type == SNOW){
 					tk_snow = g_strsplit_set (tokens[28], ";", 2);
-					strncpy (applet_data->day_info[9].cota_nieve, tk_snow[1], 10);
-					g_strfreev (tk_snow);
+					if (tk_snow[1]){
+						strncpy (applet_data->day_info[9].cota_nieve, tk_snow[1], 10);
+						g_strfreev (tk_snow);
+					}
 					tk_snow = 0;
 				}
 			}

@@ -17,6 +17,11 @@
 				_label="_Satellite radar images"
 				pixtype="stock"
 				pixname=""/>
+			<menuitem name="Temperatures"
+				verb="Temperatures"
+				_label="_Temperatures"
+				pixtype="stock"
+				pixname=""/>
 			<separator />
 			<menuitem name="Informe Aludes"
 				verb="InformeAludes"

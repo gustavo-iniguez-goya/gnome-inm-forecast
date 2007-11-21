@@ -1240,6 +1240,45 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 	}
 }
 
+void display_daily_temperatures 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	GdkPixbuf *pixbuf;
+	GladeXML *xml;
+	static GtkWidget *img, *img2;
+	static GtkWidget *win;
+	GtkWidget *rb1, *rb2;
+
+	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_day_temps", NULL);
+	win = glade_xml_get_widget (xml, "win_day_temps");
+	img = glade_xml_get_widget (xml, "temp_img");
+	img2 = glade_xml_get_widget (xml, "temp_img1");
+	rb1 = glade_xml_get_widget (xml, "rb_1");
+	rb2 = glade_xml_get_widget (xml, "rb_2");
+	//gtk_widget_hide (rb1);
+	//gtk_widget_hide (rb2);
+	
+	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
+	g_signal_connect (G_OBJECT(rb1), "toggled", G_CALLBACK(on_daily_temp_rb1_toggled), img);
+	g_signal_connect (G_OBJECT(rb2), "toggled", G_CALLBACK(on_daily_temp_rb2_toggled), img);
+	
+	pixbuf = load_image (INM_SPAIN_IMG);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img2), pixbuf);
+		gtk_window_set_title (GTK_WINDOW(win), _("Temperatures for the next days"));
+		gtk_widget_show (win);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+	pixbuf = load_image (INM_DAILY_TEMPERATURE_MIN);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		gtk_window_set_title (GTK_WINDOW(win), _("Temperatures for the next days"));
+		gtk_widget_show (win);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+}
+
 void display_nextdays_forecast	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	AppletData *applet_data = (AppletData *) user_data;
@@ -1323,6 +1362,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		BONOBO_UI_VERB ("NextDaysForecast", display_nextdays_forecast),
 		BONOBO_UI_VERB ("SatelliteImages", display_satellite_radar),
 		BONOBO_UI_VERB ("SpanishForecastImg", display_spanish_forecast_img),
+		BONOBO_UI_VERB ("Temperatures", display_daily_temperatures),
 		BONOBO_UI_VERB ("InformeAludes", display_snow_warnings),
 		BONOBO_UI_VERB ("Properties", display_preferences_dialog),
 		BONOBO_UI_VERB ("VisitINM", display_inm_website),

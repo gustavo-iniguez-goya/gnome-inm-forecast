@@ -52,9 +52,11 @@
 #define INM_FORECAST_TODAY_URL "http://www.inm.es/cgi-bin/p07hesp1.sh.2001"
 #define INM_SNOW_WARNINGS_URL "http://www.inm.es/cgi-bin/nevadas.cgi.2002?ccaa=arn&producto=p18t"
 #define INM_NATIONAL_FORECAST_IMG "http://www.inm.es/wwb/predi/p01gesp1.jpg"
+#define INM_DAILY_TEMPERATURE_MAX "http://www.inm.es/wwb/predi/capital_MAX_2001.gif"
+#define INM_DAILY_TEMPERATURE_MIN "http://www.inm.es/wwb/predi/capital_MIN_2001.gif"
 #define INM_NAMES_LATEST_DATA "http://www.inm.es/web/infmet/tobsr/bin/nombres.js"
 #define INM_LATEST_DATA "http://www.inm.es/wwb/tobsr/emasdat.js"
-
+#define INM_SPAIN_IMG PACKAGE_DIR"pixmaps/espcan.jpg"
 
 enum DATA_TYPE {
 	MAX = 0,

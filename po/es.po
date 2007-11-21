@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-inm-forecast 0.1.0\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2007-10-03 15:20+0200\n"
-"PO-Revision-Date: 2007-10-03 23:08+0100\n"
+"POT-Creation-Date: 2007-11-21 23:55+0100\n"
+"PO-Revision-Date: 2007-11-21 23:57+0100\n"
 "Last-Translator: ga <ga@kutxa.homeunix.org>\n"
 "Language-Team: es <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,101 +18,108 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../src/main.c:61 ../src/main.c:69
+#: ../src/main.c:91
+#: ../src/main.c:99
 #, c-format
 msgid "Wednesday %s"
 msgstr "Miércoles %s"
 
-#: ../src/main.c:63 ../src/main.c:75
+#: ../src/main.c:93
+#: ../src/main.c:105
 #, c-format
 msgid "Saturday %s"
 msgstr "Sábado %s"
 
-#: ../src/main.c:65
+#: ../src/main.c:95
 #, c-format
 msgid "Monday %s"
 msgstr "Lunes %s"
 
-#: ../src/main.c:67
+#: ../src/main.c:97
 #, c-format
 msgid "Tuesday %s"
 msgstr "Martes %s"
 
-#: ../src/main.c:71
+#: ../src/main.c:101
 #, c-format
 msgid "Thursday %s"
 msgstr "Jueves %s"
 
-#: ../src/main.c:73
+#: ../src/main.c:103
 #, c-format
 msgid "Friday %s"
 msgstr "Viernes %s"
 
-#: ../src/main.c:77
+#: ../src/main.c:107
 #, c-format
 msgid "Sunday %s"
 msgstr "Domingo %s"
 
-#: ../src/main.c:206
+#: ../src/main.c:239
 msgid "Morning"
 msgstr "Mañana"
 
-#: ../src/main.c:207
+#: ../src/main.c:240
 msgid "Afternoon"
 msgstr "Tarde"
 
-#: ../src/main.c:498
+#: ../src/main.c:531
 msgid "Sur"
 msgstr "Sur"
 
-#: ../src/main.c:500
+#: ../src/main.c:533
 msgid "Sureste"
 msgstr "Sureste"
 
-#: ../src/main.c:502
+#: ../src/main.c:535
 msgid "Suroeste"
 msgstr "Suroeste"
 
-#: ../src/main.c:504
+#: ../src/main.c:537
 msgid "Norte"
 msgstr "Norte"
 
-#: ../src/main.c:506
+#: ../src/main.c:539
 msgid "Noreste"
 msgstr "Noreste"
 
-#: ../src/main.c:508
+#: ../src/main.c:541
 msgid "Noroeste"
 msgstr "Noroeste"
 
-#: ../src/main.c:510
+#: ../src/main.c:543
 msgid "Este"
 msgstr "Este"
 
-#: ../src/main.c:512
+#: ../src/main.c:545
 msgid "Oeste"
 msgstr "Oeste"
 
-#: ../src/main.c:978
+#: ../src/main.c:1025
 msgid "Error loading www.inm.es"
 msgstr "Error al cargar www.inm.es"
 
-#: ../src/main.c:1007
+#: ../src/main.c:1054
 msgid "Next days forecast"
 msgstr "Previsión próximos días"
 
-#: ../src/main.c:1090
+#: ../src/main.c:1137
 #, c-format
 msgid "Connection error\n"
 msgstr "Error de conexión\n"
 
-#: ../src/main.c:1158 ../gnome-inm-glade.glade.h:22
+#: ../src/main.c:1204
+#: ../gnome-inm-glade.glade.h:24
 msgid "Satellite image"
 msgstr "Imagen de satélite"
 
-#: ../src/main.c:1191
+#: ../src/main.c:1236
 msgid "Spanish weather forecast image"
 msgstr "Imagen del pronóstico meteorológico"
+
+#: ../src/main.c:1267
+msgid "Temperatures for the next days"
+msgstr "Temperaturas para los próximos días"
 
 #: ../gnome-inm-glade.glade.h:1
 msgid "00:00"
@@ -191,58 +198,64 @@ msgid "Location"
 msgstr "Lugar"
 
 #: ../gnome-inm-glade.glade.h:20
-msgid "Panel"
+msgid "Max"
 msgstr ""
 
 #: ../gnome-inm-glade.glade.h:21
+msgid "Min"
+msgstr "Min"
+
+#: ../gnome-inm-glade.glade.h:22
+msgid "Panel"
+msgstr ""
+
+#: ../gnome-inm-glade.glade.h:23
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../gnome-inm-glade.glade.h:23
+#: ../gnome-inm-glade.glade.h:25
 msgid "Show afternoon data"
 msgstr "Mostrar información de tarde"
 
-#: ../gnome-inm-glade.glade.h:24
+#: ../gnome-inm-glade.glade.h:26
 msgid "Show morning data"
 msgstr "Mostrar información de mañana"
 
-#: ../gnome-inm-glade.glade.h:25
+#: ../gnome-inm-glade.glade.h:27
 msgid ""
-"The information you get with this program is property of the Spanish "
-"metereological Institute\n"
+"The information you get with this program is property of the Spanish metereological Institute\n"
 "\n"
 "http://www.inm.es"
 msgstr ""
-"La información que obtienes con este programa es propiedad del Instituto "
-"Nacional de Meteorología español\n"
+"La información que obtienes con este programa es propiedad del Instituto Nacional de Meteorología español\n"
 "\n"
 "http://www.inm.es"
 
-#: ../gnome-inm-glade.glade.h:28
+#: ../gnome-inm-glade.glade.h:30
 msgid "Theme"
 msgstr "Tema"
 
-#: ../gnome-inm-glade.glade.h:29
+#: ../gnome-inm-glade.glade.h:31
 msgid "This program is licensed under the GPL license"
 msgstr "Este programa está licenciado bajo la licencia GPL"
 
-#: ../gnome-inm-glade.glade.h:30
+#: ../gnome-inm-glade.glade.h:32
 msgid "Today weather forecast "
 msgstr "Pronóstico para hoy "
 
-#: ../gnome-inm-glade.glade.h:31
+#: ../gnome-inm-glade.glade.h:33
 msgid "day"
 msgstr "día"
 
-#: ../gnome-inm-glade.glade.h:32
+#: ../gnome-inm-glade.glade.h:34
 msgid "gtk-apply"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:33
+#: ../gnome-inm-glade.glade.h:35
 msgid "gtk-cancel"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:34
+#: ../gnome-inm-glade.glade.h:36
 msgid "label"
 msgstr ""
 
@@ -271,17 +284,22 @@ msgid "_Spanish Forecast Image"
 msgstr "Mapa para mañana"
 
 #: ../GNOME_INM_menu.xml.h:7
+msgid "_Temperatures"
+msgstr "_Temperaturas"
+
+#: ../GNOME_INM_menu.xml.h:8
 msgid "_Today forecast"
 msgstr "Pronóstico para hoy"
 
-#: ../GNOME_INM_menu.xml.h:8
+#: ../GNOME_INM_menu.xml.h:9
 msgid "_Tomorrow forecast"
 msgstr "Pronóstico para mañana"
 
-#: ../GNOME_INM_menu.xml.h:9
+#: ../GNOME_INM_menu.xml.h:10
 msgid "_Update now"
 msgstr "Actualizar ahora"
 
-#: ../GNOME_INM_menu.xml.h:10
+#: ../GNOME_INM_menu.xml.h:11
 msgid "_Visit INM web site"
 msgstr "_Visita la web del INM"
+

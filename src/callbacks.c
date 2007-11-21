@@ -41,6 +41,36 @@ void on_window_terminate 	( GtkWidget *widget, gpointer data )
 	quit (widget);
 }
 
+void on_daily_temp_rb1_toggled			 ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf;
+	if (img){
+		pixbuf = load_image (INM_DAILY_TEMPERATURE_MIN);
+		if (pixbuf){
+			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+			gtk_widget_show (img);
+			g_object_unref (G_OBJECT (pixbuf));
+			pixbuf = 0;
+		}
+	}
+}
+
+void on_daily_temp_rb2_toggled			 ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf;
+	if (img){
+		pixbuf = load_image (INM_DAILY_TEMPERATURE_MAX);
+		if (pixbuf){
+			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+			gtk_widget_show (img);
+			g_object_unref (G_OBJECT (pixbuf));
+			pixbuf = 0;
+		}
+	}
+}
+
 void on_rb_00_toggled			 ( GtkWidget *widget, gpointer data )
 {
 	GtkImage *img = (GtkImage *) data;

@@ -1,3 +1,26 @@
+Howto start compiling gnome-inm-forecast
+========================================
+Just execute the bootstrap script firstly:
+./bootstrap
+
+and then configure:
+./configure
+
+
+Como empezar a compilar gnome-inm-forecast
+==========================================
+Primeramente simplemente ejeuta el script bootstrap:
+./bootstrap
+
+y después configure:
+./configure
+
+
+make
+
+
+--------------------------------------------------------------------
+
 Copyright (C) 1994, 1995, 1996, 1999, 2000, 2001, 2002 Free Software
 Foundation, Inc.
 

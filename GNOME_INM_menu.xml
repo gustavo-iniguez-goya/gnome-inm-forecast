@@ -3,31 +3,41 @@
 		<popup name="button3">
 			<menuitem name="Update" verb="Update" _label="_Update now" pixtype="stock" pixname="gtk-refresh"/>
 			<separator />
-			<menuitem name="Today forecast" verb="TodayForecast" _label="_Today forecast" pixtype="stock" pixname=""/>
-			<menuitem name="Tomorrow forecast" verb="TomorrowForecast" _label="_Tomorrow forecast" pixtype="stock" pixname=""/>
-			<menuitem name="Next days forecast" verb="NextDaysForecast" _label="_Next days forecast" pixtype="stock" pixname=""/>
+			<submenu name="forecast_reports" _label="W_eather reports">
+				<menuitem name="Today forecast" verb="TodayForecast" _label="T_oday weather report" pixtype="stock" pixname=""/>
+				<menuitem name="Tomorrow forecast" verb="TomorrowForecast" _label="_Tomorrow weather report" pixtype="stock" pixname=""/>
+				<menuitem name="Next days forecast" verb="NextDaysForecast" _label="_Next days weather report" pixtype="stock" pixname=""/>
 			<separator />
-			<menuitem name="SpanishForecastImage"
-			             verb="SpanishForecastImg"
-			           _label="_Spanish Forecast Image"
-			          pixtype="stock"
-			          pixname=""/>
-			<menuitem name="Satellite radar images"
-				verb="SatelliteImages"
-				_label="_Satellite radar images"
-				pixtype="stock"
-				pixname=""/>
-			<menuitem name="Temperatures"
-				verb="Temperatures"
-				_label="_Temperatures"
-				pixtype="stock"
-				pixname=""/>
+				<menuitem name="WeatherWarnings1" verb="WeatherWarnings1" _label="_Today weather warnings" pixtype="stock" pixname="gnome-stock-link"/>
+				<menuitem name="WeatherWarnings2" verb="WeatherWarnings2" _label="To_morrow weather warnings" pixtype="stock" pixname="gnome-stock-link"/>
+				<menuitem name="WeatherWarnings3" verb="WeatherWarnings3" _label="_Next days weather warnings" pixtype="stock" pixname="gnome-stock-link"/>
+			</submenu>
+			<separator />
+			<submenu name="forecast_images" _label="_Weather maps">
+				<menuitem name="SpanishForecastImage"
+				             verb="SpanishForecastImg"
+				           _label="_Tomorrow weather map"
+				          pixtype="stock"
+				          pixname=""/>
+				<menuitem name="Satellite radar images"
+					verb="SatelliteImages"
+					_label="_Satellite radar images"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="Temperatures"
+					verb="Temperatures"
+					_label="Tempe_ratures maps"
+					pixtype="stock"
+					pixname=""/>
+			</submenu>
 			<separator />
 			<menuitem name="Informe Aludes"
 				verb="InformeAludes"
-				_label="_Informe sobre aludes"
+				_label="_Informe sobre alude"
 				pixtype="stock"
 				pixname=""/>
+		            <separator/>
+
 			<menuitem name="Properties Item"
 				verb="Properties"
 				_label="_Preferences..."

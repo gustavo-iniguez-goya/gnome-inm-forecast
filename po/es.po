@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-inm-forecast 0.1.0\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2007-11-21 23:55+0100\n"
-"PO-Revision-Date: 2007-11-21 23:57+0100\n"
-"Last-Translator: ga <ga@kutxa.homeunix.org>\n"
+"POT-Creation-Date: 2007-11-23 09:47+0100\n"
+"PO-Revision-Date: 2007-11-23 09:48+0100\n"
+"Last-Translator: Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>\n"
 "Language-Team: es <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -99,25 +99,32 @@ msgstr "Oeste"
 msgid "Error loading www.inm.es"
 msgstr "Error al cargar www.inm.es"
 
-#: ../src/main.c:1054
+#: ../src/main.c:1036
+#: ../src/main.c:1046
+#: ../src/main.c:1056
+msgid "Error loading http://www.inm.es/web/infmet/avi/pr/conavi_c.php"
+msgstr "Error al cargar http://www.inm.es/web/infmet/avi/pr/conavi_c.php"
+
+#: ../src/main.c:1084
 msgid "Next days forecast"
 msgstr "Previsión próximos días"
 
-#: ../src/main.c:1137
+#: ../src/main.c:1167
 #, c-format
 msgid "Connection error\n"
 msgstr "Error de conexión\n"
 
-#: ../src/main.c:1204
+#: ../src/main.c:1234
 #: ../gnome-inm-glade.glade.h:24
 msgid "Satellite image"
 msgstr "Imagen de satélite"
 
-#: ../src/main.c:1236
+#: ../src/main.c:1266
 msgid "Spanish weather forecast image"
 msgstr "Imagen del pronóstico meteorológico"
 
-#: ../src/main.c:1267
+#: ../src/main.c:1297
+#: ../src/main.c:1305
 msgid "Temperatures for the next days"
 msgstr "Temperaturas para los próximos días"
 
@@ -199,7 +206,7 @@ msgstr "Lugar"
 
 #: ../gnome-inm-glade.glade.h:20
 msgid "Max"
-msgstr ""
+msgstr "Máx"
 
 #: ../gnome-inm-glade.glade.h:21
 msgid "Min"
@@ -260,46 +267,73 @@ msgid "label"
 msgstr ""
 
 #: ../GNOME_INM_menu.xml.h:1
+msgid "T_oday weather report"
+msgstr "Pronóstico para hoy "
+
+#: ../GNOME_INM_menu.xml.h:2
+msgid "Tempe_ratures maps"
+msgstr "Mapas de _temperaturas"
+
+#: ../GNOME_INM_menu.xml.h:3
+msgid "To_morrow weather warnings"
+msgstr "Avisos para mañana"
+
+#: ../GNOME_INM_menu.xml.h:4
+msgid "W_eather reports"
+msgstr "_Informes meteorológicos"
+
+#: ../GNOME_INM_menu.xml.h:5
 msgid "_About..."
 msgstr "_Acerca de..."
 
-#: ../GNOME_INM_menu.xml.h:2
-msgid "_Informe sobre aludes"
+#: ../GNOME_INM_menu.xml.h:6
+msgid "_Informe sobre alude"
 msgstr ""
 
-#: ../GNOME_INM_menu.xml.h:3
-msgid "_Next days forecast"
+#: ../GNOME_INM_menu.xml.h:7
+msgid "_Next days weather report"
 msgstr "Previsión próximos días"
 
-#: ../GNOME_INM_menu.xml.h:4
+#: ../GNOME_INM_menu.xml.h:8
+msgid "_Next days weather warnings"
+msgstr "Avisos próximos días"
+
+#: ../GNOME_INM_menu.xml.h:9
 msgid "_Preferences..."
 msgstr "_Preferencias"
 
-#: ../GNOME_INM_menu.xml.h:5
+#: ../GNOME_INM_menu.xml.h:10
 msgid "_Satellite radar images"
 msgstr "Imágenes de satélite"
 
-#: ../GNOME_INM_menu.xml.h:6
-msgid "_Spanish Forecast Image"
-msgstr "Mapa para mañana"
+#: ../GNOME_INM_menu.xml.h:11
+msgid "_Today weather warnings"
+msgstr "_Avisos para hoy"
 
-#: ../GNOME_INM_menu.xml.h:7
-msgid "_Temperatures"
-msgstr "_Temperaturas"
+#: ../GNOME_INM_menu.xml.h:12
+msgid "_Tomorrow weather map"
+msgstr "_Mapa para mañana"
 
-#: ../GNOME_INM_menu.xml.h:8
-msgid "_Today forecast"
-msgstr "Pronóstico para hoy"
-
-#: ../GNOME_INM_menu.xml.h:9
-msgid "_Tomorrow forecast"
+#: ../GNOME_INM_menu.xml.h:13
+msgid "_Tomorrow weather report"
 msgstr "Pronóstico para mañana"
 
-#: ../GNOME_INM_menu.xml.h:10
+#: ../GNOME_INM_menu.xml.h:14
 msgid "_Update now"
 msgstr "Actualizar ahora"
 
-#: ../GNOME_INM_menu.xml.h:11
+#: ../GNOME_INM_menu.xml.h:15
 msgid "_Visit INM web site"
 msgstr "_Visita la web del INM"
+
+#: ../GNOME_INM_menu.xml.h:16
+msgid "_Weather maps"
+msgstr "_Mapas meteorológicos"
+
+#~ msgid "_Spanish weather map"
+#~ msgstr "_Mapa para mañana"
+#~ msgid "_Spanish Forecast Image"
+#~ msgstr "Mapa para mañana"
+#~ msgid "_Today forecast"
+#~ msgstr "Pronóstico para hoy"
 

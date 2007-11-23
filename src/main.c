@@ -1026,6 +1026,36 @@ void display_inm_website		 ( BonoboUIComponent *uic, gpointer user_data, const c
 		
 }
 
+void display_wwarnings_t		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	GnomeVFSResult gvfs_result;
+	AppletData *applet_data = (AppletData *) user_data;
+
+	gvfs_result = gnome_vfs_url_show (INM_WWARNINGS_TODAY_URL);
+	if (gvfs_result != GNOME_VFS_OK)
+		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading http://www.inm.es/web/infmet/avi/pr/conavi_c.php"), gnome_vfs_result_to_string (gvfs_result));
+}
+
+void display_wwarnings_tm		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	GnomeVFSResult gvfs_result;
+	AppletData *applet_data = (AppletData *) user_data;
+
+	gvfs_result = gnome_vfs_url_show (INM_WWARNINGS_TOMORROW_URL);
+	if (gvfs_result != GNOME_VFS_OK)
+		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading http://www.inm.es/web/infmet/avi/pr/conavi_mm.php"), gnome_vfs_result_to_string (gvfs_result));
+}
+
+void display_wwarnings_n		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	GnomeVFSResult gvfs_result;
+	AppletData *applet_data = (AppletData *) user_data;
+
+	gvfs_result = gnome_vfs_url_show (INM_WWARNINGS_NEXT_DAYS_URL);
+	if (gvfs_result != GNOME_VFS_OK)
+		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading http://www.inm.es/web/infmet/avi/pr/conavi_pp.php"), gnome_vfs_result_to_string (gvfs_result));
+}
+
 static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, gpointer callback_data)
 {
 	GladeXML *xml;
@@ -1360,6 +1390,9 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		BONOBO_UI_VERB ("TodayForecast", display_today_forecast),
 		BONOBO_UI_VERB ("TomorrowForecast", display_tomorrow_forecast),
 		BONOBO_UI_VERB ("NextDaysForecast", display_nextdays_forecast),
+		BONOBO_UI_VERB ("WeatherWarnings1", display_wwarnings_t),
+		BONOBO_UI_VERB ("WeatherWarnings2", display_wwarnings_tm),
+		BONOBO_UI_VERB ("WeatherWarnings3", display_wwarnings_n),
 		BONOBO_UI_VERB ("SatelliteImages", display_satellite_radar),
 		BONOBO_UI_VERB ("SpanishForecastImg", display_spanish_forecast_img),
 		BONOBO_UI_VERB ("Temperatures", display_daily_temperatures),

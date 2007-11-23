@@ -50,6 +50,9 @@
 #define INM_FORECAST_NEXTDAYS_URL "http://www.inm.es/cgi-bin/p06hesp1.sh.2001"
 #define INM_FORECAST_TOMORROW_URL "http://www.inm.es/cgi-bin/p03hesp1.sh.2001"
 #define INM_FORECAST_TODAY_URL "http://www.inm.es/cgi-bin/p07hesp1.sh.2001"
+#define INM_WWARNINGS_TODAY_URL "http://www.inm.es/web/infmet/avi/pr/conavi_c.php"
+#define INM_WWARNINGS_TOMORROW_URL "http://www.inm.es/web/infmet/avi/pr/conavi_mm.php"
+#define INM_WWARNINGS_NEXT_DAYS_URL "http://www.inm.es/web/infmet/avi/pr/conavi_pp.php"
 #define INM_SNOW_WARNINGS_URL "http://www.inm.es/cgi-bin/nevadas.cgi.2002?ccaa=arn&producto=p18t"
 #define INM_NATIONAL_FORECAST_IMG "http://www.inm.es/wwb/predi/p01gesp1.jpg"
 #define INM_DAILY_TEMPERATURE_MAX "http://www.inm.es/wwb/predi/capital_MAX_2001.gif"
@@ -140,6 +143,9 @@ void update_data		( BonoboUIComponent *uic, gpointer user_data, const char *name
 void update_location		( AppletData *applet_data );
 void display_tomorrow_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_nextdays_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
+void display_wwarnings_t	( BonoboUIComponent *uic, gpointer user_data, const char *name );
+void display_wwarnings_tm	( BonoboUIComponent *uic, gpointer user_data, const char *name );
+void display_wwarnings_n	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_today_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_satellite_radar 	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_spanish_forecast_img	( BonoboUIComponent *uic, gpointer user_data, const char *name );

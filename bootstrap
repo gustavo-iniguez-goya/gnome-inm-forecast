@@ -1,0 +1,9 @@
+#!/bin/sh
+
+intltoolize -f \
+	&& aclocal \
+	&& automake -a \
+	&& aclocal \
+	&& autoconf -f
+
+echo "\nNow run ./configure\n"

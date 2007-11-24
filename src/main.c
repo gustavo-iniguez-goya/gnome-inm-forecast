@@ -72,8 +72,14 @@ static void message_box 	( AppletData *applet_data, GtkMessageType type, GtkButt
 static void unset_images 	( AppletData *applet_data )
 {
 	int x=0;
-	for (x=0;x < 10;x++)
+	strcpy (applet_data->city_name,"");
+	strcpy (applet_data->provincia,"");
+	strcpy (applet_data->last_update, "");
+	set_tooltip (applet_data, -1, "");
+	for (x=0;x < 10;x++){
 		gtk_image_set_from_file (GTK_IMAGE(applet_data->image[x]), "");
+		strcpy (applet_data->day_info[x].day,"");
+	}
 }
 
 char *parse_week_day_name	( const char *day_name )
@@ -235,6 +241,7 @@ void create_window 		( AppletData *applet_data, const char *name )
 
 void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 {
+	int x=0;
 	char *temp=0;
 	char *str_morning=_("Morning");
 	char *str_afternoon=_("Afternoon");
@@ -246,8 +253,16 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 	else
 		snprintf (temp, 512, "%s - %s\n%s\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, tip, applet_data->last_update);
 
-	gtk_tooltips_set_tip (applet_data->tips, applet_data->event_box[id], temp, NULL);
-	gtk_tooltips_enable (applet_data->tips);
+
+	if (id == -1){
+		for (x=0;x < 10;x++){
+			gtk_tooltips_set_tip (applet_data->tips, applet_data->event_box[x], "", NULL);
+		}
+	}
+	else{
+		gtk_tooltips_set_tip (applet_data->tips, applet_data->event_box[id], temp, NULL);
+		gtk_tooltips_enable (applet_data->tips);
+	}
 	g_free (temp);
 	temp = 0;
 }

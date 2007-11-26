@@ -250,6 +250,8 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 		snprintf (temp, 512, "%s - %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, str_morning, tip, applet_data->last_update);
 	else if (id == 1 || id == 3 || id == 5)
 		snprintf (temp, 512, "%s - %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, str_afternoon, tip, applet_data->last_update);
+	else if (id == 10)
+		snprintf (temp, 512, "%s", tip);
 	else
 		snprintf (temp, 512, "%s - %s\n%s\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, tip, applet_data->last_update);
 
@@ -729,13 +731,13 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 	tokens=0;
 	tk_snow=0;
 }
-/*
+
 gboolean check_latest_data	( AppletData *applet_data )
 {
 	GnomeVFSResult    result;
 	int		size=0;
 	guchar		**buf;
-	char		*temp;
+	char		*temp, *tp;
 	char **tokens=0;
 	int i=0;
 	const char	*suffix[10] = {
@@ -744,18 +746,24 @@ gboolean check_latest_data	( AppletData *applet_data )
 	};
 
 	temp = (char *)malloc (32);
+	tp = g_new (char, 256);
+	sprintf (tp, "Station: %s\n", (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_name", NULL));
+	set_tooltip (applet_data, 10, tp);
 
 	result = gnome_vfs_read_entire_file (INM_LATEST_DATA, &size, &buf);
 
 	if (result == GNOME_VFS_OK){
 		for (i=0;i < 10;i++){
-			snprintf (temp, 24, "08001%s", suffix[i]);
+			snprintf (temp, 24, "%s%s", applet_data->prefs->station_code, suffix[i]);
 			if (strstr(buf, temp)){
 				tokens = g_strsplit_set (strstr(buf, temp), "]=\"", 5);
-				printf ("%s: %s\n", suffix[i], tokens[3]);
-				if (strcmp(suffix[i], "TT") == 0){
-					snprintf (temp, 32, "T %s", tokens[3]);
-					gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
+				if (tokens[3]){
+					printf ("%s: %s\n", suffix[i], tokens[3]);
+
+					if (strcmp(suffix[i], "TT") == 0){
+						snprintf (temp, 32, "%s C", tokens[3]);
+						gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
+					}
 				}
 
 				g_strfreev (tokens);
@@ -764,13 +772,15 @@ gboolean check_latest_data	( AppletData *applet_data )
 		g_free (buf);
 	}
 	else
-		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error getting latest data from meteorological station"), _("The connection can not be established"));
+		printf ("Error getting latest data from meteorological station\n");
 
 	free (temp);
+	g_free (tp);
 
 	return TRUE;
 }
-*/
+
+/*
 gboolean check_station_data	( AppletData *applet_data )
 {
 	void *ctx=0;
@@ -803,33 +813,33 @@ gboolean check_station_data	( AppletData *applet_data )
 		}
 
 		while(temp){
-			temp = strtok (NULL, delimiters); /* nO*/
-			temp = strtok (NULL, delimiters); /* code - 00000 */
+			temp = strtok (NULL, delimiters); 
+			temp = strtok (NULL, delimiters); 
 			printf ("Station: code\t%s - ", temp);
 			if (temp)
 				strncpy (st_code[0].code, temp, 6);
 
-			temp = strtok (NULL, delimiters); /* station location name */
+			temp = strtok (NULL, delimiters); 
 			printf ("name\t%s - ", temp);
 			if (temp)
 				strncpy (st_code[0].name, temp, 6);
 	
-			temp = strtok (NULL, delimiters); /* nP */
+			temp = strtok (NULL, delimiters);
 			if (temp)
 				strncpy (st_code[0].name, temp, 6);
-			temp = strtok (NULL, delimiters); /* code - 00000 */
-			temp = strtok (NULL, delimiters); /* Provincia name */
+			temp = strtok (NULL, delimiters);
+			temp = strtok (NULL, delimiters);
 			if (temp)
 				strncpy (st_code[0].provincia, temp, 6);
 
 			printf ("Provincia\t: %s\n", temp);
-			temp = strtok (NULL, delimiters); /* nA */
-			temp = strtok (NULL, delimiters); /* code - 00000 */
-			temp = strtok (NULL, delimiters); /* unknown number */
+			temp = strtok (NULL, delimiters);
+			temp = strtok (NULL, delimiters); 
+			temp = strtok (NULL, delimiters);
 			
-			temp = strtok (NULL, delimiters); /* ind */
-			temp = strtok (NULL, delimiters); /* unknown number */
-			temp = strtok (NULL, delimiters); /* code - 00000 */
+			temp = strtok (NULL, delimiters);
+			temp = strtok (NULL, delimiters); 
+			temp = strtok (NULL, delimiters);
 	
 		}
 		if (ret == -1){
@@ -848,6 +858,7 @@ gboolean check_station_data	( AppletData *applet_data )
 
 	return TRUE;
 }
+*/
 
 static void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, gpointer callback_data)
 {
@@ -1001,7 +1012,16 @@ gboolean check_inm_url 			( AppletData *applet_data )
 
 void update_location 			( AppletData *applet_data )
 {
+	gboolean show_station;
 	if (applet_data){
+		show_station = panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL);
+		if (show_station){
+			gtk_widget_show (applet_data->event_box[10]);
+			check_latest_data (applet_data);
+		}
+		else{
+			gtk_widget_hide (applet_data->event_box[10]);
+		}
 		gtk_timeout_remove (applet_data->timer);
 		check_inm_url (applet_data);
 		applet_data->timer = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_inm_url, applet_data );
@@ -1431,6 +1451,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	applet_data->prefs = g_new0 (PrefsWin, 1);
 	applet_data->day_info = g_new0 (DayInf, 10);
 	applet_data->prefs->code = g_new0 (char, 12);
+	applet_data->prefs->station_code = g_new0 (char, 12);
 	applet_data->city_name = g_new0 (char, 64);
 	applet_data->city_long_desc = g_new0 (char, 64);
 	applet_data->provincia = g_new0 (char, 64);
@@ -1492,23 +1513,22 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		g_signal_connect (G_OBJECT (applet_data->event_box[x]), "button_press_event", G_CALLBACK (on_image_button_press), applet_data);
 	}
 	/* Temperature label */
-	/*
-	applet_data->temp_lbl = gtk_label_new ("T");
+	applet_data->temp_lbl = gtk_label_new ("");
 	applet_data->event_box[10] = gtk_event_box_new ();
 	gtk_widget_set_name (applet_data->event_box[10], eventbox_name[10]);
 	gtk_container_add (GTK_CONTAINER (applet_data->event_box[10]), applet_data->temp_lbl);
 	gtk_container_add (GTK_CONTAINER (applet_data->hbox), applet_data->event_box[10]);
 	g_signal_connect (G_OBJECT (applet_data->event_box[10]), "button_press_event", G_CALLBACK (on_image_button_press), applet_data);
-	*/
 
 	g_signal_connect (G_OBJECT (applet), "destroy", G_CALLBACK (on_applet_destroy), applet_data);
 	
 	panel_applet_setup_menu_from_file (PANEL_APPLET (applet), PACKAGE_DIR, "GNOME_INM_menu.xml", NULL, menu_callbacks, applet_data);
 
-	//check_latest_data (applet_data);
 	check_inm_url (applet_data);
 	applet_data->timer = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_inm_url, applet_data );
 	gtk_widget_show_all (GTK_WIDGET (applet));
+	gtk_widget_hide (applet_data->event_box[10]);
+	//gtk_widget_hide (applet_data->temp_lbl);
 
 	return TRUE;
 }

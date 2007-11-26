@@ -102,14 +102,18 @@ typedef struct _PreferencesWin {
 	GtkWidget *entry_code;
 	GtkWidget *theme_entry, *combo_theme;
 	GtkWidget *spin_days, *spin_interval;
+	GtkWidget *prov_search_entry, *tree_prov;
+	GtkWidget *chk_station;
 	GtkWidget *win;
 	PanelApplet *applet;
 	char *code;
+	char *station_code;
 	GtkEntryCompletion 	*entry_cmpt;
 	GList 		*codes;
 	GtkListStore    *list_store;
-	GtkTreeIter 	iter;
+	GtkTreeIter 	iter, child;
 	GtkCellRenderer *renderer;
+	GtkTreeStore 	*tree_store;
 } PrefsWin;
 
 typedef struct _AppletData {

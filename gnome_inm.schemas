@@ -25,7 +25,7 @@
         <key>/schemas/apps/gnome-inm/prefs/days</key>
         <owner>gnome-inm_applet</owner>
         <type>string</type>
-	<default>7</default>
+	<default>10</default>
         <locale name="C">
           <short>How many days to show on the panel</short>
           <long></long>
@@ -65,7 +65,7 @@
         <key>/schemas/apps/gnome-inm/prefs/station_code</key>
         <owner>gnome-inm_applet</owner>
         <type>string</type>
-	<default>00000</default>
+	<default>08025</default>
         <locale name="C">
           <short>Station code</short>
           <long></long>

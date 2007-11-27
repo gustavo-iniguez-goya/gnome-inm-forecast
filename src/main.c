@@ -771,11 +771,11 @@ gboolean check_latest_data	( AppletData *applet_data )
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "P0") == 0){ /* Presion atmosferica */
-						snprintf (temp, 64, "Atmosferic presion: %s\n", tokens[3]);
+						snprintf (temp, 64, _("Atmosferic presion: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "PP") == 0){ /* Precipitacion acumulada */
-						snprintf (temp, 32, "Precipitacion: %s\n", tokens[3]);
+						snprintf (temp, 32, _("Rainfall: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "TR") == 0){ /* Humedad relativa */
@@ -1533,7 +1533,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 
 	LIBXML_TEST_VERSION
 	
-	applet_data->hbox = gtk_hbox_new (TRUE, 1);
+	applet_data->hbox = gtk_hbox_new (FALSE, 1);
 	gtk_container_add (GTK_CONTAINER (applet), applet_data->hbox);
 	/* We can not add tooltips directly to an image widget, 
 	 * so we add firstly an EventBox widget to the HBox, and then the GtkImage to the EventBox

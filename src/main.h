@@ -133,7 +133,7 @@ typedef struct _AppletData {
 	int		show_ma; /* Choose morning or afternoon to show, or both */
 	char		*show_days; /* How many days to show */
 	int		location_code; /* Location code */
-	int		timer; /* timeout ID */
+	int		timer, timer_station; /* timeout ID */
 	int		interval; /* Interval update * 1000 */
 	int		applet_size;
 	char		*last_update;

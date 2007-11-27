@@ -139,10 +139,13 @@ void create_window 		( AppletData *applet_data, const char *name )
 	GtkWidget *lb1=0, *lb2=0, *lb3=0, *lb4=0, *lb5=0, *lb6=0, *lb7=0, *img=0;// *table=0;
 	int x,y=0;
 	short int idx=0,img_idx=0;
-	char *day=g_new(char,128);
+	char *day;
 	GdkColor color;
 	static int window_shown;
 
+	if (strcmp (name, "event11") == 0){
+		return ;
+	}
 	if (window_shown){
 		quit (win);
 		win = 0;
@@ -154,6 +157,8 @@ void create_window 		( AppletData *applet_data, const char *name )
 		*/
 	}
 	else{
+		day = g_new(char,128);
+
 		xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_day", NULL);
 		win = glade_xml_get_widget (xml, "win_day");
 		lb1 = glade_xml_get_widget (xml, "label_day1");

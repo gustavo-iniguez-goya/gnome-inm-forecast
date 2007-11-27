@@ -1089,8 +1089,17 @@ void update_location 			( AppletData *applet_data )
 void update_data			 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	AppletData *applet_data = (AppletData *) user_data;
+	gboolean show_station;
 
 	if (applet_data){
+		show_station = panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL);
+		if (show_station){
+			check_latest_data (applet_data);
+ 			applet_data->timer_station = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_latest_data, applet_data );
+		}
+		else
+ 			gtk_timeout_remove (applet_data->timer_station);
+		
 		gtk_timeout_remove (applet_data->timer);
 		check_inm_url (applet_data);
 		applet_data->timer = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_inm_url, applet_data );

@@ -23,14 +23,15 @@
 
 void 		create_preferences_win ( AppletData *applet_data );
 void 		create_stations_tree ( AppletData *applet_data );
-void 		on_preferences_destroy ( GtkWidget *widget, PrefsWin *prefs );
+void 		on_preferences_destroy ( GtkWidget *widget, AppletData *applet_data );
 void		on_cmd_ok_clicked ( GtkWidget *widget, AppletData *applet_data );
-void		on_cmd_cancel_clicked ( GtkWidget *widget, PrefsWin *prefs );
+void		on_cmd_cancel_clicked ( GtkWidget *widget, AppletData *applet_data );
 void 		on_station_tree_selection ( GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 void 	 	location_entry_changed ( GtkWidget *widget, AppletData *applet_data );
 gboolean 	location_entry_event ( GtkWidget *widget, GdkEventKey *event, AppletData *applet_data );
 void 	 	station_entry_changed ( GtkWidget *widget, AppletData *applet_data );
 gboolean 	station_entry_event ( GtkWidget *widget, GdkEventKey *event, AppletData *applet_data );
 gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int type );
+void 		close_prefs_window ( AppletData *applet_data );
 
 #endif

@@ -115,9 +115,9 @@ void 		create_preferences_win ( AppletData *applet_data )
 
 	cmd_ok = glade_xml_get_widget (xml, "cmd_ok");
 	cmd_cancel = glade_xml_get_widget (xml, "cmd_cancel");
-	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_preferences_destroy), applet_data->prefs);
+	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_preferences_destroy), applet_data);
 	g_signal_connect (G_OBJECT(cmd_ok), "clicked", G_CALLBACK(on_cmd_ok_clicked), applet_data);
-	g_signal_connect (G_OBJECT(cmd_cancel), "clicked", G_CALLBACK(on_cmd_cancel_clicked), applet_data->prefs);
+	g_signal_connect (G_OBJECT(cmd_cancel), "clicked", G_CALLBACK(on_cmd_cancel_clicked), applet_data);
 	g_signal_connect (G_OBJECT(applet_data->prefs->entry_code), "changed", G_CALLBACK(location_entry_changed), applet_data);
 	g_signal_connect (G_OBJECT(applet_data->prefs->prov_search_entry), "changed", G_CALLBACK(station_entry_changed), applet_data);
 	
@@ -191,35 +191,26 @@ void 		create_stations_tree ( AppletData *applet_data )
 	str_prov = 0;
 }
 
-void 		on_preferences_destroy ( GtkWidget *widget, PrefsWin *prefs )
+
+
+
+
+
+
+
+
+
+
+void 		on_preferences_destroy ( GtkWidget *widget, AppletData *applet_data )
 {
 	printf ("Destroying object preferences\n");
-	gtk_entry_completion_set_model (prefs->entry_cmpt, NULL);
-	g_object_unref (G_OBJECT (prefs->list_store));
-	gtk_tree_view_set_model (GTK_TREE_VIEW(prefs->tree_prov), NULL);
-	g_object_unref (G_OBJECT (prefs->tree_store));
-	printf ("1\n");
-	g_object_unref (G_OBJECT (prefs->entry_cmpt));
-	printf ("2\n");
-	gtk_widget_destroy (GTK_WIDGET(prefs->combo_theme));
-	printf ("3\n");
-	if (widget){
-		quit (widget);
-	}
+	close_prefs_window (applet_data);
 }
 
-void		on_cmd_cancel_clicked ( GtkWidget *widget, PrefsWin *prefs )
+void		on_cmd_cancel_clicked ( GtkWidget *widget, AppletData *applet_data )
 {
 	printf ("cmd cancel\n");
-	gtk_entry_completion_set_model (prefs->entry_cmpt, NULL);
-	g_object_unref (G_OBJECT (prefs->list_store));
-	gtk_tree_view_set_model (GTK_TREE_VIEW(prefs->tree_prov), NULL);
-	g_object_unref (G_OBJECT (prefs->tree_store));
-	g_object_unref (G_OBJECT (prefs->entry_cmpt));
-	gtk_widget_destroy (GTK_WIDGET(prefs->combo_theme));
-	if (prefs->win){
-		quit (prefs->win);
-	}
+	close_prefs_window (applet_data);
 }
 
 void		on_cmd_ok_clicked ( GtkWidget *widget, AppletData *applet_data )
@@ -240,15 +231,7 @@ void		on_cmd_ok_clicked ( GtkWidget *widget, AppletData *applet_data )
 		//printf ("Theme: %s\n", gtk_combo_box_get_active_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme)));
 		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "theme", gtk_combo_box_get_active_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme)), NULL);
 		update_location (applet_data);
-
-		/* Clean not needed data */
-		gtk_entry_completion_set_model (applet_data->prefs->entry_cmpt, NULL);
-		g_object_unref (G_OBJECT (applet_data->prefs->list_store));
-		gtk_tree_view_set_model (GTK_TREE_VIEW(applet_data->prefs->tree_prov), NULL);
-		g_object_unref (G_OBJECT (applet_data->prefs->tree_store));
-		g_object_unref (G_OBJECT (applet_data->prefs->entry_cmpt));
-		gtk_widget_destroy (GTK_WIDGET(applet_data->prefs->combo_theme));
-		quit (applet_data->prefs->win);
+		close_prefs_window (applet_data);
 	}
 }
 
@@ -356,4 +339,18 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 	}
 
 	return FALSE;
+}
+
+
+void 		close_prefs_window ( AppletData *applet_data )
+{
+	/* Clean not needed data */
+	gtk_entry_completion_set_model (applet_data->prefs->entry_cmpt, NULL);
+	g_object_unref (G_OBJECT (applet_data->prefs->list_store));
+	gtk_tree_view_set_model (GTK_TREE_VIEW(applet_data->prefs->tree_prov), NULL);
+	g_object_unref (G_OBJECT (applet_data->prefs->tree_store));
+	g_object_unref (G_OBJECT (applet_data->prefs->entry_cmpt));
+	gtk_widget_destroy (GTK_WIDGET(applet_data->prefs->combo_theme));
+	if (applet_data->prefs->win)
+		quit (applet_data->prefs->win);
 }

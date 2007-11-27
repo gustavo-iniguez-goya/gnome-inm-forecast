@@ -62,7 +62,10 @@ void 		create_preferences_win ( AppletData *applet_data )
 	}
 	
 	g_strfreev (tokens);
-	g_free (buf);
+	if (buf){
+		g_free (buf);
+		buf = 0;
+	}
 	
 	gtk_entry_completion_set_model (GTK_ENTRY_COMPLETION(applet_data->prefs->entry_cmpt), GTK_TREE_MODEL(applet_data->prefs->list_store));
 	gtk_entry_completion_set_text_column (applet_data->prefs->entry_cmpt, 1);
@@ -180,8 +183,12 @@ void 		create_stations_tree ( AppletData *applet_data )
 	gtk_tree_view_expand_all (GTK_TREE_VIEW(applet_data->prefs->tree_prov));
 	
 	g_strfreev (tokens);
-	g_free (buf);
+	if (buf){
+		g_free (buf);
+		buf = 0;
+	}
 	g_free (str_prov);	
+	str_prov = 0;
 }
 
 void 		on_preferences_destroy ( GtkWidget *widget, PrefsWin *prefs )
@@ -189,6 +196,7 @@ void 		on_preferences_destroy ( GtkWidget *widget, PrefsWin *prefs )
 	printf ("Destroying object preferences\n");
 	gtk_entry_completion_set_model (prefs->entry_cmpt, NULL);
 	g_object_unref (G_OBJECT (prefs->list_store));
+	gtk_tree_view_set_model (GTK_TREE_VIEW(prefs->tree_prov), NULL);
 	g_object_unref (G_OBJECT (prefs->tree_store));
 	printf ("1\n");
 	g_object_unref (G_OBJECT (prefs->entry_cmpt));
@@ -205,6 +213,8 @@ void		on_cmd_cancel_clicked ( GtkWidget *widget, PrefsWin *prefs )
 	printf ("cmd cancel\n");
 	gtk_entry_completion_set_model (prefs->entry_cmpt, NULL);
 	g_object_unref (G_OBJECT (prefs->list_store));
+	gtk_tree_view_set_model (GTK_TREE_VIEW(prefs->tree_prov), NULL);
+	g_object_unref (G_OBJECT (prefs->tree_store));
 	g_object_unref (G_OBJECT (prefs->entry_cmpt));
 	gtk_widget_destroy (GTK_WIDGET(prefs->combo_theme));
 	if (prefs->win){
@@ -262,8 +272,14 @@ void 		on_station_tree_selection ( GtkTreeView *tree_view, GtkTreePath *path, Gt
 		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "station_code", code, NULL);
 		strncpy (applet_data->prefs->station_code, code, 12);
 		
-		g_free(name);
-		g_free(code);
+		if (name){
+			g_free(name);
+			name = 0;
+		}
+		if (code){
+			g_free(code);
+			code = 0;
+		}
 	}
 }
 
@@ -308,8 +324,11 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 				gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter, 0, &code, -1);
 				strncpy (applet_data->prefs->code, code, 5);
 				printf ("0-Code for %s: %s\n", city, code);
-				g_free (code);
-				g_free (city);
+				if (code)
+					g_free (code);
+				
+				if (city)
+					g_free (city);
 				break;
 			}
 		}
@@ -322,11 +341,14 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 					printf ("1-Code for %s: %s\n", city, code);
 					g_free (code);
 				}
-				g_free (city);
+				if (city)
+					g_free (city);
 				break;
 			}
 		}
-		g_free (city);
+		if (city)
+			g_free (city);
+
 		if (type == 0)
 			valid = gtk_tree_model_iter_next (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter);
 		else

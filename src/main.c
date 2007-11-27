@@ -803,19 +803,21 @@ gboolean check_latest_data	( AppletData *applet_data )
 
 				g_strfreev (tokens);
 			}
-			else
-				strcpy (temp, "");
 		}
 		g_free (buf);
 		if (strcmp (temp, "") == 0){
-			strcpy (temp, "-?-");
+			strcpy (temp, "--");
 			gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
 			strncat (tp, _("No data for this meteorological station"), 64);
 		}
 		set_tooltip (applet_data, 10, tp);
 	}
-	else
+	else{
+		gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), "?");
+		strncat (tp, _("Error getting latest data from meteorological station"), 64);
+		set_tooltip (applet_data, 10, tp);
 		printf ("Error getting latest data from meteorological station\n");
+	}
 
 	free (temp);
 	g_free (tp);

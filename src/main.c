@@ -741,8 +741,8 @@ gboolean check_latest_data	( AppletData *applet_data )
 	char **tokens=0;
 	int i=0;
 	const char	*suffix[10] = {
-		"DV", "HH", "HO", "P0", "PP", 
-		"RM", "TP", "TR", "TT", "VV"
+		"HO", "HH", "TT", "TR", "PP", 
+		"VV", "DV", "RM", "P0", "TP"
 	};
 
 	temp = (char *)malloc (32);
@@ -761,13 +761,17 @@ gboolean check_latest_data	( AppletData *applet_data )
 
 					if (strcmp(suffix[i], "TT") == 0){ /* Temperatura */
 						if (strcmp (tokens[3], "") != 0){
-							snprintf (temp, 32, "%s C", tokens[3]);
+							snprintf (temp, 32, _("%s C"), tokens[3]);
 						}
 						else
 							snprintf (temp, 32, "--", tokens[3]);
 
 						gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
 						snprintf (temp, 24, _("Temperature: %s\n"), tokens[3]);
+						strncat (tp, temp, 50);
+					}
+					if (strcmp(suffix[i], "RM") == 0){ /* Hora oficial */
+						snprintf (temp, 64, _("Maximum wind velocity: %s Km/h\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "P0") == 0){ /* Presion atmosferica */
@@ -782,8 +786,16 @@ gboolean check_latest_data	( AppletData *applet_data )
 						snprintf (temp, 24, _("Humidity: %s %\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
+					if (strcmp(suffix[i], "VV") == 0){ /* Direccion del viento */
+						snprintf (temp, 32, _("Wind velocity: %s Km/h\n"), tokens[3]);
+						strncat (tp, temp, 50);
+					}
 					if (strcmp(suffix[i], "DV") == 0){ /* Direccion del viento */
 						snprintf (temp, 24, _("Wind: %s\n"), tokens[3]);
+						strncat (tp, temp, 50);
+					}
+					if (strcmp(suffix[i], "HO") == 0){ /* Hora oficial */
+						snprintf (temp, 24, _("Last update: %sh\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 				}

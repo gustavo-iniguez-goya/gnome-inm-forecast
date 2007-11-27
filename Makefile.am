@@ -7,7 +7,7 @@
 schemasdir = @GCONF_SCHEMA_FILE_DIR@
 schemas_in_files = gnome_inm.schemas
 
-EXTRA_DIST= config.rpath gnome-inm-forecast.lsm.in gnome-inm-forecast.spec.in gnome_inm-opt.def gnome-inm-forecast.1 manpage.tpl gnome_inm.schemas local_codes.txt
+EXTRA_DIST= config.rpath gnome-inm-forecast.lsm.in gnome-inm-forecast.spec.in gnome_inm-opt.def gnome-inm-forecast.1 manpage.tpl gnome_inm.schemas local_codes.txt stations_list_es.txt
 
 SUBDIRS = po src
 

@@ -64,6 +64,7 @@ install -m 644 pixmaps/inm/* $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmap
 install -m 644 pixmaps/gnome-inm-forecast.png $RPM_BUILD_ROOT/usr/share/pixmaps/
 install -m 655 src/gnome-inm-forecast $RPM_BUILD_ROOT/usr/libexec/
 install -m 644 local_codes.txt $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/
+install -m 644 stations_list_es.txt $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/
 %makeinstall
 
 # __os_install_post is implicitly expanded after the

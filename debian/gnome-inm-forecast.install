@@ -6,3 +6,4 @@ gnome_inm.schemas usr/share/gconf/schemas/
 /pixmaps/inm/*.png usr/share/gnome-inm-forecast/pixmaps/inm/
 pixmaps/gnome-inm-forecast.png usr/share/pixmaps/
 local_codes.txt usr/share/gnome-inm-forecast/
+stations_list_es.txt usr/share/gnome-inm-forecast/

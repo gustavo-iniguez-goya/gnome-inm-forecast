@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-inm-forecast 0.1.0\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2007-11-27 16:02+0100\n"
-"PO-Revision-Date: 2007-11-27 16:05+0100\n"
+"POT-Creation-Date: 2007-11-27 17:36+0100\n"
+"PO-Revision-Date: 2007-11-27 17:37+0100\n"
 "Last-Translator: Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>\n"
 "Language-Team: es <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -95,64 +95,93 @@ msgstr "Este"
 msgid "Oeste"
 msgstr "Oeste"
 
-#: ../src/main.c:771
+#: ../src/main.c:764
+#, c-format
+msgid "%s C"
+msgstr "%s ºC"
+
+#: ../src/main.c:770
 #, c-format
 msgid "Temperature: %s\n"
 msgstr "Temperatura: %s\n"
 
+#. Hora oficial
+#: ../src/main.c:774
+#, c-format
+msgid "Maximum wind velocity: %s Km/h\n"
+msgstr "Velocidad máxima del viento: %s Km/h\n"
+
 #. Presion atmosferica
-#: ../src/main.c:775
+#: ../src/main.c:778
 #, c-format
 msgid "Atmosferic presion: %s\n"
 msgstr "Presión atmosférica: %s\n"
 
+#. Precipitacion acumulada
+#: ../src/main.c:782
+#, c-format
+msgid "Rainfall: %s\n"
+msgstr "Precipitación: %s\n"
+
 #. Humedad relativa
-#: ../src/main.c:783
+#: ../src/main.c:786
 msgid "Humidity: %s %\n"
 msgstr "Humedad: %s %\n"
 
 #. Direccion del viento
-#: ../src/main.c:787
+#: ../src/main.c:790
+#, c-format
+msgid "Wind velocity: %s Km/h\n"
+msgstr "Velocidad del viento: %s Km/h\n"
+
+#. Direccion del viento
+#: ../src/main.c:794
 #, c-format
 msgid "Wind: %s\n"
 msgstr "Viento: %s\n"
 
-#: ../src/main.c:1095
+#. Hora oficial
+#: ../src/main.c:798
+#, c-format
+msgid "Last update: %sh\n"
+msgstr "Última actualización: %sh\n"
+
+#: ../src/main.c:1106
 msgid "Error loading www.inm.es"
 msgstr "Error al cargar www.inm.es"
 
-#: ../src/main.c:1106
+#: ../src/main.c:1117
 msgid "Error loading http://www.inm.es/web/infmet/avi/pr/conavi_c.php"
 msgstr "Error al cargar http://www.inm.es/web/infmet/avi/pr/conavi_c.php"
 
-#: ../src/main.c:1116
+#: ../src/main.c:1127
 msgid "Error loading http://www.inm.es/web/infmet/avi/pr/conavi_mm.php"
 msgstr "Error al cargar http://www.inm.es/web/infmet/avi/pr/conavi_mm.php"
 
-#: ../src/main.c:1126
+#: ../src/main.c:1137
 msgid "Error loading http://www.inm.es/web/infmet/avi/pr/conavi_pp.php"
 msgstr "Error al cargar http://www.inm.es/web/infmet/avi/pr/conavi_pp.php"
 
-#: ../src/main.c:1154
+#: ../src/main.c:1165
 msgid "Next days forecast"
 msgstr "Previsión próximos días"
 
-#: ../src/main.c:1237
+#: ../src/main.c:1248
 #, c-format
 msgid "Connection error\n"
 msgstr "Error de conexión\n"
 
-#: ../src/main.c:1304
+#: ../src/main.c:1315
 #: ../gnome-inm-glade.glade.h:28
 msgid "Satellite image"
 msgstr "Imagen de satélite"
 
-#: ../src/main.c:1336
+#: ../src/main.c:1347
 msgid "Spanish weather forecast image"
 msgstr "Imagen del pronóstico meteorológico"
 
-#: ../src/main.c:1367
-#: ../src/main.c:1375
+#: ../src/main.c:1378
+#: ../src/main.c:1386
 msgid "Temperatures for the next days"
 msgstr "Temperaturas para los próximos días"
 

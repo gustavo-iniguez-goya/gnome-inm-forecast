@@ -746,9 +746,8 @@ gboolean check_latest_data	( AppletData *applet_data )
 	};
 
 	temp = (char *)malloc (32);
-	tp = g_new (char, 256);
-	sprintf (tp, "Station: %s\n", (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_name", NULL));
-	set_tooltip (applet_data, 10, tp);
+	tp = g_new (char, 512);
+	sprintf (tp, "Station: %s\n\n", (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_name", NULL));
 
 	result = gnome_vfs_read_entire_file (INM_LATEST_DATA, &size, &buf);
 
@@ -760,9 +759,32 @@ gboolean check_latest_data	( AppletData *applet_data )
 				if (tokens[3]){
 					printf ("%s: %s\n", suffix[i], tokens[3]);
 
-					if (strcmp(suffix[i], "TT") == 0){
-						snprintf (temp, 32, "%s C", tokens[3]);
+					if (strcmp(suffix[i], "TT") == 0){ /* Temperatura */
+						if (strcmp (tokens[3], "") != 0){
+							snprintf (temp, 32, "%s C", tokens[3]);
+						}
+						else
+							snprintf (temp, 32, "--", tokens[3]);
+
 						gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
+						snprintf (temp, 24, _("Temperature: %s\n"), tokens[3]);
+						strncat (tp, temp, 50);
+					}
+					if (strcmp(suffix[i], "P0") == 0){ /* Presion atmosferica */
+						snprintf (temp, 64, "Atmosferic presion: %s\n", tokens[3]);
+						strncat (tp, temp, 50);
+					}
+					if (strcmp(suffix[i], "PP") == 0){ /* Precipitacion acumulada */
+						snprintf (temp, 32, "Precipitacion: %s\n", tokens[3]);
+						strncat (tp, temp, 50);
+					}
+					if (strcmp(suffix[i], "TR") == 0){ /* Humedad relativa */
+						snprintf (temp, 24, _("Humidity: %s %\n"), tokens[3]);
+						strncat (tp, temp, 50);
+					}
+					if (strcmp(suffix[i], "DV") == 0){ /* Direccion del viento */
+						snprintf (temp, 24, _("Wind: %s\n"), tokens[3]);
+						strncat (tp, temp, 50);
 					}
 				}
 
@@ -770,6 +792,7 @@ gboolean check_latest_data	( AppletData *applet_data )
 			}
 		}
 		g_free (buf);
+		set_tooltip (applet_data, 10, tp);
 	}
 	else
 		printf ("Error getting latest data from meteorological station\n");

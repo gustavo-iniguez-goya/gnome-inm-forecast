@@ -766,6 +766,7 @@ gboolean check_latest_data	( AppletData *applet_data )
 						else
 							snprintf (temp, 32, "--", tokens[3]);
 
+						printf ("\nTemperature: %s\n\n", tokens[3]);
 						gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
 						snprintf (temp, 24, _("Temperature: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
@@ -802,8 +803,15 @@ gboolean check_latest_data	( AppletData *applet_data )
 
 				g_strfreev (tokens);
 			}
+			else
+				strcpy (temp, "");
 		}
 		g_free (buf);
+		if (strcmp (temp, "") == 0){
+			strcpy (temp, "-?-");
+			gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
+			strncat (tp, _("No data for this meteorological station"), 64);
+		}
 		set_tooltip (applet_data, 10, tp);
 	}
 	else

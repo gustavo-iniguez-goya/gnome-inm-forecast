@@ -1013,15 +1013,26 @@ gboolean check_inm_url 			( AppletData *applet_data )
 void update_location 			( AppletData *applet_data )
 {
 	gboolean show_station;
+ 	int iDays=0,x=0,max_days=10;
 	if (applet_data){
 		show_station = panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL);
 		if (show_station){
 			gtk_widget_show (applet_data->event_box[10]);
 			check_latest_data (applet_data);
+ 			applet_data->timer_station = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_latest_data, applet_data );
 		}
 		else{
+ 			gtk_timeout_remove (applet_data->timer_station);
 			gtk_widget_hide (applet_data->event_box[10]);
 		}
+ 		iDays = atoi (applet_data->show_days);
+ 		printf ("Days to show: %d\n", iDays);
+ 		for (x=0;x < iDays;x++)
+ 			gtk_widget_show (applet_data->event_box[x]);
+ 		
+ 		for (x=iDays;x < max_days;x++)
+ 			gtk_widget_hide (applet_data->event_box[x]);
+
 		gtk_timeout_remove (applet_data->timer);
 		check_inm_url (applet_data);
 		applet_data->timer = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_inm_url, applet_data );

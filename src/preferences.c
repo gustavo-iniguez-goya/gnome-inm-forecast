@@ -16,6 +16,7 @@
   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 #include "preferences.h"
+#include <string.h>
 
 void 		create_preferences_win ( AppletData *applet_data )
 {
@@ -103,7 +104,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 	
 	days = (int)g_ascii_strtod (panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "days", NULL), NULL);
 	if (days == 0)
-		days = 7;
+		days = 10;
 	gtk_spin_button_set_value (GTK_SPIN_BUTTON(applet_data->prefs->spin_interval), (int)i);
 	gtk_spin_button_set_value (GTK_SPIN_BUTTON(applet_data->prefs->spin_days), (int)days);
 	
@@ -220,7 +221,7 @@ void		on_cmd_ok_clicked ( GtkWidget *widget, AppletData *applet_data )
 		panel_applet_gconf_set_int (PANEL_APPLET(applet_data->applet), "interval", applet_data->interval, NULL);
 		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "station_name", gtk_entry_get_text (GTK_ENTRY(applet_data->prefs->prov_search_entry)), NULL);
 		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "station_code", applet_data->prefs->station_code, NULL);
-		panel_applet_gconf_set_bool (PANEL_APPLET(applet_data->applet), "show_station", gtk_toggle_button_get_active (applet_data->prefs->chk_station), NULL);
+		panel_applet_gconf_set_bool (PANEL_APPLET(applet_data->applet), "show_station", gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(applet_data->prefs->chk_station)), NULL);
 
 		snprintf (applet_data->show_days, 12, "%d", (int)gtk_spin_button_get_value (GTK_SPIN_BUTTON(applet_data->prefs->spin_days)));
 		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "days", applet_data->show_days, NULL);

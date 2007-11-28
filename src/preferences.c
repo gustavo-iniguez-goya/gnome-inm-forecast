@@ -249,17 +249,28 @@ void 		on_station_tree_selection ( GtkTreeView *tree_view, GtkTreePath *path, Gt
 	{
 		gchar *name, *code;
 		gtk_tree_model_get (model, &iter, 0, &name, 1, &code, -1);
-		g_print ("selected row is: %s - %s\n", name, code);
+		//g_print ("selected row is: %s - %s\n", name, code);
 		
 		gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->prov_search_entry), name);
-		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "station_code", code, NULL);
-		strncpy (applet_data->prefs->station_code, code, 12);
 		
+		panel_applet_gconf_set_bool (PANEL_APPLET(applet_data->applet), "show_station", 
+				gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(applet_data->prefs->chk_station)), 
+				NULL);
 		if (name){
+			if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(applet_data->prefs->chk_station)))
+				panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "station_name", name, NULL);
+
 			g_free(name);
 			name = 0;
 		}
 		if (code){
+			if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(applet_data->prefs->chk_station))){
+				panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "station_code", code, NULL);
+				strncpy (applet_data->prefs->station_code, code, 12);
+	
+				update_station_data (applet_data);
+			}
+
 			g_free(code);
 			code = 0;
 		}

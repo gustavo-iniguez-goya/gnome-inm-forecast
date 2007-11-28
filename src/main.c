@@ -239,9 +239,10 @@ void create_window 		( AppletData *applet_data, const char *name )
 		gtk_widget_show (win);
 		x = y = 0;
 		g_object_unref (G_OBJECT (xml));
+		if (day)
+			g_free (day);
 	}
 	window_shown = !window_shown;
-	g_free (day);
 }
 
 void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
@@ -257,6 +258,8 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 		snprintf (temp, 512, "%s - %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, str_afternoon, tip, applet_data->last_update);
 	else if (id == 10)
 		snprintf (temp, 512, "%s", tip);
+	else if (id == -1)
+		strcpy (temp, "");
 	else
 		snprintf (temp, 512, "%s - %s\n%s\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, tip, applet_data->last_update);
 
@@ -1060,21 +1063,27 @@ gboolean check_inm_url 			( AppletData *applet_data )
 	return TRUE;
 }
 
-void update_location 			( AppletData *applet_data )
+void update_station_data 		( AppletData *applet_data )
 {
 	gboolean show_station;
+	show_station = panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL);
+ 	gtk_timeout_remove (applet_data->timer_station);
+	if (show_station){
+		gtk_widget_show (applet_data->event_box[10]);
+		check_latest_data (applet_data);
+ 		applet_data->timer_station = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_latest_data, applet_data );
+	}
+	else{
+		gtk_widget_hide (applet_data->event_box[10]);
+	}
+}
+
+void update_location 			( AppletData *applet_data )
+{
  	int iDays=0,x=0,max_days=10;
 	if (applet_data){
-		show_station = panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL);
-		if (show_station){
-			gtk_widget_show (applet_data->event_box[10]);
-			check_latest_data (applet_data);
- 			applet_data->timer_station = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_latest_data, applet_data );
-		}
-		else{
- 			gtk_timeout_remove (applet_data->timer_station);
-			gtk_widget_hide (applet_data->event_box[10]);
-		}
+		update_station_data (applet_data);
+
  		iDays = atoi (applet_data->show_days);
  		printf ("Days to show: %d\n", iDays);
  		for (x=0;x < iDays;x++)
@@ -1085,7 +1094,7 @@ void update_location 			( AppletData *applet_data )
 
 		gtk_timeout_remove (applet_data->timer);
 		check_inm_url (applet_data);
-		applet_data->timer = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_inm_url, applet_data );
+		applet_data->timer = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	}
 	else
 		printf ("update_location() no *applet object\n");
@@ -1100,14 +1109,14 @@ void update_data			 ( BonoboUIComponent *uic, gpointer user_data, const char *na
 		show_station = panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL);
 		if (show_station){
 			check_latest_data (applet_data);
- 			applet_data->timer_station = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_latest_data, applet_data );
+ 			applet_data->timer_station = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_latest_data, applet_data );
 		}
 		else
  			gtk_timeout_remove (applet_data->timer_station);
 		
 		gtk_timeout_remove (applet_data->timer);
 		check_inm_url (applet_data);
-		applet_data->timer = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_inm_url, applet_data );
+		applet_data->timer = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	}
 	else
 		printf ("update_data() no *applet object\n");
@@ -1595,7 +1604,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	panel_applet_setup_menu_from_file (PANEL_APPLET (applet), PACKAGE_DIR, "GNOME_INM_menu.xml", NULL, menu_callbacks, applet_data);
 
 	check_inm_url (applet_data);
-	applet_data->timer = gtk_timeout_add(applet_data->interval * 1000, (GtkFunction)check_inm_url, applet_data );
+	applet_data->timer = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	gtk_widget_show_all (GTK_WIDGET (applet));
 	gtk_widget_hide (applet_data->event_box[10]);
 	//gtk_widget_hide (applet_data->temp_lbl);

@@ -61,6 +61,8 @@
 #define INM_LATEST_DATA "http://www.inm.es/wwb/tobsr/emasdat.js"
 #define INM_SPAIN_IMG PACKAGE_DIR"pixmaps/espcan.jpg"
 
+#define INTERVAL_TIME 60000
+
 enum DATA_TYPE {
 	MAX = 0,
 	MIN,
@@ -143,6 +145,7 @@ typedef struct _AppletData {
 	char		*buffer;
 } AppletData ;
 
+void update_station_data	( AppletData *applet_data );
 void update_data		( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void update_location		( AppletData *applet_data );
 void display_tomorrow_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );

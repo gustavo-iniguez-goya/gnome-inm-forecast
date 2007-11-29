@@ -744,8 +744,8 @@ gboolean check_latest_data	( AppletData *applet_data )
 {
 	GnomeVFSResult    result;
 	int		size=0;
-	guchar		**buf;
-	char		*temp, *tp;
+	guchar		**buf={0};
+	char		*temp=0, *tp=0;
 	char **tokens=0;
 	int i=0;
 	const char	*suffix[10] = {
@@ -753,9 +753,10 @@ gboolean check_latest_data	( AppletData *applet_data )
 		"VV", "DV", "RM", "P0", "TP"
 	};
 
-	temp = (char *)malloc (32);
+	temp = (char *)malloc (128);
 	tp = g_new (char, 512);
 	sprintf (tp, "Station: %s\n\n", (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_name", NULL));
+	applet_data->prefs->station_code = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_code", NULL);
 
 	result = gnome_vfs_read_entire_file (INM_LATEST_DATA, &size, &buf);
 
@@ -809,10 +810,13 @@ gboolean check_latest_data	( AppletData *applet_data )
 					}
 				}
 
-				g_strfreev (tokens);
+				if (tokens)
+					g_strfreev (tokens);
 			}
 		}
-		g_free (buf);
+		if (buf)
+			g_free (buf);
+
 		if (strcmp (temp, "") == 0){
 			strcpy (temp, "--");
 			gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
@@ -827,8 +831,10 @@ gboolean check_latest_data	( AppletData *applet_data )
 		printf ("Error getting latest data from meteorological station\n");
 	}
 
-	free (temp);
-	g_free (tp);
+	if (temp)
+		free (temp);
+	if (tp)
+		g_free (tp);
 
 	return TRUE;
 }
@@ -1605,8 +1611,9 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 
 	check_inm_url (applet_data);
 	applet_data->timer = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
+	update_station_data (applet_data);
 	gtk_widget_show_all (GTK_WIDGET (applet));
-	gtk_widget_hide (applet_data->event_box[10]);
+	//gtk_widget_hide (applet_data->event_box[10]);
 	//gtk_widget_hide (applet_data->temp_lbl);
 
 	return TRUE;

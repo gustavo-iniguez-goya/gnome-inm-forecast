@@ -35,9 +35,9 @@
         <key>/schemas/apps/gnome-inm/prefs/interval</key>
         <owner>gnome-inm_applet</owner>
         <type>int</type>
-	<default>3600</default>
+	<default>60</default>
         <locale name="C">
-          <short>Location code of the city</short>
+          <short>Interval update in minutes</short>
           <long></long>
         </locale>
       </schema>

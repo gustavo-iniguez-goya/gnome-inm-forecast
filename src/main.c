@@ -16,6 +16,7 @@
   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+#define _GNU_SOURCE
 #include <string.h>
 #include "callbacks.h"
 #include "gconf_callbacks.h"
@@ -773,39 +774,39 @@ gboolean check_latest_data	( AppletData *applet_data )
 							snprintf (temp, 32, _("%s C"), tokens[3]);
 						}
 						else
-							snprintf (temp, 32, "--", tokens[3]);
+							strncpy (temp, "--", 32);
 
 						printf ("\nTemperature: %s\n\n", tokens[3]);
 						gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
-						snprintf (temp, 24, _("Temperature: %s\n"), tokens[3]);
+						snprintf (temp, 128, _("Temperature: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "RM") == 0){ /* Hora oficial */
-						snprintf (temp, 64, _("Maximum wind velocity: %s Km/h\n"), tokens[3]);
+						snprintf (temp, 128, _("Maximum wind velocity: %s Km/h\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "P0") == 0){ /* Presion atmosferica */
-						snprintf (temp, 64, _("Atmosferic presion: %s\n"), tokens[3]);
+						snprintf (temp, 128, _("Atmosferic presion: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "PP") == 0){ /* Precipitacion acumulada */
-						snprintf (temp, 32, _("Rainfall: %s\n"), tokens[3]);
+						snprintf (temp, 128, _("Rainfall: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "TR") == 0){ /* Humedad relativa */
-						snprintf (temp, 24, _("Humidity: %s %\n"), tokens[3]);
+						snprintf (temp, 128, _("Humidity: %s %\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "VV") == 0){ /* Direccion del viento */
-						snprintf (temp, 32, _("Wind velocity: %s Km/h\n"), tokens[3]);
+						snprintf (temp, 128, _("Wind velocity: %s Km/h\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "DV") == 0){ /* Direccion del viento */
-						snprintf (temp, 24, _("Wind: %s\n"), tokens[3]);
+						snprintf (temp, 128, _("Wind: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 					if (strcmp(suffix[i], "HO") == 0){ /* Hora oficial */
-						snprintf (temp, 24, _("Last update: %sh\n"), tokens[3]);
+						snprintf (temp, 128, _("Last update: %sh\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
 				}

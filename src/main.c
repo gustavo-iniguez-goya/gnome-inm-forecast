@@ -756,7 +756,7 @@ gboolean check_latest_data	( AppletData *applet_data )
 
 	temp = (char *)malloc (128);
 	tp = g_new (char, 512);
-	sprintf (tp, "Station: %s\n\n", (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_name", NULL));
+	sprintf (tp, _("Station: %s\n\n"), (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_name", NULL));
 	applet_data->prefs->station_code = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_code", NULL);
 
 	result = gnome_vfs_read_entire_file (INM_LATEST_DATA, &size, &buf);

@@ -61,6 +61,7 @@ install -m 644 GNOME_inm-forecast.server_rpm $RPM_BUILD_ROOT/usr/lib/bonobo/serv
 install -m 644 gnome-inm-glade.glade $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/gnome-inm-glade.glade
 install -m 644 GNOME_INM_menu.xml $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/
 install -m 644 pixmaps/inm/* $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmaps/inm/
+install -m 644 pixmaps/espcan.jpg $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmaps/
 install -m 644 pixmaps/gnome-inm-forecast.png $RPM_BUILD_ROOT/usr/share/pixmaps/
 install -m 655 src/gnome-inm-forecast $RPM_BUILD_ROOT/usr/libexec/
 install -m 644 local_codes.txt $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/

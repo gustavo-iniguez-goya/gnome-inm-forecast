@@ -5,5 +5,6 @@ src/gnome-inm-forecast usr/lib/gnome-panel/
 gnome_inm.schemas usr/share/gconf/schemas/
 /pixmaps/inm/*.png usr/share/gnome-inm-forecast/pixmaps/inm/
 pixmaps/gnome-inm-forecast.png usr/share/pixmaps/
+pixmaps/espcan.jpg usr/share/gnome-inm-forecast/pixmaps/
 local_codes.txt usr/share/gnome-inm-forecast/
 stations_list_es.txt usr/share/gnome-inm-forecast/

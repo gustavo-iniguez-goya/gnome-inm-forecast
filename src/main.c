@@ -1185,10 +1185,12 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 	static GtkTextBuffer *textview_buffer;
 	char **tokens=0;
 	char *temp=0;
+	char *str_regx=0;
 	gchar *buf = (gchar *) callback_data;
+	GRegex *regx = g_regex_new ("<.*>", G_REGEX_CASELESS | G_REGEX_RAW , G_REGEX_MATCH_NOTEMPTY, NULL);
 
 	temp = g_strdup (buf);
-	if (strstr(temp, "PREDICCION") || strstr(temp, "Informaci&oacute;n nivol&oacute;gica y riesgo de aludes")){
+	if (strstr(temp, "PREDICCION") || strstr(temp, "Informaci&oacute;n nivol&oacute;gica")){
 		xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_today_forecast", NULL);
 		win = glade_xml_get_widget (xml, "win_today_forecast");
 		g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), NULL);
@@ -1197,18 +1199,27 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 		textview_buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(textview));
 		
 		if (temp){
-			tokens = g_strsplit_set (strstr(temp, "PREDICCION"), "<>", 3);
+			if (strstr(temp, "PREDICCION"))
+				tokens = g_strsplit_set (strstr(temp, "PREDICCION"), "<>", 3);
+			else if (strstr(temp, "INFORMACION NIVOLOGICA PARA ZONAS"))
+				tokens = g_strsplit_set (strstr(temp, "INFORMACION NIVOLOGICA PARA ZONAS"), "<>", 1);
+
 			if (tokens){
 				//printf ("FOREEEEEEEEEEEEE:\n%s\n", tokens[0]);
+				//printf ("REGEX:\n\n%s\n\nREGEX\n", g_regex_replace (regx, tokens[0], -1, 0, "", G_REGEX_MATCH_NOTEMPTY, NULL));
+				str_regx = g_regex_replace (regx, tokens[0], -1, 0, "", G_REGEX_MATCH_NOTEMPTY, NULL);
 			
-				gtk_text_buffer_set_text (textview_buffer, tokens[0], strlen(tokens[0]));
+				gtk_text_buffer_set_text (textview_buffer, str_regx, strlen(str_regx));
 				gtk_window_set_title (GTK_WINDOW(win), _("Next days forecast"));
 				gtk_widget_show (win);
 				g_strfreev (tokens);
 				tokens = 0;
+				if (str_regx)
+					g_free (str_regx);
 			}
 		}
 	}
+	g_regex_unref (regx);
 	if (temp){
 		g_free (temp);
 		temp = 0;
@@ -1241,11 +1252,11 @@ static void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 	//printf ("gvfs_async_read(): %s\n", gnome_vfs_result_to_string (result));
 	if (result == GNOME_VFS_ERROR_EOF){
 		printf ("Fin de lectura gnome_vfs_async_read()\n");
-		if (strstr(applet_data->buffer, "PREDICCION")){
+		if (strstr(applet_data->buffer, "PREDICCION") || strstr(applet_data->buffer, "Informaci&oacute;n nivol&oacute;gica")){
 			gnome_vfs_async_close (handle, gvfs_close_cb, applet_data->buffer);
 		}
 		else{
-			printf ("No forecast data\n");
+			printf ("1 No forecast data\n");
 		}
 		if (applet_data->buffer){
 			g_free (applet_data->buffer);

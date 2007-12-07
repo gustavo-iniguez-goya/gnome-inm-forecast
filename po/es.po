@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-inm-forecast 0.1.0\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2007-11-29 23:02+0100\n"
+"POT-Creation-Date: 2007-12-07 08:29+0100\n"
 "PO-Revision-Date: 2007-11-29 23:06+0100\n"
 "Last-Translator: ga <ga@kutxa.homeunix.org>\n"
 "Language-Team: es <es@li.org>\n"
@@ -18,14 +18,12 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../src/main.c:98
-#: ../src/main.c:106
+#: ../src/main.c:98 ../src/main.c:106
 #, c-format
 msgid "Wednesday %s"
 msgstr "Miércoles %s"
 
-#: ../src/main.c:100
-#: ../src/main.c:112
+#: ../src/main.c:100 ../src/main.c:112
 #, c-format
 msgid "Saturday %s"
 msgstr "Sábado %s"
@@ -179,26 +177,24 @@ msgstr "Error al cargar http://www.inm.es/web/infmet/avi/pr/conavi_mm.php"
 msgid "Error loading http://www.inm.es/web/infmet/avi/pr/conavi_pp.php"
 msgstr "Error al cargar http://www.inm.es/web/infmet/avi/pr/conavi_pp.php"
 
-#: ../src/main.c:1205
+#: ../src/main.c:1213
 msgid "Next days forecast"
 msgstr "Previsión próximos días"
 
-#: ../src/main.c:1288
+#: ../src/main.c:1299
 #, c-format
 msgid "Connection error\n"
 msgstr "Error de conexión\n"
 
-#: ../src/main.c:1355
-#: ../gnome-inm-glade.glade.h:28
+#: ../src/main.c:1366 ../gnome-inm-glade.glade.h:28
 msgid "Satellite image"
 msgstr "Imagen de satélite"
 
-#: ../src/main.c:1387
+#: ../src/main.c:1398
 msgid "Spanish weather forecast image"
 msgstr "Imagen del pronóstico meteorológico"
 
-#: ../src/main.c:1418
-#: ../src/main.c:1426
+#: ../src/main.c:1429 ../src/main.c:1437
 msgid "Temperatures for the next days"
 msgstr "Temperaturas para los próximos días"
 
@@ -336,17 +332,23 @@ msgstr "Temperatura"
 
 #: ../gnome-inm-glade.glade.h:34
 msgid ""
-"The information you get with this program is property of the Spanish metereological Institute\n"
+"The information you get with this program is property of the Spanish "
+"metereological Institute\n"
 "\n"
 "http://www.inm.es"
 msgstr ""
-"La información que obtienes con este programa es propiedad del Instituto Nacional de Meteorología español\n"
+"La información que obtienes con este programa es propiedad del Instituto "
+"Nacional de Meteorología español\n"
 "\n"
 "http://www.inm.es"
 
 #: ../gnome-inm-glade.glade.h:37
-msgid "The meteorological stations data is updated each hour and will be disponible 30 minutes after as maximum"
-msgstr "Los datos de las estaciones meteorológicas se actualizan cada hora y estarán disponibles como muy tarde 30 minutos después"
+msgid ""
+"The meteorological stations data is updated each hour and will be disponible "
+"30 minutes after as maximum"
+msgstr ""
+"Los datos de las estaciones meteorológicas se actualizan cada hora y estarán "
+"disponibles como muy tarde 30 minutos después"
 
 #: ../gnome-inm-glade.glade.h:38
 msgid "Theme"
@@ -442,8 +444,9 @@ msgstr "_Mapas meteorológicos"
 
 #~ msgid "_Spanish weather map"
 #~ msgstr "_Mapa para mañana"
+
 #~ msgid "_Spanish Forecast Image"
 #~ msgstr "Mapa para mañana"
+
 #~ msgid "_Today forecast"
 #~ msgstr "Pronóstico para hoy"
-

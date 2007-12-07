@@ -1,3 +1,16 @@
+gnome-inm-forecast (0.5.0) unstable; urgency=low
+
+  * Added meteorological stations monitorization
+  * Option to choose how many weather forecast days to show on the panel
+  * Popup menu tidied up into submenus
+  * Clean up the tooltips when the connection has failed
+  * New links for access warnings weathers (soon on then panel too)
+  * Added the temperature map for the next days
+  * Snow forecast reports fixed
+  * Some memleaks fixed and general sanity checks
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Fri, 07 Dec 2007 09:59:18 +0100
+
 gnome-inm-forecast (0.1.1-4) unstable; urgency=medium
 
   * Several sanity checks fixes a crash getting the snow data

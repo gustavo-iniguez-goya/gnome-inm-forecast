@@ -1184,10 +1184,11 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 	static GtkWidget *win;
 	static GtkTextBuffer *textview_buffer;
 	char **tokens=0;
-	char *temp=0;
-	char *str_regx=0;
+	char *temp=0, *temp2=0;;
+	//char *str_regx=0;
 	gchar *buf = (gchar *) callback_data;
-	GRegex *regx = g_regex_new ("<.*>", G_REGEX_CASELESS | G_REGEX_RAW , G_REGEX_MATCH_NOTEMPTY, NULL);
+	int x=0, i=0;
+	//GRegex *regx = g_regex_new ("<.*>", G_REGEX_CASELESS | G_REGEX_RAW , G_REGEX_MATCH_NOTEMPTY, NULL);
 
 	temp = g_strdup (buf);
 	if (strstr(temp, "PREDICCION") || strstr(temp, "Informaci&oacute;n nivol&oacute;gica")){
@@ -1207,19 +1208,38 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 			if (tokens){
 				//printf ("FOREEEEEEEEEEEEE:\n%s\n", tokens[0]);
 				//printf ("REGEX:\n\n%s\n\nREGEX\n", g_regex_replace (regx, tokens[0], -1, 0, "", G_REGEX_MATCH_NOTEMPTY, NULL));
-				str_regx = g_regex_replace (regx, tokens[0], -1, 0, "", G_REGEX_MATCH_NOTEMPTY, NULL);
+
+				temp2 = g_strdup (tokens[0]);
+				for (x=0;x < strlen(temp2);x++){
+					if (temp2[x] && temp2[x] == '<'){
+						for (i=x;i < strlen(temp2);i++){
+							if (temp2[i] && temp2[i] == '>'){
+								temp2[i] = ' ';
+								break;
+							}
+							if (temp2[i])
+								temp2[i] = ' ';
+						x++;
+						}
+					}
+				}
+				//str_regx = g_regex_replace (regx, tokens[0], -1, 0, "", G_REGEX_MATCH_NOTEMPTY, NULL);
+				//str_regx = tokens[0];
 			
-				gtk_text_buffer_set_text (textview_buffer, str_regx, strlen(str_regx));
+				gtk_text_buffer_set_text (textview_buffer, temp2, strlen(temp2));
 				gtk_window_set_title (GTK_WINDOW(win), _("Next days forecast"));
 				gtk_widget_show (win);
 				g_strfreev (tokens);
 				tokens = 0;
-				if (str_regx)
-					g_free (str_regx);
+				if (temp2)
+					g_free (temp2);
+
+				//if (str_regx)
+				//	g_free (str_regx);
 			}
 		}
 	}
-	g_regex_unref (regx);
+	//g_regex_unref (regx);
 	if (temp){
 		g_free (temp);
 		temp = 0;

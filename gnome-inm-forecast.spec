@@ -3,7 +3,7 @@
 # Copyright (c) 2007 Gustavo Iñiguez Goya ga@kutxa.homeunix.org
 #
 %define name gnome-inm-forecast
-%define version 0.5.0
+%define version 0.5.1
 %define release 0
 %define manifest %{_builddir}/%{name}-%{version}-%{release}.manifest
 

@@ -1,3 +1,11 @@
+gnome-inm-forecast (0.5.1) unstable; urgency=low
+
+  * Fixed build dependencies
+  * Do not use g_regex* functions because they are only available in
+    libglib2.0 >= 2.14
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Tue, 11 Dec 2007 16:55:07 +0100
+
 gnome-inm-forecast (0.5.0) unstable; urgency=low
 
   * Added meteorological stations monitorization

@@ -33,7 +33,7 @@
 			<separator />
 			<menuitem name="Informe Aludes"
 				verb="InformeAludes"
-				_label="_Informe sobre alude"
+				_label="_Informe sobre aludes"
 				pixtype="stock"
 				pixname=""/>
 		            <separator/>

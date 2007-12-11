@@ -88,7 +88,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 	
 	i = panel_applet_gconf_get_int (PANEL_APPLET(applet_data->applet), "interval", NULL);
 	if (i == 0)
-		i = 3600;
+		i = 60;
 
 	applet_data->prefs->theme_entry = gtk_bin_get_child(GTK_BIN(applet_data->prefs->combo_theme));
 	gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->theme_entry), (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "theme", NULL));

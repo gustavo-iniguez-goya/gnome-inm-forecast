@@ -1,3 +1,26 @@
+2007-12-11 16:14  ga
+
+	* [r187] configure, configure.in, debian/changelog,
+	  gnome-inm-forecast.spec: 0.5.1 revision released
+
+2007-12-11 15:48  ga
+
+	* [r186] configure, configure.in, debian/control: Require gtk 2.8
+	  and libglib 2.6 as minimum
+
+2007-12-11 15:33  ga
+
+	* [r185] src/main.c: Do not depend on g_regex* functions since they
+	  are only available on libglib2.0 >= 2.14
+
+2007-12-11 10:07  ga
+
+	* [r184] debian/control: Fixed build dependencies
+
+2007-12-07 09:30  ga
+
+	* [r183] ChangeLog: 0.5.0v
+
 2007-12-07 09:27  ga
 
 	* [r182] configure.in, debian/changelog, gnome-inm-forecast.spec,

@@ -1,3 +1,28 @@
+2007-12-12 10:50  ga
+
+	* [r192] configure, configure.in, debian/changelog,
+	  gnome-inm-forecast.spec: 0.5.2 revision released
+
+2007-12-12 10:09  ga
+
+	* [r191] src/preferences.c: Ensure that the interval update time is
+	  60 if the gconf value is less than 0 or greater than 60
+
+2007-12-12 09:54  ga
+
+	* [r190] src/preferences.c: Load only as themes the directories
+	  inside /usr/share/PROGRAM/pixmaps/
+
+2007-12-11 23:40  ga
+
+	* [r189] GNOME_INM_menu.xml, src/preferences.c: * preferences.c -
+	  By default use minutes for interval update, and 60 mins
+	  * GNOME_IN_menu.xml - Fix a typo
+
+2007-12-11 16:15  ga
+
+	* [r188] ChangeLog: ChangeLog updated to 0.5.1 release
+
 2007-12-11 16:14  ga
 
 	* [r187] configure, configure.in, debian/changelog,

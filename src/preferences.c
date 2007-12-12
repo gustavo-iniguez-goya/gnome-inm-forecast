@@ -96,7 +96,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 	gnome_vfs_directory_list_load (&dir_list, PIXMAPS_DIR, GNOME_VFS_FILE_INFO_DEFAULT);
 	while (dir_list){
 		dir_info = (GnomeVFSFileInfo *)dir_list->data;
-		if (strcmp (dir_info->name, ".") != 0 && strcmp (dir_info->name, "..") != 0){
+		if (strcmp (dir_info->name, ".") != 0 && strcmp (dir_info->name, "..") != 0 && dir_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY){
 			//printf ("Theme: %s\n", (char *)dir_info->name);
 			gtk_combo_box_append_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme), dir_info->name);
 		}

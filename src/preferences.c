@@ -132,7 +132,6 @@ void 		create_preferences_win ( AppletData *applet_data )
 	
 	g_object_unref (G_OBJECT (xml));
 }
-
 void 		create_stations_tree ( AppletData *applet_data )
 {
 	GnomeVFSResult result;
@@ -268,7 +267,7 @@ void 		on_station_tree_selection ( GtkTreeView *tree_view, GtkTreePath *path, Gt
 				panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "station_code", code, NULL);
 				strncpy (applet_data->prefs->station_code, code, 12);
 	
-				update_station_data (applet_data);
+				//update_station_data (applet_data);
 			}
 
 			g_free(code);

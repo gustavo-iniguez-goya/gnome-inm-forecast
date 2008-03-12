@@ -1,3 +1,11 @@
+gnome-inm-forecast (0.6.0.1) unstable; urgency=low
+
+  * Applet updated to the new www.aemet.es website
+  * Code cleaned a bit
+  * Meteorological station disabled
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Thu, 13 Mar 2008 00:35:32 +0100
+
 gnome-inm-forecast (0.5.2) unstable; urgency=low
 
   * Ensure that the interval update time is 60 if the gconf value is 

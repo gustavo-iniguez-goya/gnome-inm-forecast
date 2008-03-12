@@ -3,8 +3,8 @@
 # Copyright (c) 2007 Gustavo Iñiguez Goya ga@kutxa.homeunix.org
 #
 %define name gnome-inm-forecast
-%define version 0.5.2
-%define release 0
+%define version 0.6.0.1
+%define release 1
 %define manifest %{_builddir}/%{name}-%{version}-%{release}.manifest
 
 # required items
@@ -54,6 +54,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmaps/inm/
+mkdir -p $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmaps/aemet/
 mkdir -p $RPM_BUILD_ROOT/usr/libexec/
 mkdir -p $RPM_BUILD_ROOT/usr/lib/bonobo/servers/
 mkdir -p $RPM_BUILD_ROOT/usr/share/pixmaps/
@@ -61,6 +62,7 @@ install -m 644 GNOME_inm-forecast.server_rpm $RPM_BUILD_ROOT/usr/lib/bonobo/serv
 install -m 644 gnome-inm-glade.glade $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/gnome-inm-glade.glade
 install -m 644 GNOME_INM_menu.xml $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/
 install -m 644 pixmaps/inm/* $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmaps/inm/
+install -m 644 pixmaps/aemet/* $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmaps/aemet/
 install -m 644 pixmaps/espcan.jpg $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmaps/
 install -m 644 pixmaps/gnome-inm-forecast.png $RPM_BUILD_ROOT/usr/share/pixmaps/
 install -m 655 src/gnome-inm-forecast $RPM_BUILD_ROOT/usr/libexec/

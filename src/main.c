@@ -298,7 +298,7 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				x=0;
 			while (tokens[x]){
 				if (!strstr (tokens[x], "estado_cielo")){x++; continue;}
-				printf ("XXXX [%d]: %s\n", id_img, tokens[x]);
+				//printf ("XXXX [%d]: %s\n", id_img, tokens[x]);
 				if (strstr (tokens[x], "11.gif")){
 					snprintf (theme, 1024, "%s%s/11.png", PIXMAPS_DIR, t);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
@@ -397,6 +397,11 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				}
 					tokens[x++];
 			}
+			if (!applet_data->image[id_img]){
+				int days = atoi(applet_data->show_days);	
+				snprintf (applet_data->show_days, 32, "%d", days-1);
+				update_location (applet_data);
+			}
 	}
 	for (x=0;x < id_img;x++){
 		if (applet_data->image[id_img]){
@@ -404,7 +409,6 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 			temp_pixbuf2 = gdk_pixbuf_scale_simple (temp_pixbuf, applet_data->applet_size - 3, applet_data->applet_size - 3, GDK_INTERP_BILINEAR);
 			gtk_image_set_from_pixbuf (GTK_IMAGE(applet_data->image[x]), temp_pixbuf2);
 			if (temp_pixbuf && temp_pixbuf2){
-				printf ("Borrando pixbufs\n");
 				g_object_unref (temp_pixbuf);
 				g_object_unref (temp_pixbuf2);
 				temp_pixbuf = 0;
@@ -478,10 +482,11 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 			g_strfreev (tokens);
 		}
 		else if (type == 1){ // Fecha
-			int id=0;
+			int idx=0;
 			tokens = g_strsplit_set (temp_buf, "<>&;", -1);
-			for (x=0;x < 20;x++){
+			for (x=0;x < 32;x++){
 				if (tokens[x]){
+					//	printf ("\n\t#############  parse_dates_data(FECHA) %d - %s\n", x, tokens[x]);
 					if (strncmp(tokens[x], "/th", 3) == 0) continue;
 					if (strncmp(tokens[x], "/tr", 3) == 0) continue;
 					if (strncmp(tokens[x], "/td", 3) == 0) continue;
@@ -496,11 +501,27 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 							strstr(tokens[x], "sab ") ||
 							strstr(tokens[x], "dom ")
 							){
-						printf ("\n\t#############  parse_dates_data(FECHA) %d - %s\n", x, tokens[x]);
 						day_temp = parse_week_day_name(tokens[x]);
-						strncpy (applet_data->day_info[id].day, day_temp, 32);
+						if (idx == 0){
+							strncpy (applet_data->day_info[0].day, day_temp, 32);
+							strncpy (applet_data->day_info[1].day, day_temp, 32);
+							idx=2;
+						}
+						else if (idx == 2){
+							strncpy (applet_data->day_info[2].day, day_temp, 32);
+							strncpy (applet_data->day_info[3].day, day_temp, 32);
+							idx=4;
+						}
+						else if (idx == 4){
+							strncpy (applet_data->day_info[4].day, day_temp, 32);
+							strncpy (applet_data->day_info[5].day, day_temp, 32);
+							idx=6;
+						}
+						else {
+							strncpy (applet_data->day_info[idx].day, day_temp, 32);
+							idx++;
+						}
 						g_free (day_temp);
-						id++;
 					}
 				}
 			}
@@ -549,13 +570,13 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 		
 		if (type == SNOW){
 			idx=0;
-			printf ("SNOW[0]: %s\n", tokens[0]);
+			//printf ("SNOW[0]: %s\n", tokens[0]);
 			for (yy=1;yy < 38;yy++){
 				//if (strncmp(tokens[yy], "    ", 4) == 0) continue;
 				if (strncmp(tokens[yy], "/td", 3) == 0) continue;
 				if (strncmp(tokens[yy], "td ", 3) == 0) continue;
 				if (strncmp(tokens[yy], "nbsp", 4) == 0) continue;
-				printf ("SNOW[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
+			//	printf ("SNOW[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
 				if (tokens[yy] && idx < 10){
 					if (strlen(tokens[yy]) == 0){
 						if (idx == 0){
@@ -656,7 +677,7 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 			idx=0;
 			for (yy=1;yy < 40;yy++){
 				if (tokens[yy][0] >= '0' && tokens[yy][0] <= '9'){
-					printf ("\tPRECIP[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
+				//	printf ("\tPRECIP[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
 					if (idx < 10){
 						if (idx == 0){ // morning 0 + afternoon 1 => idx = 1
 							strncpy (applet_data->day_info[0].precip, tokens[yy], 4); // 0
@@ -691,7 +712,7 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 				if (strncmp(tokens[yy], "tr", 2) == 0) continue;
 //				printf ("TMAX[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
 				if ((tokens[yy][0] >= '0' && tokens[yy][0] <= '9') || tokens[yy][0] == '-'){
-					printf ("\tTMAX[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
+			//		printf ("\tTMAX[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
 					if (idx < 10){
 						if (idx == 0){ // morning 0 + afternoon 1 => idx = 1
 							strncpy (applet_data->day_info[0].t_max, tokens[yy], 4);
@@ -726,7 +747,7 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 				if (strncmp(tokens[yy], "tr", 2) == 0) continue;
 //				printf ("TMIN[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
 				if ((tokens[yy][0] >= '0' && tokens[yy][0] <= '9') || tokens[yy][0] == '-'){
-					printf ("\tTMIN[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
+				//	printf ("\tTMIN[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
 					if (idx < 10){
 						if (idx == 0){ // morning 0 + afternoon 1 => idx = 1
 							strncpy (applet_data->day_info[0].t_min, tokens[yy], 4);
@@ -887,86 +908,6 @@ gboolean check_latest_data	( AppletData *applet_data )
 	return TRUE;
 }
 
-/*
-gboolean check_station_data	( AppletData *applet_data )
-{
-	void *ctx=0;
-	char *buf=0;
-	int ret=-2;
-	const char delimiters[] = "[]=\"";
-	char *temp=0;
-	int x=0;
-
-	if (applet_data && applet_data->applet){
-		stationCode *st_code = g_new0 (stationCode, 2);
-		st_code[0].name = g_new0 (char, 32);
-		st_code[0].provincia = g_new0 (char, 32);
-		st_code[0].code = g_new0 (char, 6);
-		st_code[1].name = g_new0 (char, 32);
-		st_code[1].provincia = g_new0 (char, 32);
-		st_code[1].code = g_new0 (char, 6);
-		buf = (char *)malloc (36000);
-
-		xmlNanoHTTPInit ();
-		ctx = (void *)xmlNanoHTTPOpen (INM_NAMES_LATEST_DATA, NULL);
-		while (ret != 0){
-			ret = xmlNanoHTTPRead (ctx, buf, 36000);
-		}
-
-		temp = strtok (buf, delimiters);
-		for (x=0; x < 10 ;x++){
-			temp = strtok (NULL, delimiters);
-			printf ("MIERDA: %s\n", temp);
-		}
-
-		while(temp){
-			temp = strtok (NULL, delimiters); 
-			temp = strtok (NULL, delimiters); 
-			printf ("Station: code\t%s - ", temp);
-			if (temp)
-				strncpy (st_code[0].code, temp, 6);
-
-			temp = strtok (NULL, delimiters); 
-			printf ("name\t%s - ", temp);
-			if (temp)
-				strncpy (st_code[0].name, temp, 6);
-	
-			temp = strtok (NULL, delimiters);
-			if (temp)
-				strncpy (st_code[0].name, temp, 6);
-			temp = strtok (NULL, delimiters);
-			temp = strtok (NULL, delimiters);
-			if (temp)
-				strncpy (st_code[0].provincia, temp, 6);
-
-			printf ("Provincia\t: %s\n", temp);
-			temp = strtok (NULL, delimiters);
-			temp = strtok (NULL, delimiters); 
-			temp = strtok (NULL, delimiters);
-			
-			temp = strtok (NULL, delimiters);
-			temp = strtok (NULL, delimiters); 
-			temp = strtok (NULL, delimiters);
-	
-		}
-		if (ret == -1){
-			printf ("Connection error\n");
-			//message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Connection error"), _("The connection can not be established"));
-		}
-		//xmlNanoHTTPCleanup ();
-		xmlNanoHTTPClose (ctx);
-		
-
-		free (buf);
-		g_free (st_code->name);
-		g_free (st_code->code);
-		g_free (st_code);
-	}
-
-	return TRUE;
-}
-*/
-
 static void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, gpointer callback_data)
 {
 	int x=0;
@@ -1031,7 +972,7 @@ static void check_inm_url_read 		( GnomeVFSAsyncHandle *handle,
 
 	//printf ("gvfs_async_read(): %s\n", gnome_vfs_result_to_string (result));
 	if (result == GNOME_VFS_ERROR_EOF){
-		printf ("Fin de lectura gnome_vfs_async_read()\n");
+//		printf ("Fin de lectura gnome_vfs_async_read()\n");
 		gnome_vfs_async_close (handle, check_inm_url_close, applet_data);
 		if (buf)
 			g_free (buf);
@@ -1060,7 +1001,7 @@ static void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 	char *buf=0;
 	buf = g_malloc0(8192);
 	AppletData *applet_data = (AppletData *) callback_data;
-	printf ("check_inm_url_status() gvfs_async_open(): %s\n", gnome_vfs_result_to_string (result));
+//	printf ("check_inm_url_status() gvfs_async_open(): %s\n", gnome_vfs_result_to_string (result));
 
 	if (applet_data->buffer)
 		g_free (applet_data->buffer);
@@ -1076,7 +1017,7 @@ static void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 	}
 	else{
 		gnome_vfs_async_read (handle, buf, 8192, check_inm_url_read, applet_data);
-		printf ("gvfs_async_status()\n");
+//		printf ("gvfs_async_status()\n");
 	}
 }
 
@@ -1117,6 +1058,7 @@ void update_station_data 		( AppletData *applet_data )
 {
 	gboolean show_station;
 	show_station = panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL);
+	/*
  	gtk_timeout_remove (applet_data->timer_station);
 	if (show_station){
 		gtk_widget_show (applet_data->event_box[10]);
@@ -1126,6 +1068,7 @@ void update_station_data 		( AppletData *applet_data )
 	else{
 		gtk_widget_hide (applet_data->event_box[10]);
 	}
+	*/
 }
 
 void update_location 			( AppletData *applet_data )
@@ -1136,7 +1079,7 @@ void update_location 			( AppletData *applet_data )
 		//update_station_data (applet_data);
 
  		iDays = atoi (applet_data->show_days);
- 		printf ("Days to show: %d\n", iDays);
+// 		printf ("Days to show: %d\n", iDays);
  		for (x=0;x < iDays;x++)
  			gtk_widget_show (applet_data->event_box[x]);
  		
@@ -1158,6 +1101,7 @@ void update_data			 ( BonoboUIComponent *uic, gpointer user_data, const char *na
 
 	if (applet_data){
 		show_station = panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL);
+		/*
 		if (show_station){
 			check_latest_data (applet_data);
  			applet_data->timer_station = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_latest_data, applet_data );
@@ -1166,6 +1110,7 @@ void update_data			 ( BonoboUIComponent *uic, gpointer user_data, const char *na
  			gtk_timeout_remove (applet_data->timer_station);
 		
 		gtk_timeout_remove (applet_data->timer);
+		*/
 		check_inm_url (applet_data);
 		applet_data->timer = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	}
@@ -1187,7 +1132,7 @@ void display_inm_website		 ( BonoboUIComponent *uic, gpointer user_data, const c
 
 	gvfs_result = gnome_vfs_url_show (INM_URL);
 	if (gvfs_result != GNOME_VFS_OK)
-		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading www.inm.es"), gnome_vfs_result_to_string (gvfs_result));
+		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading www.aemet.es"), gnome_vfs_result_to_string (gvfs_result));
 		
 }
 
@@ -1198,7 +1143,7 @@ void display_wwarnings_t		 ( BonoboUIComponent *uic, gpointer user_data, const c
 
 	gvfs_result = gnome_vfs_url_show (INM_WWARNINGS_TODAY_URL);
 	if (gvfs_result != GNOME_VFS_OK)
-		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading http://www.inm.es/web/infmet/avi/pr/conavi_c.php"), gnome_vfs_result_to_string (gvfs_result));
+		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading "INM_WWARNINGS_TODAY_URL), gnome_vfs_result_to_string (gvfs_result));
 }
 
 void display_wwarnings_tm		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
@@ -1208,7 +1153,7 @@ void display_wwarnings_tm		 ( BonoboUIComponent *uic, gpointer user_data, const 
 
 	gvfs_result = gnome_vfs_url_show (INM_WWARNINGS_TOMORROW_URL);
 	if (gvfs_result != GNOME_VFS_OK)
-		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading http://www.inm.es/web/infmet/avi/pr/conavi_mm.php"), gnome_vfs_result_to_string (gvfs_result));
+		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading "INM_WWARNINGS_TOMORROW_URL), gnome_vfs_result_to_string (gvfs_result));
 }
 
 void display_wwarnings_n		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
@@ -1218,7 +1163,7 @@ void display_wwarnings_n		 ( BonoboUIComponent *uic, gpointer user_data, const c
 
 	gvfs_result = gnome_vfs_url_show (INM_WWARNINGS_NEXT_DAYS_URL);
 	if (gvfs_result != GNOME_VFS_OK)
-		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading http://www.inm.es/web/infmet/avi/pr/conavi_pp.php"), gnome_vfs_result_to_string (gvfs_result));
+		message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Error loading "INM_WWARNINGS_NEXT_DAYS_URL), gnome_vfs_result_to_string (gvfs_result));
 }
 
 static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, gpointer callback_data)
@@ -1272,7 +1217,7 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 				//str_regx = tokens[0];
 			
 				temp3 = convert_str_to_utf8 (temp2);
-				printf ("FOREEEEEEEEEEEEE:\n%s\n", temp3);
+//				printf ("FOREEEEEEEEEEEEE:\n%s\n", temp3);
 				gtk_text_buffer_set_text (textview_buffer, temp3, strlen(temp3));
 				gtk_window_set_title (GTK_WINDOW(win), _("Next days forecast"));
 				gtk_widget_show (win);

@@ -71,7 +71,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 	gtk_entry_completion_set_text_column (applet_data->prefs->entry_cmpt, 1);
 
 	/* Creates the meteorological stations tree */
-	create_stations_tree (applet_data);
+	//create_stations_tree (applet_data);
 
 	applet_data->prefs->combo_theme = gtk_combo_box_entry_new_text ();
 	gtk_table_attach (GTK_TABLE(table6), GTK_WIDGET(applet_data->prefs->combo_theme), 1, 2, 4, 5, 0, 0, 0, 0);
@@ -80,11 +80,11 @@ void 		create_preferences_win ( AppletData *applet_data )
 	gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->entry_code), (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "city", NULL));
 	applet_data->prefs->code = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL);
 	
-	gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->prov_search_entry), (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_name", NULL));
-	applet_data->prefs->station_code = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_code", NULL);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(applet_data->prefs->chk_station), 
-			panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL)
-		);
+	//gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->prov_search_entry), (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_name", NULL));
+	//applet_data->prefs->station_code = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_code", NULL);
+	//gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(applet_data->prefs->chk_station), 
+	//		panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL)
+	//	);
 	
 	i = panel_applet_gconf_get_int (PANEL_APPLET(applet_data->applet), "interval", NULL);
 	if (i < 1 || i > 60)

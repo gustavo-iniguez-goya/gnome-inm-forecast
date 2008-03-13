@@ -395,7 +395,7 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 					strncpy (applet_data->day_info[id_img].state, _("Muy nuboso con nieve"), 36);
 					id_img++;
 				}
-					tokens[x++];
+				x++;
 			}
 			if (!applet_data->image[id_img]){
 				int days = atoi(applet_data->show_days);	
@@ -444,12 +444,15 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 //		printf ("\n\n\n##############################################\n\n\nparse_dates_data(%d) %s\n", type, buf);
 		temp_buf = strdup (buf);
 		if (type == 0){ // Elaborado
+			strcpy (applet_data->last_update, "");
 			tokens = g_strsplit_set (temp_buf, "<>&;", 6); /* 0 - 16 */
 			if (tokens[4]){
 				temp_buf2 = convert_str_to_utf8 (tokens[4]);
 				if (temp_buf2){
-					strncpy (applet_data->last_update, _("Last update: "), 14);
-					strncat (applet_data->last_update, temp_buf2, 50);
+					printf ("temp_buf2: %s\n", temp_buf2);
+					strncpy (applet_data->last_update, _("Last update: "), 64);
+					strncat (applet_data->last_update, temp_buf2, 64);
+					printf ("temp_buf2: %s\n", temp_buf2);
 					g_free (temp_buf2);
 					temp_buf2 = 0;
 				}
@@ -477,9 +480,20 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 			else
 				strcpy (applet_data->city_name, "");
 					
-			strcpy (applet_data->provincia, "");
-
 			g_strfreev (tokens);
+			// provincia
+	
+			/*
+			tokens = g_strsplit_set (strstr(buf, "selected=\"selected\">"), "<>", 6);
+			if (tokens[1])
+				strncpy (applet_data->provincia, tokens[1], 64);
+			else
+				strcpy (applet_data->provincia, "");
+			
+			g_strfreev (tokens);
+			printf ("Prov: %s\n", applet_data->provincia);
+			*/
+			strcpy (applet_data->provincia, "");
 		}
 		else if (type == 1){ // Fecha
 			int idx=0;
@@ -498,7 +512,7 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 							strstr(tokens[x], "mi") ||
 							strstr(tokens[x], "jue ") ||
 							strstr(tokens[x], "vie ") ||
-							strstr(tokens[x], "sab ") ||
+							strstr(tokens[x], "sab ") || strstr(tokens[x], "s&aacute;b") ||
 							strstr(tokens[x], "dom ")
 							){
 						day_temp = parse_week_day_name(tokens[x]);
@@ -1565,10 +1579,10 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	applet_data->day_info = g_new0 (DayInf, 10);
 	applet_data->prefs->code = g_new0 (char, 12);
 	applet_data->prefs->station_code = g_new0 (char, 12);
-	applet_data->city_name = g_new0 (char, 64);
-	applet_data->city_long_desc = g_new0 (char, 64);
-	applet_data->provincia = g_new0 (char, 64);
-	applet_data->last_update = g_new0 (char, 64);
+	applet_data->city_name = g_new0 (char, 128);
+	applet_data->city_long_desc = g_new0 (char, 128);
+	applet_data->provincia = g_new0 (char, 128);
+	applet_data->last_update = g_new0 (char, 128);
 	applet_data->show_days = g_new0 (char, 12);
 	applet_data->st_info = NULL;
 	applet_data->st_list = NULL;

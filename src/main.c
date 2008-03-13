@@ -397,11 +397,6 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				}
 				x++;
 			}
-			if (!applet_data->image[id_img]){
-				int days = atoi(applet_data->show_days);	
-				snprintf (applet_data->show_days, 32, "%d", days-1);
-				update_location (applet_data);
-			}
 	}
 	for (x=0;x < id_img;x++){
 		if (applet_data->image[id_img]){
@@ -449,10 +444,8 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 			if (tokens[4]){
 				temp_buf2 = convert_str_to_utf8 (tokens[4]);
 				if (temp_buf2){
-					printf ("temp_buf2: %s\n", temp_buf2);
 					strncpy (applet_data->last_update, _("Last update: "), 64);
 					strncat (applet_data->last_update, temp_buf2, 64);
-					printf ("temp_buf2: %s\n", temp_buf2);
 					g_free (temp_buf2);
 					temp_buf2 = 0;
 				}
@@ -586,12 +579,11 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 			idx=0;
 			//printf ("SNOW[0]: %s\n", tokens[0]);
 			for (yy=1;yy < 38;yy++){
-				//if (strncmp(tokens[yy], "    ", 4) == 0) continue;
 				if (strncmp(tokens[yy], "/td", 3) == 0) continue;
 				if (strncmp(tokens[yy], "td ", 3) == 0) continue;
 				if (strncmp(tokens[yy], "nbsp", 4) == 0) continue;
-			//	printf ("SNOW[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
-				if (tokens[yy] && idx < 10){
+				//printf ("SNOW[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
+				if (tokens[yy] && idx <= 10){
 					if (strlen(tokens[yy]) == 0){
 						if (idx == 0){
 							strcpy (applet_data->day_info[0].cota_nieve, "");
@@ -613,7 +605,8 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 							idx++;
 						}
 					}
-					else if (tokens[yy][0] >= '0' && tokens[yy][0] <= '9'){
+					else if ((tokens[yy][0] >= '0' && tokens[yy][0] <= '9') || 
+						(tokens[yy][1] >= '0' && tokens[yy][1] <= '9')){
 						if (idx == 0){
 							strncpy (applet_data->day_info[0].cota_nieve, tokens[yy], 10);
 							strncpy (applet_data->day_info[1].cota_nieve, tokens[yy], 10);

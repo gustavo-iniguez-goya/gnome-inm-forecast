@@ -1,3 +1,61 @@
+2008-03-13 15:50  ga
+
+	* [r201] src/main.c: Fixed a terrible memory leak getting the
+	  last_update information, plus minor fixes
+
+2008-03-12 23:27  ga
+
+	* [r200] GNOME_inm-forecast.server, GNOME_inm-forecast.server_rpm,
+	  README, configure, configure.in, debian/README.Debian,
+	  debian/changelog, debian/dirs, debian/gnome-inm-forecast.install,
+	  gnome-inm-forecast.1, gnome-inm-forecast.lsm,
+	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in,
+	  gnome-inm-glade.glade, po/es.po: Applet updated to the new
+	  www.aemet.es website.
+
+2008-03-12 23:17  ga
+
+	* [r199] src/main.c: Change "inm" by "aemet"
+	  Handle better the per day information
+	  Clean the code
+
+2008-03-12 17:18  ga
+
+	* [r198] src/main.c, src/main.h, src/preferences.c:
+
+2008-03-12 07:36  ga
+
+	* [r197] gnome-inm-glade.glade: Disable the meterological stations
+	  settings for now
+
+2008-03-12 00:53  ga
+
+	* [r196] gnome-inm-glade.glade: Do not hide windows from the window
+	  manager
+
+2008-03-12 00:48  ga
+
+	* [r195] pixmaps/aemet, pixmaps/aemet/11.png, pixmaps/aemet/12.png,
+	  pixmaps/aemet/13.png, pixmaps/aemet/14.png, pixmaps/aemet/15.png,
+	  pixmaps/aemet/16.png, pixmaps/aemet/23.png, pixmaps/aemet/24.png,
+	  pixmaps/aemet/25.png, pixmaps/aemet/26.png, pixmaps/aemet/33.png,
+	  pixmaps/aemet/34.png, pixmaps/aemet/35.png, pixmaps/aemet/36.png:
+	  The new images of the INM/Aemet website added as
+	  a new theme called "aemet"
+
+2008-03-12 00:47  ga
+
+	* [r194] src/main.c, src/main.h, src/preferences.c: gforecast
+	  adapted to the new INM/Aemet website.
+	  Some features has been removed :(, but I'll add
+	  more soon :)
+	  
+	  First commit of this revision. Will be there more for sure
+
+2007-12-12 10:51  ga
+
+	* [r193] ChangeLog: ChangeLog updated to 0.5.2 release
+
 2007-12-12 10:50  ga
 
 	* [r192] configure, configure.in, debian/changelog,

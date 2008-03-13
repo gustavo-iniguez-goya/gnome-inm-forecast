@@ -45,7 +45,7 @@
 				pixname="gtk-properties"/>
 			<menuitem name="VisitINMwebSite"
 				verb="VisitINM"
-				_label="_Visit INM web site"
+				_label="_Visit AEMET web site"
 				pixtype="stock"
 				pixname="gnome-stock-link"/>
 			<menuitem name="About Item"

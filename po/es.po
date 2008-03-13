@@ -5,11 +5,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-inm-forecast 0.1.0\n"
+"Project-Id-Version: gnome-inm-forecast 0.6.0\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2008-03-13 00:28+0100\n"
-"PO-Revision-Date: 2008-03-13 00:28+0100\n"
-"Last-Translator: ga <ga@kutxa.homeunix.org>\n"
+"POT-Creation-Date: 2008-03-13 16:57+0100\n"
+"PO-Revision-Date: 2008-03-13 16:59+0100\n"
+"Last-Translator: Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>\n"
 "Language-Team: es <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -122,47 +122,47 @@ msgstr ""
 msgid "Muy nuboso con nieve"
 msgstr ""
 
-#: ../src/main.c:452
+#: ../src/main.c:453
 msgid "Last update: "
 msgstr "Última actualización: "
 
-#: ../src/main.c:636
+#: ../src/main.c:649
 msgid "Sur"
 msgstr "Sur"
 
-#: ../src/main.c:640
+#: ../src/main.c:653
 msgid "Sureste"
 msgstr "Sureste"
 
-#: ../src/main.c:644
+#: ../src/main.c:657
 msgid "Suroeste"
 msgstr "Suroeste"
 
-#: ../src/main.c:648
+#: ../src/main.c:661
 msgid "Norte"
 msgstr "Norte"
 
-#: ../src/main.c:652
+#: ../src/main.c:665
 msgid "Nordeste"
 msgstr "Nordeste"
 
-#: ../src/main.c:656
+#: ../src/main.c:669
 msgid "Noroeste"
 msgstr "Noroeste"
 
-#: ../src/main.c:660
+#: ../src/main.c:673
 msgid "Este"
 msgstr "Este"
 
-#: ../src/main.c:664
+#: ../src/main.c:677
 msgid "Oeste"
 msgstr "Oeste"
 
-#: ../src/main.c:668
+#: ../src/main.c:681
 msgid "Calma"
 msgstr ""
 
-#: ../src/main.c:828
+#: ../src/main.c:841
 #, c-format
 msgid ""
 "Station: %s\n"
@@ -171,94 +171,94 @@ msgstr ""
 "Estación: %s\n"
 "\n"
 
-#: ../src/main.c:843
+#: ../src/main.c:856
 #, c-format
 msgid "%s C"
 msgstr "%s ºC"
 
-#: ../src/main.c:850
+#: ../src/main.c:863
 #, c-format
 msgid "Temperature: %s\n"
 msgstr "Temperatura: %s\n"
 
 #. Hora oficial
-#: ../src/main.c:854
+#: ../src/main.c:867
 #, c-format
 msgid "Maximum wind velocity: %s Km/h\n"
 msgstr "Velocidad máxima del viento: %s Km/h\n"
 
 #. Presion atmosferica
-#: ../src/main.c:858
+#: ../src/main.c:871
 #, c-format
 msgid "Atmosferic presion: %s\n"
 msgstr "Presión atmosférica: %s\n"
 
 #. Precipitacion acumulada
-#: ../src/main.c:862
+#: ../src/main.c:875
 #, c-format
 msgid "Rainfall: %s\n"
 msgstr "Precipitación: %s\n"
 
 #. Humedad relativa
-#: ../src/main.c:866
+#: ../src/main.c:879
 msgid "Humidity: %s %\n"
 msgstr "Humedad: %s %\n"
 
 #. Direccion del viento
-#: ../src/main.c:870
+#: ../src/main.c:883
 #, c-format
 msgid "Wind velocity: %s Km/h\n"
 msgstr "Velocidad del viento: %s Km/h\n"
 
 #. Direccion del viento
-#: ../src/main.c:874
+#: ../src/main.c:887
 #, c-format
 msgid "Wind: %s\n"
 msgstr "Viento: %s\n"
 
 #. Hora oficial
-#: ../src/main.c:878
+#: ../src/main.c:891
 #, c-format
 msgid "Last update: %sh\n"
 msgstr "Última actualización: %sh\n"
 
-#: ../src/main.c:893
+#: ../src/main.c:906
 msgid "No data for this meteorological station"
 msgstr "No hay datos para esta estación meteorológica"
 
-#: ../src/main.c:899
+#: ../src/main.c:912
 msgid "Error getting latest data from meteorological station"
 msgstr "Error al obtener los últimos datos de la estación meteorológica"
 
-#: ../src/main.c:1216
+#: ../src/main.c:1149
 msgid "Error loading www.aemet.es"
 msgstr "Error al cargar www.aemet.es"
 
-#: ../src/main.c:1227
-#: ../src/main.c:1237
-#: ../src/main.c:1247
+#: ../src/main.c:1160
+#: ../src/main.c:1170
+#: ../src/main.c:1180
 msgid "Error loading "
 msgstr "Error al cargar www.aemet.es"
 
-#: ../src/main.c:1303
+#: ../src/main.c:1236
 msgid "Next days forecast"
 msgstr "Previsión próximos días"
 
-#: ../src/main.c:1394
+#: ../src/main.c:1327
 #, c-format
 msgid "Connection error\n"
 msgstr "Error de conexión\n"
 
-#: ../src/main.c:1461
+#: ../src/main.c:1394
 #: ../gnome-inm-glade.glade.h:28
 msgid "Satellite image"
 msgstr "Imagen de satélite"
 
-#: ../src/main.c:1493
+#: ../src/main.c:1426
 msgid "Spanish weather forecast image"
 msgstr "Imagen del pronóstico meteorológico"
 
-#: ../src/main.c:1534
+#: ../src/main.c:1467
 msgid "Temperatures for the next days"
 msgstr "Temperaturas para los próximos días"
 
@@ -493,8 +493,8 @@ msgid "_Update now"
 msgstr "Actualizar ahora"
 
 #: ../GNOME_INM_menu.xml.h:15
-msgid "_Visit INM web site"
-msgstr "_Visita la web del INM"
+msgid "_Visit AEMET web site"
+msgstr "_Visita la web de la AEMET"
 
 #: ../GNOME_INM_menu.xml.h:16
 msgid "_Weather maps"

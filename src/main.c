@@ -108,7 +108,7 @@ char *parse_week_day_name	( const char *day_name )
 				snprintf (day_temp, 64, _("Thursday %s"), tokens[1]);
 			else if (strstr (day_name, "vie "))
 				snprintf (day_temp, 64, _("Friday %s"), tokens[1]);
-			else if (strstr (day_name, "s&aacute;b "))
+			else if (strstr (day_name, "s&aacute;b ") || strstr (day_name, "sáb "))
 				snprintf (day_temp, 64, _("Saturday %s"), tokens[1]);
 			else if (strstr (day_name, "dom "))
 				snprintf (day_temp, 64, _("Sunday %s"), tokens[1]);
@@ -298,7 +298,7 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				x=0;
 			while (tokens[x]){
 				if (!strstr (tokens[x], "estado_cielo")){x++; continue;}
-				//printf ("XXXX [%d]: %s\n", id_img, tokens[x]);
+				printf ("XXXX [%d]: %s\n", id_img, tokens[x]);
 				if (strstr (tokens[x], "11.gif")){
 					snprintf (theme, 1024, "%s%s/11.png", PIXMAPS_DIR, t);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
@@ -397,21 +397,25 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				}
 				x++;
 			}
-	}
-	for (x=0;x < id_img;x++){
-		if (applet_data->image[id_img]){
-			temp_pixbuf = gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[x]));
-			temp_pixbuf2 = gdk_pixbuf_scale_simple (temp_pixbuf, applet_data->applet_size - 3, applet_data->applet_size - 3, GDK_INTERP_BILINEAR);
-			gtk_image_set_from_pixbuf (GTK_IMAGE(applet_data->image[x]), temp_pixbuf2);
-			if (temp_pixbuf && temp_pixbuf2){
-				g_object_unref (temp_pixbuf);
-				g_object_unref (temp_pixbuf2);
-				temp_pixbuf = 0;
-				temp_pixbuf2 = 0;
+			if (!gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[id_img])))
+				gtk_widget_hide (applet_data->event_box[id_img]);
+			else
+				gtk_widget_show (applet_data->event_box[id_img]);
+	
+		for (x=0;x < id_img;x++){
+			if (applet_data->image[id_img]){
+				temp_pixbuf = gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[x]));
+				temp_pixbuf2 = gdk_pixbuf_scale_simple (temp_pixbuf, applet_data->applet_size - 3, applet_data->applet_size - 3, GDK_INTERP_BILINEAR);
+				gtk_image_set_from_pixbuf (GTK_IMAGE(applet_data->image[x]), temp_pixbuf2);
+				if (temp_pixbuf && temp_pixbuf2){
+					g_object_unref (temp_pixbuf);
+					g_object_unref (temp_pixbuf2);
+					temp_pixbuf = 0;
+					temp_pixbuf2 = 0;
+				}
 			}
 		}
 	}
-
 	if (tokens)
 		g_strfreev (tokens);
 		
@@ -505,7 +509,7 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 							strstr(tokens[x], "mi") ||
 							strstr(tokens[x], "jue ") ||
 							strstr(tokens[x], "vie ") ||
-							strstr(tokens[x], "sab ") || strstr(tokens[x], "s&aacute;b") ||
+							strstr(tokens[x], "sáb ") || strstr(tokens[x], "s&aacute;b") ||
 							strstr(tokens[x], "dom ")
 							){
 						day_temp = parse_week_day_name(tokens[x]);

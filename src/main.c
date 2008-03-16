@@ -1191,7 +1191,10 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 	//GRegex *regx = g_regex_new ("<.*>", G_REGEX_CASELESS | G_REGEX_RAW , G_REGEX_MATCH_NOTEMPTY, NULL);
 
 	temp = g_strdup (buf);
-	if (strstr(temp, "texto_entradilla") || strstr(temp, "PREDICCION") || strstr(temp, "Informaci&oacute;n nivol&oacute;gica")){
+	if (strstr(temp, "texto_entradilla") || 
+			strstr(temp, "Informaci&oacute;n nivol&oacute;gica") ||
+			strstr(temp, "ZONAS NO PROTEGIDAS") ||
+			strstr(temp, "ESTABILIDAD DEL MANTO")){
 		xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_today_forecast", NULL);
 		win = glade_xml_get_widget (xml, "win_today_forecast");
 		g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), NULL);
@@ -1200,12 +1203,8 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 		textview_buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(textview));
 		
 		if (temp){
-			if (strstr(temp, "PREDICCION"))
-				tokens = g_strsplit_set (strstr(temp, "PREDICCION"), "<>", 1);
-			else if (strstr(temp, "texto_entradilla"))
+			if (strstr(temp, "texto_entradilla"))
 				tokens = g_strsplit_set (strstr(temp, "texto_entradilla"), "<>", 1);
-			else if (strstr(temp, "INFORMACION NIVOLOGICA PARA ZONAS"))
-				tokens = g_strsplit_set (strstr(temp, "INFORMACION NIVOLOGICA PARA ZONAS"), "<>", 1);
 
 			if (tokens){
 				//printf ("REGEX:\n\n%s\n\nREGEX\n", g_regex_replace (regx, tokens[0], -1, 0, "", G_REGEX_MATCH_NOTEMPTY, NULL));
@@ -1234,13 +1233,13 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 				gtk_widget_show (win);
 				g_strfreev (tokens);
 				tokens = 0;
-				if (temp2)
-					g_free (temp2);
-
-				if (temp3)
-					g_free (temp3);
 				//if (str_regx)
 				//	g_free (str_regx);
+			}
+			else if (strstr(temp, "ZONAS NO PROTEGIDAS") || strstr(temp, "ESTABILIDAD DEL MANTO")){
+				gtk_text_buffer_set_text (textview_buffer, temp, strlen(temp));
+				gtk_window_set_title (GTK_WINDOW(win), _("Next days forecast"));
+				gtk_widget_show (win);
 			}
 		}
 	}
@@ -1248,6 +1247,14 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 	if (temp){
 		g_free (temp);
 		temp = 0;
+	}
+	if (temp2){
+		g_free (temp2);
+		temp2 = 0;
+	}
+	if (temp3){
+		g_free (temp3);
+		temp3 = 0;
 	}
 }
 
@@ -1277,7 +1284,11 @@ static void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 	//printf ("gvfs_async_read(): %s\n", gnome_vfs_result_to_string (result));
 	if (result == GNOME_VFS_ERROR_EOF){
 		printf ("Fin de lectura gnome_vfs_async_read()\n");
-		if (strstr(applet_data->buffer, "texto_entradilla") || strstr(applet_data->buffer, "PREDICCION") || strstr(applet_data->buffer, "Informaci&oacute;n nivol&oacute;gica")){
+		if (strstr(applet_data->buffer, "texto_entradilla") || 
+				strstr(applet_data->buffer, "PREDICCION") || 
+				strstr(applet_data->buffer, "Informaci&oacute;n nivol&oacute;gica") ||
+				strstr(applet_data->buffer, "ZONAS NO PROTEGIDAS") ||
+				 strstr(applet_data->buffer, "ESTABILIDAD DEL MANTO")){
 			gnome_vfs_async_close (handle, gvfs_close_cb, applet_data->buffer);
 		}
 		else{
@@ -1489,11 +1500,18 @@ void display_today_forecast		 ( BonoboUIComponent *uic, gpointer user_data, cons
 	gnome_vfs_async_open (&applet_data->gvfs_handle, INM_FORECAST_TODAY_URL, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
 }
 
-void display_snow_warnings		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
+void display_snow_warnings_nav		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	AppletData *applet_data = (AppletData *) user_data;
 	applet_data->gvfs_cnx_type = 6;
-	gnome_vfs_async_open (&applet_data->gvfs_handle, INM_SNOW_WARNINGS_URL, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	gnome_vfs_async_open (&applet_data->gvfs_handle, INM_SNOW_WARNINGS_URL_1, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+}
+
+void display_snow_warnings_cat		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	AppletData *applet_data = (AppletData *) user_data;
+	applet_data->gvfs_cnx_type = 6;
+	gnome_vfs_async_open (&applet_data->gvfs_handle, INM_SNOW_WARNINGS_URL_2, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
 }
 
 void display_about_dialog 		( BonoboUIComponent *uic, gpointer user_data, const char *name )
@@ -1555,7 +1573,8 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		BONOBO_UI_VERB ("SatelliteImages", display_satellite_radar),
 		BONOBO_UI_VERB ("SpanishForecastImg", display_spanish_forecast_img),
 		BONOBO_UI_VERB ("Temperatures", display_daily_temperatures),
-		BONOBO_UI_VERB ("InformeAludes", display_snow_warnings),
+		BONOBO_UI_VERB ("InformeAludes1", display_snow_warnings_nav),
+		BONOBO_UI_VERB ("InformeAludes2", display_snow_warnings_cat),
 		BONOBO_UI_VERB ("Properties", display_preferences_dialog),
 		BONOBO_UI_VERB ("VisitINM", display_inm_website),
 		BONOBO_UI_VERB ("About", display_about_dialog),

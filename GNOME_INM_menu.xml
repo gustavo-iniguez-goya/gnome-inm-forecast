@@ -31,9 +31,14 @@
 					pixname=""/>
 			</submenu>
 			<separator />
-			<menuitem name="Informe Aludes"
-				verb="InformeAludes"
-				_label="_Informe sobre aludes"
+			<menuitem name="Informe Aludes1"
+				verb="InformeAludes1"
+				_label="_Snowfall report (Navarra y Aragon)"
+				pixtype="stock"
+				pixname=""/>
+			<menuitem name="Informe Aludes2"
+				verb="InformeAludes2"
+				_label="_Snowfall report (Catalonya) "
 				pixtype="stock"
 				pixname=""/>
 		            <separator/>

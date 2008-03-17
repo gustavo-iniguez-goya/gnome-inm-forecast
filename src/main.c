@@ -184,7 +184,7 @@ void create_window 		( AppletData *applet_data, const char *name )
 		}
 		else if (strcmp (name, "event2") == 0){
 			img_idx=1;
-			idx = 0;
+			idx = 1;
 		}
 		else if (strcmp (name, "event3") == 0){
 			img_idx=2;
@@ -192,7 +192,7 @@ void create_window 		( AppletData *applet_data, const char *name )
 		}
 		else if (strcmp (name, "event4") == 0){
 			img_idx=3;
-			idx = 2;
+			idx = 3;
 		}
 		else if (strcmp (name, "event5") == 0){
 			img_idx=4;
@@ -397,8 +397,12 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				}
 				x++;
 			}
-			if (!gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[id_img])))
+			if (!gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[id_img]))){
 				gtk_widget_hide (applet_data->event_box[id_img]);
+				for (x=0;x < id_img;x++)
+					memmove (&applet_data->day_info[x], &applet_data->day_info[x+1], sizeof(DayInf));
+				
+			}
 			else
 				gtk_widget_show (applet_data->event_box[id_img]);
 	
@@ -933,11 +937,10 @@ static void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult r
 			
 			if (strstr (applet_data->buffer, "Fecha"))
 				parse_dates_data (applet_data, strstr(applet_data->buffer, "Fecha"), 1);
-			if (strstr (applet_data->buffer, "estado_cielo"))
-				parse_sky_data (PANEL_APPLET(applet_data->applet), applet_data, strstr(applet_data->buffer, "estado_cielo"));
 
 			if (strstr (applet_data->buffer, "Prob. precip"))
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Prob. precip"), PRECIP);
+			
 			if (strstr (applet_data->buffer, "xima (")) // Maxima (C)
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "xima ("), MAX);
 	
@@ -952,8 +955,13 @@ static void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult r
 				for (x=0;x < 10;x++)
 					strcpy (applet_data->day_info[x].cota_nieve, "");
 			}
+			
 			if (strstr (applet_data->buffer, "iconos_viento"))
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "iconos_viento"), WIND);
+			
+			if (strstr (applet_data->buffer, "estado_cielo"))
+				parse_sky_data (PANEL_APPLET(applet_data->applet), applet_data, strstr(applet_data->buffer, "estado_cielo"));
+		
 		g_free (applet_data->buffer);
 		applet_data->buffer = 0;
 		}

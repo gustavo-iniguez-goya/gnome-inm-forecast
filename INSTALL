@@ -1,3 +1,11 @@
+Inicio
+======
+Los paquetes deb y rpm se pueden descargar desde la web del applet: 
+http://kutxa.homeunix.org/trac/gnome-inm-forecast/
+
+Además de diferente información. Si aún así necesitas compilarlo sigue 
+los siguientes pasos.
+
 Howto start compiling gnome-inm-forecast
 ========================================
 Just execute the bootstrap script firstly:

@@ -3,8 +3,8 @@
 # Copyright (c) 2007 Gustavo Iñiguez Goya ga@kutxa.homeunix.org
 #
 %define name gnome-inm-forecast
-%define version 0.6.0.1
-%define release 1
+%define version 0.6.0
+%define release 2
 %define manifest %{_builddir}/%{name}-%{version}-%{release}.manifest
 
 # required items

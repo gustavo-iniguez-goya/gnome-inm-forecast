@@ -1,3 +1,17 @@
+gnome-inm-forecast (0.6.0.2) unstable; urgency=high
+
+  * Added new snowfalls reports
+  * If it's afternoon do not display the first day morning information
+  * Dialog windows now are displayed on the taskbar
+  * Forecast window width expanded a little
+  * Fixed a terrible memory leak getting the last_update information
+    translated, plus minor fixes
+  * Spanish translation updated
+  * All INM strings changed by AEMET
+  * Display correctly the snow information
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Tue, 18 Mar 2008 00:32:53 +0100
+
 gnome-inm-forecast (0.6.0.1) unstable; urgency=low
 
   * Applet updated to the new www.aemet.es website

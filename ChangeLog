@@ -1,3 +1,54 @@
+2008-03-17 23:24  ga
+
+	* [r212] INSTALL: Added an small note about where to find DEB and
+	  RPM packages
+
+2008-03-17 23:21  ga
+
+	* [r211] po/es.po: spanish translation updated
+
+2008-03-17 23:09  ga
+
+	* [r210] src/main.c: Do not display the monday morning information
+	  in the tooltips if it's afternoon
+
+2008-03-17 22:52  ga
+
+	* [r209] src/main.c: Do not display the monday morning information
+	  if it's in the afternoon
+
+2008-03-16 23:00  ga
+
+	* [r208] po/es.po: Spanish translation updated
+
+2008-03-16 23:00  ga
+
+	* [r207] GNOME_INM_menu.xml: Add new entry for catalonian snowfall
+	  reports
+
+2008-03-16 22:59  ga
+
+	* [r206] gnome-inm-glade.glade: Expand a little more the width of
+	  the forecast window
+
+2008-03-16 22:58  ga
+
+	* [r205] src/main.c, src/main.h: Snowfall reports fixed
+
+2008-03-14 13:43  ga
+
+	* [r204] src/main.c: Do not display de last item on the panel if
+	  it's afternoon
+
+2008-03-13 17:42  ga
+
+	* [r203] src/main.c: Update correctly the snow information
+
+2008-03-13 16:00  ga
+
+	* [r202] ChangeLog, GNOME_INM_menu.xml, po/es.po: Change on the
+	  menu INM by AEMET and update the spanish translation
+
 2008-03-13 15:50  ga
 
 	* [r201] src/main.c: Fixed a terrible memory leak getting the
@@ -320,151 +371,135 @@
 	  gnome_inm-opt.def, gnome_inm-opt.h, install-sh, intltool-extract,
 	  intltool-extract.in, intltool-merge, intltool-merge.in,
 	  intltool-update, intltool-update.in, local_codes.txt,
-	  manpage.tpl, missing, mkinstalldirs, stamp-h1, system.h, INSTALL,
-	  Makefile.am, Makefile.in, gnome_inm-opt.c, gnome_inm-opt.def,
-	  gnome_inm-opt.h, install-sh, intltool-extract,
-	  intltool-extract.in, intltool-merge, intltool-merge.in,
-	  intltool-update, intltool-update.in, local_codes.txt,
 	  manpage.tpl, missing, mkinstalldirs, stamp-h1, system.h, updater,
-	  xmalloc.c, xmalloc.h, updater, xmalloc.c, xmalloc.h: Moving files
-	  to trunk/
+	  xmalloc.c, xmalloc.h: Moving files to trunk/
 
 2007-10-11 10:24  ga
 
-	* [r140] gpl.texinfo, gpl.texinfo: Moving files to trunk/
+	* [r140] gpl.texinfo: Moving files to trunk/
 
 2007-10-11 10:24  ga
 
-	* [r139] gnome_inm.schemas, gnome_inm.schemas: Moving files to
-	  trunk/
+	* [r139] gnome_inm.schemas: Moving files to trunk/
 
 2007-10-11 10:23  ga
 
-	* [r138] GNOME_INM_menu.xml, GNOME_INM_menu.xml: Moving files to
-	  trunk/
+	* [r138] GNOME_INM_menu.xml: Moving files to trunk/
 
 2007-10-11 10:23  ga
 
-	* [r137] gnome-inm-glade.glade, gnome-inm-glade.glade: Moving files
-	  to trunk/
+	* [r137] gnome-inm-glade.glade: Moving files to trunk/
 
 2007-10-11 10:23  ga
 
-	* [r136] GNOME_inm-forecast.server_rpm,
-	  GNOME_inm-forecast.server_rpm: Moving files to trunk/
+	* [r136] GNOME_inm-forecast.server_rpm: Moving files to trunk/
 
 2007-10-11 10:23  ga
 
-	* [r135] GNOME_inm-forecast.server, GNOME_inm-forecast.server:
-	  Moving files to trunk/
+	* [r135] GNOME_inm-forecast.server: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r134] gnome-inm-forecast.spec.in, gnome-inm-forecast.spec.in:
-	  Moving files to trunk/
+	* [r134] gnome-inm-forecast.spec.in: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r133] gnome-inm-forecast.spec, gnome-inm-forecast.spec: Moving
-	  files to trunk/
+	* [r133] gnome-inm-forecast.spec: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r132] gnome-inm-forecast.lsm.in, gnome-inm-forecast.lsm.in:
-	  Moving files to trunk/
+	* [r132] gnome-inm-forecast.lsm.in: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r131] gnome-inm-forecast.lsm, gnome-inm-forecast.lsm: Moving
-	  files to trunk/
+	* [r131] gnome-inm-forecast.lsm: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r130] gnome-inm-forecast.1, gnome-inm-forecast.1: Moving files
-	  to trunk/
+	* [r130] gnome-inm-forecast.1: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r129] gnome_inm.c, gnome_inm.c: Moving files to trunk/
+	* [r129] gnome_inm.c: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r128] depcomp, depcomp: Moving files to trunk/
+	* [r128] depcomp: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r127] configure.in, configure.in: Moving files to trunk/
+	* [r127] configure.in: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r126] configure, configure: Moving files to trunk/
+	* [r126] configure: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r125] config.rpath, config.rpath: Moving files to trunk/
+	* [r125] config.rpath: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r124] config.h.in, config.h.in: Moving files to trunk/
+	* [r124] config.h.in: Moving files to trunk/
 
 2007-10-11 10:20  ga
 
-	* [r123] config.h, config.h: Moving files to trunk/
+	* [r123] config.h: Moving files to trunk/
 
 2007-10-11 10:20  ga
 
-	* [r122] ChangeLog, ChangeLog: Moving files to trunk/
+	* [r122] ChangeLog: Moving files to trunk/
 
 2007-10-11 10:20  ga
 
-	* [r121] aclocal.m4, aclocal.m4: Moving files to trunk/
+	* [r121] aclocal.m4: Moving files to trunk/
 
 2007-10-11 10:19  ga
 
-	* [r120] acinclude.m4, acinclude.m4: Moving files to trunk/
+	* [r120] acinclude.m4: Moving files to trunk/
 
 2007-10-11 10:19  ga
 
-	* [r119] ABOUT-NLS, ABOUT-NLS: Moving files to trunk/
+	* [r119] ABOUT-NLS: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r118] COPYING, COPYING: Moving files to trunk/
+	* [r118] COPYING: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r117] AUTHORS, AUTHORS: Moving files to trunk/
+	* [r117] AUTHORS: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r116] NEWS, NEWS: Moving files to trunk/
+	* [r116] NEWS: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r115] README, README: Moving files to trunk/
+	* [r115] README: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r114] debian, debian: Moving files to trunk/
+	* [r114] debian: Moving files to trunk/
 
 2007-10-11 10:16  ga
 
-	* [r113] m4, m4: Moving files to trunk/
+	* [r113] m4: Moving files to trunk/
 
 2007-10-11 10:15  ga
 
-	* [r112] po, po: Moving files to trunk/
+	* [r112] po: Moving files to trunk/
 
 2007-10-11 10:13  ga
 
-	* [r111] pixmaps, pixmaps: Moving files to trunk/
+	* [r111] pixmaps: Moving files to trunk/
 
 2007-10-11 10:13  ga
 
-	* [r110] src, src: Moving files to trunk/
+	* [r110] src: Moving files to trunk/
 
 2007-10-11 10:04  ga
 
-	* [r109] branch, .: 2 new directories in order to have one branch
-	  "stable" and a new one with new features
+	* [r109] .: 2 new directories in order to have one branch "stable"
+	  and a new one with new features
 

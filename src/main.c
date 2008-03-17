@@ -399,8 +399,10 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 			}
 			if (!gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[id_img]))){
 				gtk_widget_hide (applet_data->event_box[id_img]);
-				for (x=0;x < id_img;x++)
+				for (x=0;x < id_img;x++){
 					memmove (&applet_data->day_info[x], &applet_data->day_info[x+1], sizeof(DayInf));
+					set_tooltip (applet_data, x, applet_data->day_info[x].state);
+				}
 				
 			}
 			else

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-inm-forecast 0.6.0\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2008-03-17 00:15+0100\n"
+"POT-Creation-Date: 2008-03-18 00:37+0100\n"
 "PO-Revision-Date: 2008-03-17 00:16+0100\n"
 "Last-Translator: ga <ga@kutxa.homeunix.org>\n"
 "Language-Team: es <es@li.org>\n"
@@ -18,14 +18,12 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../src/main.c:98
-#: ../src/main.c:106
+#: ../src/main.c:98 ../src/main.c:106
 #, c-format
 msgid "Wednesday %s"
 msgstr "Miércoles %s"
 
-#: ../src/main.c:100
-#: ../src/main.c:112
+#: ../src/main.c:100 ../src/main.c:112
 #, c-format
 msgid "Saturday %s"
 msgstr "Sábado %s"
@@ -63,106 +61,91 @@ msgstr "Mañana"
 msgid "Afternoon"
 msgstr "Tarde"
 
-#: ../src/main.c:305
-#: ../src/main.c:306
+#: ../src/main.c:305 ../src/main.c:306
 msgid "Despejado"
 msgstr ""
 
-#: ../src/main.c:312
-#: ../src/main.c:313
+#: ../src/main.c:312 ../src/main.c:313
 msgid "Poco nuboso"
 msgstr ""
 
-#: ../src/main.c:319
-#: ../src/main.c:320
+#: ../src/main.c:319 ../src/main.c:320
 msgid "Intervalos nubosos"
 msgstr ""
 
-#: ../src/main.c:326
-#: ../src/main.c:327
+#: ../src/main.c:326 ../src/main.c:327
 msgid "Nuboso"
 msgstr ""
 
-#: ../src/main.c:333
-#: ../src/main.c:334
+#: ../src/main.c:333 ../src/main.c:334
 msgid "Muy nuboso"
 msgstr ""
 
-#: ../src/main.c:345
-#: ../src/main.c:346
+#: ../src/main.c:345 ../src/main.c:346
 msgid "Intervalos nubosos con lluvia"
 msgstr ""
 
-#: ../src/main.c:352
-#: ../src/main.c:353
+#: ../src/main.c:352 ../src/main.c:353
 msgid "Nuboso con lluvia"
 msgstr ""
 
-#: ../src/main.c:359
-#: ../src/main.c:360
-#: ../src/main.c:366
-#: ../src/main.c:367
+#: ../src/main.c:359 ../src/main.c:360 ../src/main.c:366 ../src/main.c:367
 msgid "Muy nuboso con lluvia"
 msgstr ""
 
-#: ../src/main.c:373
-#: ../src/main.c:374
+#: ../src/main.c:373 ../src/main.c:374
 msgid "Nieve"
 msgstr ""
 
-#: ../src/main.c:380
-#: ../src/main.c:381
+#: ../src/main.c:380 ../src/main.c:381
 msgid "Nuboso con nieve"
 msgstr ""
 
-#: ../src/main.c:387
-#: ../src/main.c:388
-#: ../src/main.c:394
-#: ../src/main.c:395
+#: ../src/main.c:387 ../src/main.c:388 ../src/main.c:394 ../src/main.c:395
 msgid "Muy nuboso con nieve"
 msgstr ""
 
-#: ../src/main.c:451
+#: ../src/main.c:457
 msgid "Last update: "
 msgstr "Última actualización: "
 
-#: ../src/main.c:646
+#: ../src/main.c:652
 msgid "Sur"
 msgstr "Sur"
 
-#: ../src/main.c:650
+#: ../src/main.c:656
 msgid "Sureste"
 msgstr "Sureste"
 
-#: ../src/main.c:654
+#: ../src/main.c:660
 msgid "Suroeste"
 msgstr "Suroeste"
 
-#: ../src/main.c:658
+#: ../src/main.c:664
 msgid "Norte"
 msgstr "Norte"
 
-#: ../src/main.c:662
+#: ../src/main.c:668
 msgid "Nordeste"
 msgstr "Nordeste"
 
-#: ../src/main.c:666
+#: ../src/main.c:672
 msgid "Noroeste"
 msgstr "Noroeste"
 
-#: ../src/main.c:670
+#: ../src/main.c:676
 msgid "Este"
 msgstr "Este"
 
-#: ../src/main.c:674
+#: ../src/main.c:680
 msgid "Oeste"
 msgstr "Oeste"
 
-#: ../src/main.c:678
+#: ../src/main.c:684
 msgid "Calma"
 msgstr ""
 
-#: ../src/main.c:838
+#: ../src/main.c:844
 #, c-format
 msgid ""
 "Station: %s\n"
@@ -171,95 +154,91 @@ msgstr ""
 "Estación: %s\n"
 "\n"
 
-#: ../src/main.c:853
+#: ../src/main.c:859
 #, c-format
 msgid "%s C"
 msgstr "%s ºC"
 
-#: ../src/main.c:860
+#: ../src/main.c:866
 #, c-format
 msgid "Temperature: %s\n"
 msgstr "Temperatura: %s\n"
 
 #. Hora oficial
-#: ../src/main.c:864
+#: ../src/main.c:870
 #, c-format
 msgid "Maximum wind velocity: %s Km/h\n"
 msgstr "Velocidad máxima del viento: %s Km/h\n"
 
 #. Presion atmosferica
-#: ../src/main.c:868
+#: ../src/main.c:874
 #, c-format
 msgid "Atmosferic presion: %s\n"
 msgstr "Presión atmosférica: %s\n"
 
 #. Precipitacion acumulada
-#: ../src/main.c:872
+#: ../src/main.c:878
 #, c-format
 msgid "Rainfall: %s\n"
 msgstr "Precipitación: %s\n"
 
 #. Humedad relativa
-#: ../src/main.c:876
+#: ../src/main.c:882
 msgid "Humidity: %s %\n"
 msgstr "Humedad: %s %\n"
 
 #. Direccion del viento
-#: ../src/main.c:880
+#: ../src/main.c:886
 #, c-format
 msgid "Wind velocity: %s Km/h\n"
 msgstr "Velocidad del viento: %s Km/h\n"
 
 #. Direccion del viento
-#: ../src/main.c:884
+#: ../src/main.c:890
 #, c-format
 msgid "Wind: %s\n"
 msgstr "Viento: %s\n"
 
 #. Hora oficial
-#: ../src/main.c:888
+#: ../src/main.c:894
 #, c-format
 msgid "Last update: %sh\n"
 msgstr "Última actualización: %sh\n"
 
-#: ../src/main.c:903
+#: ../src/main.c:909
 msgid "No data for this meteorological station"
 msgstr "No hay datos para esta estación meteorológica"
 
-#: ../src/main.c:909
+#: ../src/main.c:915
 msgid "Error getting latest data from meteorological station"
 msgstr "Error al obtener los últimos datos de la estación meteorológica"
 
-#: ../src/main.c:1146
+#: ../src/main.c:1156
 msgid "Error loading www.aemet.es"
 msgstr "Error al cargar www.aemet.es"
 
-#: ../src/main.c:1157
-#: ../src/main.c:1167
-#: ../src/main.c:1177
+#: ../src/main.c:1167 ../src/main.c:1177 ../src/main.c:1187
 msgid "Error loading "
 msgstr "Error al cargar www.aemet.es"
 
-#: ../src/main.c:1232
-#: ../src/main.c:1241
+#: ../src/main.c:1242 ../src/main.c:1251
 msgid "Next days forecast"
 msgstr "Previsión próximos días"
 
-#: ../src/main.c:1335
+#: ../src/main.c:1345
 #, c-format
 msgid "Connection error\n"
 msgstr "Error de conexión\n"
 
-#: ../src/main.c:1402
-#: ../gnome-inm-glade.glade.h:28
+#: ../src/main.c:1412 ../gnome-inm-glade.glade.h:28
 msgid "Satellite image"
 msgstr "Imagen de satélite"
 
-#: ../src/main.c:1434
+#: ../src/main.c:1444
 msgid "Spanish weather forecast image"
 msgstr "Imagen del pronóstico meteorológico"
 
-#: ../src/main.c:1475
+#: ../src/main.c:1485
 msgid "Temperatures for the next days"
 msgstr "Temperaturas para los próximos días"
 
@@ -316,8 +295,11 @@ msgid "<b>Wind</b>"
 msgstr "<b>Viento</b>"
 
 #: ../gnome-inm-glade.glade.h:13
-msgid "<small>Codes: http://www.aemet.es/es/eltiempo/prediccion/localidades</small>"
-msgstr "<small>Códigos: http://www.aemet.es/es/eltiempo/prediccion/localidades</small>"
+msgid ""
+"<small>Codes: http://www.aemet.es/es/eltiempo/prediccion/localidades</small>"
+msgstr ""
+"<small>Códigos: http://www.aemet.es/es/eltiempo/prediccion/localidades</"
+"small>"
 
 #: ../gnome-inm-glade.glade.h:14
 msgid "About Gnome INM forecast"
@@ -397,17 +379,23 @@ msgstr "Temperatura"
 
 #: ../gnome-inm-glade.glade.h:34
 msgid ""
-"The information you get with this program is property of the Spanish metereological Institute\n"
+"The information you get with this program is property of the Spanish "
+"metereological Institute\n"
 "\n"
 "http://www.aemet.es"
 msgstr ""
-"La información que obtienes con este programa es propiedad del Instituto Nacional de Meteorología español\n"
+"La información que obtienes con este programa es propiedad del Instituto "
+"Nacional de Meteorología español\n"
 "\n"
 "http://www.aemet.es"
 
 #: ../gnome-inm-glade.glade.h:37
-msgid "The meteorological stations data is updated each hour and will be disponible 30 minutes after as maximum"
-msgstr "Los datos de las estaciones meteorológicas se actualizan cada hora y estarán disponibles como muy tarde 30 minutos después"
+msgid ""
+"The meteorological stations data is updated each hour and will be disponible "
+"30 minutes after as maximum"
+msgstr ""
+"Los datos de las estaciones meteorológicas se actualizan cada hora y estarán "
+"disponibles como muy tarde 30 minutos después"
 
 #: ../gnome-inm-glade.glade.h:38
 msgid "Theme"
@@ -507,14 +495,18 @@ msgstr "_Mapas meteorológicos"
 
 #~ msgid "Error loading http://www.inm.es/web/infmet/avi/pr/conavi_c.php"
 #~ msgstr "Error al cargar http://www.inm.es/web/infmet/avi/pr/conavi_c.php"
+
 #~ msgid "Error loading http://www.inm.es/web/infmet/avi/pr/conavi_mm.php"
 #~ msgstr "Error al cargar http://www.inm.es/web/infmet/avi/pr/conavi_mm.php"
+
 #~ msgid "Error loading http://www.inm.es/web/infmet/avi/pr/conavi_pp.php"
 #~ msgstr "Error al cargar http://www.inm.es/web/infmet/avi/pr/conavi_pp.php"
+
 #~ msgid "_Spanish weather map"
 #~ msgstr "_Mapa para mañana"
+
 #~ msgid "_Spanish Forecast Image"
 #~ msgstr "Mapa para mañana"
+
 #~ msgid "_Today forecast"
 #~ msgstr "Pronóstico para hoy"
-

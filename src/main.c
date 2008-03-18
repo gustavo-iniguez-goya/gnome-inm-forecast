@@ -253,6 +253,9 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 	char *str_morning=_("Morning");
 	char *str_afternoon=_("Afternoon");
 	temp = g_new0 (char, 512);
+	
+	if (!applet_data) return;
+
 	if (id == 0 || id == 2 || id == 4)
 		snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, str_morning, tip, applet_data->last_update);
 	else if (id == 1 || id == 3 || id == 5)
@@ -397,7 +400,7 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				}
 				x++;
 			}
-			if (!gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[id_img]))){
+			if (id_img == 9 && !gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[id_img]))){
 				gtk_widget_hide (applet_data->event_box[id_img]);
 				for (x=0;x < id_img;x++){
 					memmove (&applet_data->day_info[x], &applet_data->day_info[x+1], sizeof(DayInf));

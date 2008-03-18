@@ -1,3 +1,9 @@
+gnome-inm-forecast (0.6.0.3) gutsy; urgency=high
+
+  * Mem leak checking if the last image was null or not fixed
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Tue, 18 Mar 2008 09:44:08 +0100
+
 gnome-inm-forecast (0.6.0.2) unstable; urgency=high
 
   * Added new snowfalls reports

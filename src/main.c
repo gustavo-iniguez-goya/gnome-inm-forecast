@@ -1133,8 +1133,8 @@ void update_data			 ( BonoboUIComponent *uic, gpointer user_data, const char *na
 		else
  			gtk_timeout_remove (applet_data->timer_station);
 		
-		gtk_timeout_remove (applet_data->timer);
 		*/
+		gtk_timeout_remove (applet_data->timer);
 		check_inm_url (applet_data);
 		applet_data->timer = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	}

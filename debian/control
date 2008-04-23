@@ -8,5 +8,5 @@ Standards-Version: 3.7.2
 Package: gnome-inm-forecast
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Gnome INM spanish forecast applet
- An spanish forecast applet for gnome desktop
+Description: GNOME INM spanish forecast applet
+ An spanish forecast applet for the GNOME desktop

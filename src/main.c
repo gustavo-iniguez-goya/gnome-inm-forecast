@@ -1556,7 +1556,7 @@ void display_about_dialog 		( BonoboUIComponent *uic, gpointer user_data, const 
 		dialog = glade_xml_get_widget (xml, "aboutdialog1");
 		img_logo = gtk_image_new_from_file ("/usr/share/pixmaps/"PACKAGE".png");
 		pix = gtk_image_get_pixbuf (GTK_IMAGE (img_logo));
-		gtk_about_dialog_set_name (GTK_ABOUT_DIALOG(dialog), "Gnome INM forecast - ");
+		gtk_about_dialog_set_name (GTK_ABOUT_DIALOG(dialog), "GNOME INM forecast - ");
 		gtk_about_dialog_set_version (GTK_ABOUT_DIALOG(dialog), VERSION);
 		gtk_about_dialog_set_logo (GTK_ABOUT_DIALOG(dialog), pix);
 		g_signal_connect (G_OBJECT(dialog), "response", G_CALLBACK(on_window_terminate), NULL);
@@ -1692,7 +1692,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 
 PANEL_APPLET_BONOBO_FACTORY ("OAFIID:GnomeINM_Factory",
                              PANEL_TYPE_APPLET,
-                             "Gnome INM forecast Applet",
+                             "GNOME INM forecast Applet",
                              "0",
                              start_applet,
                              NULL);

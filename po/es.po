@@ -1,4 +1,4 @@
-# Gnome INM forecast
+# GNOME INM forecast
 # Copyright (C) 2007
 # This file is distributed under the same license as the gnome-inm-forecast package.
 # Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>, 2007.
@@ -302,8 +302,8 @@ msgstr ""
 "small>"
 
 #: ../gnome-inm-glade.glade.h:14
-msgid "About Gnome INM forecast"
-msgstr "Acerca de Gnome INM forecast"
+msgid "About GNOME INM forecast"
+msgstr "Acerca de GNOME INM forecast"
 
 #: ../gnome-inm-glade.glade.h:15
 msgid "Altitude"
@@ -318,8 +318,8 @@ msgid "Days to show"
 msgstr "Días a mostrar"
 
 #: ../gnome-inm-glade.glade.h:18
-msgid "Gnome INM forecast"
-msgstr "Gnome INM forecast"
+msgid "GNOME INM forecast"
+msgstr "GNOME INM forecast"
 
 #: ../gnome-inm-glade.glade.h:19
 msgid "Humidity"

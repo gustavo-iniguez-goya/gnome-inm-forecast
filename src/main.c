@@ -1217,12 +1217,15 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 		
 		if (temp){
 			if (strstr(temp, "texto_entradilla"))
-				tokens = g_strsplit_set (strstr(temp, "texto_entradilla"), "<>", 1);
+				tokens = g_strsplit_set (strstr(temp, "texto_entradilla"), "<>", 2);
 
 			if (tokens){
 				//printf ("REGEX:\n\n%s\n\nREGEX\n", g_regex_replace (regx, tokens[0], -1, 0, "", G_REGEX_MATCH_NOTEMPTY, NULL));
 
-				temp2 = g_strdup (tokens[0]);
+				temp2 = g_strdup (tokens[1]);
+				if (!temp2)
+					temp2 = g_strdup (tokens[0]);
+
 				for (x=0;x < strlen(temp2);x++){
 					if (temp2[x] && temp2[x] == '<'){
 						for (i=x;i < strlen(temp2);i++){

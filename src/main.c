@@ -36,7 +36,7 @@ static char *convert_str_to_utf8 	( char *string )
 	char *temp_buf=0;
 
 	if (string){
-		bk_utf8 = strndup (string, 64);
+		bk_utf8 = strdup (string);
 		
 		if (!g_utf8_validate (bk_utf8, -1, NULL))
 			//strncpy (applet_data->city_name, string, 64);

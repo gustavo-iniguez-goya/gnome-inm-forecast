@@ -1,3 +1,11 @@
+gnome-inm-forecast (0.6.0.4) gutsy; urgency=low
+
+  * Weather reports fixed.
+  * Gnome strings changed by GNOME
+  * Some minor bugs fixed 
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Wed, 14 May 2008 13:01:32 +0200
+
 gnome-inm-forecast (0.6.0.3) gutsy; urgency=high
 
   * Mem leak checking if the last image was null or not fixed

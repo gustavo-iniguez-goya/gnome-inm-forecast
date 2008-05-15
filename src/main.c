@@ -1227,6 +1227,9 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 					temp2 = g_strdup (tokens[0]);
 
 				for (x=0;x < strlen(temp2);x++){
+					if (temp2[x] && temp2[x] == '\t'){
+						temp2[x] = ' ';
+					}
 					if (temp2[x] && temp2[x] == '<'){
 						for (i=x;i < strlen(temp2);i++){
 							if (temp2[i] && temp2[i] == '>'){

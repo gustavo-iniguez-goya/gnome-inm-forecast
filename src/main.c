@@ -1207,7 +1207,7 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 	if (strstr(temp, "texto_entradilla") || 
 			strstr(temp, "Informaci&oacute;n nivol&oacute;gica") ||
 			strstr(temp, "ZONAS NO PROTEGIDAS") ||
-			strstr(temp, "ESTABILIDAD DEL MANTO")){
+			strstr(temp, "ESTABILIDAD DEL MANTO") || strstr (temp, "RIESGO DE ALUDES")){
 		xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_today_forecast", NULL);
 		win = glade_xml_get_widget (xml, "win_today_forecast");
 		g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), NULL);
@@ -1255,12 +1255,23 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 				//if (str_regx)
 				//	g_free (str_regx);
 			}
-			else if (strstr(temp, "ZONAS NO PROTEGIDAS") || strstr(temp, "ESTABILIDAD DEL MANTO")){
-				gtk_text_buffer_set_text (textview_buffer, temp, strlen(temp));
-				gtk_window_set_title (GTK_WINDOW(win), _("Next days forecast"));
+			else{
+				temp2 = convert_str_to_utf8 (temp);
+				gtk_text_buffer_set_text (textview_buffer, temp2, strlen(temp2));
+				gtk_window_set_title (GTK_WINDOW(win), _("Snowfalls reports"));
 				gtk_widget_show (win);
 			}
 		}
+		else{
+			gtk_text_buffer_set_text (textview_buffer, _("No data"), 10);
+			gtk_window_set_title (GTK_WINDOW(win), _("No data"));
+			gtk_widget_show (win);
+		}
+	}
+	else{
+		gtk_text_buffer_set_text (textview_buffer, _("No data"), 10);
+		gtk_window_set_title (GTK_WINDOW(win), _("No data"));
+		gtk_widget_show (win);
 	}
 	//g_regex_unref (regx);
 	if (temp){
@@ -1307,7 +1318,8 @@ static void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 				strstr(applet_data->buffer, "PREDICCION") || 
 				strstr(applet_data->buffer, "Informaci&oacute;n nivol&oacute;gica") ||
 				strstr(applet_data->buffer, "ZONAS NO PROTEGIDAS") ||
-				 strstr(applet_data->buffer, "ESTABILIDAD DEL MANTO")){
+				strstr(applet_data->buffer, "ESTABILIDAD DEL MANTO") ||
+				strstr(applet_data->buffer, "RIESGO DE ALUDES")){
 			gnome_vfs_async_close (handle, gvfs_close_cb, applet_data->buffer);
 		}
 		else{

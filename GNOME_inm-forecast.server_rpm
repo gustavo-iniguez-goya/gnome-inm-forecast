@@ -1,12 +1,12 @@
 <oaf_info> 
-	<oaf_server iid="OAFIID:GnomeINM_Factory" type="exe" location="/usr/libexec/gnome-inm-forecast"> 
+	<oaf_server iid="OAFIID:GnomeINM_Factory" type="exe" location="/usr/lib/gnome-panel/gnome-inm-forecast"> 
 		<oaf_attribute name="repo_ids" type="stringv"> 
 			<item value="IDL:Bonobo/GenericFactory:1.0"/> 
 			<item value="IDL:Bonobo/Unknown:1.0"/> 
 		</oaf_attribute>
-			<oaf_attribute name="name" type="string" value="GNOME INM forecast"/> 
-			<oaf_attribute name="name-es" type="string" value="Pronóstico del tiempo del INM"/> 
-			<oaf_attribute name="description" type="string" value="Applet for get the spanish forecast (http://www.aemet.es)"/> 
+			<oaf_attribute name="name" type="string" value="GNOME AEMET weather forecast"/> 
+			<oaf_attribute name="name-es" type="string" value="Pronóstico del tiempo de la AEMET"/> 
+			<oaf_attribute name="description" type="string" value="Applet for get the spanish weather forecast (http://www.aemet.es)"/> 
 			<oaf_attribute name="description-es" type="string" value="Applet para ver el pronóstico del tiempo español (http://www.aemet.es)"/> 
 	</oaf_server> 
 	<oaf_server iid="OAFIID:GnomeINM" type="factory" location="OAFIID:GnomeINM_Factory"> 
@@ -15,9 +15,9 @@
 			<item value="IDL:Bonobo/Control:1.0"/> 
 			<item value="IDL:Bonobo/Unknown:1.0"/> 
 		</oaf_attribute> 
-		<oaf_attribute name="name" type="string" value="GNOME INM forecast applet"/> 
-		<oaf_attribute name="name-es" type="string" value="Pronóstico del tiempo del INM"/>
-		<oaf_attribute name="description" type="string" value="Applet for get the spanish forecast (http://www.aemet.es)"/> 
+		<oaf_attribute name="name" type="string" value="GNOME AEMET weather forecast"/> 
+		<oaf_attribute name="name-es" type="string" value="Pronóstico del tiempo de la AEMET"/>
+		<oaf_attribute name="description" type="string" value="Applet for get the spanish weather forecast (http://www.aemet.es)"/> 
 		<oaf_attribute name="description-es" type="string" value="Applet para ver el pronóstico del tiempo español (http://www.aemet.es)"/> 
 		<oaf_attribute name="panel:category" type="string" value="Accessories"/> 
 		<oaf_attribute name="panel:icon" type="string" value="gnome-inm-forecast.png"/> 

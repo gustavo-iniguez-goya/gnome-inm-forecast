@@ -1480,7 +1480,6 @@ void display_daily_temperatures 	( BonoboUIComponent *uic, gpointer user_data, c
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_day_temps", NULL);
 	win = glade_xml_get_widget (xml, "win_day_temps");
 	img = glade_xml_get_widget (xml, "temp_img");
-	img2 = glade_xml_get_widget (xml, "temp_img1");
 	rb1 = glade_xml_get_widget (xml, "rb_1");
 	rb2 = glade_xml_get_widget (xml, "rb_2");
 	//gtk_widget_hide (rb1);

@@ -8,7 +8,6 @@ gnome_inm_forecast_SOURCES = \
 		main.c \
 		main.h \
 		callbacks.c \
-		gconf_callbacks.c \
 		preferences.c \
 		preferences.h \
 		callbacks.h 

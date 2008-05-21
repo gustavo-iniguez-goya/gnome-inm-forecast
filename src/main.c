@@ -19,7 +19,6 @@
 #define _GNU_SOURCE
 #include <string.h>
 #include "callbacks.h"
-#include "gconf_callbacks.h"
 #include "main.h"
 #include "preferences.h"
 #include <libxml/HTMLtree.h>

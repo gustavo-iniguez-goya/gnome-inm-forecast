@@ -559,7 +559,7 @@ on the panel</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkButton" id="cmd_ok1">
+          <widget class="GtkButton" id="cmd_ok">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -578,7 +578,7 @@ on the panel</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkButton" id="cmd_cancel1">
+          <widget class="GtkButton" id="cmd_cancel">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>

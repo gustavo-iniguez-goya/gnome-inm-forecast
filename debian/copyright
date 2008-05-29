@@ -1,15 +1,15 @@
-This package was debianized by Gustavo Iñiguez Goya <ga@kutxa.homeunix.org> on
+This package was debianized by Gustavo IÃ±iguez Goya <ga@kutxa.homeunix.org> on
 Thu, 31 May 2007 23:51:52 +0200.
 
 It was downloaded from <http://kutxa.homeunix.org/trac/gnome-inm-forecast/>
 
 Upstream Author: 
 
-	Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>
+	Gustavo IÃ±iguez Goya <ga@kutxa.homeunix.org>
 
 Copyright: 
 
-    <Copyright (C) 2007 Gustavo Iñiguez Goya>
+    <Copyright (C) 2007 Gustavo IÃ±iguez Goya>
 
 License:
 
@@ -28,8 +28,5 @@ License:
     Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 
   
-The Debian packaging is (C) 2007, Gustavo Iñiguez Goya <ga@kutxa.homeunix.org> and
+The Debian packaging is (C) 2007, Gustavo IÃ±iguez Goya <ga@kutxa.homeunix.org> and
 is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
-
-# Please also look if there are files or directories which have a
-# different copyright/license attached and list them here.

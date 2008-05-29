@@ -4,7 +4,7 @@
 #
 %define name gnome-inm-forecast
 %define version @VERSION@
-%define release 4
+%define release 5
 %define manifest %{_builddir}/%{name}-%{version}-%{release}.manifest
 
 # required items

@@ -1,3 +1,89 @@
+2008-05-29 21:33  ga
+
+	* [r235] pixmaps/gnome-inm-forecast.png: Removed executable
+	  properties on the applet logo.
+
+2008-05-29 21:20  ga
+
+	* [r234] debian/control, debian/copyright: Fix debian package files
+	  warnings
+
+2008-05-29 20:46  ga
+
+	* [r233] pixmaps/gnome-inm-forecast.png: Removed execution
+	  permissions on the program logo.
+
+2008-05-21 14:32  ga
+
+	* [r232] gnome-inm-glade.glade: It seems to be there a funny bug in
+	  glade3, because I have removed a gtk_image
+	  from a dialog, and it has renamed to buttons of another window.
+	  Renaming them again to the original name.
+
+2008-05-21 11:08  ga
+
+	* [r231] debian/control: debian/control file updated with new
+	  descriptions and fields
+
+2008-05-21 10:49  ga
+
+	* [r230] src/gconf_callbacks.c, src/gconf_callbacks.h: Remove
+	  gconf_callbacks.[ch] files which are no longer used
+
+2008-05-21 10:49  ga
+
+	* [r229] src/Makefile.am, src/Makefile.in, src/main.c: Remove
+	  gconf_callbacks.[ch] files which are no longer used
+
+2008-05-21 10:30  ga
+
+	* [r228] gnome-inm-glade.glade, src/main.c: Remove non needed image
+	  gtk object in the temperatures window
+
+2008-05-20 07:30  ga
+
+	* [r227] GNOME_inm-forecast.server, GNOME_inm-forecast.server_rpm:
+	  applet information file updated with the new agency name
+
+2008-05-20 06:42  ga
+
+	* [r226] po/es.po: Spanish translation updated
+
+2008-05-19 21:36  ga
+
+	* [r225] debian/gnome-inm-forecast.doc-base.EX: Delete non needed
+	  files under debian/ directory
+
+2008-05-19 21:31  ga
+
+	* [r224] src/main.c: Snowfalls reports and weather reports improved
+
+2008-05-19 14:49  ga
+
+	* [r223] debian/cron.d.ex, debian/emacsen-install.ex,
+	  debian/emacsen-remove.ex, debian/emacsen-startup.ex,
+	  debian/gnome-inm-forecast-default.ex, debian/init.d.ex,
+	  debian/manpage.1.ex, debian/manpage.sgml.ex,
+	  debian/manpage.xml.ex, debian/menu.ex, debian/postinst.ex,
+	  debian/postrm.ex, debian/preinst.ex, debian/prerm.ex,
+	  debian/watch.ex: Remove unneeded files under debian/ directory
+
+2008-05-19 14:21  ga
+
+	* [r222] debian/README.Debian: Remove README.Debian default file.
+	  Remove execution permissions to the logo image
+
+2008-05-15 11:59  ga
+
+	* [r221] src/main.c: Replace \t by a simple space in the forecast
+	  weather reports.
+
+2008-05-14 10:50  ga
+
+	* [r220] ChangeLog, configure, configure.in, debian/changelog,
+	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in: New revision
+	  released: 0.6.0.4
+
 2008-05-13 18:33  ga
 
 	* [r219] src/main.c: Discard garbage showing the weather reports

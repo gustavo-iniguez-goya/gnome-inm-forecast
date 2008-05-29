@@ -1,3 +1,12 @@
+gnome-inm-forecast (0.6.0.5) unstable; urgency=low
+
+  * Weather forecast and snowfalls reports improved.
+  * Removed non needed debian package files
+  * Spanish translation updated
+  * debian/control file updated with better information
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Fri, 30 May 2008 00:00:26 +0200
+
 gnome-inm-forecast (0.6.0.4) gutsy; urgency=low
 
   * Weather reports fixed.

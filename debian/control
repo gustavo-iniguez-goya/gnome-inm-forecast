@@ -8,7 +8,7 @@ Homepage: http://kutxa.homeunix.org/trac/gnome-inm-forecast
 
 Package: gnome-inm-forecast
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgnomevfs2-extra
 Description: Spanish weather forecast applet for the GNOME desktop
  It displays the Spanish weather forecast on the GNOME panel, getting the 
  information from the Spanish Meteorological Agency (http://www.aemet.es).

@@ -8,4 +8,3 @@ gnome_inm.schemas usr/share/gconf/schemas/
 pixmaps/gnome-inm-forecast.png usr/share/pixmaps/
 pixmaps/espcan.jpg usr/share/gnome-inm-forecast/pixmaps/
 local_codes.txt usr/share/gnome-inm-forecast/
-stations_list_es.txt usr/share/gnome-inm-forecast/

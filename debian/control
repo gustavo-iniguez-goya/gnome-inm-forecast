@@ -1,5 +1,5 @@
 Source: gnome-inm-forecast
-Section: x11
+Section: gnome
 Priority: optional
 Maintainer: Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>
 Build-Depends: debhelper (>= 5), autotools-dev, intltool, gconf2, libglib2.0-dev (>= 2.8), libpanel-applet2-dev, libgtk2.0-dev (>= 2.8)

@@ -1,3 +1,14 @@
+gnome-inm-forecast (0.6.1) unstable; urgency=low
+
+  * debian/control changes:
+    Converted to UTF-8
+    Added the mandatory dependency libgnomevfs2-extra
+    Section changed to gnome
+  * stations_list.txt removed from the binary packages
+
+
+ -- Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>  Fri, 30 May 2008 19:06:39 +0200
+
 gnome-inm-forecast (0.6.0.5) unstable; urgency=low
 
   * Weather forecast and snowfalls reports improved.

@@ -1,10 +1,10 @@
-	gnome_inm - Spanish INM forecast
+	gnome-inm-forecast - Spanish weather forecast applet for the GNOME desktop
 
 
 
   Copyright (C) 2007 Gustavo Iñiguez Goya
 
-  gnome_inm is free software; you can redistribute it and/or modify
+  gnome-inm-forecast is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.

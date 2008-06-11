@@ -218,6 +218,8 @@ void create_window 		( AppletData *applet_data, const char *name )
 			idx = 9;
 		}
 		//printf ("event name: %s - %d - %d\n", name, idx, img_idx);
+		if (!gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[9])))
+			idx += 1;
 			
 		gtk_label_set_markup (GTK_LABEL(lb1), applet_data->day_info[idx].state);
 		gtk_label_set_markup (GTK_LABEL(lb2), applet_data->day_info[idx].precip);
@@ -399,14 +401,8 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				}
 				x++;
 			}
-			if (id_img == 9 && !gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[id_img]))){
+			if (id_img == 9 && !gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[id_img])))
 				gtk_widget_hide (applet_data->event_box[id_img]);
-				for (x=0;x < id_img;x++){
-					memmove (&applet_data->day_info[x], &applet_data->day_info[x+1], sizeof(DayInf));
-					set_tooltip (applet_data, x, applet_data->day_info[x].state);
-				}
-				
-			}
 			else
 				gtk_widget_show (applet_data->event_box[id_img]);
 	

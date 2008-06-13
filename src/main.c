@@ -1078,11 +1078,11 @@ void update_station_data 		( AppletData *applet_data )
 	gboolean show_station;
 	show_station = panel_applet_gconf_get_bool (PANEL_APPLET(applet_data->applet), "show_station", NULL);
 	/*
- 	gtk_timeout_remove (applet_data->timer_station);
+ 	g_source_remove (applet_data->timer_station);
 	if (show_station){
 		gtk_widget_show (applet_data->event_box[10]);
 		check_latest_data (applet_data);
- 		applet_data->timer_station = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_latest_data, applet_data );
+ 		applet_data->timer_station = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_latest_data, applet_data );
 	}
 	else{
 		gtk_widget_hide (applet_data->event_box[10]);
@@ -1105,9 +1105,9 @@ void update_location 			( AppletData *applet_data )
  		for (x=iDays;x < max_days;x++)
  			gtk_widget_hide (applet_data->event_box[x]);
 
-		gtk_timeout_remove (applet_data->timer);
+		g_source_remove (applet_data->timer);
 		check_inm_url (applet_data);
-		applet_data->timer = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
+		applet_data->timer = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	}
 	else
 		printf ("update_location() no *applet object\n");
@@ -1123,15 +1123,15 @@ void update_data			 ( BonoboUIComponent *uic, gpointer user_data, const char *na
 		/*
 		if (show_station){
 			check_latest_data (applet_data);
- 			applet_data->timer_station = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_latest_data, applet_data );
+ 			applet_data->timer_station = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_latest_data, applet_data );
 		}
 		else
- 			gtk_timeout_remove (applet_data->timer_station);
+ 			g_source_remove (applet_data->timer_station);
 		
 		*/
-		gtk_timeout_remove (applet_data->timer);
+		g_source_remove (applet_data->timer);
 		check_inm_url (applet_data);
-		applet_data->timer = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
+		applet_data->timer = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	}
 	else
 		printf ("update_data() no *applet object\n");
@@ -1693,7 +1693,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	panel_applet_setup_menu_from_file (PANEL_APPLET (applet), PACKAGE_DIR, "GNOME_INM_menu.xml", NULL, menu_callbacks, applet_data);
 
 	check_inm_url (applet_data);
-	applet_data->timer = gtk_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
+	applet_data->timer = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	//update_station_data (applet_data);
 	gtk_widget_show_all (GTK_WIDGET (applet));
 	//gtk_widget_hide (applet_data->event_box[10]);

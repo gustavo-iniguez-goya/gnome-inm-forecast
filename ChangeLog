@@ -1,97 +1,156 @@
+2008-06-13 12:12  ga
+
+	* src/main.c: Remove deprecated timeout functions gtk_timeout* and
+	  used the new ones g_timeout*
+
+2008-06-13 12:08  ga
+
+	* src/main.c: Fix for not display the last image in the afternoon
+
+2008-06-11 14:24  ga
+
+	* src/main.c: Fixed a problem displaying the pop up with the
+	  information of the day, where
+	  the pop ups of all the days had the same information.
+
+2008-06-05 11:29  ga
+
+	* gnome_inm-opt.c, gnome_inm-opt.h, gnome_inm.c: Remove automatic
+	  generated files from autotools which are no needed anymore
+
+2008-06-05 11:26  ga
+
+	* src/callbacks.h, src/main.h, src/preferences.h: Package name
+	  updated on the headers copyright text
+
+2008-06-04 23:04  ga
+
+	* README, gnome-inm-forecast.1: Update the README file with the
+	  right package name. Completed a bit better the man page
+
+2008-06-04 23:03  ga
+
+	* debian/watch: debian/watch file added for control new upstream
+	  versions
+
+2008-06-02 08:30  ga
+
+	* src/callbacks.c, src/main.c, src/preferences.c: Update the
+	  package name of the copyright license in each source file
+
+2008-06-01 19:49  ga
+
+	* debian/rules: Execute the ./bootstrap script before ./configure
+
+2008-05-30 23:34  ga
+
+	* debian/copyright: debian/copyright file updated with the correct
+	  package name
+
+2008-05-30 23:30  ga
+
+	* debian/rules: Fix a lintian warning in debian/rules regarding the
+	  distclean problem
+
+2008-05-30 17:14  ga
+
+	* ChangeLog, configure, configure.in, debian/changelog,
+	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in: New version
+	  released: 0.6.1
+
 2008-05-30 17:02  ga
 
-	* [r241] debian/control: Changed the Section from X11 to gnome
+	* debian/control: Changed the Section from X11 to gnome
 
 2008-05-30 16:57  ga
 
-	* [r240] gnome-inm-forecast.spec, gnome-inm-forecast.spec.in: Do
-	  not distribute meteorological stations list since it is not used
+	* gnome-inm-forecast.spec, gnome-inm-forecast.spec.in: Do not
+	  distribute meteorological stations list since it is not used
 	  anymore
 
 2008-05-30 16:55  ga
 
-	* [r239] debian/control: libgnomevfs2-extra is a mandatory
-	  dependency in order to do aync http connections.
+	* debian/control: libgnomevfs2-extra is a mandatory dependency in
+	  order to do aync http connections.
 
 2008-05-30 08:28  ga
 
-	* [r238] Makefile.am, debian/gnome-inm-forecast.install: Do not
-	  distribute the meteorological stations list anymore, since it is
-	  not used
+	* Makefile.am, debian/gnome-inm-forecast.install: Do not distribute
+	  the meteorological stations list anymore, since it is not used
 
 2008-05-30 08:17  ga
 
-	* [r237] debian/control: Convert debian/control to UTF-8
+	* debian/control: Convert debian/control to UTF-8
 
 2008-05-29 22:04  ga
 
-	* [r236] ChangeLog, configure, configure.in, debian/changelog,
+	* ChangeLog, configure, configure.in, debian/changelog,
 	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in: New revision
 	  released: 0.6.0.5
 
 2008-05-29 21:33  ga
 
-	* [r235] pixmaps/gnome-inm-forecast.png: Removed executable
-	  properties on the applet logo.
+	* pixmaps/gnome-inm-forecast.png: Removed executable properties on
+	  the applet logo.
 
 2008-05-29 21:20  ga
 
-	* [r234] debian/control, debian/copyright: Fix debian package files
+	* debian/control, debian/copyright: Fix debian package files
 	  warnings
 
 2008-05-29 20:46  ga
 
-	* [r233] pixmaps/gnome-inm-forecast.png: Removed execution
-	  permissions on the program logo.
+	* pixmaps/gnome-inm-forecast.png: Removed execution permissions on
+	  the program logo.
 
 2008-05-21 14:32  ga
 
-	* [r232] gnome-inm-glade.glade: It seems to be there a funny bug in
+	* gnome-inm-glade.glade: It seems to be there a funny bug in
 	  glade3, because I have removed a gtk_image
 	  from a dialog, and it has renamed to buttons of another window.
 	  Renaming them again to the original name.
 
 2008-05-21 11:08  ga
 
-	* [r231] debian/control: debian/control file updated with new
-	  descriptions and fields
+	* debian/control: debian/control file updated with new descriptions
+	  and fields
 
 2008-05-21 10:49  ga
 
-	* [r230] src/gconf_callbacks.c, src/gconf_callbacks.h: Remove
+	* src/gconf_callbacks.c, src/gconf_callbacks.h: Remove
 	  gconf_callbacks.[ch] files which are no longer used
 
 2008-05-21 10:49  ga
 
-	* [r229] src/Makefile.am, src/Makefile.in, src/main.c: Remove
+	* src/Makefile.am, src/Makefile.in, src/main.c: Remove
 	  gconf_callbacks.[ch] files which are no longer used
 
 2008-05-21 10:30  ga
 
-	* [r228] gnome-inm-glade.glade, src/main.c: Remove non needed image
-	  gtk object in the temperatures window
+	* gnome-inm-glade.glade, src/main.c: Remove non needed image gtk
+	  object in the temperatures window
 
 2008-05-20 07:30  ga
 
-	* [r227] GNOME_inm-forecast.server, GNOME_inm-forecast.server_rpm:
-	  applet information file updated with the new agency name
+	* GNOME_inm-forecast.server, GNOME_inm-forecast.server_rpm: applet
+	  information file updated with the new agency name
 
 2008-05-20 06:42  ga
 
-	* [r226] po/es.po: Spanish translation updated
+	* po/es.po: Spanish translation updated
 
 2008-05-19 21:36  ga
 
-	* [r225] debian/gnome-inm-forecast.doc-base.EX: Delete non needed
-	  files under debian/ directory
+	* debian/gnome-inm-forecast.doc-base.EX: Delete non needed files
+	  under debian/ directory
 
 2008-05-19 21:31  ga
 
-	* [r224] src/main.c: Snowfalls reports and weather reports improved
+	* src/main.c: Snowfalls reports and weather reports improved
 
 2008-05-19 14:49  ga
 
-	* [r223] debian/cron.d.ex, debian/emacsen-install.ex,
+	* debian/cron.d.ex, debian/emacsen-install.ex,
 	  debian/emacsen-remove.ex, debian/emacsen-startup.ex,
 	  debian/gnome-inm-forecast-default.ex, debian/init.d.ex,
 	  debian/manpage.1.ex, debian/manpage.sgml.ex,
@@ -101,117 +160,116 @@
 
 2008-05-19 14:21  ga
 
-	* [r222] debian/README.Debian: Remove README.Debian default file.
-	  Remove execution permissions to the logo image
+	* debian/README.Debian: Remove README.Debian default file. Remove
+	  execution permissions to the logo image
 
 2008-05-15 11:59  ga
 
-	* [r221] src/main.c: Replace \t by a simple space in the forecast
-	  weather reports.
+	* src/main.c: Replace \t by a simple space in the forecast weather
+	  reports.
 
 2008-05-14 10:50  ga
 
-	* [r220] ChangeLog, configure, configure.in, debian/changelog,
+	* ChangeLog, configure, configure.in, debian/changelog,
 	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in: New revision
 	  released: 0.6.0.4
 
 2008-05-13 18:33  ga
 
-	* [r219] src/main.c: Discard garbage showing the weather reports
+	* src/main.c: Discard garbage showing the weather reports
 
 2008-05-13 15:56  ga
 
-	* [r218] src/main.c: Fixed the weather reports.
+	* src/main.c: Fixed the weather reports.
 
 2008-04-23 10:42  ga
 
-	* [r217] GNOME_inm-forecast.server, GNOME_inm-forecast.server_rpm,
+	* GNOME_inm-forecast.server, GNOME_inm-forecast.server_rpm,
 	  debian/control, gnome-inm-glade.glade, po/es.po, src/main.c:
 	  Change the string Gnome by GNOME, which is the right name for the
 	  GNOME project
 
 2008-04-09 14:46  ga
 
-	* [r216] src/main.c: main timer remove function deleted by error
+	* src/main.c: main timer remove function deleted by error
 
 2008-03-18 08:42  ga
 
-	* [r215] ChangeLog, configure, configure.in, debian/changelog,
+	* ChangeLog, configure, configure.in, debian/changelog,
 	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in: New revision
 	  released: 0.6.0.3
 
 2008-03-18 07:39  ga
 
-	* [r214] src/main.c: Mem leak cheecking if the last image as null
-	  or not fixed
+	* src/main.c: Mem leak cheecking if the last image as null or not
+	  fixed
 
 2008-03-17 23:26  ga
 
-	* [r213] ChangeLog, configure, configure.in, debian/changelog,
+	* ChangeLog, configure, configure.in, debian/changelog,
 	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in: New revision
 	  released: 0.6.0.2
 
 2008-03-17 23:24  ga
 
-	* [r212] INSTALL: Added an small note about where to find DEB and
-	  RPM packages
+	* INSTALL: Added an small note about where to find DEB and RPM
+	  packages
 
 2008-03-17 23:21  ga
 
-	* [r211] po/es.po: spanish translation updated
+	* po/es.po: spanish translation updated
 
 2008-03-17 23:09  ga
 
-	* [r210] src/main.c: Do not display the monday morning information
-	  in the tooltips if it's afternoon
+	* src/main.c: Do not display the monday morning information in the
+	  tooltips if it's afternoon
 
 2008-03-17 22:52  ga
 
-	* [r209] src/main.c: Do not display the monday morning information
-	  if it's in the afternoon
+	* src/main.c: Do not display the monday morning information if it's
+	  in the afternoon
 
 2008-03-16 23:00  ga
 
-	* [r208] po/es.po: Spanish translation updated
+	* po/es.po: Spanish translation updated
 
 2008-03-16 23:00  ga
 
-	* [r207] GNOME_INM_menu.xml: Add new entry for catalonian snowfall
-	  reports
+	* GNOME_INM_menu.xml: Add new entry for catalonian snowfall reports
 
 2008-03-16 22:59  ga
 
-	* [r206] gnome-inm-glade.glade: Expand a little more the width of
-	  the forecast window
+	* gnome-inm-glade.glade: Expand a little more the width of the
+	  forecast window
 
 2008-03-16 22:58  ga
 
-	* [r205] src/main.c, src/main.h: Snowfall reports fixed
+	* src/main.c, src/main.h: Snowfall reports fixed
 
 2008-03-14 13:43  ga
 
-	* [r204] src/main.c: Do not display de last item on the panel if
-	  it's afternoon
+	* src/main.c: Do not display de last item on the panel if it's
+	  afternoon
 
 2008-03-13 17:42  ga
 
-	* [r203] src/main.c: Update correctly the snow information
+	* src/main.c: Update correctly the snow information
 
 2008-03-13 16:00  ga
 
-	* [r202] ChangeLog, GNOME_INM_menu.xml, po/es.po: Change on the
-	  menu INM by AEMET and update the spanish translation
+	* ChangeLog, GNOME_INM_menu.xml, po/es.po: Change on the menu INM
+	  by AEMET and update the spanish translation
 
 2008-03-13 15:50  ga
 
-	* [r201] src/main.c: Fixed a terrible memory leak getting the
-	  last_update information, plus minor fixes
+	* src/main.c: Fixed a terrible memory leak getting the last_update
+	  information, plus minor fixes
 
 2008-03-12 23:27  ga
 
-	* [r200] GNOME_inm-forecast.server, GNOME_inm-forecast.server_rpm,
-	  README, configure, configure.in, debian/README.Debian,
-	  debian/changelog, debian/dirs, debian/gnome-inm-forecast.install,
+	* GNOME_inm-forecast.server, GNOME_inm-forecast.server_rpm, README,
+	  configure, configure.in, debian/README.Debian, debian/changelog,
+	  debian/dirs, debian/gnome-inm-forecast.install,
 	  gnome-inm-forecast.1, gnome-inm-forecast.lsm,
 	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in,
 	  gnome-inm-glade.glade, po/es.po: Applet updated to the new
@@ -219,27 +277,27 @@
 
 2008-03-12 23:17  ga
 
-	* [r199] src/main.c: Change "inm" by "aemet"
+	* src/main.c: Change "inm" by "aemet"
 	  Handle better the per day information
 	  Clean the code
 
 2008-03-12 17:18  ga
 
-	* [r198] src/main.c, src/main.h, src/preferences.c:
+	* src/main.c, src/main.h, src/preferences.c:
 
 2008-03-12 07:36  ga
 
-	* [r197] gnome-inm-glade.glade: Disable the meterological stations
+	* gnome-inm-glade.glade: Disable the meterological stations
 	  settings for now
 
 2008-03-12 00:53  ga
 
-	* [r196] gnome-inm-glade.glade: Do not hide windows from the window
+	* gnome-inm-glade.glade: Do not hide windows from the window
 	  manager
 
 2008-03-12 00:48  ga
 
-	* [r195] pixmaps/aemet, pixmaps/aemet/11.png, pixmaps/aemet/12.png,
+	* pixmaps/aemet, pixmaps/aemet/11.png, pixmaps/aemet/12.png,
 	  pixmaps/aemet/13.png, pixmaps/aemet/14.png, pixmaps/aemet/15.png,
 	  pixmaps/aemet/16.png, pixmaps/aemet/23.png, pixmaps/aemet/24.png,
 	  pixmaps/aemet/25.png, pixmaps/aemet/26.png, pixmaps/aemet/33.png,
@@ -249,8 +307,8 @@
 
 2008-03-12 00:47  ga
 
-	* [r194] src/main.c, src/main.h, src/preferences.c: gforecast
-	  adapted to the new INM/Aemet website.
+	* src/main.c, src/main.h, src/preferences.c: gforecast adapted to
+	  the new INM/Aemet website.
 	  Some features has been removed :(, but I'll add
 	  more soon :)
 	  
@@ -258,269 +316,263 @@
 
 2007-12-12 10:51  ga
 
-	* [r193] ChangeLog: ChangeLog updated to 0.5.2 release
+	* ChangeLog: ChangeLog updated to 0.5.2 release
 
 2007-12-12 10:50  ga
 
-	* [r192] configure, configure.in, debian/changelog,
+	* configure, configure.in, debian/changelog,
 	  gnome-inm-forecast.spec: 0.5.2 revision released
 
 2007-12-12 10:09  ga
 
-	* [r191] src/preferences.c: Ensure that the interval update time is
-	  60 if the gconf value is less than 0 or greater than 60
+	* src/preferences.c: Ensure that the interval update time is 60 if
+	  the gconf value is less than 0 or greater than 60
 
 2007-12-12 09:54  ga
 
-	* [r190] src/preferences.c: Load only as themes the directories
-	  inside /usr/share/PROGRAM/pixmaps/
+	* src/preferences.c: Load only as themes the directories inside
+	  /usr/share/PROGRAM/pixmaps/
 
 2007-12-11 23:40  ga
 
-	* [r189] GNOME_INM_menu.xml, src/preferences.c: * preferences.c -
-	  By default use minutes for interval update, and 60 mins
+	* GNOME_INM_menu.xml, src/preferences.c: * preferences.c - By
+	  default use minutes for interval update, and 60 mins
 	  * GNOME_IN_menu.xml - Fix a typo
 
 2007-12-11 16:15  ga
 
-	* [r188] ChangeLog: ChangeLog updated to 0.5.1 release
+	* ChangeLog: ChangeLog updated to 0.5.1 release
 
 2007-12-11 16:14  ga
 
-	* [r187] configure, configure.in, debian/changelog,
+	* configure, configure.in, debian/changelog,
 	  gnome-inm-forecast.spec: 0.5.1 revision released
 
 2007-12-11 15:48  ga
 
-	* [r186] configure, configure.in, debian/control: Require gtk 2.8
-	  and libglib 2.6 as minimum
+	* configure, configure.in, debian/control: Require gtk 2.8 and
+	  libglib 2.6 as minimum
 
 2007-12-11 15:33  ga
 
-	* [r185] src/main.c: Do not depend on g_regex* functions since they
-	  are only available on libglib2.0 >= 2.14
+	* src/main.c: Do not depend on g_regex* functions since they are
+	  only available on libglib2.0 >= 2.14
 
 2007-12-11 10:07  ga
 
-	* [r184] debian/control: Fixed build dependencies
+	* debian/control: Fixed build dependencies
 
 2007-12-07 09:30  ga
 
-	* [r183] ChangeLog: 0.5.0v
+	* ChangeLog: 0.5.0v
 
 2007-12-07 09:27  ga
 
-	* [r182] configure.in, debian/changelog, gnome-inm-forecast.spec,
+	* configure.in, debian/changelog, gnome-inm-forecast.spec,
 	  gnome-inm-forecast.spec.in: 0.5.0 version released.
 
 2007-12-07 08:00  ga
 
-	* [r181] debian/gnome-inm-forecast.install,
-	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in,
-	  pixmaps/espcan.jpg: Added the background spanish image for
-	  max&min temperatures
+	* debian/gnome-inm-forecast.install, gnome-inm-forecast.spec,
+	  gnome-inm-forecast.spec.in, pixmaps/espcan.jpg: Added the
+	  background spanish image for max&min temperatures
 
 2007-12-07 07:49  ga
 
-	* [r180] stations_list_es.txt: Remove an space at the end of each
-	  line in order to tidy up the cities correctly
+	* stations_list_es.txt: Remove an space at the end of each line in
+	  order to tidy up the cities correctly
 
 2007-12-07 07:43  ga
 
-	* [r179] po/es.po: spanish translation updated
+	* po/es.po: spanish translation updated
 
 2007-12-07 07:00  ga
 
-	* [r178] src/main.c: Fix snow forecast reports removing html tags.
-	  It could fail if the text is non-valid utf-8
+	* src/main.c: Fix snow forecast reports removing html tags. It
+	  could fail if the text is non-valid utf-8
 
 2007-11-29 21:57  ga
 
-	* [r177] gnome-inm-glade.glade, po/es.po, src/main.c: More
-	  gettextized strings
+	* gnome-inm-glade.glade, po/es.po, src/main.c: More gettextized
+	  strings
 
 2007-11-29 12:12  ga
 
-	* [r176] gnome_inm.schemas: Use minutes as interval update data.
-	  And update the data each hour by default
+	* gnome_inm.schemas: Use minutes as interval update data. And
+	  update the data each hour by default
 
 2007-11-29 11:59  ga
 
-	* [r175] src/main.c: Make enough space for display the translations
-	  of the met. stations fields
+	* src/main.c: Make enough space for display the translations of the
+	  met. stations fields
 
 2007-11-29 09:46  ga
 
-	* [r174] src/main.c: Display the station data on the panel at
-	  startup if it is defined in the gconf. Fix a memleak getting the
-	  station data and general sanity checks
+	* src/main.c: Display the station data on the panel at startup if
+	  it is defined in the gconf. Fix a memleak getting the station
+	  data and general sanity checks
 
 2007-11-28 18:55  ga
 
-	* [r173] src/preferences.c: Update the met. station data double
-	  clicking on an entry. General sanity checks
+	* src/preferences.c: Update the met. station data double clicking
+	  on an entry. General sanity checks
 
 2007-11-28 18:53  ga
 
-	* [r172] gnome-inm-glade.glade, src/main.c, src/main.h: 2 memleaks
-	  fixed. New function for update only the met. stations data. Use
-	  minutes instead of seconds for update the information
+	* gnome-inm-glade.glade, src/main.c, src/main.h: 2 memleaks fixed.
+	  New function for update only the met. stations data. Use minutes
+	  instead of seconds for update the information
 
 2007-11-27 23:30  ga
 
-	* [r171] src/main.c: Do not display (by now) any popup clicking on
-	  the met. station hbox
+	* src/main.c: Do not display (by now) any popup clicking on the
+	  met. station hbox
 
 2007-11-27 23:03  ga
 
-	* [r170] src/main.c: Update the met. station data hitting the
-	  update button
+	* src/main.c: Update the met. station data hitting the update
+	  button
 
 2007-11-27 17:45  ga
 
-	* [r169] src/main.h: Added the needed timer variable for met.
-	  stations
+	* src/main.h: Added the needed timer variable for met. stations
 
 2007-11-27 17:44  ga
 
-	* [r168] src/preferences.c, src/preferences.h: Reorganize a bit the
-	  code
+	* src/preferences.c, src/preferences.h: Reorganize a bit the code
 
 2007-11-27 17:24  ga
 
-	* [r167] src/main.c: Fixed the last commit. Display a message on
-	  the tooltip when the connection to the www.inm.es is broken
+	* src/main.c: Fixed the last commit. Display a message on the
+	  tooltip when the connection to the www.inm.es is broken
 
 2007-11-27 17:13  ga
 
-	* [r166] src/main.c: Display a message when there is no data
-	  available for a particular station
+	* src/main.c: Display a message when there is no data available for
+	  a particular station
 
 2007-11-27 16:44  ga
 
-	* [r165] po/es.po: Spanish translation updated again with the
-	  latest changes
+	* po/es.po: Spanish translation updated again with the latest
+	  changes
 
 2007-11-27 16:42  ga
 
-	* [r164] src/main.c: Added more fields to the met. stations
-	  tooltip. More strings gettextized
+	* src/main.c: Added more fields to the met. stations tooltip. More
+	  strings gettextized
 
 2007-11-27 15:47  ga
 
-	* [r163] src/main.c: Makes the hbox not homogeneous in order to
-	  avoid stranges behaviours adding the met. stations. Gettextize 2
+	* src/main.c: Makes the hbox not homogeneous in order to avoid
+	  stranges behaviours adding the met. stations. Gettextize 2
 	  strings aswell
 
 2007-11-27 15:12  ga
 
-	* [r162] po/es.po: spanish translation updated with the latest
-	  additions
+	* po/es.po: spanish translation updated with the latest additions
 
 2007-11-27 15:08  ga
 
-	* [r161] gnome-inm-glade.glade: Do not use non-utf8 strings by
-	  default. I forgot it
+	* gnome-inm-glade.glade: Do not use non-utf8 strings by default. I
+	  forgot it
 
 2007-11-27 13:16  ga
 
-	* [r160] src/preferences.c: General sanity checks
+	* src/preferences.c: General sanity checks
 
 2007-11-27 13:04  ga
 
-	* [r159] Makefile.am, debian/gnome-inm-forecast.install,
+	* Makefile.am, debian/gnome-inm-forecast.install,
 	  gnome-inm-forecast.spec, gnome-inm-forecast.spec.in: Add the
 	  stations list to the install files
 
 2007-11-27 12:40  ga
 
-	* [r158] stations_list_es.txt: Added the list of meteorological
-	  stations
+	* stations_list_es.txt: Added the list of meteorological stations
 
 2007-11-27 12:30  ga
 
-	* [r157] gnome-inm-glade.glade: Enable the number of days to show.
-	  Do not allow to choose which met. station field
+	* gnome-inm-glade.glade: Enable the number of days to show. Do not
+	  allow to choose which met. station field
 
 2007-11-27 12:25  ga
 
-	* [r156] gnome_inm.schemas: Display by default 10 days (7 days) and
-	  choose the Bilbao airport meteorological station
+	* gnome_inm.schemas: Display by default 10 days (7 days) and choose
+	  the Bilbao airport meteorological station
 
 2007-11-27 11:53  ga
 
-	* [r155] src/main.c: Added some meteorological stations fields to
-	  the station tooltip
+	* src/main.c: Added some meteorological stations fields to the
+	  station tooltip
 
 2007-11-27 11:47  ga
 
-	* [r154] src/main.c, src/preferences.c: Added the option for choose
-	  the number of weather forecast days to show on the panel
+	* src/main.c, src/preferences.c: Added the option for choose the
+	  number of weather forecast days to show on the panel
 
 2007-11-26 23:48  ga
 
-	* [r153] gnome-inm-glade.glade, gnome_inm.schemas, src/main.c,
-	  src/main.h, src/preferences.c, src/preferences.h: First
-	  meteorological station implementation
+	* gnome-inm-glade.glade, gnome_inm.schemas, src/main.c, src/main.h,
+	  src/preferences.c, src/preferences.h: First meteorological
+	  station implementation
 
 2007-11-24 13:04  ga
 
-	* [r152] src/main.c: Clean up the tooltips when the connection has
-	  failed
+	* src/main.c: Clean up the tooltips when the connection has failed
 
 2007-11-23 14:21  ga
 
-	* [r151] bootstrap: Added an small script for prepare the
-	  precompilation tasks
+	* bootstrap: Added an small script for prepare the precompilation
+	  tasks
 
 2007-11-23 14:20  ga
 
-	* [r150] INSTALL: Added some little explanations about how to start
+	* INSTALL: Added some little explanations about how to start
 	  compiling the applet
 
 2007-11-23 14:20  ga
 
-	* [r149] configure, configure.in: Add the version and the
-	  maintainer to the configure.in
+	* configure, configure.in: Add the version and the maintainer to
+	  the configure.in
 
 2007-11-23 09:48  ga
 
-	* [r148] src/main.c, src/main.h: Added links for warnings weathers
+	* src/main.c, src/main.h: Added links for warnings weathers
 
 2007-11-23 09:46  ga
 
-	* [r147] GNOME_INM_menu.xml, po/es.po: Tidy up the popup menu into
+	* GNOME_INM_menu.xml, po/es.po: Tidy up the popup menu into
 	  submenus. Spanish translation updated
 
 2007-11-21 22:57  ga
 
-	* [r146] GNOME_INM_menu.xml, gnome-inm-glade.glade, po/es.po,
+	* GNOME_INM_menu.xml, gnome-inm-glade.glade, po/es.po,
 	  src/callbacks.c, src/callbacks.h, src/main.c, src/main.h: Added
 	  the next days (min and max) temperature map
 
 2007-11-14 11:54  ga
 
-	* [r145] ChangeLog, debian/changelog, gnome-inm-forecast.spec,
+	* ChangeLog, debian/changelog, gnome-inm-forecast.spec,
 	  gnome-inm-forecast.spec.in: 0.1.1-4 version released
 
 2007-11-14 10:59  ga
 
-	* [r144] src/main.c: Several sanity checks fixes a crash getting
-	  the snow data
+	* src/main.c: Several sanity checks fixes a crash getting the snow
+	  data
 
 2007-10-17 21:19  ga
 
-	* [r143] gnome-inm-glade.glade: Deactivate 3 preferences options
-	  until they are implemented
+	* gnome-inm-glade.glade: Deactivate 3 preferences options until
+	  they are implemented
 
 2007-10-16 20:24  ga
 
-	* [r142] src/main.c: Hitting the about dialog close button closes
-	  the about dialog as it is supposed to work. Closes (#4)
+	* src/main.c: Hitting the about dialog close button closes the
+	  about dialog as it is supposed to work. Closes (#4)
 
 2007-10-11 10:33  ga
 
-	* [r141] INSTALL, Makefile.am, Makefile.in, gnome_inm-opt.c,
+	* INSTALL, Makefile.am, Makefile.in, gnome_inm-opt.c,
 	  gnome_inm-opt.def, gnome_inm-opt.h, install-sh, intltool-extract,
 	  intltool-extract.in, intltool-merge, intltool-merge.in,
 	  intltool-update, intltool-update.in, local_codes.txt,
@@ -529,130 +581,130 @@
 
 2007-10-11 10:24  ga
 
-	* [r140] gpl.texinfo: Moving files to trunk/
+	* gpl.texinfo: Moving files to trunk/
 
 2007-10-11 10:24  ga
 
-	* [r139] gnome_inm.schemas: Moving files to trunk/
+	* gnome_inm.schemas: Moving files to trunk/
 
 2007-10-11 10:23  ga
 
-	* [r138] GNOME_INM_menu.xml: Moving files to trunk/
+	* GNOME_INM_menu.xml: Moving files to trunk/
 
 2007-10-11 10:23  ga
 
-	* [r137] gnome-inm-glade.glade: Moving files to trunk/
+	* gnome-inm-glade.glade: Moving files to trunk/
 
 2007-10-11 10:23  ga
 
-	* [r136] GNOME_inm-forecast.server_rpm: Moving files to trunk/
+	* GNOME_inm-forecast.server_rpm: Moving files to trunk/
 
 2007-10-11 10:23  ga
 
-	* [r135] GNOME_inm-forecast.server: Moving files to trunk/
+	* GNOME_inm-forecast.server: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r134] gnome-inm-forecast.spec.in: Moving files to trunk/
+	* gnome-inm-forecast.spec.in: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r133] gnome-inm-forecast.spec: Moving files to trunk/
+	* gnome-inm-forecast.spec: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r132] gnome-inm-forecast.lsm.in: Moving files to trunk/
+	* gnome-inm-forecast.lsm.in: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r131] gnome-inm-forecast.lsm: Moving files to trunk/
+	* gnome-inm-forecast.lsm: Moving files to trunk/
 
 2007-10-11 10:22  ga
 
-	* [r130] gnome-inm-forecast.1: Moving files to trunk/
+	* gnome-inm-forecast.1: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r129] gnome_inm.c: Moving files to trunk/
+	* gnome_inm.c: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r128] depcomp: Moving files to trunk/
+	* depcomp: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r127] configure.in: Moving files to trunk/
+	* configure.in: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r126] configure: Moving files to trunk/
+	* configure: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r125] config.rpath: Moving files to trunk/
+	* config.rpath: Moving files to trunk/
 
 2007-10-11 10:21  ga
 
-	* [r124] config.h.in: Moving files to trunk/
+	* config.h.in: Moving files to trunk/
 
 2007-10-11 10:20  ga
 
-	* [r123] config.h: Moving files to trunk/
+	* config.h: Moving files to trunk/
 
 2007-10-11 10:20  ga
 
-	* [r122] ChangeLog: Moving files to trunk/
+	* ChangeLog: Moving files to trunk/
 
 2007-10-11 10:20  ga
 
-	* [r121] aclocal.m4: Moving files to trunk/
+	* aclocal.m4: Moving files to trunk/
 
 2007-10-11 10:19  ga
 
-	* [r120] acinclude.m4: Moving files to trunk/
+	* acinclude.m4: Moving files to trunk/
 
 2007-10-11 10:19  ga
 
-	* [r119] ABOUT-NLS: Moving files to trunk/
+	* ABOUT-NLS: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r118] COPYING: Moving files to trunk/
+	* COPYING: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r117] AUTHORS: Moving files to trunk/
+	* AUTHORS: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r116] NEWS: Moving files to trunk/
+	* NEWS: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r115] README: Moving files to trunk/
+	* README: Moving files to trunk/
 
 2007-10-11 10:17  ga
 
-	* [r114] debian: Moving files to trunk/
+	* debian: Moving files to trunk/
 
 2007-10-11 10:16  ga
 
-	* [r113] m4: Moving files to trunk/
+	* m4: Moving files to trunk/
 
 2007-10-11 10:15  ga
 
-	* [r112] po: Moving files to trunk/
+	* po: Moving files to trunk/
 
 2007-10-11 10:13  ga
 
-	* [r111] pixmaps: Moving files to trunk/
+	* pixmaps: Moving files to trunk/
 
 2007-10-11 10:13  ga
 
-	* [r110] src: Moving files to trunk/
+	* src: Moving files to trunk/
 
 2007-10-11 10:04  ga
 
-	* [r109] .: 2 new directories in order to have one branch "stable"
-	  and a new one with new features
+	* .: 2 new directories in order to have one branch "stable" and a
+	  new one with new features
 

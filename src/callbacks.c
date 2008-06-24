@@ -38,6 +38,15 @@ void on_radar_img_size_allocate 	( GtkWidget *widget, GtkAllocation *allocate, g
 
 void on_window_terminate 	( GtkWidget *widget, gpointer data )
 {
+	GtkWidget *img = (GtkWidget *) data;
+	if (img){
+		GdkPixbuf *pix = gtk_image_get_pixbuf (GTK_IMAGE(img));
+		if (pix){
+			g_object_unref (G_OBJECT(pix));
+			pix = 0;
+		}
+	}
+	
 	quit (widget);
 }
 

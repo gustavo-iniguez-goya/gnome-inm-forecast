@@ -127,7 +127,7 @@ void quit 			( GtkWidget *widget )
 	if (widget){
 		gtk_widget_hide (widget);
 		gtk_widget_destroy (widget);
-		widget = 0;
+		widget = NULL;
 	}
 }
 
@@ -1404,11 +1404,11 @@ GdkPixbuf *load_image				( const char *url )
 void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	GladeXML *xml;
-	static GtkWidget *img;
-	static GtkWidget *win;
+	GtkWidget *img;
+	GtkWidget *win;
 	GtkWidget *rb1, *rb2, *rb3, *rb4;
 	GdkPixbuf *pixbuf;
-
+	
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
 	img = glade_xml_get_widget (xml, "radar_img");
@@ -1422,6 +1422,7 @@ void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, con
 	g_signal_connect (G_OBJECT(rb3), "toggled", G_CALLBACK(on_rb_12_toggled), img);
 	g_signal_connect (G_OBJECT(rb4), "toggled", G_CALLBACK(on_rb_18_toggled), img);
 
+
 	pixbuf = load_image (INM_RADAR0000_IMG);
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
@@ -1430,14 +1431,15 @@ void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, con
 		g_object_unref (G_OBJECT (pixbuf));
 		pixbuf = 0;
 	}
+	g_object_unref (G_OBJECT(xml));
 }
 
 void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	GdkPixbuf *pixbuf;
 	GladeXML *xml;
-	static GtkWidget *img;
-	static GtkWidget *win;
+	GtkWidget *img;
+	GtkWidget *win;
 	GtkWidget *rb1, *rb2, *rb3, *rb4;
 
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
@@ -1462,16 +1464,17 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 		g_object_unref (G_OBJECT (pixbuf));
 		pixbuf = 0;
 	}
+	g_object_unref (G_OBJECT(xml));
 }
 
 void display_daily_temperatures 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	GdkPixbuf *pixbuf;
 	GladeXML *xml;
-	static GtkWidget *img, *img2;
-	static GtkWidget *win;
+	GtkWidget *img, *img2;
+	GtkWidget *win;
 	GtkWidget *rb1, *rb2;
-
+	
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_day_temps", NULL);
 	win = glade_xml_get_widget (xml, "win_day_temps");
 	img = glade_xml_get_widget (xml, "temp_img");
@@ -1502,6 +1505,7 @@ void display_daily_temperatures 	( BonoboUIComponent *uic, gpointer user_data, c
 		g_object_unref (G_OBJECT (pixbuf));
 		pixbuf = 0;
 	}
+	g_object_unref (G_OBJECT(xml));
 }
 
 void display_nextdays_forecast	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )

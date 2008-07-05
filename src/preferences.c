@@ -24,11 +24,11 @@ void 		create_preferences_win ( AppletData *applet_data )
 	int size=0;
 	char **buf;
 	char **tokens=0;
-	GtkWidget *win;
-	GtkWidget *loc_lbl;
-	GtkWidget *cmd_ok, *cmd_cancel;
-	GtkWidget *table6;
-	GladeXML *xml;
+	GtkWidget *win=0;
+	GtkWidget *loc_lbl=0;
+	GtkWidget *cmd_ok=0, *cmd_cancel=0;
+	GtkWidget *table6=0;
+	GladeXML *xml=0;
 	GList *dir_list;
 	GnomeVFSFileInfo *dir_info;
 	int i=0, days=0;
@@ -62,6 +62,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 	}
 	
 	g_strfreev (tokens);
+	tokens = 0;
 	if (buf){
 		g_free (buf);
 		buf = 0;
@@ -104,6 +105,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 		dir_list = dir_list->next;
 	}
 	g_list_free (dir_list);
+	dir_list = 0;
 	
 	days = (int)g_ascii_strtod (panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "days", NULL), NULL);
 	if (days == 0)
@@ -115,6 +117,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 
 	cmd_ok = glade_xml_get_widget (xml, "cmd_ok");
 	cmd_cancel = glade_xml_get_widget (xml, "cmd_cancel");
+	g_signal_connect (G_OBJECT(applet_data->prefs->win), "destroy", G_CALLBACK(gtk_widget_destroyed), &applet_data->prefs->win);
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_preferences_destroy), applet_data);
 	g_signal_connect (G_OBJECT(cmd_ok), "clicked", G_CALLBACK(on_cmd_ok_clicked), applet_data);
 	g_signal_connect (G_OBJECT(cmd_cancel), "clicked", G_CALLBACK(on_cmd_cancel_clicked), applet_data);

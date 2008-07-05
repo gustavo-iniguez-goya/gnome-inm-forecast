@@ -170,7 +170,7 @@ void create_window 		( AppletData *applet_data, const char *name )
 		lb7 = glade_xml_get_widget (xml, "label_day7");
 		img = glade_xml_get_widget (xml, "img");
 		
-		g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), NULL);
+		g_signal_connect_swapped (G_OBJECT(win), "destroy", G_CALLBACK(quit), win);
 
 		color.red = 65535;
 		color.blue = 65535;
@@ -1141,7 +1141,8 @@ void display_preferences_dialog		 ( BonoboUIComponent *uic, gpointer user_data, 
 {
 //	printf ("display_prefs_dg: %s\n", applet_data->prefs->code);
 	AppletData *applet_data = (AppletData *) user_data;
-	create_preferences_win (applet_data);
+	if (!applet_data->prefs->win)
+		create_preferences_win (applet_data);
 }
 
 void display_inm_website		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
@@ -1205,7 +1206,7 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 			strstr(temp, "ESTABILIDAD DEL MANTO") || strstr (temp, "RIESGO DE ALUDES")){
 		xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_today_forecast", NULL);
 		win = glade_xml_get_widget (xml, "win_today_forecast");
-		g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), NULL);
+		g_signal_connect_swapped (G_OBJECT(win), "destroy", G_CALLBACK(quit), win);
 		
 		textview = glade_xml_get_widget (xml, "textview");
 		textview_buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(textview));
@@ -1575,9 +1576,11 @@ void display_about_dialog 		( BonoboUIComponent *uic, gpointer user_data, const 
 		gtk_about_dialog_set_name (GTK_ABOUT_DIALOG(dialog), "GNOME INM forecast - ");
 		gtk_about_dialog_set_version (GTK_ABOUT_DIALOG(dialog), VERSION);
 		gtk_about_dialog_set_logo (GTK_ABOUT_DIALOG(dialog), pix);
-		g_signal_connect (G_OBJECT(dialog), "response", G_CALLBACK(on_window_terminate), NULL);
+		g_signal_connect_swapped (G_OBJECT(dialog), "response", G_CALLBACK(quit), dialog);
+		g_signal_connect_swapped (G_OBJECT(dialog), "destroy", G_CALLBACK(quit), dialog);
 		gtk_widget_show (dialog);
 		shown = TRUE;
+		g_object_unref (G_OBJECT(xml));
 	}
 }
 

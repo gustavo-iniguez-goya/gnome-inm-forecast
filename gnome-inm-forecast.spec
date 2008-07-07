@@ -47,6 +47,7 @@ gnome-inm-forecast.spec.  Generated from gnome-inm-forecast.spec.in by configure
 #%patch0 -p1
 
 %build
+./bootstrap
 %configure
 make
 

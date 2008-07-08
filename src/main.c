@@ -1509,6 +1509,45 @@ void display_daily_temperatures 	( BonoboUIComponent *uic, gpointer user_data, c
 	g_object_unref (G_OBJECT(xml));
 }
 
+void display_prob_precipitation 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	GdkPixbuf *pixbuf=0;
+	GladeXML *xml=0;
+	GtkWidget *img=0;
+	GtkWidget *win=0;
+	GtkWidget *rb_005=0, *rb_020=0, *rb_100=0, *rb_200=0, *rb_avg=0, *rb_max=0;
+	
+	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_prob_precip", NULL);
+	win = glade_xml_get_widget (xml, "win_prob_precip");
+	img = glade_xml_get_widget (xml, "temp_img1");
+	rb_005 = glade_xml_get_widget (xml, "rb_005");
+	rb_020 = glade_xml_get_widget (xml, "rb_020");
+	rb_100 = glade_xml_get_widget (xml, "rb_100");
+	rb_200 = glade_xml_get_widget (xml, "rb_200");
+	rb_avg = glade_xml_get_widget (xml, "rb_avg");
+	rb_max = glade_xml_get_widget (xml, "rb_max");
+	//gtk_widget_hide (rb1);
+	//gtk_widget_hide (rb2);
+	
+	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
+	g_signal_connect (G_OBJECT(rb_005), "toggled", G_CALLBACK(on_prob_precip_toggled_005), img);
+	g_signal_connect (G_OBJECT(rb_020), "toggled", G_CALLBACK(on_prob_precip_toggled_020), img);
+	g_signal_connect (G_OBJECT(rb_100), "toggled", G_CALLBACK(on_prob_precip_toggled_100), img);
+	g_signal_connect (G_OBJECT(rb_200), "toggled", G_CALLBACK(on_prob_precip_toggled_200), img);
+	g_signal_connect (G_OBJECT(rb_avg), "toggled", G_CALLBACK(on_prob_precip_toggled_avg), img);
+	g_signal_connect (G_OBJECT(rb_max), "toggled", G_CALLBACK(on_prob_precip_toggled_max), img);
+	
+	pixbuf = load_image (INM_PROB_PRECIP_005);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		gtk_window_set_title (GTK_WINDOW(win), _("Rainfall probability"));
+		gtk_widget_show (win);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+	g_object_unref (G_OBJECT(xml));
+}
+
 void display_nextdays_forecast	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	AppletData *applet_data = (AppletData *) user_data;
@@ -1605,6 +1644,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		BONOBO_UI_VERB ("SatelliteImages", display_satellite_radar),
 		BONOBO_UI_VERB ("SpanishForecastImg", display_spanish_forecast_img),
 		BONOBO_UI_VERB ("Temperatures", display_daily_temperatures),
+		BONOBO_UI_VERB ("RainfallProb", display_prob_precipitation),
 		BONOBO_UI_VERB ("InformeAludes1", display_snow_warnings_nav),
 		BONOBO_UI_VERB ("InformeAludes2", display_snow_warnings_cat),
 		BONOBO_UI_VERB ("Properties", display_preferences_dialog),

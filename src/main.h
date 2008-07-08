@@ -58,6 +58,12 @@
 #define INM_NATIONAL_FORECAST_IMG "http://www.aemet.es/imagenes_d/eltiempo/prediccion/pais/p01wesp1.jpg"
 #define INM_DAILY_TEMPERATURE_MAX "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp099.gif"
 #define INM_DAILY_TEMPERATURE_MIN "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp098.gif"
+#define INM_PROB_PRECIP_005 "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gp005.gif"
+#define INM_PROB_PRECIP_020 "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gp020.gif"
+#define INM_PROB_PRECIP_100 "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gp100.gif"
+#define INM_PROB_PRECIP_200 "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gp200.gif"
+#define INM_PROB_PRECIP_AVG "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gmedi.gif"
+#define INM_PROB_PRECIP_MAX "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gmaxi.gif"
 #define INM_NAMES_LATEST_DATA "http://www.inm.es/web/infmet/tobsr/bin/nombres.js"
 #define INM_LATEST_DATA "http://www.inm.es/wwb/tobsr/emasdat.js"
 #define INM_SPAIN_IMG PACKAGE_DIR"pixmaps/espcan.jpg"
@@ -157,6 +163,7 @@ void display_wwarnings_n	( BonoboUIComponent *uic, gpointer user_data, const cha
 void display_today_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_satellite_radar 	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_spanish_forecast_img	( BonoboUIComponent *uic, gpointer user_data, const char *name );
+void display_prob_precipitation	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_snow_warnings	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_preferences_dialog	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_inm_website	( BonoboUIComponent *uic, gpointer user_data, const char *name );

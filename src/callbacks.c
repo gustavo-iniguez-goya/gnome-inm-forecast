@@ -136,6 +136,84 @@ void on_rb_18_toggled ( GtkWidget *widget, gpointer data )
 	}
 }
 
+void on_prob_precip_toggled_005 ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf=0;
+
+	pixbuf = load_image (INM_PROB_PRECIP_005);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+}
+
+void on_prob_precip_toggled_020 ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf=0;
+
+	pixbuf = load_image (INM_PROB_PRECIP_020);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+}
+
+void on_prob_precip_toggled_100 ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf=0;
+
+	pixbuf = load_image (INM_PROB_PRECIP_100);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+}
+
+void on_prob_precip_toggled_200 ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf;
+	printf ("precip_200: %s\n", widget->name);
+	pixbuf = load_image (INM_PROB_PRECIP_200);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+}
+
+void on_prob_precip_toggled_avg ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf=0;
+
+	pixbuf = load_image (INM_PROB_PRECIP_AVG);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+}
+
+void on_prob_precip_toggled_max ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf=0;
+
+	pixbuf = load_image (INM_PROB_PRECIP_MAX);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+}
+
 void on_applet_destroy 			( GtkWidget *widget, AppletData *applet_data )
 {
 	printf ("Applet destroy\n");

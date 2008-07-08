@@ -30,6 +30,12 @@ void on_rb_00_toggled		( GtkWidget *widget, gpointer data );
 void on_rb_06_toggled 		( GtkWidget *widget, gpointer data );
 void on_rb_12_toggled 		( GtkWidget *widget, gpointer data );
 void on_rb_18_toggled 		( GtkWidget *widget, gpointer data );
+void on_prob_precip_toggled_005	( GtkWidget *widget, gpointer data );
+void on_prob_precip_toggled_020 ( GtkWidget *widget, gpointer data );
+void on_prob_precip_toggled_100 ( GtkWidget *widget, gpointer data );
+void on_prob_precip_toggled_200 ( GtkWidget *widget, gpointer data );
+void on_prob_precip_toggled_avg ( GtkWidget *widget, gpointer data );
+void on_prob_precip_toggled_max ( GtkWidget *widget, gpointer data );
 void on_applet_destroy 		( GtkWidget *widget, AppletData *applet_data );
 
 #endif

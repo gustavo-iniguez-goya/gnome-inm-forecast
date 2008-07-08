@@ -29,6 +29,11 @@
 					_label="Tempe_ratures maps"
 					pixtype="stock"
 					pixname=""/>
+				<menuitem name="RainfallProb"
+					verb="RainfallProb"
+					_label="Rainfall probability"
+					pixtype="stock"
+					pixname=""/>
 			</submenu>
 			<separator />
 			<menuitem name="Informe Aludes1"

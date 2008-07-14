@@ -1692,7 +1692,8 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	applet_data->interval = panel_applet_gconf_get_int (PANEL_APPLET(applet), "interval", NULL);
 	if (applet_data->interval == 0)
 		applet_data->interval = 3600;
-
+	applet_data->show_days = panel_applet_gconf_get_string (PANEL_APPLET(applet), "days", NULL);
+	int iDays =  g_ascii_strtod(applet_data->show_days, NULL);
 
 	/* Translations initialization */
 	setlocale (LC_ALL, "");
@@ -1719,7 +1720,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	/* We can not add tooltips directly to an image widget, 
 	 * so we add firstly an EventBox widget to the HBox, and then the GtkImage to the EventBox
 	 * */
-	for (x=0;x < 10;x++){
+	for (x=0;x < iDays;x++){
 		applet_data->event_box[x] = gtk_event_box_new ();
 		gtk_widget_set_name (applet_data->event_box[x], eventbox_name[x]);
 		applet_data->image[x] = gtk_image_new_from_file ("");
@@ -1729,11 +1730,11 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	}
 	/* Temperature label */
 	applet_data->temp_lbl = gtk_label_new ("");
-	applet_data->event_box[10] = gtk_event_box_new ();
-	gtk_widget_set_name (applet_data->event_box[10], eventbox_name[10]);
-	gtk_container_add (GTK_CONTAINER (applet_data->event_box[10]), applet_data->temp_lbl);
-	gtk_container_add (GTK_CONTAINER (applet_data->hbox), applet_data->event_box[10]);
-	g_signal_connect (G_OBJECT (applet_data->event_box[10]), "button_press_event", G_CALLBACK (on_image_button_press), applet_data);
+	applet_data->event_box[iDays] = gtk_event_box_new ();
+	gtk_widget_set_name (applet_data->event_box[iDays], eventbox_name[iDays]);
+	gtk_container_add (GTK_CONTAINER (applet_data->event_box[iDays]), applet_data->temp_lbl);
+	gtk_container_add (GTK_CONTAINER (applet_data->hbox), applet_data->event_box[iDays]);
+	g_signal_connect (G_OBJECT (applet_data->event_box[iDays]), "button_press_event", G_CALLBACK (on_image_button_press), applet_data);
 
 	g_signal_connect (G_OBJECT (applet), "destroy", G_CALLBACK (on_applet_destroy), applet_data);
 	

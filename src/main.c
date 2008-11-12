@@ -1195,11 +1195,12 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 	char **tokens=0;
 	char *temp=0, *temp2=0, *temp3=0;
 	//char *str_regx=0;
-	gchar *buf = (gchar *) callback_data;
+	AppletData *applet_data = (AppletData *) callback_data;
+	//gchar *buf = applet_data->buffer;
 	int x=0, i=0;
 	//GRegex *regx = g_regex_new ("<.*>", G_REGEX_CASELESS | G_REGEX_RAW , G_REGEX_MATCH_NOTEMPTY, NULL);
 
-	temp = g_strdup (buf);
+	temp = g_strdup (applet_data->buffer);
 	if (strstr(temp, "texto_entradilla") || 
 			strstr(temp, "Informaci&oacute;n nivol&oacute;gica") ||
 			strstr(temp, "ZONAS NO PROTEGIDAS") ||
@@ -1282,6 +1283,10 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 		g_free (temp3);
 		temp3 = 0;
 	}
+	if (applet_data->buffer){
+		g_free (applet_data->buffer);
+		applet_data->buffer = NULL;
+	}
 }
 
 static void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
@@ -1316,14 +1321,10 @@ static void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 				strstr(applet_data->buffer, "ZONAS NO PROTEGIDAS") ||
 				strstr(applet_data->buffer, "ESTABILIDAD DEL MANTO") ||
 				strstr(applet_data->buffer, "RIESGO DE ALUDES")){
-			gnome_vfs_async_close (handle, gvfs_close_cb, applet_data->buffer);
+			gnome_vfs_async_close (handle, gvfs_close_cb, applet_data);
 		}
 		else{
 			printf ("1 No forecast data\n");
-		}
-		if (applet_data->buffer){
-			g_free (applet_data->buffer);
-			applet_data->buffer = NULL;
 		}
 		if (buf){
 			g_free (buf);

@@ -241,8 +241,10 @@ void create_window 		( AppletData *applet_data, const char *name )
 		gtk_widget_show (win);
 		x = y = 0;
 		g_object_unref (G_OBJECT (xml));
-		if (day)
+		if (day){
 			g_free (day);
+			day = NULL;
+		}
 	}
 	window_shown = !window_shown;
 }
@@ -423,17 +425,21 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	if (tokens)
 		g_strfreev (tokens);
 		
-	if (temp_buf)
+	if (temp_buf){
 		free (temp_buf);
+		temp_buf = NULL;
+	}
 
 	temp=0;
-	temp_buf=0;
-	if (theme)
+	if (theme){
 		g_free (theme);
+		theme = 0;
+	}
 
-	theme = 0;
-	if (t)
+	if (t){
 		g_free (t);
+		t = 0;
+	}
 }
 	
 void parse_dates_data		( AppletData *applet_data, char *buf, int type )
@@ -537,6 +543,7 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 							idx++;
 						}
 						g_free (day_temp);
+						day_temp = NULL;
 					}
 				}
 			}
@@ -544,6 +551,7 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 			g_strfreev (tokens);
 		}
 		free (temp_buf);
+		temp_buf = NULL;
 	}
 	temp_buf = 0;
 	temp_buf2 = 0;
@@ -898,8 +906,10 @@ gboolean check_latest_data	( AppletData *applet_data )
 					g_strfreev (tokens);
 			}
 		}
-		if (buf)
+		if (buf){
 			g_free (buf);
+			buf = NULL;
+		}
 
 		if (strcmp (temp, "") == 0){
 			strcpy (temp, "--");
@@ -915,10 +925,14 @@ gboolean check_latest_data	( AppletData *applet_data )
 		printf ("Error getting latest data from meteorological station\n");
 	}
 
-	if (temp)
+	if (temp){
 		free (temp);
-	if (tp)
+		temp = NULL;
+	}
+	if (tp){
 		g_free (tp);
+		tp = NULL;
+	}
 
 	return TRUE;
 }
@@ -985,18 +999,20 @@ static void check_inm_url_read 		( GnomeVFSAsyncHandle *handle,
 	else{
 		temp = g_strdup (applet_data->buffer);
 		g_free (applet_data->buffer);
+		applet_data->buffer = NULL;
 		applet_data->buffer = g_strdup_printf ("%s%s", temp, buf);
 		g_free (temp);
+		temp = NULL;
 	}
 
 	//printf ("gvfs_async_read(): %s\n", gnome_vfs_result_to_string (result));
 	if (result == GNOME_VFS_ERROR_EOF){
 //		printf ("Fin de lectura gnome_vfs_async_read()\n");
 		gnome_vfs_async_close (handle, check_inm_url_close, applet_data);
-		if (buf)
+		if (buf){
 			g_free (buf);
-
-		buf = 0;
+			buf = 0;
+		}
 	}
 	else if (result != GNOME_VFS_OK){
 		applet_data->gvfs_handle = NULL;
@@ -1022,10 +1038,11 @@ static void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 	AppletData *applet_data = (AppletData *) callback_data;
 //	printf ("check_inm_url_status() gvfs_async_open(): %s\n", gnome_vfs_result_to_string (result));
 
-	if (applet_data->buffer)
+	if (applet_data->buffer){
 		g_free (applet_data->buffer);
+		applet_data->buffer = NULL;
+	}
 	
-	applet_data->buffer = NULL;
 
 	if (result != GNOME_VFS_OK){
 		printf ("Conexion no abierta\n");
@@ -1297,7 +1314,7 @@ static void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 						gpointer callback_data)
 {
 	AppletData *applet_data = (AppletData *) callback_data;
-	gchar *buf, *temp;
+	gchar *buf=0, *temp=0;
 	buf = (gchar *)buffer;
 	buf[bytes_read] = '\0';
 	//printf ("Buf: %s\n", buf);
@@ -1307,8 +1324,10 @@ static void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 	else{
 		temp = g_strdup (applet_data->buffer);
 		g_free (applet_data->buffer);
+		applet_data->buffer = NULL;
 		applet_data->buffer = g_strdup_printf ("%s%s", temp, buf);
 		g_free (temp);
+		temp = 0;
 	}
 
 

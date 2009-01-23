@@ -232,6 +232,7 @@ void		on_cmd_ok_clicked ( GtkWidget *widget, AppletData *applet_data )
 		//printf ("cmd ok\nCode: %s\n", applet_data->prefs->code);
 		//printf ("Theme: %s\n", gtk_combo_box_get_active_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme)));
 		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "theme", gtk_combo_box_get_active_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme)), NULL);
+		g_snprintf (applet_data->theme, 254, "%s\0", gtk_combo_box_get_active_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme)));
 		update_location (applet_data);
 		close_prefs_window (applet_data);
 	}

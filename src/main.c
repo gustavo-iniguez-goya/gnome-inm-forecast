@@ -294,10 +294,7 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	int x=0,id_img=0;
 	//int iDays = g_ascii_strtod (panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "days", NULL), NULL);
 	int iDays = 10;
-	char *t = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "theme", NULL);
 	char *theme = g_new0(char, 1024);
-	if (!t)
-		strcpy (t, "inm");
 
 	tokens = g_strsplit_set (buf, "<>&;=\"", -1); 
 	if (applet && applet_data && buf){
@@ -306,96 +303,96 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				if (!strstr (tokens[x], "estado_cielo")){x++; continue;}
 				printf ("XXXX [%d]: %s\n", id_img, tokens[x]);
 				if (strstr (tokens[x], "11.gif")){
-					snprintf (theme, 1024, "%s%s/11.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/11.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Despejado"));
 					strncpy (applet_data->day_info[id_img].state, _("Despejado"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "12.gif")){
-					snprintf (theme, 1024, "%s%s/12.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/12.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Poco nuboso"));
 					strncpy (applet_data->day_info[id_img].state, _("Poco nuboso"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "13.gif")){
-					snprintf (theme, 1024, "%s%s/13.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/13.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Intervalos nubosos"));
 					strncpy (applet_data->day_info[id_img].state, _("Intervalos nubosos"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "14.gif")){
-					snprintf (theme, 1024, "%s%s/14.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/14.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Nuboso"));
 					strncpy (applet_data->day_info[id_img].state, _("Nuboso"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "15.gif")){
-					snprintf (theme, 1024, "%s%s/15.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/15.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Muy nuboso"));
 					strncpy (applet_data->day_info[id_img].state, _("Muy nuboso"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "16.gif")){
-					snprintf (theme, 1024, "%s%s/16.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/16.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "23.gif")){
-					snprintf (theme, 1024, "%s%s/23.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/23.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Intervalos nubosos con lluvia"));
 					strncpy (applet_data->day_info[id_img].state, _("Intervalos nubosos con lluvia"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "24.gif")){
-					snprintf (theme, 1024, "%s%s/24.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/24.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Nuboso con lluvia"));
 					strncpy (applet_data->day_info[id_img].state, _("Nuboso con lluvia"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "25.gif")){
-					snprintf (theme, 1024, "%s%s/25.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/25.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Muy nuboso con lluvia"));
 					strncpy (applet_data->day_info[id_img].state, _("Muy nuboso con lluvia"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "26.gif")){
-					snprintf (theme, 1024, "%s%s/26.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/26.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Muy nuboso con lluvia"));
 					strncpy (applet_data->day_info[id_img].state, _("Muy nuboso con lluvia"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "33.gif")){
-					snprintf (theme, 1024, "%s%s/33.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/33.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Nieve"));
 					strncpy (applet_data->day_info[id_img].state, _("Nieve"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "34.gif")){
-					snprintf (theme, 1024, "%s%s/34.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/34.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Nuboso con nieve"));
 					strncpy (applet_data->day_info[id_img].state, _("Nuboso con nieve"), 36);
 					id_img++;
 				}
 				else if (strstr (tokens[x], "35.gif")){
-					snprintf (theme, 1024, "%s%s/35.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/35.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Muy nuboso con nieve"));
 					strncpy (applet_data->day_info[id_img].state, _("Muy nuboso con nieve"), 36);
 					id_img++;
 				} 
 				else if (strstr (tokens[x], "36.gif")){
-					snprintf (theme, 1024, "%s%s/36.png", PIXMAPS_DIR, t);
+					snprintf (theme, 1024, "%s%s/36.png", PIXMAPS_DIR, applet_data->theme);
 					gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 					set_tooltip (applet_data, id_img, _("Muy nuboso con nieve"));
 					strncpy (applet_data->day_info[id_img].state, _("Muy nuboso con nieve"), 36);
@@ -434,11 +431,6 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	if (theme){
 		g_free (theme);
 		theme = 0;
-	}
-
-	if (t){
-		g_free (t);
-		t = 0;
 	}
 }
 	
@@ -1692,6 +1684,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	applet_data->provincia = g_new0 (char, 128);
 	applet_data->last_update = g_new0 (char, 128);
 	applet_data->show_days = g_new0 (char, 12);
+	applet_data->theme = g_new0 (char, 256);
 	applet_data->st_info = NULL;
 	applet_data->st_list = NULL;
 	applet_data->buffer = NULL;
@@ -1713,6 +1706,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	if (applet_data->interval == 0)
 		applet_data->interval = 3600;
 	applet_data->show_days = panel_applet_gconf_get_string (PANEL_APPLET(applet), "days", NULL);
+	applet_data->theme = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet), "theme", NULL);
 	int iDays =  g_ascii_strtod(applet_data->show_days, NULL);
 
 	/* Translations initialization */

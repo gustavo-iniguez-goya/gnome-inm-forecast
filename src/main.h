@@ -150,6 +150,7 @@ typedef struct _AppletData {
 	char		*city_long_desc;
 	char		*provincia;
 	char		*buffer;
+	char		*theme;
 } AppletData ;
 
 void update_station_data	( AppletData *applet_data );

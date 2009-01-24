@@ -1052,9 +1052,10 @@ static void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 gboolean check_inm_url 			( AppletData *applet_data )
 {
 	char temp[512];
+	char *code = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL);
 	
 	if (applet_data && applet_data->applet){
-		snprintf (temp, 512, "%s%s", INM_FORECAST_URL, (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL));
+		snprintf (temp, 512, "%s%s\0", INM_FORECAST_URL, code);
 
 		gnome_vfs_async_open (&applet_data->gvfs_handle, temp, GNOME_VFS_OPEN_READ, 0, check_inm_url_status, applet_data);
 		
@@ -1077,6 +1078,11 @@ gboolean check_inm_url 			( AppletData *applet_data )
 	}
 	else{
 		printf ("check_inm_url() no applet no fun\n");
+	}
+
+	if (code){
+		g_free (code);
+		code = NULL;
 	}
 		
 	return TRUE;

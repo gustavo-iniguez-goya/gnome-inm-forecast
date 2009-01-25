@@ -43,7 +43,8 @@
 
 #define INM_URL "http://www.aemet.es"
 #define INM_FORECAST_URL "http://www.aemet.es/es/eltiempo/prediccion/localidades?l="
-#define INM_RADAR0000_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s93g0000.gif"
+#define INM_RADAR_AIR_MASS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s91g"
+#define INM_RADAR0000_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s93g1900.gif"
 #define INM_RADAR0600_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s93g0600.gif"
 #define INM_RADAR1200_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s93g1200.gif"
 #define INM_RADAR1800_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s93g1800.gif"

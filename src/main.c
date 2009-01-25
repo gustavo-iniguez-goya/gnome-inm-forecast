@@ -1602,6 +1602,36 @@ void display_prob_precipitation 	( BonoboUIComponent *uic, gpointer user_data, c
 	g_object_unref (G_OBJECT(xml));
 }
 
+void display_air_mass	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	GdkPixbuf *pixbuf=0;
+	GladeXML *xml=0;
+	GtkWidget *img=0;
+	GtkWidget *win=0;
+	GtkWidget *combo_hour=0;
+	char rdr_img[512]={0};
+	
+	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
+	win = glade_xml_get_widget (xml, "win_radar");
+	img = glade_xml_get_widget (xml, "radar_img");
+	combo_hour = glade_xml_get_widget (xml, "combo_hour");
+	
+	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
+	g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_airmass_combo_hour_changed), img);
+	
+	g_snprintf ((char *)&rdr_img, 512, "%s%s", INM_RADAR_AIR_MASS_IMG, "1900.jpg");
+	printf ("displaying %s\n", rdr_img);
+	pixbuf = load_image (&rdr_img);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		gtk_window_set_title (GTK_WINDOW(win), _("Air mass"));
+		gtk_widget_show (win);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+	g_object_unref (G_OBJECT(xml));
+}
+
 void display_nextdays_forecast	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	AppletData *applet_data = (AppletData *) user_data;
@@ -1736,6 +1766,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		BONOBO_UI_VERB ("SpanishForecastImg", display_spanish_forecast_img),
 		BONOBO_UI_VERB ("Temperatures", display_daily_temperatures),
 		BONOBO_UI_VERB ("RainfallProb", display_prob_precipitation),
+		BONOBO_UI_VERB ("AirMassProb", display_air_mass),
 		BONOBO_UI_VERB ("InformeAludes1", display_snow_warnings_nav),
 		BONOBO_UI_VERB ("InformeAludes2", display_snow_warnings_cat),
 		BONOBO_UI_VERB ("ForecastPicos", display_mountain_forecast),

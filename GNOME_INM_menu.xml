@@ -34,6 +34,11 @@
 					_label="Rainfall probability"
 					pixtype="stock"
 					pixname=""/>
+				<menuitem name="AirMassProb"
+					verb="AirMassProb"
+					_label="Air mass"
+					pixtype="stock"
+					pixname=""/>
 			</submenu>
 			<separator />
 

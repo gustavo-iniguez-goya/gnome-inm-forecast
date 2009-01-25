@@ -26,6 +26,7 @@ gboolean on_image_button_press 	( GtkWidget *event_box, GdkEventButton *event, A
 void on_window_terminate 	( GtkWidget *widget, gpointer data );
 void on_daily_temp_rb1_toggled			 ( GtkWidget *widget, gpointer data );
 void on_daily_temp_rb2_toggled			 ( GtkWidget *widget, gpointer data );
+void on_airmass_combo_hour_changed	( GtkWidget *widget, gpointer data );
 void on_rb_00_toggled		( GtkWidget *widget, gpointer data );
 void on_rb_06_toggled 		( GtkWidget *widget, gpointer data );
 void on_rb_12_toggled 		( GtkWidget *widget, gpointer data );

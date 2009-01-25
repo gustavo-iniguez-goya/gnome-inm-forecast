@@ -45,6 +45,8 @@
 #define INM_FORECAST_URL "http://www.aemet.es/es/eltiempo/prediccion/localidades?l="
 #define INM_RADAR_AIR_MASS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s91g"
 #define INM_RADAR_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/r99g"
+#define INM_RAYOS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/r79g"
+#define INM_RAYOS_CANARIAS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/r78g"
 #define INM_RADAR_CANARIAS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/r98g"
 #define INM_SAT_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s93g"
 #define INM_FORECAST_NEXTDAYS_URL "http://www.aemet.es/es/eltiempo/prediccion/espana?w=5"

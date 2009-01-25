@@ -51,6 +51,18 @@
 						pixtype="stock"
 						pixname=""/>
 				</submenu>
+				<submenu name="Rayos" _label="_Lightinings">
+					<menuitem name="RayosP"
+						verb="RayosP"
+						_label="Peninsula and Balearic Islands"
+						pixtype="stock"
+						pixname=""/>
+					<menuitem name="RayosC"
+						verb="RayosC"
+						_label="Canary Islands"
+						pixtype="stock"
+						pixname=""/>
+				</submenu>
 			</submenu>
 			<separator />
 

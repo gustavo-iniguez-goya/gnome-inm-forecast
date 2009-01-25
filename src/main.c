@@ -1666,6 +1666,45 @@ void display_radar	 	( BonoboUIComponent *uic, gpointer user_data, const char *n
 	g_object_unref (G_OBJECT(xml));
 }
 
+void display_lightnings	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	GdkPixbuf *pixbuf=0;
+	GladeXML *xml=0;
+	GtkWidget *img=0;
+	GtkWidget *win=0;
+	GtkWidget *combo_hour=0;
+	char rdr_img[256]={0};
+	
+	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
+	win = glade_xml_get_widget (xml, "win_radar");
+	img = glade_xml_get_widget (xml, "radar_img");
+	combo_hour = glade_xml_get_widget (xml, "combo_hour");
+	
+	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
+
+	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
+	
+	if (strncmp (name, "RayosP", 6) == 0){
+		g_snprintf ((char *)&rdr_img, 256, "%s%s", INM_RAYOS_IMG, "1900.gif");
+		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_rayos_combo_hour_changed), img);
+	}
+	else{
+		g_snprintf ((char *)&rdr_img, 256, "%s%s", INM_RAYOS_CANARIAS_IMG, "1900.gif");
+		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_rayos_canarias_combo_hour_changed), img);
+	}
+
+	printf ("displaying %s\n", rdr_img);
+	pixbuf = load_image ((char *)&rdr_img);
+	if (pixbuf){
+		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+		gtk_window_set_title (GTK_WINDOW(win), _("Lightnings images"));
+		gtk_widget_show (win);
+		g_object_unref (G_OBJECT (pixbuf));
+		pixbuf = 0;
+	}
+	g_object_unref (G_OBJECT(xml));
+}
+
 void display_nextdays_forecast	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	AppletData *applet_data = (AppletData *) user_data;
@@ -1803,6 +1842,8 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		BONOBO_UI_VERB ("AirMassProb", display_air_mass),
 		BONOBO_UI_VERB ("RadarPeninsulaProb", display_radar),
 		BONOBO_UI_VERB ("RadarCanariasProb", display_radar),
+		BONOBO_UI_VERB ("RayosP", display_lightnings),
+		BONOBO_UI_VERB ("RayosC", display_lightnings),
 		BONOBO_UI_VERB ("InformeAludes1", display_snow_warnings_nav),
 		BONOBO_UI_VERB ("InformeAludes2", display_snow_warnings_cat),
 		BONOBO_UI_VERB ("ForecastPicos", display_mountain_forecast),

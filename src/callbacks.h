@@ -27,6 +27,8 @@ void on_window_terminate 	( GtkWidget *widget, gpointer data );
 void on_daily_temp_rb1_toggled			 ( GtkWidget *widget, gpointer data );
 void on_daily_temp_rb2_toggled			 ( GtkWidget *widget, gpointer data );
 void on_airmass_combo_hour_changed	( GtkWidget *widget, gpointer data );
+void on_rayos_combo_hour_changed	( GtkWidget *widget, gpointer data );
+void on_rayos_canarias_combo_hour_changed	( GtkWidget *widget, gpointer data );
 void on_radar_combo_hour_changed	( GtkWidget *widget, gpointer data );
 void on_radar_canarias_combo_hour_changed	( GtkWidget *widget, gpointer data );
 void on_sat_combo_hour_changed	( GtkWidget *widget, gpointer data );

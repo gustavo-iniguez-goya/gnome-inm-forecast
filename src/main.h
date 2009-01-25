@@ -55,6 +55,15 @@
 #define INM_WWARNINGS_NEXT_DAYS_URL "http://www.aemet.es/es/eltiempo/prediccion/avisos?w=pmna&datos=img"
 #define INM_SNOW_WARNINGS_URL_1 "http://www2.inm.es/wwb/predi/mont/p18tarn1.txt"
 #define INM_SNOW_WARNINGS_URL_2 "http://www2.inm.es/wwb/predi/mont/p18tcat1.txt"
+#define INM_MOUNTAIN_FORECAST_PICOS "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=peu1"
+#define INM_MOUNTAIN_FORECAST_RIOJA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=rio1"
+#define INM_MOUNTAIN_FORECAST_IARAGONESA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=arn2"
+#define INM_MOUNTAIN_FORECAST_PIRI_NAVARRO "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=nav1"
+#define INM_MOUNTAIN_FORECAST_PIRI_ARAGONES "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=arn1"
+#define INM_MOUNTAIN_FORECAST_PIRI_CATALAN "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=cat1"
+#define INM_MOUNTAIN_FORECAST_GREDOS "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=gre1"
+#define INM_MOUNTAIN_FORECAST_GUADARRAMA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=mad2"
+#define INM_MOUNTAIN_FORECAST_SIERRA_NEVADA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=nev1"
 #define INM_NATIONAL_FORECAST_IMG "http://www.aemet.es/imagenes_d/eltiempo/prediccion/pais/p01wesp1.jpg"
 #define INM_DAILY_TEMPERATURE_MAX "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp099.gif"
 #define INM_DAILY_TEMPERATURE_MIN "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp098.gif"
@@ -166,6 +175,7 @@ void display_satellite_radar 	( BonoboUIComponent *uic, gpointer user_data, cons
 void display_spanish_forecast_img	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_prob_precipitation	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_snow_warnings	( BonoboUIComponent *uic, gpointer user_data, const char *name );
+void display_mountain_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_preferences_dialog	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_inm_website	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_about_dialog 	( BonoboUIComponent *uic, gpointer user_data, const char *name );

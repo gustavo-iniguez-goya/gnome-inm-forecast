@@ -1227,6 +1227,7 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 
 	temp = g_strdup (applet_data->buffer);
 	if (strstr(temp, "texto_entradilla") || 
+			strstr(temp, "texto_normal2") || 
 			strstr(temp, "Informaci&oacute;n nivol&oacute;gica") ||
 			strstr(temp, "ZONAS NO PROTEGIDAS") ||
 			strstr(temp, "ESTABILIDAD DEL MANTO") || strstr (temp, "RIESGO DE ALUDES")){
@@ -1236,10 +1237,13 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 		
 		textview = glade_xml_get_widget (xml, "textview");
 		textview_buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(textview));
+		gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW(textview), GTK_WRAP_WORD_CHAR);
 		
 		if (temp){
 			if (strstr(temp, "texto_entradilla"))
 				tokens = g_strsplit_set (strstr(temp, "texto_entradilla"), "<>", 2);
+			else if (strstr(temp, "texto_normal2"))
+				tokens = g_strsplit_set (strstr(temp, "texto_normal2"), "<>", 2);
 
 			if (tokens){
 				//printf ("REGEX:\n\n%s\n\nREGEX\n", g_regex_replace (regx, tokens[0], -1, 0, "", G_REGEX_MATCH_NOTEMPTY, NULL));
@@ -1252,12 +1256,33 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 					if (temp2[x] && temp2[x] == '\t'){
 						temp2[x] = ' ';
 					}
+					// break the loop here and now if we found '<form'
+					if (temp2[x] && temp2[x+1] && temp2[x+2] && temp2[x+3] &&
+						 temp2[x] == '<' && temp2[x+1] == 'f' && temp2[x+2] == 'o' && temp2[x+3] == 'r'){
+						temp2[x] = '\0';
+						break;
+					}
+					// clean up 
 					if (temp2[x] && temp2[x] == '<'){
 						for (i=x;i < strlen(temp2);i++){
 							if (temp2[i] && temp2[i] == '>'){
 								temp2[i] = ' ';
 								break;
 							}
+							if ((temp2[i] &&  temp2[i] == 'b' && temp2[i+1] == 'r') ||
+								(temp2[i] &&  temp2[i] == 'R' && temp2[i+1] == 'R')){
+								temp2[i] = '\r';
+								temp2[i+1] = '\n';
+							}else
+							// break the loop here and now if we found '="disclaimer"'
+							if (temp2[x] && temp2[x+1] && temp2[x+2] && temp2[x+3] && temp2[x+4] && temp2[x+5] &&
+								temp2[x+6] && temp2[x+7] && temp2[x+8] && temp2[x+9] &&temp2[x+10] &&temp2[x+11] && temp2[x+12] &&
+								temp2[x] == '=' && temp2[x+1] == '"' && temp2[x+2] == 'd' && temp2[x+3] == 'i' &&
+								temp2[x+4] == 's' && temp2[x+5] == 'c' && temp2[x+6] == 'l' && temp2[x+7] == 'a' &&
+								temp2[x+8] == 'i' && temp2[x+9] == 'm' && temp2[x+10] == 'e' && temp2[x+11] == 'r' && temp2[x+12] == '"'){
+								temp2[x] = '\0';
+								break;
+							}else
 							if (temp2[i])
 								temp2[i] = ' ';
 						x++;
@@ -1343,6 +1368,7 @@ static void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 	if (result == GNOME_VFS_ERROR_EOF){
 		printf ("Fin de lectura gnome_vfs_async_read()\n");
 		if (strstr(applet_data->buffer, "texto_entradilla") || 
+				strstr(applet_data->buffer, "texto_normal2") ||
 				strstr(applet_data->buffer, "PREDICCION") || 
 				strstr(applet_data->buffer, "Informaci&oacute;n nivol&oacute;gica") ||
 				strstr(applet_data->buffer, "ZONAS NO PROTEGIDAS") ||
@@ -1611,6 +1637,43 @@ void display_snow_warnings_cat		 ( BonoboUIComponent *uic, gpointer user_data, c
 	gnome_vfs_async_open (&applet_data->gvfs_handle, INM_SNOW_WARNINGS_URL_2, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
 }
 
+void display_mountain_forecast		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	AppletData *applet_data = (AppletData *) user_data;
+	
+	if (strncmp(name, "ForecastPicos", 13) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_PICOS, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "ForecastGredos", 14) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_GREDOS, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "ForecastGuadarrama", 18) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_GUADARRAMA, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "ForecastRioja", 13) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_RIOJA, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "ForecastAragon", 14) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_IARAGONESA, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "ForecastPirineoNavarro", 22) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_PIRI_NAVARRO, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "ForecastPirineoAragones", 23) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_PIRI_ARAGONES, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "ForecastPirineoCatalan", 22) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_PIRI_CATALAN, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "ForecastSierraNevada", 20) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_SIERRA_NEVADA, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else{
+		printf ("display_mountain_forecast(): No name supplied (%s)\n", name);
+	}
+	
+}
+
 void display_about_dialog 		( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	static GtkWidget *dialog;
@@ -1675,6 +1738,15 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		BONOBO_UI_VERB ("RainfallProb", display_prob_precipitation),
 		BONOBO_UI_VERB ("InformeAludes1", display_snow_warnings_nav),
 		BONOBO_UI_VERB ("InformeAludes2", display_snow_warnings_cat),
+		BONOBO_UI_VERB ("ForecastPicos", display_mountain_forecast),
+		BONOBO_UI_VERB ("ForecastGredos", display_mountain_forecast),
+		BONOBO_UI_VERB ("ForecastGuadarrama", display_mountain_forecast),
+		BONOBO_UI_VERB ("ForecastRioja", display_mountain_forecast),
+		BONOBO_UI_VERB ("ForecastAragon", display_mountain_forecast),
+		BONOBO_UI_VERB ("ForecastPirineoNavarro", display_mountain_forecast),
+		BONOBO_UI_VERB ("ForecastPirineoAragones", display_mountain_forecast),
+		BONOBO_UI_VERB ("ForecastPirineoCatalan", display_mountain_forecast),
+		BONOBO_UI_VERB ("ForecastSierraNevada", display_mountain_forecast),
 		BONOBO_UI_VERB ("Properties", display_preferences_dialog),
 		BONOBO_UI_VERB ("VisitINM", display_inm_website),
 		BONOBO_UI_VERB ("About", display_about_dialog),

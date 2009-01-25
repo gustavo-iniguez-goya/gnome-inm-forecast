@@ -36,18 +36,66 @@
 					pixname=""/>
 			</submenu>
 			<separator />
-			<menuitem name="Informe Aludes1"
-				verb="InformeAludes1"
-				_label="_Snowfall report (Navarra y Aragon)"
-				pixtype="stock"
-				pixname=""/>
-			<menuitem name="Informe Aludes2"
-				verb="InformeAludes2"
-				_label="_Snowfall report (Catalonya) "
-				pixtype="stock"
-				pixname=""/>
-		            <separator/>
 
+			<submenu name="mountain_forecast" _label="_Mountain weather forecast">
+				<menuitem name="Informe Aludes1"
+					verb="InformeAludes1"
+					_label="_Snowfall report (Navarra y Aragon)"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="Informe Aludes2"
+					verb="InformeAludes2"
+					_label="_Snowfall report (Catalonya) "
+					pixtype="stock"
+					pixname=""/>
+		            <separator/>
+				<menuitem name="Picos"
+					verb="ForecastPicos"
+					_label="_Picos de Europa"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="Gredos"
+					verb="ForecastGredos"
+					_label="_Sierra de Gredos"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="Guadarrama"
+					verb="ForecastGuadarrama"
+					_label="_Sierra de Guadarrama y Somosierra"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="Rioja"
+					verb="ForecastRioja"
+					_label="_Iberica Riojana"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="Aragon1"
+					verb="ForecastAragon"
+					_label="_Iberica Aragonesa"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="PiriNavarro"
+					verb="ForecastPirineoNavarro"
+					_label="_Pirineo Navarro"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="PiriAragones"
+					verb="ForecastPirineoAragones"
+					_label="_Pirineo Aragones"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="PiriCatalan"
+					verb="ForecastPirineoCatalan"
+					_label="_Pirineo Catalan"
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="SierraNevada"
+					verb="ForecastSierraNevada"
+					_label="_Sierra Nevada"
+					pixtype="stock"
+					pixname=""/>
+			</submenu>
+		            <separator/>
 			<menuitem name="Properties Item"
 				verb="Properties"
 				_label="_Preferences..."

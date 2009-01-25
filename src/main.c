@@ -494,6 +494,13 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 			*/
 			strcpy (applet_data->provincia, "");
 		}
+                else if (type == 3){ // Altitud estacion
+                        tokens = g_strsplit_set (temp_buf, "<>&:; ", 6);
+                        if (tokens[3]){
+                                g_snprintf (applet_data->city_long_desc, 126, _("%s\nAltitud: %s mts.\0"), applet_data->city_name, tokens[3]);
+                        }
+                        g_strfreev (tokens);
+                }
 		else if (type == 1){ // Fecha
 			int idx=0;
 			tokens = g_strsplit_set (temp_buf, "<>&;", -1);
@@ -937,6 +944,9 @@ static void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult r
 			//printf ("BUFFER: %s\n", applet_data->buffer);
 			if (strstr (applet_data->buffer, "Capital:"))
 				parse_dates_data (applet_data, strstr(applet_data->buffer, "Capital:"), 2);
+			
+			if (strstr (applet_data->buffer, "altitud:"))
+				parse_dates_data (applet_data, strstr(applet_data->buffer, "altitud:"), 3);
 
 			if (strstr (applet_data->buffer, "Elaborado:"))
 				parse_dates_data (applet_data, strstr(applet_data->buffer, "Elaborado:"), 0);

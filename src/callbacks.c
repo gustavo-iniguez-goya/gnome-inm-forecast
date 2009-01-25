@@ -80,7 +80,100 @@ void on_daily_temp_rb2_toggled			 ( GtkWidget *widget, gpointer data )
 	}
 }
 
+// FIXME: Create a common function for this if()'s
 void on_sat_combo_hour_changed			 ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf;
+	#define rdr_size 512
+	char img_radar[rdr_size]={0};
+	if (img){
+		if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "19:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1900.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "20:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "2000.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "21:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "2100.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "22:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "2200.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "23:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "2300.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "00:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0000.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "01:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0100.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "02:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0200.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "03:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0300.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "04:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0400.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "05:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0500.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "06:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0600.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "07:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0700.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "08:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0800.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "09:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0900.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "10:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1000.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "11:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1100.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "12:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1200.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "13:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1300.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "14:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1400.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "15:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1500.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "16:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1600.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "17:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1700.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "18:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1800.gif");
+		}
+		else
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1900.gif");
+
+		pixbuf = load_image ((char *)&img_radar);
+		if (pixbuf){
+			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+			g_object_unref (G_OBJECT (pixbuf));
+			pixbuf = 0;
+		}
+	}
+}
+
+// FIXME: Create a common function for this if()'s
+void on_radar_combo_hour_changed			 ( GtkWidget *widget, gpointer data )
 {
 	GtkImage *img = (GtkImage *) data;
 	GdkPixbuf *pixbuf;
@@ -171,6 +264,99 @@ void on_sat_combo_hour_changed			 ( GtkWidget *widget, gpointer data )
 	}
 }
 
+// FIXME: Create a common function for this if()'s
+void on_radar_canarias_combo_hour_changed		 ( GtkWidget *widget, gpointer data )
+{
+	GtkImage *img = (GtkImage *) data;
+	GdkPixbuf *pixbuf;
+	#define rdr_size 512
+	char img_radar[rdr_size]={0};
+	if (img){
+		if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "19:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1900.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "20:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "2000.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "21:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "2100.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "22:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "2200.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "23:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "2300.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "00:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0000.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "01:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0100.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "02:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0200.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "03:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0300.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "04:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0400.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "05:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0500.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "06:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0600.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "07:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0700.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "08:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0800.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "09:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0900.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "10:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1000.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "11:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1100.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "12:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1200.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "13:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1300.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "14:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1400.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "15:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1500.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "16:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1600.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "17:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1700.gif");
+		}
+		else if (strncmp (gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget)), "18:00", 5) == 0){
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1800.gif");
+		}
+		else
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1900.gif");
+
+		pixbuf = load_image ((char *)&img_radar);
+		if (pixbuf){
+			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
+			g_object_unref (G_OBJECT (pixbuf));
+			pixbuf = 0;
+		}
+	}
+}
+
+// FIXME: Create a common function for this if()'s
 void on_airmass_combo_hour_changed		 ( GtkWidget *widget, gpointer data )
 {
 	GtkImage *img = (GtkImage *) data;
@@ -254,62 +440,6 @@ void on_airmass_combo_hour_changed		 ( GtkWidget *widget, gpointer data )
 			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_AIR_MASS_IMG, "1900.jpg");
 
 		pixbuf = load_image ((char *)&img_radar);
-		if (pixbuf){
-			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-			g_object_unref (G_OBJECT (pixbuf));
-			pixbuf = 0;
-		}
-	}
-}
-
-void on_rb_00_toggled			 ( GtkWidget *widget, gpointer data )
-{
-	GtkImage *img = (GtkImage *) data;
-	GdkPixbuf *pixbuf;
-	if (img){
-		pixbuf = load_image (INM_RADAR0000_IMG);
-		if (pixbuf){
-			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-			g_object_unref (G_OBJECT (pixbuf));
-			pixbuf = 0;
-		}
-	}
-}
-
-void on_rb_06_toggled 			( GtkWidget *widget, gpointer data )
-{
-	GtkImage *img = (GtkImage *) data;
-	GdkPixbuf *pixbuf;
-	if (img){
-		pixbuf = load_image (INM_RADAR0600_IMG);
-		if (pixbuf){
-			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-			g_object_unref (G_OBJECT (pixbuf));
-			pixbuf = 0;
-		}
-	}
-}
-
-void on_rb_12_toggled 			( GtkWidget *widget, gpointer data )
-{
-	GtkImage *img = (GtkImage *) data;
-	GdkPixbuf *pixbuf;
-	if (img){
-		pixbuf = load_image (INM_RADAR1200_IMG);
-		if (pixbuf){
-			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-			g_object_unref (G_OBJECT (pixbuf));
-			pixbuf = 0;
-		}
-	}
-}
-
-void on_rb_18_toggled ( GtkWidget *widget, gpointer data )
-{
-	GtkImage *img = (GtkImage *) data;
-	GdkPixbuf *pixbuf;
-	if (img){
-		pixbuf = load_image (INM_RADAR1800_IMG);
 		if (pixbuf){
 			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
 			g_object_unref (G_OBJECT (pixbuf));

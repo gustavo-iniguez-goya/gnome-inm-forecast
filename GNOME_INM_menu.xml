@@ -39,6 +39,18 @@
 					_label="Air mass"
 					pixtype="stock"
 					pixname=""/>
+				<submenu name="Radar" _label="_Radar">
+					<menuitem name="RadarPeninsulaProb"
+						verb="RadarPeninsulaProb"
+						_label="Peninsula and Balearic Islands"
+						pixtype="stock"
+						pixname=""/>
+					<menuitem name="RadarCanariasProb"
+						verb="RadarCanariasProb"
+						_label="Canary Islands"
+						pixtype="stock"
+						pixname=""/>
+				</submenu>
 			</submenu>
 			<separator />
 

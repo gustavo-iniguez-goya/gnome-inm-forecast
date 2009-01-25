@@ -1458,27 +1458,25 @@ GdkPixbuf *load_image				( const char *url )
 
 void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
-	GladeXML *xml;
-	GtkWidget *img;
-	GtkWidget *win;
-	GtkWidget *rb1, *rb2, *rb3, *rb4;
-	GdkPixbuf *pixbuf;
+	GladeXML *xml=0;
+	GtkWidget *img=0;
+	GtkWidget *win=0;
+	GtkWidget *combo_hour=0;
+	GdkPixbuf *pixbuf=0;
+	char img_radar[256]={0};
 	
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
 	img = glade_xml_get_widget (xml, "radar_img");
-	rb1 = glade_xml_get_widget (xml, "rb_00");
-	rb2 = glade_xml_get_widget (xml, "rb_06");
-	rb3 = glade_xml_get_widget (xml, "rb_12");
-	rb4 = glade_xml_get_widget (xml, "rb_18");
+	combo_hour = glade_xml_get_widget (xml, "combo_hour");
+	
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
-	g_signal_connect (G_OBJECT(rb1), "toggled", G_CALLBACK(on_rb_00_toggled), img);
-	g_signal_connect (G_OBJECT(rb2), "toggled", G_CALLBACK(on_rb_06_toggled), img);
-	g_signal_connect (G_OBJECT(rb3), "toggled", G_CALLBACK(on_rb_12_toggled), img);
-	g_signal_connect (G_OBJECT(rb4), "toggled", G_CALLBACK(on_rb_18_toggled), img);
+	g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_sat_combo_hour_changed), img);
 
+	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 
-	pixbuf = load_image (INM_RADAR0000_IMG);
+	g_snprintf ((char *)&img_radar, 256, "%s%s", INM_RADAR_IMG, "1900.gif");
+	pixbuf = load_image ((char *)&img_radar);
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
 		gtk_window_set_title (GTK_WINDOW(win), _("Satellite image"));
@@ -1495,20 +1493,15 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 	GladeXML *xml;
 	GtkWidget *img;
 	GtkWidget *win;
-	GtkWidget *rb1, *rb2, *rb3, *rb4;
+	GtkWidget *combo_hour;
 
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
 	img = glade_xml_get_widget (xml, "radar_img");
-	rb1 = glade_xml_get_widget (xml, "rb_00");
-	rb2 = glade_xml_get_widget (xml, "rb_06");
-	rb3 = glade_xml_get_widget (xml, "rb_12");
-	rb4 = glade_xml_get_widget (xml, "rb_18");
-	gtk_widget_hide (rb1);
-	gtk_widget_hide (rb2);
-	gtk_widget_hide (rb3);
-	gtk_widget_hide (rb4);
+	combo_hour = glade_xml_get_widget (xml, "combo_hour");
 	
+	gtk_widget_hide (combo_hour);
+
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 	
 	pixbuf = load_image (INM_NATIONAL_FORECAST_IMG);
@@ -1609,7 +1602,7 @@ void display_air_mass	 	( BonoboUIComponent *uic, gpointer user_data, const char
 	GtkWidget *img=0;
 	GtkWidget *win=0;
 	GtkWidget *combo_hour=0;
-	char rdr_img[512]={0};
+	char rdr_img[256]={0};
 	
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
@@ -1618,10 +1611,12 @@ void display_air_mass	 	( BonoboUIComponent *uic, gpointer user_data, const char
 	
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 	g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_airmass_combo_hour_changed), img);
+
+	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 	
-	g_snprintf ((char *)&rdr_img, 512, "%s%s", INM_RADAR_AIR_MASS_IMG, "1900.jpg");
+	g_snprintf ((char *)&rdr_img, 256, "%s%s", INM_RADAR_AIR_MASS_IMG, "1900.jpg");
 	printf ("displaying %s\n", rdr_img);
-	pixbuf = load_image (&rdr_img);
+	pixbuf = load_image ((char *)&rdr_img);
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
 		gtk_window_set_title (GTK_WINDOW(win), _("Air mass"));

@@ -1777,6 +1777,67 @@ void display_mountain_forecast		 ( BonoboUIComponent *uic, gpointer user_data, c
 	
 }
 
+void display_marine_forecast		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	AppletData *applet_data = (AppletData *) user_data;
+	
+	if (strncmp(name, "MarineForecast1", 15) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_FORECAST_1, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "MarineForecast2", 15) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_FORECAST_2, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "MarineForecast3", 15) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_FORECAST_3, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "MarineForecast4", 15) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_FORECAST_4, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "MarineForecast5", 15) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_FORECAST_5, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "MarineForecast6", 15) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_FORECAST_6, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "MarineForecast7", 15) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_FORECAST_7, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "MarineForecast8", 15) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_FORECAST_8, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "NAtlantic1", 10) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_1, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "NAtlantic2", 10) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_2, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "NAtlantic3", 10) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_3, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "Med1", 4) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_4, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "Med2", 4) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_5, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "Med3", 4) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_6, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "SAtlantic1", 10) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_7, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "SAtlantic2", 10) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_8, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else if (strncmp(name, "SAtlantic3", 10) == 0){
+		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_9, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+	}
+	else{
+		printf ("display_mountain_forecast(): No name supplied (%s)\n", name);
+	}
+	
+}
+
 void display_about_dialog 		( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	static GtkWidget *dialog;
@@ -1855,6 +1916,23 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		BONOBO_UI_VERB ("ForecastPirineoAragones", display_mountain_forecast),
 		BONOBO_UI_VERB ("ForecastPirineoCatalan", display_mountain_forecast),
 		BONOBO_UI_VERB ("ForecastSierraNevada", display_mountain_forecast),
+		BONOBO_UI_VERB ("MarineForecast1", display_marine_forecast),
+		BONOBO_UI_VERB ("MarineForecast2", display_marine_forecast),
+		BONOBO_UI_VERB ("MarineForecast3", display_marine_forecast),
+		BONOBO_UI_VERB ("MarineForecast4", display_marine_forecast),
+		BONOBO_UI_VERB ("MarineForecast5", display_marine_forecast),
+		BONOBO_UI_VERB ("MarineForecast6", display_marine_forecast),
+		BONOBO_UI_VERB ("MarineForecast7", display_marine_forecast),
+		BONOBO_UI_VERB ("MarineForecast8", display_marine_forecast),
+		BONOBO_UI_VERB ("NAtlantic1", display_marine_forecast),
+		BONOBO_UI_VERB ("NAtlantic2", display_marine_forecast),
+		BONOBO_UI_VERB ("NAtlantic3", display_marine_forecast),
+		BONOBO_UI_VERB ("Med1", display_marine_forecast),
+		BONOBO_UI_VERB ("Med2", display_marine_forecast),
+		BONOBO_UI_VERB ("Med3", display_marine_forecast),
+		BONOBO_UI_VERB ("SAtlantic1", display_marine_forecast),
+		BONOBO_UI_VERB ("SAtlantic2", display_marine_forecast),
+		BONOBO_UI_VERB ("SAtlantic3", display_marine_forecast),
 		BONOBO_UI_VERB ("Properties", display_preferences_dialog),
 		BONOBO_UI_VERB ("VisitINM", display_inm_website),
 		BONOBO_UI_VERB ("About", display_about_dialog),

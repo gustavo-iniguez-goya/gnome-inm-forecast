@@ -125,6 +125,104 @@
 					pixname=""/>
 			</submenu>
 		            <separator/>
+			<submenu name="marine_forecast" _label="_Marine weather forecast">
+				<submenu name="forecast_costas" _label="_Coastal areas">
+					<menuitem name="Marine forecast1"
+						verb="MarineForecast1"
+						_label="_Asturias, Basque Country and Cantabria Coasts"
+						pixtype="stock"
+						pixname=""/>
+					<menuitem name="Marine forecast2"
+						verb="MarineForecast2"
+						_label="_Galicia Coast"
+						pixtype="stock"
+						pixname=""/>
+					<menuitem name="Marine forecast3"
+						verb="MarineForecast3"
+						_label="_Catalonia Coast"
+						pixtype="stock"
+						pixname=""/>
+					<menuitem name="Marine forecast4"
+						verb="MarineForecast4"
+						_label="_Valencia and Murcia Coast"
+						pixtype="stock"
+						pixname=""/>
+					<menuitem name="Marine forecast5"
+						verb="MarineForecast5"
+						_label="_Eastern Andalusia, Melilla and Alboran Coast"
+						pixtype="stock"
+						pixname=""/>
+					<menuitem name="Marine forecast6"
+						verb="MarineForecast6"
+						_label="_Western Andalusia and Ceuta Coast"
+						pixtype="stock"
+						pixname=""/>
+					<menuitem name="Marine forecast7"
+						verb="MarineForecast7"
+						_label="_Balearic Islands Coast"
+						pixtype="stock"
+						pixname=""/>
+					<menuitem name="Marine forecast8"
+						verb="MarineForecast8"
+						_label="_Canary Islands Coast"
+						pixtype="stock"
+						pixname=""/>
+				</submenu>
+				<submenu name="forecast_sea" _label="_Open sea">
+					<submenu name="forecast_sea1" _label="_North Atlantic">
+						<menuitem name="NAtlantic1"
+							verb="NAtlantic1"
+							_label="_Last warning"
+							pixtype="stock"
+							pixname=""/>
+						<menuitem name="NAtlantic2"
+							verb="NAtlantic2"
+							_label="_Next hours"
+							pixtype="stock"
+							pixname=""/>
+						<menuitem name="NAtlantic3"
+							verb="NAtlantic3"
+							_label="_Tendency"
+							pixtype="stock"
+							pixname=""/>
+					</submenu>
+					<submenu name="forecast_sea2" _label="_Mediterranean">
+						<menuitem name="Med1"
+							verb="Med1"
+							_label="_Last warning"
+							pixtype="stock"
+							pixname=""/>
+						<menuitem name="Med2"
+							verb="Med2"
+							_label="_Next hours"
+							pixtype="stock"
+							pixname=""/>
+						<menuitem name="Med3"
+							verb="Med3"
+							_label="_Tendency"
+							pixtype="stock"
+							pixname=""/>
+					</submenu>
+					<submenu name="forecast_sea3" _label="_SouthAtlantic">
+						<menuitem name="SAtlantic1"
+							verb="SAtlantic1"
+							_label="_Last warning"
+							pixtype="stock"
+							pixname=""/>
+						<menuitem name="SAtlantic2"
+							verb="SAtlantic2"
+							_label="_Next hours"
+							pixtype="stock"
+							pixname=""/>
+						<menuitem name="SAtlantic3"
+							verb="SAtlantic3"
+							_label="_Tendency"
+							pixtype="stock"
+							pixname=""/>
+					</submenu>
+				</submenu>
+			</submenu>
+		            <separator/>
 			<menuitem name="Properties Item"
 				verb="Properties"
 				_label="_Preferences..."

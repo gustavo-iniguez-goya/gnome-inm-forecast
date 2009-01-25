@@ -42,21 +42,47 @@
 #define KEY_GNOME_PROXY_AUTH "/system/http_proxy/use_authentication"
 
 #define INM_URL "http://www.aemet.es"
+
 #define INM_FORECAST_URL "http://www.aemet.es/es/eltiempo/prediccion/localidades?l="
 #define INM_RADAR_AIR_MASS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s91g"
+
 #define INM_RADAR_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/r99g"
 #define INM_RAYOS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/r79g"
+
 #define INM_RAYOS_CANARIAS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/r78g"
 #define INM_RADAR_CANARIAS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/r98g"
+
 #define INM_SAT_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s93g"
+
 #define INM_FORECAST_NEXTDAYS_URL "http://www.aemet.es/es/eltiempo/prediccion/espana?w=5"
 #define INM_FORECAST_TOMORROW_URL "http://www.aemet.es/es/eltiempo/prediccion/espana?w=3"
 #define INM_FORECAST_TODAY_URL "http://www.aemet.es/es/eltiempo/prediccion/espana?w=1"
+
 #define INM_WWARNINGS_TODAY_URL "http://www.aemet.es/es/eltiempo/prediccion/avisos?w=hoy&datos=img"
 #define INM_WWARNINGS_TOMORROW_URL "http://www.aemet.es/es/eltiempo/prediccion/avisos?w=mna&datos=img"
 #define INM_WWARNINGS_NEXT_DAYS_URL "http://www.aemet.es/es/eltiempo/prediccion/avisos?w=pmna&datos=img"
+
 #define INM_SNOW_WARNINGS_URL_1 "http://www2.inm.es/wwb/predi/mont/p18tarn1.txt"
 #define INM_SNOW_WARNINGS_URL_2 "http://www2.inm.es/wwb/predi/mont/p18tcat1.txt"
+
+#define INM_MARINE_FORECAST_1 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=can1"
+#define INM_MARINE_FORECAST_2 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=gal1"
+#define INM_MARINE_FORECAST_3 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=cat1"
+#define INM_MARINE_FORECAST_4 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=val1"
+#define INM_MARINE_FORECAST_5 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=and2"
+#define INM_MARINE_FORECAST_6 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=and1"
+#define INM_MARINE_FORECAST_7 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=bal1"
+#define INM_MARINE_FORECAST_8 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=coo1"
+#define INM_MARINE_OPENSEA_1 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=1&opc2=0&zona=atl1&datos=dat"
+#define INM_MARINE_OPENSEA_2 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=1&opc2=1&zona=atl1&datos=dat"
+#define INM_MARINE_OPENSEA_3 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=1&opc2=2&zona=atl1&datos=dat"
+#define INM_MARINE_OPENSEA_4 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=1&opc2=0&zona=med1&datos=dat"
+#define INM_MARINE_OPENSEA_5 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=1&opc2=1&zona=med1&datos=dat"
+#define INM_MARINE_OPENSEA_6 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=1&opc2=2&zona=med1&datos=dat"
+#define INM_MARINE_OPENSEA_7 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=1&opc2=0&zona=atl2&datos=dat"
+#define INM_MARINE_OPENSEA_8 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=1&opc2=1&zona=atl2&datos=dat"
+#define INM_MARINE_OPENSEA_9 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=1&opc2=2&zona=atl2&datos=dat"
+
 #define INM_MOUNTAIN_FORECAST_PICOS "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=peu1"
 #define INM_MOUNTAIN_FORECAST_RIOJA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=rio1"
 #define INM_MOUNTAIN_FORECAST_IARAGONESA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=arn2"
@@ -67,14 +93,17 @@
 #define INM_MOUNTAIN_FORECAST_GUADARRAMA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=mad2"
 #define INM_MOUNTAIN_FORECAST_SIERRA_NEVADA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=nev1"
 #define INM_NATIONAL_FORECAST_IMG "http://www.aemet.es/imagenes_d/eltiempo/prediccion/pais/p01wesp1.jpg"
+
 #define INM_DAILY_TEMPERATURE_MAX "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp099.gif"
 #define INM_DAILY_TEMPERATURE_MIN "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp098.gif"
+
 #define INM_PROB_PRECIP_005 "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gp005.gif"
 #define INM_PROB_PRECIP_020 "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gp020.gif"
 #define INM_PROB_PRECIP_100 "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gp100.gif"
 #define INM_PROB_PRECIP_200 "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gp200.gif"
 #define INM_PROB_PRECIP_AVG "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gmedi.gif"
 #define INM_PROB_PRECIP_MAX "http://www.aemet.es/imagenes_d/eltiempo/prediccion/precipitacion/dw1gmaxi.gif"
+
 #define INM_NAMES_LATEST_DATA "http://www.inm.es/web/infmet/tobsr/bin/nombres.js"
 #define INM_LATEST_DATA "http://www.inm.es/wwb/tobsr/emasdat.js"
 #define INM_SPAIN_IMG PACKAGE_DIR"pixmaps/espcan.jpg"

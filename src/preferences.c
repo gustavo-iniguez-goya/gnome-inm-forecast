@@ -24,7 +24,6 @@ void 		create_preferences_win ( AppletData *applet_data )
 	int size=0;
 	char **buf;
 	char **tokens=0;
-	GtkWidget *win=0;
 	GtkWidget *loc_lbl=0;
 	GtkWidget *cmd_ok=0, *cmd_cancel=0;
 	GtkWidget *table6=0;
@@ -32,13 +31,15 @@ void 		create_preferences_win ( AppletData *applet_data )
 	GList *dir_list;
 	GnomeVFSFileInfo *dir_info;
 	int i=0, days=0;
+	GtkTreeIter iter;
+	char *tmp=0;
 
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_prefs", NULL);
-	applet_data->prefs->win = win = glade_xml_get_widget (xml, "win_prefs");
+	applet_data->prefs->win = glade_xml_get_widget (xml, "win_prefs");
 	applet_data->prefs->entry_code = glade_xml_get_widget (xml, "entry_code");
 	applet_data->prefs->spin_interval = glade_xml_get_widget (xml, "spin_interval");
 	applet_data->prefs->spin_days = glade_xml_get_widget (xml, "spin_days");
-	applet_data->prefs->tree_prov = glade_xml_get_widget (xml, "tree_prov");
+	//applet_data->prefs->tree_prov = glade_xml_get_widget (xml, "tree_prov");
 	applet_data->prefs->chk_station = glade_xml_get_widget (xml, "chk_station");
 	applet_data->prefs->prov_search_entry = glade_xml_get_widget (xml, "prov_search_entry");
 	table6 = glade_xml_get_widget (xml, "table6");
@@ -54,19 +55,20 @@ void 		create_preferences_win ( AppletData *applet_data )
 		int x=0;
 		while (tokens[x] && strcmp(tokens[x], "") != 0){
 			//printf ("t1: %s t2: %s\n", tokens[x], tokens[x+1]);
-			gtk_list_store_append (applet_data->prefs->list_store, &applet_data->prefs->iter);
-			gtk_list_store_set (applet_data->prefs->list_store, &applet_data->prefs->iter, 0, tokens[x], -1);
-			gtk_list_store_set (applet_data->prefs->list_store, &applet_data->prefs->iter, 1, tokens[x+1], -1);
+			gtk_list_store_append (applet_data->prefs->list_store, &iter);
+			gtk_list_store_set (applet_data->prefs->list_store, &iter, 0, tokens[x], -1);
+			gtk_list_store_set (applet_data->prefs->list_store, &iter, 1, tokens[x+1], -1);
 			x+=2;
 		}
+		g_strfreev (tokens);
+		tokens = 0;
 	}
 	
-	g_strfreev (tokens);
-	tokens = 0;
 	if (buf){
 		g_free (buf);
 		buf = 0;
 	}
+	//gtk_tree_iter_free (&iter);
 	
 	gtk_entry_completion_set_model (GTK_ENTRY_COMPLETION(applet_data->prefs->entry_cmpt), GTK_TREE_MODEL(applet_data->prefs->list_store));
 	gtk_entry_completion_set_text_column (applet_data->prefs->entry_cmpt, 1);
@@ -78,8 +80,15 @@ void 		create_preferences_win ( AppletData *applet_data )
 	gtk_table_attach (GTK_TABLE(table6), GTK_WIDGET(applet_data->prefs->combo_theme), 1, 2, 4, 5, 0, 0, 0, 0);
 	loc_lbl = glade_xml_get_widget (xml, "location_lbl");
 	//printf ("City saved: %s\n", (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "city", NULL));
-	gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->entry_code), (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "city", NULL));
+
+	tmp = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "city", NULL);
+	gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->entry_code), tmp);
 	applet_data->prefs->code = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL);
+
+	if (tmp){
+		g_free (tmp);
+		tmp = NULL;
+	}
 	
 	//gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->prov_search_entry), (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_name", NULL));
 	//applet_data->prefs->station_code = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "station_code", NULL);
@@ -92,7 +101,14 @@ void 		create_preferences_win ( AppletData *applet_data )
 		i = 60;
 
 	applet_data->prefs->theme_entry = gtk_bin_get_child(GTK_BIN(applet_data->prefs->combo_theme));
-	gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->theme_entry), (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "theme", NULL));
+
+	tmp = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "theme", NULL);
+	gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->theme_entry), tmp);
+	if (tmp){
+		g_free (tmp);
+		tmp = NULL;
+	}
+
 	/* Load theme directories */
 	gnome_vfs_directory_list_load (&dir_list, PIXMAPS_DIR, GNOME_VFS_FILE_INFO_DEFAULT);
 	while (dir_list){
@@ -107,9 +123,16 @@ void 		create_preferences_win ( AppletData *applet_data )
 	g_list_free (dir_list);
 	dir_list = 0;
 	
-	days = (int)g_ascii_strtod (panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "days", NULL), NULL);
+	tmp = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "days", NULL);
+	days = (int)g_ascii_strtod (tmp, NULL);
 	if (days == 0)
 		days = 10;
+
+	if (tmp){
+		g_free (tmp);
+		tmp = NULL;
+	}
+
 	gtk_spin_button_set_value (GTK_SPIN_BUTTON(applet_data->prefs->spin_interval), (int)i);
 	gtk_spin_button_set_value (GTK_SPIN_BUTTON(applet_data->prefs->spin_days), (int)days);
 	
@@ -118,7 +141,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 	cmd_ok = glade_xml_get_widget (xml, "cmd_ok");
 	cmd_cancel = glade_xml_get_widget (xml, "cmd_cancel");
 	g_signal_connect (G_OBJECT(applet_data->prefs->win), "destroy", G_CALLBACK(gtk_widget_destroyed), &applet_data->prefs->win);
-	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_preferences_destroy), applet_data);
+	//g_signal_connect (G_OBJECT(applet_data->prefs->win), "destroy", G_CALLBACK(on_preferences_destroy), applet_data);
 	g_signal_connect (G_OBJECT(cmd_ok), "clicked", G_CALLBACK(on_cmd_ok_clicked), applet_data);
 	g_signal_connect (G_OBJECT(cmd_cancel), "clicked", G_CALLBACK(on_cmd_cancel_clicked), applet_data);
 	g_signal_connect (G_OBJECT(applet_data->prefs->entry_code), "changed", G_CALLBACK(location_entry_changed), applet_data);
@@ -130,11 +153,13 @@ void 		create_preferences_win ( AppletData *applet_data )
 	g_signal_connect (G_OBJECT(applet_data->prefs->prov_search_entry), "key-press-event", G_CALLBACK(station_entry_event), applet_data);
 	g_signal_connect (G_OBJECT(applet_data->prefs->prov_search_entry), "button-press-event", G_CALLBACK(station_entry_event), applet_data);
 	
-	g_signal_connect (G_OBJECT(applet_data->prefs->tree_prov), "row-activated", G_CALLBACK(on_station_tree_selection), applet_data);
-	gtk_widget_show_all (win);
+	//g_signal_connect (G_OBJECT(applet_data->prefs->tree_prov), "row-activated", G_CALLBACK(on_station_tree_selection), applet_data);
+	gtk_widget_show_all (applet_data->prefs->win);
 	
 	g_object_unref (G_OBJECT (xml));
 }
+
+/*
 void 		create_stations_tree ( AppletData *applet_data )
 {
 	GnomeVFSResult result;
@@ -163,17 +188,16 @@ void 		create_stations_tree ( AppletData *applet_data )
 		int x=0;
 		while (tokens[x] && strcmp(tokens[x], "") != 0){
 			if (tokens[x+1] && tokens[x+2]){
-				//printf ("[%02d]: t1: %s t2: %s - PROV: %s\n", x, tokens[x], tokens[x+1], str_prov);
 				if (strcmp (tokens[x+2], str_prov) != 0){
 					gtk_tree_store_append(applet_data->prefs->tree_store, &it, NULL);
-					gtk_tree_store_set (applet_data->prefs->tree_store, &it, 0, tokens[x+2], -1); /* Provincia */
+					gtk_tree_store_set (applet_data->prefs->tree_store, &it, 0, tokens[x+2], -1); // Provincia
 				}
-				
-				/* Ciudad */
+
+				// Ciudad
 				gtk_tree_store_append(applet_data->prefs->tree_store, &child, &it);
 				gtk_tree_store_set (applet_data->prefs->tree_store, &child, 0, tokens[x+1], -1);
-				
-				/* Codigo */
+
+				// Codigo
 				gtk_tree_store_set (applet_data->prefs->tree_store, &child, 1, tokens[x], -1);
 				strncpy (str_prov, tokens[x+2], 24);
 			}
@@ -192,7 +216,7 @@ void 		create_stations_tree ( AppletData *applet_data )
 	g_free (str_prov);	
 	str_prov = 0;
 }
-
+*/
 
 
 
@@ -217,6 +241,8 @@ void		on_cmd_cancel_clicked ( GtkWidget *widget, AppletData *applet_data )
 
 void		on_cmd_ok_clicked ( GtkWidget *widget, AppletData *applet_data )
 {
+	char *text=0;
+
 	if (applet_data){
 		applet_data->interval = (int)gtk_spin_button_get_value (GTK_SPIN_BUTTON(applet_data->prefs->spin_interval));
 		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "code", applet_data->prefs->code, NULL);
@@ -231,13 +257,17 @@ void		on_cmd_ok_clicked ( GtkWidget *widget, AppletData *applet_data )
 		
 		//printf ("cmd ok\nCode: %s\n", applet_data->prefs->code);
 		//printf ("Theme: %s\n", gtk_combo_box_get_active_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme)));
-		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "theme", gtk_combo_box_get_active_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme)), NULL);
-		g_snprintf (applet_data->theme, 254, "%s\0", gtk_combo_box_get_active_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme)));
+		text = gtk_combo_box_get_active_text (GTK_COMBO_BOX(applet_data->prefs->combo_theme));
+		panel_applet_gconf_set_string (PANEL_APPLET(applet_data->applet), "theme", text, NULL);
+		g_snprintf (applet_data->theme, 254, "%s\0", text);
+		g_free (text);
+
 		update_location (applet_data);
 		close_prefs_window (applet_data);
 	}
 }
 
+/*
 void 		on_station_tree_selection ( GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data)
 {
 	GtkTreeSelection *selection;
@@ -245,7 +275,7 @@ void 		on_station_tree_selection ( GtkTreeView *tree_view, GtkTreePath *path, Gt
 	GtkTreeIter       iter;
 	AppletData *applet_data = (AppletData *)user_data;
 
-/* This will only work in single or browse selection mode! */
+// This will only work in single or browse selection mode! 
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(applet_data->prefs->tree_prov));
 	if (gtk_tree_selection_get_selected(selection, &model, &iter))
@@ -279,6 +309,7 @@ void 		on_station_tree_selection ( GtkTreeView *tree_view, GtkTreePath *path, Gt
 		}
 	}
 }
+*/
 
 void 		location_entry_changed ( GtkWidget *widget, AppletData *applet_data )
 {
@@ -321,11 +352,16 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 				gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter, 0, &code, -1);
 				strncpy (applet_data->prefs->code, code, 5);
 				printf ("0-Code for %s: %s\n", city, code);
-				if (code)
+				if (code){
 					g_free (code);
+					code = 0;
+				}
 				
-				if (city)
+				if (city){
 					g_free (city);
+					city = 0;
+				}
+
 				break;
 			}
 		}
@@ -337,14 +373,19 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 					strncpy (applet_data->prefs->code, code, 5);
 					printf ("1-Code for %s: %s\n", city, code);
 					g_free (code);
+					code = 0;
 				}
-				if (city)
+				if (city){
 					g_free (city);
+					city = 0;
+				}
 				break;
 			}
 		}
-		if (city)
+		if (city){
 			g_free (city);
+			city = 0;
+		}
 
 		if (type == 0)
 			valid = gtk_tree_model_iter_next (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter);
@@ -359,12 +400,25 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 void 		close_prefs_window ( AppletData *applet_data )
 {
 	/* Clean not needed data */
+
+	//gtk_tree_view_set_model (GTK_TREE_VIEW(applet_data->prefs->tree_prov), NULL);
+	//g_object_unref (G_OBJECT (applet_data->prefs->tree_store));
+	
+	printf ("Freeing memory: entry_cmpt\n");
 	gtk_entry_completion_set_model (applet_data->prefs->entry_cmpt, NULL);
-	g_object_unref (G_OBJECT (applet_data->prefs->list_store));
-	gtk_tree_view_set_model (GTK_TREE_VIEW(applet_data->prefs->tree_prov), NULL);
-	g_object_unref (G_OBJECT (applet_data->prefs->tree_store));
 	g_object_unref (G_OBJECT (applet_data->prefs->entry_cmpt));
+
+	printf ("Freeing memory: list_store\n");
+	gtk_list_store_clear (GTK_LIST_STORE(applet_data->prefs->list_store));
+	g_object_unref (G_OBJECT (applet_data->prefs->list_store));
+
+	printf ("Freeing memory: combo_theme\n");
 	gtk_widget_destroy (GTK_WIDGET(applet_data->prefs->combo_theme));
+	
+	printf ("Freeing memory: common widgets\n");
+	gtk_widget_destroy (GTK_WIDGET (applet_data->prefs->entry_code));
+
 	if (applet_data->prefs->win)
 		quit (applet_data->prefs->win);
+
 }

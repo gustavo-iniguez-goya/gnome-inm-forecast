@@ -712,9 +712,19 @@ void on_prob_precip_toggled_max ( GtkWidget *widget, gpointer data )
 
 void on_applet_destroy 			( GtkWidget *widget, AppletData *applet_data )
 {
+	int x=0;
 	printf ("Applet destroy\n");
 	if (applet_data){
 		gtk_timeout_remove (applet_data->timer);
+		for (x=0;x < 10;x++){
+			g_free (applet_data->day_info[x].state);
+			g_free (applet_data->day_info[x].precip);
+			g_free (applet_data->day_info[x].cota_nieve);
+			g_free (applet_data->day_info[x].t_max);
+			g_free (applet_data->day_info[x].t_min);
+			g_free (applet_data->day_info[x].day);
+			g_free (applet_data->day_info[x].wind);
+		}
 		g_free (applet_data->day_info);
 		g_free (applet_data->prefs->code);
 		g_free (applet_data->prefs->station_code);

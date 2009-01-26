@@ -51,7 +51,7 @@ static char *convert_str_to_utf8 	( char *string )
 					strcpy (temp_buf, "");
 		
 		if (bk_utf8){
-			free (bk_utf8);
+			g_free (bk_utf8);
 			bk_utf8=0;
 		}
 		return temp_buf;
@@ -423,7 +423,7 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 		g_strfreev (tokens);
 		
 	if (temp_buf){
-		free (temp_buf);
+		g_free (temp_buf);
 		temp_buf = NULL;
 	}
 
@@ -549,7 +549,7 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 			
 			g_strfreev (tokens);
 		}
-		free (temp_buf);
+		g_free (temp_buf);
 		temp_buf = NULL;
 	}
 	temp_buf = 0;
@@ -801,7 +801,7 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 			//printf ("Max: %s\n", tokens[idx]);
 		g_strfreev (tokens);
 		if (temp_buf){
-			free (temp_buf);
+			g_free (temp_buf);
 			temp_buf = 0;
 		}
 	}
@@ -925,7 +925,7 @@ gboolean check_latest_data	( AppletData *applet_data )
 	}
 
 	if (temp){
-		free (temp);
+		g_free (temp);
 		temp = NULL;
 	}
 	if (tp){

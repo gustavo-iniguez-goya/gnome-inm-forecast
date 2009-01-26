@@ -716,7 +716,15 @@ void on_applet_destroy 			( GtkWidget *widget, AppletData *applet_data )
 	if (applet_data){
 		gtk_timeout_remove (applet_data->timer);
 		g_free (applet_data->day_info);
+		g_free (applet_data->prefs->code);
+		g_free (applet_data->prefs->station_code);
 		g_free (applet_data->prefs);
+		g_free (applet_data->show_days);
+		g_free (applet_data->theme);
+		g_free (applet_data->city_name);
+		g_free (applet_data->city_long_desc);
+		g_free (applet_data->last_update);
+		g_free (applet_data->provincia);
 		g_free (applet_data);
 	}
 

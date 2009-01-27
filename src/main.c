@@ -1214,9 +1214,9 @@ void display_wwarnings_n		 ( BonoboUIComponent *uic, gpointer user_data, const c
 static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, gpointer callback_data)
 {
 	GladeXML *xml;
-	static GtkWidget *textview;
-	static GtkWidget *win;
-	static GtkTextBuffer *textview_buffer;
+	GtkWidget *textview;
+	GtkWidget *win;
+	GtkTextBuffer *textview_buffer;
 	char **tokens=0;
 	char *temp=0, *temp2=0, *temp3=0;
 	//char *str_regx=0;
@@ -1314,6 +1314,7 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 			gtk_window_set_title (GTK_WINDOW(win), _("No data"));
 			gtk_widget_show (win);
 		}
+		g_object_unref (G_OBJECT(xml));
 	}
 	else{
 		gtk_text_buffer_set_text (textview_buffer, _("No data"), 10);

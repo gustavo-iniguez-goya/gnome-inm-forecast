@@ -60,6 +60,76 @@ static char *convert_str_to_utf8 	( char *string )
 		return NULL;
 }
 
+/*
+static void save_forecast_report	( const char *buf, int type )
+{
+	GnomeVFSHandle *ghandle=0;
+	GDate *d;
+	char filename[256]={0};
+	char dirname[128]={0};
+	char dir1[128]={0};
+	int m_ret=0;
+	GnomeVFSFileSize buf_len=0;
+	GnomeVFSFileSize bytes_written;
+	GnomeVFSResult gvfs_result;
+	char *report_type[TOTAL_REPORTS] = {
+			"snowfalls-pirineo-navarro-report",
+			"snowfalls-pirineo-catalan-report",
+			"today-report",
+			"dayaftertomorrow-report",
+			"nextdays-report",
+			"picos-de-europa-report",
+			"sierra-de-gredos-report",
+			"sierra-de-guadarrama-report",
+			"iberica-riojana-report",
+			"iberica-aragonesa-report",
+			"pirineo-navarro-report",
+			"pirineo-catalan-report",
+			"sierra-nevada-report"
+	};
+
+	d = g_date_new ();
+	g_date_set_time_t (d, time(NULL));
+
+	g_snprintf (dirname, 128, "/tmp/aemet/%d/%d\0", g_date_get_year(d), g_date_get_month(d));
+
+	m_ret = g_mkdir_with_parents (dirname, 755);
+	if (m_ret == -1)
+		printf ("Error creando %s\n", dirname);
+
+	g_snprintf (filename, 256, "%s/%s-%d%d%d.txt", dirname, report_type[type], g_date_get_day(d), g_date_get_month(d), g_date_get_year(d));
+	printf ("filename: %s - %s\n", filename, report_type[type]);
+
+	buf_len = strlen (buf);
+	printf ("buffer length: %d\n", buf_len);
+
+	gvfs_result = gnome_vfs_create (&ghandle, filename, GNOME_VFS_OPEN_WRITE, TRUE, 644);
+	if (gvfs_result == GNOME_VFS_OK){
+	
+		gvfs_result = gnome_vfs_open (&ghandle, filename, GNOME_VFS_OPEN_WRITE);
+		if (gvfs_result == GNOME_VFS_OK){
+			if (gnome_vfs_write (ghandle, buf, buf_len, &bytes_written) == GNOME_VFS_OK){
+				printf ("Datos guardados correctamente. %d escritos\n", bytes_written);
+			}
+			else{
+				printf ("Error writing file %s:\n%s\n", filename, gnome_vfs_result_to_string(gvfs_result));
+			}
+		}
+		else{
+			printf ("Error opening %s: %s\n", filename, gnome_vfs_result_to_string(gvfs_result));
+		}
+	}
+	else{
+		printf ("Error creating %s: %s\n", filename, gnome_vfs_result_to_string(gvfs_result));
+	}
+	if (gnome_vfs_close (&ghandle) == GNOME_VFS_OK){
+		printf ("Fichero cerrado correctamente: %s\n", filename);
+	}
+	
+	g_date_free (d);
+}
+*/
+
 static void message_box 	( AppletData *applet_data, GtkMessageType type, GtkButtonsType buttons, const char *text, const char *secondary_text )
 {
 	GtkWidget *dialog=0;
@@ -1338,6 +1408,9 @@ static void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result,
 		temp3 = 0;
 	}
 	if (applet_data->buffer){
+	
+		//save_forecast_report (applet_data->buffer, SNOWFALLS_1);
+
 		g_free (applet_data->buffer);
 		applet_data->buffer = NULL;
 	}

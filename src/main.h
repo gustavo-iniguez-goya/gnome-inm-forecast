@@ -119,6 +119,23 @@ enum DATA_TYPE {
 	UV
 };
 
+enum REPORT_TYPE {
+	SNOWFALLS_1 = 0, // Pirineo navarro
+	SNOWFALLS_2, // Pirineo catalan
+	CURRENT_REPORT,
+	DAYAFTERTOMORROW,
+	NEXT_DAYS,
+	PICOS,
+	GREDOS,
+	GUADARRAMA,
+	RIOJA,
+	IARAGONESA,
+	PNAVARRO,
+	PCATALAN,
+	SIERRA_NEVADA,
+	TOTAL_REPORTS
+};
+
 typedef struct _stationInformation {
 	char	*hora_utc;
 	char	*hora_oficial;

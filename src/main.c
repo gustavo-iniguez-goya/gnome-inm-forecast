@@ -147,7 +147,7 @@ static void unset_images 	( AppletData *applet_data )
 	strcpy (applet_data->provincia,"");
 	strcpy (applet_data->last_update, "");
 	set_tooltip (applet_data, -1, "");
-	for (x=0;x < 10;x++){
+	for (x=0;x < MAX_DAYS;x++){
 		pix = gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[x]));
 		g_object_unref (G_OBJECT (pix));
 		gtk_image_set_from_file (GTK_IMAGE(applet_data->image[x]), "");
@@ -336,7 +336,7 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 		snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, str_morning, tip, applet_data->last_update);
 	else if (id == 1 || id == 3 || id == 5)
 		snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, str_afternoon, tip, applet_data->last_update);
-	else if (id == 10)
+	else if (id == MAX_DAYS)
 		snprintf (temp, 512, "%s", tip);
 	else if (id == -1)
 		strcpy (temp, "");
@@ -345,7 +345,7 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 
 
 	if (id == -1){
-		for (x=0;x < 10;x++){
+		for (x=0;x < MAX_DAYS;x++){
 			gtk_tooltips_set_tip (applet_data->tips, applet_data->event_box[x], "", NULL);
 		}
 	}
@@ -366,7 +366,7 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	GdkPixbuf *temp_pixbuf=0, *temp_pixbuf2=0;
 	int x=0,id_img=0;
 	//int iDays = g_ascii_strtod (panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "days", NULL), NULL);
-	int iDays = 10;
+	int iDays = MAX_DAYS;
 	char *theme = g_new0(char, 512);
 
 	if (applet && applet_data && buf){
@@ -671,7 +671,7 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 				if (strncmp(tokens[yy], "td ", 3) == 0) continue;
 				if (strncmp(tokens[yy], "nbsp", 4) == 0) continue;
 				//printf ("SNOW[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
-				if (tokens[yy] && idx < 10){
+				if (tokens[yy] && idx < MAX_DAYS){
 					if (strlen(tokens[yy]) == 0){
 						if (idx == 0){
 							strcpy (applet_data->day_info[0].cota_nieve, "");
@@ -773,7 +773,7 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 			for (yy=1;yy < 40;yy++){
 				if (tokens[yy][0] >= '0' && tokens[yy][0] <= '9'){
 				//	printf ("\tPRECIP[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
-					if (idx < 10){
+					if (idx < MAX_DAYS){
 						if (idx == 0){ // morning 0 + afternoon 1 => idx = 1
 							strncpy (applet_data->day_info[0].precip, tokens[yy], 4); // 0
 							strncpy (applet_data->day_info[1].precip, tokens[yy], 4);// 1
@@ -808,7 +808,7 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 //				printf ("TMAX[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
 				if ((tokens[yy][0] >= '0' && tokens[yy][0] <= '9') || tokens[yy][0] == '-'){
 			//		printf ("\tTMAX[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
-					if (idx < 10){
+					if (idx < MAX_DAYS){
 						if (idx == 0){ // morning 0 + afternoon 1 => idx = 1
 							strncpy (applet_data->day_info[0].t_max, tokens[yy], 4);
 							strncpy (applet_data->day_info[1].t_max, tokens[yy], 4);
@@ -843,7 +843,7 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 //				printf ("TMIN[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
 				if ((tokens[yy][0] >= '0' && tokens[yy][0] <= '9') || tokens[yy][0] == '-'){
 				//	printf ("\tTMIN[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
-					if (idx < 10){
+					if (idx < MAX_DAYS){
 						if (idx == 0){ // morning 0 + afternoon 1 => idx = 1
 							strncpy (applet_data->day_info[0].t_min, tokens[yy], 4);
 							strncpy (applet_data->day_info[1].t_min, tokens[yy], 4);
@@ -925,7 +925,7 @@ gboolean check_latest_data	( AppletData *applet_data )
 	result = gnome_vfs_read_entire_file (INM_LATEST_DATA, &size, &buf);
 
 	if (result == GNOME_VFS_OK){
-		for (i=0;i < 10;i++){
+		for (i=0;i < MAX_DAYS;i++){
 			snprintf (temp, 24, "%s%s", applet_data->prefs->station_code, suffix[i]);
 			if (strstr(buf, temp)){
 				tokens = g_strsplit_set (strstr(buf, temp), "]=\"", 5);
@@ -988,12 +988,12 @@ gboolean check_latest_data	( AppletData *applet_data )
 			gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), temp);
 			strncat (tp, _("No data for this meteorological station"), 64);
 		}
-		set_tooltip (applet_data, 10, tp);
+		set_tooltip (applet_data, MAX_DAYS, tp);
 	}
 	else{
 		gtk_label_set_text (GTK_LABEL(applet_data->temp_lbl), "?");
 		strncat (tp, _("Error getting latest data from meteorological station"), 64);
-		set_tooltip (applet_data, 10, tp);
+		set_tooltip (applet_data, MAX_DAYS, tp);
 		printf ("Error getting latest data from meteorological station\n");
 	}
 
@@ -1041,7 +1041,7 @@ static void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult r
 			else if (strstr (applet_data->buffer, "Cota nieve"))
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Cota nieve"), SNOW);
 			else{
-				for (x=0;x < 10;x++)
+				for (x=0;x < MAX_DAYS;x++)
 					strcpy (applet_data->day_info[x].cota_nieve, "");
 			}
 			
@@ -1190,7 +1190,7 @@ void update_station_data 		( AppletData *applet_data )
 
 void update_location 			( AppletData *applet_data )
 {
- 	int iDays=0,x=0,max_days=10;
+ 	int iDays=0,x=0;
 	if (applet_data){
 		// Do not update the station data since it has been removed from the inm web :(
 		//update_station_data (applet_data);
@@ -1200,7 +1200,7 @@ void update_location 			( AppletData *applet_data )
  		for (x=0;x < iDays;x++)
  			gtk_widget_show (applet_data->event_box[x]);
  		
- 		for (x=iDays;x < max_days;x++)
+ 		for (x=iDays;x < MAX_DAYS;x++)
  			gtk_widget_hide (applet_data->event_box[x]);
 
 		g_source_remove (applet_data->timer);
@@ -2027,7 +2027,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 
 	AppletData *applet_data = g_new0(AppletData, 1);
 	applet_data->prefs = g_new0 (PrefsWin, 1);
-	applet_data->day_info = g_new0 (DayInf, 10);
+	applet_data->day_info = g_new0 (DayInf, MAX_DAYS);
 	applet_data->prefs->code = g_new0 (char, 12);
 	applet_data->prefs->station_code = g_new0 (char, 12);
 	applet_data->city_name = g_new0 (char, 128);
@@ -2068,7 +2068,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 
 	//printf ("startapplet.Code: %s\n",  (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet), "code", NULL));
 	//gconf_client_notify_add (applet_data->gclient, "/apps/gnome-inm/prefs/days", gconf_notify_days, applet_data, NULL, NULL);
-	for (x=0;x < 10;x++){
+	for (x=0;x < MAX_DAYS;x++){
 		applet_data->day_info[x].state = g_new0 (char, 36);
 		applet_data->day_info[x].precip = g_new0 (char, 12);
 		applet_data->day_info[x].cota_nieve = g_new0 (char, 12);

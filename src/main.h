@@ -110,6 +110,8 @@
 
 #define INTERVAL_TIME 60000
 
+#define MAX_DAYS 10
+
 enum DATA_TYPE {
 	MAX = 0,
 	MIN,

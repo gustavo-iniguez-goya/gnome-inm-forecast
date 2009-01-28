@@ -299,9 +299,9 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	int iDays = 10;
 	char *theme = g_new0(char, 512);
 
-	tokens = g_strsplit_set (buf, "<>&;=\"", -1); 
 	if (applet && applet_data && buf){
-				x=0;
+			tokens = g_strsplit_set (buf, "<>&;=\"", -1); 
+			x=0;
 			while (tokens[x]){
 				if (!strstr (tokens[x], "estado_cielo")){x++; continue;}
 				printf ("XXXX [%d]: %s\n", id_img, tokens[x]);

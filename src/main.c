@@ -406,7 +406,7 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 			if (!gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[9])))
 				gtk_widget_hide (applet_data->event_box[id_img]);
 			else
-				gtk_widget_show (applet_data->event_box[id_img]);
+				gtk_widget_show (applet_data->event_box[9]);
 	
 		for (x=0;x < id_img;x++){
 			if (applet_data->image[id_img]){

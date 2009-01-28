@@ -58,7 +58,7 @@ void on_daily_temp_rb1_toggled			 ( GtkWidget *widget, gpointer data )
 		pixbuf = load_image (INM_DAILY_TEMPERATURE_MIN);
 		if (pixbuf){
 			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-			gtk_widget_show (img);
+			gtk_widget_show (GTK_WIDGET (img));
 			g_object_unref (G_OBJECT (pixbuf));
 			pixbuf = 0;
 		}
@@ -73,7 +73,7 @@ void on_daily_temp_rb2_toggled			 ( GtkWidget *widget, gpointer data )
 		pixbuf = load_image (INM_DAILY_TEMPERATURE_MAX);
 		if (pixbuf){
 			gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-			gtk_widget_show (img);
+			gtk_widget_show (GTK_WIDGET(img));
 			g_object_unref (G_OBJECT (pixbuf));
 			pixbuf = 0;
 		}
@@ -716,6 +716,9 @@ void on_applet_destroy 			( GtkWidget *widget, AppletData *applet_data )
 	printf ("Applet destroy\n");
 	if (applet_data){
 		gtk_timeout_remove (applet_data->timer);
+		gtk_widget_destroy (applet_data->temp_lbl);
+		g_object_ref_sink (G_OBJECT (applet_data->tips));
+		g_object_unref (G_OBJECT (applet_data->tips));
 		for (x=0;x < 10;x++){
 			g_free (applet_data->day_info[x].state);
 			g_free (applet_data->day_info[x].precip);
@@ -724,6 +727,7 @@ void on_applet_destroy 			( GtkWidget *widget, AppletData *applet_data )
 			g_free (applet_data->day_info[x].t_min);
 			g_free (applet_data->day_info[x].day);
 			g_free (applet_data->day_info[x].wind);
+			gtk_container_remove (GTK_CONTAINER (applet_data->event_box[x]), applet_data->image[x]);
 		}
 		g_free (applet_data->day_info);
 		g_free (applet_data->prefs->code);
@@ -735,6 +739,11 @@ void on_applet_destroy 			( GtkWidget *widget, AppletData *applet_data )
 		g_free (applet_data->city_long_desc);
 		g_free (applet_data->last_update);
 		g_free (applet_data->provincia);
+		if (applet_data->buffer){
+			g_free (applet_data->buffer);
+		}
+		gtk_widget_destroy (applet_data->hbox);
+		gtk_widget_destroy (GTK_WIDGET (applet_data->applet));
 		g_free (applet_data);
 	}
 

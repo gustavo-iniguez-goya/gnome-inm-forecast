@@ -570,7 +570,7 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
                 else if (type == 3){ // Altitud estacion
                         tokens = g_strsplit_set (temp_buf, "<>&:; ", 6);
                         if (tokens[3]){
-                                g_snprintf (applet_data->city_long_desc, 126, _("%s\nAltitud: %s mts.\0"), applet_data->city_name, tokens[3]);
+                                g_snprintf (applet_data->city_long_desc, 126, _("%s\nAltitude: %s mts.\0"), applet_data->city_name, tokens[3]);
                         }
                         g_strfreev (tokens);
                 }

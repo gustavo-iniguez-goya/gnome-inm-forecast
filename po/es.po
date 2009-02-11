@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-inm-forecast 0.6.1\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2008-07-22 21:56+0200\n"
-"PO-Revision-Date: 2008-07-22 22:00+0100\n"
+"POT-Creation-Date: 2009-02-11 23:22+0100\n"
+"PO-Revision-Date: 2009-02-11 23:22+0100\n"
 "Last-Translator: Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>\n"
 "Language-Team: es <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,151 +18,160 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../src/main.c:97
-#: ../src/main.c:105
+#: ../src/main.c:170
+#: ../src/main.c:178
 #, c-format
 msgid "Wednesday %s"
 msgstr "Miércoles %s"
 
-#: ../src/main.c:99
-#: ../src/main.c:111
+#: ../src/main.c:172
+#: ../src/main.c:184
 #, c-format
 msgid "Saturday %s"
 msgstr "Sábado %s"
 
-#: ../src/main.c:101
+#: ../src/main.c:174
 #, c-format
 msgid "Monday %s"
 msgstr "Lunes %s"
 
-#: ../src/main.c:103
+#: ../src/main.c:176
 #, c-format
 msgid "Tuesday %s"
 msgstr "Martes %s"
 
-#: ../src/main.c:107
+#: ../src/main.c:180
 #, c-format
 msgid "Thursday %s"
 msgstr "Jueves %s"
 
-#: ../src/main.c:109
+#: ../src/main.c:182
 #, c-format
 msgid "Friday %s"
 msgstr "Viernes %s"
 
-#: ../src/main.c:113
+#: ../src/main.c:186
 #, c-format
 msgid "Sunday %s"
 msgstr "Domingo %s"
 
-#: ../src/main.c:254
+#: ../src/main.c:329
 msgid "Morning"
 msgstr "Mañana"
 
-#: ../src/main.c:255
+#: ../src/main.c:330
 msgid "Afternoon"
 msgstr "Tarde"
 
-#: ../src/main.c:309
-#: ../src/main.c:310
+#: ../src/main.c:381
+#: ../src/main.c:382
 msgid "Despejado"
 msgstr ""
 
-#: ../src/main.c:316
-#: ../src/main.c:317
+#: ../src/main.c:388
+#: ../src/main.c:389
 msgid "Poco nuboso"
 msgstr ""
 
-#: ../src/main.c:323
-#: ../src/main.c:324
+#: ../src/main.c:395
+#: ../src/main.c:396
 msgid "Intervalos nubosos"
 msgstr ""
 
-#: ../src/main.c:330
-#: ../src/main.c:331
+#: ../src/main.c:402
+#: ../src/main.c:403
 msgid "Nuboso"
 msgstr ""
 
-#: ../src/main.c:337
-#: ../src/main.c:338
+#: ../src/main.c:409
+#: ../src/main.c:410
 msgid "Muy nuboso"
 msgstr ""
 
-#: ../src/main.c:349
-#: ../src/main.c:350
+#: ../src/main.c:421
+#: ../src/main.c:422
 msgid "Intervalos nubosos con lluvia"
 msgstr ""
 
-#: ../src/main.c:356
-#: ../src/main.c:357
+#: ../src/main.c:428
+#: ../src/main.c:429
 msgid "Nuboso con lluvia"
 msgstr ""
 
-#: ../src/main.c:363
-#: ../src/main.c:364
-#: ../src/main.c:370
-#: ../src/main.c:371
+#: ../src/main.c:435
+#: ../src/main.c:436
+#: ../src/main.c:442
+#: ../src/main.c:443
 msgid "Muy nuboso con lluvia"
 msgstr ""
 
-#: ../src/main.c:377
-#: ../src/main.c:378
+#: ../src/main.c:449
+#: ../src/main.c:450
 msgid "Nieve"
 msgstr ""
 
-#: ../src/main.c:384
-#: ../src/main.c:385
+#: ../src/main.c:456
+#: ../src/main.c:457
 msgid "Nuboso con nieve"
 msgstr ""
 
-#: ../src/main.c:391
-#: ../src/main.c:392
-#: ../src/main.c:398
-#: ../src/main.c:399
+#: ../src/main.c:463
+#: ../src/main.c:464
+#: ../src/main.c:470
+#: ../src/main.c:471
 msgid "Muy nuboso con nieve"
 msgstr ""
 
-#: ../src/main.c:455
+#: ../src/main.c:526
 msgid "Last update: "
 msgstr "Última actualización: "
 
-#: ../src/main.c:650
+#: ../src/main.c:573
+#, c-format
+msgid ""
+"%s\n"
+"Altitude: %s mts."
+msgstr ""
+"%s\n"
+"Altitud: %s mts."
+
+#: ../src/main.c:730
 msgid "Sur"
 msgstr "Sur"
 
-#: ../src/main.c:654
+#: ../src/main.c:734
 msgid "Sureste"
 msgstr "Sureste"
 
-#: ../src/main.c:658
+#: ../src/main.c:738
 msgid "Suroeste"
 msgstr "Suroeste"
 
-#: ../src/main.c:662
+#: ../src/main.c:742
 msgid "Norte"
 msgstr "Norte"
 
-#: ../src/main.c:666
+#: ../src/main.c:746
 msgid "Nordeste"
 msgstr "Nordeste"
 
-#: ../src/main.c:670
+#: ../src/main.c:750
 msgid "Noroeste"
 msgstr "Noroeste"
 
-#: ../src/main.c:674
+#: ../src/main.c:754
 msgid "Este"
 msgstr "Este"
 
-#: ../src/main.c:678
+#: ../src/main.c:758
 msgid "Oeste"
 msgstr "Oeste"
 
-#: ../src/main.c:682
+#: ../src/main.c:762
 msgid "Calma"
 msgstr ""
 
-#: ../src/main.c:842
+#: ../src/main.c:922
 #, c-format
 msgid ""
 "Station: %s\n"
@@ -171,251 +180,276 @@ msgstr ""
 "Estación: %s\n"
 "\n"
 
-#: ../src/main.c:857
+#: ../src/main.c:937
 #, c-format
 msgid "%s C"
 msgstr "%s ºC"
 
-#: ../src/main.c:864
+#: ../src/main.c:944
 #, c-format
 msgid "Temperature: %s\n"
 msgstr "Temperatura: %s\n"
 
 #. Hora oficial
-#: ../src/main.c:868
+#: ../src/main.c:948
 #, c-format
 msgid "Maximum wind velocity: %s Km/h\n"
 msgstr "Velocidad máxima del viento: %s Km/h\n"
 
 #. Presion atmosferica
-#: ../src/main.c:872
+#: ../src/main.c:952
 #, c-format
 msgid "Atmosferic presion: %s\n"
 msgstr "Presión atmosférica: %s\n"
 
 #. Precipitacion acumulada
-#: ../src/main.c:876
+#: ../src/main.c:956
 #, c-format
 msgid "Rainfall: %s\n"
 msgstr "Precipitación: %s\n"
 
 #. Humedad relativa
-#: ../src/main.c:880
+#: ../src/main.c:960
 msgid "Humidity: %s %\n"
 msgstr "Humedad: %s %\n"
 
 #. Direccion del viento
-#: ../src/main.c:884
+#: ../src/main.c:964
 #, c-format
 msgid "Wind velocity: %s Km/h\n"
 msgstr "Velocidad del viento: %s Km/h\n"
 
 #. Direccion del viento
-#: ../src/main.c:888
+#: ../src/main.c:968
 #, c-format
 msgid "Wind: %s\n"
 msgstr "Viento: %s\n"
 
 #. Hora oficial
-#: ../src/main.c:892
+#: ../src/main.c:972
 #, c-format
 msgid "Last update: %sh\n"
 msgstr "Última actualización: %sh\n"
 
-#: ../src/main.c:907
+#: ../src/main.c:989
 msgid "No data for this meteorological station"
 msgstr "No hay datos para esta estación meteorológica"
 
-#: ../src/main.c:913
+#: ../src/main.c:995
 msgid "Error getting latest data from meteorological station"
 msgstr "Error al obtener los últimos datos de la estación meteorológica"
 
-#: ../src/main.c:1155
+#: ../src/main.c:1253
 msgid "Error loading www.aemet.es"
 msgstr "Error al cargar www.aemet.es"
 
-#: ../src/main.c:1166
-#: ../src/main.c:1176
-#: ../src/main.c:1186
+#: ../src/main.c:1264
+#: ../src/main.c:1274
+#: ../src/main.c:1284
 msgid "Error loading "
 msgstr "Error al cargar www.aemet.es"
 
-#: ../src/main.c:1247
+#: ../src/main.c:1371
 msgid "Next days forecast"
 msgstr "Previsión próximos días"
 
-#: ../src/main.c:1257
+#: ../src/main.c:1381
 msgid "Snowfalls reports"
 msgstr "Informe de aludes y nevadas"
 
-#: ../src/main.c:1262
-#: ../src/main.c:1263
-#: ../src/main.c:1268
-#: ../src/main.c:1269
+#: ../src/main.c:1386
+#: ../src/main.c:1387
+#: ../src/main.c:1393
+#: ../src/main.c:1394
 msgid "No data"
 msgstr "Sin datos"
 
-#: ../src/main.c:1362
+#: ../src/main.c:1493
 #, c-format
 msgid "Connection error\n"
 msgstr "Error de conexión\n"
 
-#: ../src/main.c:1430
-#: ../gnome-inm-glade.glade.h:33
+#: ../src/main.c:1559
+#: ../gnome-inm-glade.glade.h:54
 msgid "Satellite image"
 msgstr "Imagen de satélite"
 
-#: ../src/main.c:1463
+#: ../src/main.c:1587
 msgid "Spanish weather forecast image"
 msgstr "Imagen del pronóstico meteorológico"
 
-#: ../src/main.c:1504
+#: ../src/main.c:1628
 msgid "Temperatures for the next days"
 msgstr "Temperaturas para los próximos días"
 
-#: ../src/main.c:1543
-#: ../gnome-inm-glade.glade.h:32
-#: ../GNOME_INM_menu.xml.h:1
+#: ../src/main.c:1667
+#: ../gnome-inm-glade.glade.h:53
+#: ../GNOME_INM_menu.xml.h:4
 msgid "Rainfall probability"
 msgstr "<b>Prob. precipitación</b>"
 
-#: ../src/preferences.c:152
-msgid "Cities"
-msgstr "Ciudades"
+#: ../src/main.c:1699
+#: ../GNOME_INM_menu.xml.h:1
+msgid "Air mass"
+msgstr "Masas de aire"
+
+#: ../src/main.c:1738
+msgid "Radar images"
+msgstr "Imágenes de satélite"
+
+#: ../src/main.c:1777
+msgid "Lightnings images"
+msgstr "Imágenes de rayos"
 
 #: ../gnome-inm-glade.glade.h:1
-msgid "00:00"
+msgid ""
+"19:00\n"
+"20:00\n"
+"21:00\n"
+"22:00\n"
+"23:00\n"
+"00:00\n"
+"01:00\n"
+"02:00\n"
+"03:00\n"
+"04:00\n"
+"05:00\n"
+"06:00\n"
+"07:00\n"
+"08:00\n"
+"09:00\n"
+"10:00\n"
+"11:00\n"
+"12:00\n"
+"13:00\n"
+"14:00\n"
+"15:00\n"
+"16:00\n"
+"17:00\n"
+"18:00"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:2
-msgid "06:00"
-msgstr ""
-
-#: ../gnome-inm-glade.glade.h:3
-msgid "12:00"
-msgstr ""
-
-#: ../gnome-inm-glade.glade.h:4
-msgid "18:00"
-msgstr ""
-
-#: ../gnome-inm-glade.glade.h:5
+#: ../gnome-inm-glade.glade.h:25
 msgid "<b>General</b>"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:6
+#: ../gnome-inm-glade.glade.h:26
 msgid "<b>Location options</b>"
 msgstr "<b>Opciones de lugar</b>"
 
-#: ../gnome-inm-glade.glade.h:7
+#: ../gnome-inm-glade.glade.h:27
 msgid "<b>Max temp</b>"
 msgstr "<b>T. Máxima</b>"
 
-#: ../gnome-inm-glade.glade.h:8
+#: ../gnome-inm-glade.glade.h:28
 msgid "<b>Min temp</b>"
 msgstr "<b>T. Mínima</b>"
 
-#: ../gnome-inm-glade.glade.h:9
+#: ../gnome-inm-glade.glade.h:29
 msgid "<b>Rainfall prob.</b>"
 msgstr "<b>Prob. precipitación</b>"
 
-#: ../gnome-inm-glade.glade.h:10
+#: ../gnome-inm-glade.glade.h:30
 msgid "<b>Snow</b>"
 msgstr "<b>Nieve</b>"
 
-#: ../gnome-inm-glade.glade.h:11
+#: ../gnome-inm-glade.glade.h:31
 msgid "<b>State</b>"
 msgstr "<b>Estado</b>"
 
-#: ../gnome-inm-glade.glade.h:12
+#: ../gnome-inm-glade.glade.h:32
 msgid "<b>Wind</b>"
 msgstr "<b>Viento</b>"
 
-#: ../gnome-inm-glade.glade.h:13
+#: ../gnome-inm-glade.glade.h:33
 msgid "<small>Codes: http://www.aemet.es/es/eltiempo/prediccion/localidades</small>"
 msgstr "<small>Códigos: http://www.aemet.es/es/eltiempo/prediccion/localidades</small>"
 
-#: ../gnome-inm-glade.glade.h:14
+#: ../gnome-inm-glade.glade.h:34
 msgid "> 0.5 mm"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:15
+#: ../gnome-inm-glade.glade.h:35
 msgid "> 10 mm"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:16
+#: ../gnome-inm-glade.glade.h:36
 msgid "> 2 mm"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:17
+#: ../gnome-inm-glade.glade.h:37
 msgid "> 20 mm"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:18
+#: ../gnome-inm-glade.glade.h:38
 msgid "About GNOME INM forecast"
 msgstr "Acerca de GNOME INM forecast"
 
-#: ../gnome-inm-glade.glade.h:19
+#: ../gnome-inm-glade.glade.h:39
 msgid "Altitude"
 msgstr "Altitud"
 
-#: ../gnome-inm-glade.glade.h:20
+#: ../gnome-inm-glade.glade.h:40
 msgid "City"
 msgstr "Ciudad"
 
-#: ../gnome-inm-glade.glade.h:21
+#: ../gnome-inm-glade.glade.h:41
 msgid "Days to show"
 msgstr "Días a mostrar"
 
-#: ../gnome-inm-glade.glade.h:22
+#: ../gnome-inm-glade.glade.h:42
 msgid "GNOME INM forecast"
 msgstr "GNOME INM forecast"
 
-#: ../gnome-inm-glade.glade.h:23
+#: ../gnome-inm-glade.glade.h:43
+msgid "Hour"
+msgstr "Hora"
+
+#: ../gnome-inm-glade.glade.h:44
 msgid "Humidity"
 msgstr "Humedad"
 
-#: ../gnome-inm-glade.glade.h:24
+#: ../gnome-inm-glade.glade.h:45
 msgid "Interval update (Minutes)"
 msgstr "Intervalo de actualización (Minutos)"
 
-#: ../gnome-inm-glade.glade.h:25
+#: ../gnome-inm-glade.glade.h:46
 msgid "Location"
 msgstr "Lugar"
 
-#: ../gnome-inm-glade.glade.h:26
+#: ../gnome-inm-glade.glade.h:47
 msgid "Max"
 msgstr "Máx"
 
-#: ../gnome-inm-glade.glade.h:27
+#: ../gnome-inm-glade.glade.h:48
 msgid "Meteorological stations"
 msgstr "Estaciones meteorológicas"
 
-#: ../gnome-inm-glade.glade.h:28
+#: ../gnome-inm-glade.glade.h:49
 msgid "Min"
 msgstr "Min"
 
-#: ../gnome-inm-glade.glade.h:29
+#: ../gnome-inm-glade.glade.h:50
 msgid "Panel"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:30
+#: ../gnome-inm-glade.glade.h:51
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../gnome-inm-glade.glade.h:31
+#: ../gnome-inm-glade.glade.h:52
 msgid "Rainfall"
 msgstr "Precipitación"
 
-#: ../gnome-inm-glade.glade.h:34
+#: ../gnome-inm-glade.glade.h:55
 msgid "Show afternoon data"
 msgstr "Mostrar información de tarde"
 
-#: ../gnome-inm-glade.glade.h:35
+#: ../gnome-inm-glade.glade.h:56
 msgid "Show morning data"
 msgstr "Mostrar información de mañana"
 
-#: ../gnome-inm-glade.glade.h:36
+#: ../gnome-inm-glade.glade.h:57
 msgid ""
 "Show station \n"
 "on the panel"
@@ -423,11 +457,11 @@ msgstr ""
 "Mostrar estación \n"
 "en el panel"
 
-#: ../gnome-inm-glade.glade.h:38
+#: ../gnome-inm-glade.glade.h:59
 msgid "Temperature"
 msgstr "Temperatura"
 
-#: ../gnome-inm-glade.glade.h:39
+#: ../gnome-inm-glade.glade.h:60
 msgid ""
 "The information you get with this program is property of the Spanish metereological Institute\n"
 "\n"
@@ -437,111 +471,238 @@ msgstr ""
 "\n"
 "http://www.aemet.es"
 
-#: ../gnome-inm-glade.glade.h:42
+#: ../gnome-inm-glade.glade.h:63
 msgid "The meteorological stations data is updated each hour and will be disponible 30 minutes after as maximum"
 msgstr "Los datos de las estaciones meteorológicas se actualizan cada hora y estarán disponibles como muy tarde 30 minutos después"
 
-#: ../gnome-inm-glade.glade.h:43
+#: ../gnome-inm-glade.glade.h:64
 msgid "Theme"
 msgstr "Tema"
 
-#: ../gnome-inm-glade.glade.h:44
+#: ../gnome-inm-glade.glade.h:65
 msgid "This program is licensed under the GPL license"
 msgstr "Este programa está licenciado bajo la licencia GPL"
 
-#: ../gnome-inm-glade.glade.h:45
+#: ../gnome-inm-glade.glade.h:66
 msgid "Today weather forecast "
 msgstr "Pronóstico para hoy "
 
-#: ../gnome-inm-glade.glade.h:46
+#: ../gnome-inm-glade.glade.h:67
 msgid "avg"
-msgstr ""
+msgstr "Media"
 
-#: ../gnome-inm-glade.glade.h:47
+#: ../gnome-inm-glade.glade.h:68
 msgid "day"
 msgstr "día"
 
-#: ../gnome-inm-glade.glade.h:48
+#: ../gnome-inm-glade.glade.h:69
 msgid "gtk-apply"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:49
+#: ../gnome-inm-glade.glade.h:70
 msgid "gtk-cancel"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:50
+#: ../gnome-inm-glade.glade.h:71
 msgid "label"
 msgstr ""
 
-#: ../gnome-inm-glade.glade.h:51
+#: ../gnome-inm-glade.glade.h:72
 msgid "max"
 msgstr "máx"
 
 #: ../GNOME_INM_menu.xml.h:2
+msgid "Canary Islands"
+msgstr "Islas Canarias"
+
+#: ../GNOME_INM_menu.xml.h:3
+msgid "Peninsula and Balearic Islands"
+msgstr "Península e Islas Baleares"
+
+#: ../GNOME_INM_menu.xml.h:5
 msgid "T_oday weather report"
 msgstr "Pronóstico para hoy "
 
-#: ../GNOME_INM_menu.xml.h:3
+#: ../GNOME_INM_menu.xml.h:6
 msgid "Tempe_ratures maps"
 msgstr "Mapas de _temperaturas"
 
-#: ../GNOME_INM_menu.xml.h:4
+#: ../GNOME_INM_menu.xml.h:7
 msgid "To_morrow weather warnings"
 msgstr "Avisos para mañana"
 
-#: ../GNOME_INM_menu.xml.h:5
+#: ../GNOME_INM_menu.xml.h:8
 msgid "W_eather reports"
 msgstr "_Informes meteorológicos"
 
-#: ../GNOME_INM_menu.xml.h:6
+#: ../GNOME_INM_menu.xml.h:9
 msgid "_About..."
 msgstr "_Acerca de..."
 
-#: ../GNOME_INM_menu.xml.h:7
+#: ../GNOME_INM_menu.xml.h:10
+msgid "_Asturias, Basque Country and Cantabria Coasts"
+msgstr "Costas de Asturias, País Vasco y Cantabria"
+
+#: ../GNOME_INM_menu.xml.h:11
+msgid "_Balearic Islands Coast"
+msgstr "Costa de las Islas Baleares"
+
+#: ../GNOME_INM_menu.xml.h:12
+msgid "_Canary Islands Coast"
+msgstr "Costa de las Islas Canarias"
+
+#: ../GNOME_INM_menu.xml.h:13
+msgid "_Catalonia Coast"
+msgstr "Costa de Cataluña"
+
+#: ../GNOME_INM_menu.xml.h:14
+msgid "_Coastal areas"
+msgstr "Áreas costeras"
+
+#: ../GNOME_INM_menu.xml.h:15
+msgid "_Eastern Andalusia, Melilla and Alboran Coast"
+msgstr "Costa de Andalucía Oriental, Melilla y Alborán"
+
+#: ../GNOME_INM_menu.xml.h:16
+msgid "_Galicia Coast"
+msgstr "Costa de Galicia"
+
+#: ../GNOME_INM_menu.xml.h:17
+msgid "_Iberica Aragonesa"
+msgstr "Ibérica Aragonesa"
+
+#: ../GNOME_INM_menu.xml.h:18
+msgid "_Iberica Riojana"
+msgstr "Ibérica Riojana"
+
+#: ../GNOME_INM_menu.xml.h:19
+msgid "_Last warning"
+msgstr "Último aviso"
+
+#: ../GNOME_INM_menu.xml.h:20
+msgid "_Lightnings"
+msgstr "_Rayos"
+
+#: ../GNOME_INM_menu.xml.h:21
+msgid "_Marine weather forecast"
+msgstr "Pronóstico marítimo"
+
+#: ../GNOME_INM_menu.xml.h:22
+msgid "_Mediterranean"
+msgstr "Mediterráneo"
+
+#: ../GNOME_INM_menu.xml.h:23
+msgid "_Mountain weather forecast"
+msgstr "Pronóstico de montaña"
+
+#: ../GNOME_INM_menu.xml.h:24
 msgid "_Next days weather report"
 msgstr "Previsión próximos días"
 
-#: ../GNOME_INM_menu.xml.h:8
+#: ../GNOME_INM_menu.xml.h:25
 msgid "_Next days weather warnings"
 msgstr "Avisos próximos días"
 
-#: ../GNOME_INM_menu.xml.h:9
+#: ../GNOME_INM_menu.xml.h:26
+msgid "_Next hours"
+msgstr "Próximas horas"
+
+#: ../GNOME_INM_menu.xml.h:27
+msgid "_North Atlantic"
+msgstr "Atlántico Norte"
+
+#: ../GNOME_INM_menu.xml.h:28
+msgid "_Open sea"
+msgstr "Mar abierto"
+
+#: ../GNOME_INM_menu.xml.h:29
+msgid "_Picos de Europa"
+msgstr ""
+
+#: ../GNOME_INM_menu.xml.h:30
+msgid "_Pirineo Aragones"
+msgstr "Pirineo Aragonés"
+
+#: ../GNOME_INM_menu.xml.h:31
+msgid "_Pirineo Catalan"
+msgstr "Pirineo Catalán"
+
+#: ../GNOME_INM_menu.xml.h:32
+msgid "_Pirineo Navarro"
+msgstr ""
+
+#: ../GNOME_INM_menu.xml.h:33
 msgid "_Preferences..."
 msgstr "_Preferencias"
 
-#: ../GNOME_INM_menu.xml.h:10
+#: ../GNOME_INM_menu.xml.h:34
+msgid "_Radar"
+msgstr ""
+
+#: ../GNOME_INM_menu.xml.h:35
 msgid "_Satellite radar images"
 msgstr "Imágenes de satélite"
 
-#: ../GNOME_INM_menu.xml.h:11
+#: ../GNOME_INM_menu.xml.h:36
+msgid "_Sierra Nevada"
+msgstr ""
+
+#: ../GNOME_INM_menu.xml.h:37
+msgid "_Sierra de Gredos"
+msgstr ""
+
+#: ../GNOME_INM_menu.xml.h:38
+msgid "_Sierra de Guadarrama y Somosierra"
+msgstr ""
+
+#: ../GNOME_INM_menu.xml.h:39
 msgid "_Snowfall report (Catalonya) "
 msgstr "In_forme de aludes (Cataluña)"
 
-#: ../GNOME_INM_menu.xml.h:12
+#: ../GNOME_INM_menu.xml.h:40
 msgid "_Snowfall report (Navarra y Aragon)"
 msgstr "_Informe de aludes (Navarra y Aragón)"
 
-#: ../GNOME_INM_menu.xml.h:13
+#: ../GNOME_INM_menu.xml.h:41
+msgid "_SouthAtlantic"
+msgstr "Atlántico Sur"
+
+#: ../GNOME_INM_menu.xml.h:42
+msgid "_Tendency"
+msgstr "Tendencia"
+
+#: ../GNOME_INM_menu.xml.h:43
 msgid "_Today weather warnings"
 msgstr "_Avisos para hoy"
 
-#: ../GNOME_INM_menu.xml.h:14
+#: ../GNOME_INM_menu.xml.h:44
 msgid "_Tomorrow weather map"
 msgstr "_Mapa para mañana"
 
-#: ../GNOME_INM_menu.xml.h:15
+#: ../GNOME_INM_menu.xml.h:45
 msgid "_Tomorrow weather report"
 msgstr "Pronóstico para mañana"
 
-#: ../GNOME_INM_menu.xml.h:16
+#: ../GNOME_INM_menu.xml.h:46
 msgid "_Update now"
 msgstr "Actualizar ahora"
 
-#: ../GNOME_INM_menu.xml.h:17
+#: ../GNOME_INM_menu.xml.h:47
+msgid "_Valencia and Murcia Coast"
+msgstr "Costa de Valencia y Murcia"
+
+#: ../GNOME_INM_menu.xml.h:48
 msgid "_Visit AEMET web site"
 msgstr "_Visita la web de la AEMET"
 
-#: ../GNOME_INM_menu.xml.h:18
+#: ../GNOME_INM_menu.xml.h:49
 msgid "_Weather maps"
 msgstr "_Mapas meteorológicos"
+
+#: ../GNOME_INM_menu.xml.h:50
+msgid "_Western Andalusia and Ceuta Coast"
+msgstr "Costa de Andalucía Occidental y Ceuta"
+
+#~ msgid "Cities"
+#~ msgstr "Ciudades"
 

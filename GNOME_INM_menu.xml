@@ -51,7 +51,7 @@
 						pixtype="stock"
 						pixname=""/>
 				</submenu>
-				<submenu name="Rayos" _label="_Lightinings">
+				<submenu name="Rayos" _label="_Lightnings">
 					<menuitem name="RayosP"
 						verb="RayosP"
 						_label="Peninsula and Balearic Islands"

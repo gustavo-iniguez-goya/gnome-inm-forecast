@@ -2025,6 +2025,14 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	if (strcmp (iid, "OAFIID:GnomeINM") != 0)
 		return FALSE;
 
+	// Initialize GNOME VFS subsystem
+	if (!gnome_vfs_initialized ()){
+		if (!gnome_vfs_init ()){
+			message_box (NULL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, _("Error loading the GNOME VFS subsystem"), _("An error ocurred loading the GNOME VFS subsystem") );
+			return FALSE;
+		}
+	}
+
 	AppletData *applet_data = g_new0(AppletData, 1);
 	applet_data->prefs = g_new0 (PrefsWin, 1);
 	applet_data->day_info = g_new0 (DayInf, MAX_DAYS);

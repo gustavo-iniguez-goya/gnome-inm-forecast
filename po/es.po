@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-inm-forecast 0.6.1\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2009-02-11 23:22+0100\n"
-"PO-Revision-Date: 2009-02-11 23:22+0100\n"
+"POT-Creation-Date: 2009-03-31 00:19+0200\n"
+"PO-Revision-Date: 2009-03-31 00:22+0100\n"
 "Last-Translator: Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>\n"
 "Language-Team: es <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -300,6 +300,14 @@ msgstr "Imágenes de satélite"
 #: ../src/main.c:1777
 msgid "Lightnings images"
 msgstr "Imágenes de rayos"
+
+#: ../src/main.c:2031
+msgid "Error loading the GNOME VFS subsystem"
+msgstr "Error al cargar el subsistema GNOME VFS"
+
+#: ../src/main.c:2031
+msgid "An error ocurred loading the GNOME VFS subsystem"
+msgstr "Ha ocurrido un error al cargar el subsistema GNOME VFS"
 
 #: ../gnome-inm-glade.glade.h:1
 msgid ""

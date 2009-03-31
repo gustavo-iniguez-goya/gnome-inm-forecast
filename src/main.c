@@ -672,7 +672,7 @@ void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
 				if (strncmp(tokens[yy], "nbsp", 4) == 0) continue;
 				//printf ("SNOW[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
 				if (tokens[yy] && idx < MAX_DAYS){
-					if (strlen(tokens[yy]) == 0){
+					if (strlen(tokens[yy]) == 0 && idx < 10){
 						if (idx == 0){
 							strcpy (applet_data->day_info[0].cota_nieve, "");
 							strcpy (applet_data->day_info[1].cota_nieve, "");

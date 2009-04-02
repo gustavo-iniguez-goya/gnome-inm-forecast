@@ -18,8 +18,12 @@ Description: Spanish weather forecast applet for the GNOME panel
     minimum temperatures, rainfall probability, wind direction, snow 
     level and general weather state.
   - Snowfalls reports for the Pyrenees.
+  - Detailed mountain and marine weather forecast.
   - Intuitive city search just by typing the firsts characters.
   - Weather reports for the following days.
   - Maximum and minimum temperatures maps for the following day.
+  - Rainfall probability map.
+  - Lightnings map.
   - Spanish weather forecast image.
   - Satellite radar images of the weather evolution.
+  - Air Masses evolution map.

@@ -261,7 +261,7 @@ msgstr "Hurrengo egunetako tenperaturak"
 
 #: ../src/main.c:1667 ../gnome-inm-glade.glade.h:53 ../GNOME_INM_menu.xml.h:4
 msgid "Rainfall probability"
-msgstr "<b>Prezipitazio iragarpena</b>"
+msgstr "Prezipitazio iragarpena"
 
 #: ../src/main.c:1699 ../GNOME_INM_menu.xml.h:1
 msgid "Air mass"
@@ -337,7 +337,7 @@ msgstr ""
 
 #: ../gnome-inm-glade.glade.h:25
 msgid "<b>General</b>"
-msgstr "<b>Orokorra/b>"
+msgstr "<b>Orokorra</b>"
 
 #: ../gnome-inm-glade.glade.h:26
 msgid "<b>Location options</b>"

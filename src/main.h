@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2007 Gustavo Iñiguez Goya
+  Copyright (C) 2007-2009 Gustavo Iñiguez Goya
 
   gnome-inm-forecast is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by

@@ -1,9 +1,9 @@
 # gnome-inm-forecast.spec
 #
-# Copyright (c) 2007 Gustavo Iñiguez Goya ga@kutxa.homeunix.org
+# Copyright (c) 2007-2009 Gustavo Iñiguez Goya ga@kutxa.homeunix.org
 #
 %define name gnome-inm-forecast
-%define version 0.6.1
+%define version 0.8.0
 %define release 0
 %define manifest %{_builddir}/%{name}-%{version}-%{release}.manifest
 

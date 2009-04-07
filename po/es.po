@@ -286,7 +286,7 @@ msgstr "Temperaturas para los próximos días"
 #: ../gnome-inm-glade.glade.h:53
 #: ../GNOME_INM_menu.xml.h:4
 msgid "Rainfall probability"
-msgstr "<b>Prob. precipitación</b>"
+msgstr "Prob. precipitación"
 
 #: ../src/main.c:1699
 #: ../GNOME_INM_menu.xml.h:1

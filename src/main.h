@@ -231,18 +231,15 @@ void display_inm_website	( BonoboUIComponent *uic, gpointer user_data, const cha
 void display_about_dialog 	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 gboolean start_applet 		( PanelApplet *applet, const gchar *iid, gpointer data );
 
+char *convert_str_to_utf8 	( char *string );
 GdkPixbuf *load_image		( const char *url );
 void create_window 		( AppletData *applet_data, const char *name );
 void quit 			( GtkWidget *widget );
-void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf );
-void parse_dates_data 		( AppletData *applet_data, char *buf, int type );
-void parse_temperatures_data 	( AppletData *applet_data, char *buf, int type );
 void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip );
 gboolean check_inm_url 		( AppletData *applet_data );
 gboolean update_panel		( AppletData *applet_data );
 //gboolean check_latest_data	( AppletData *applet_data );
 gboolean check_station_data	( AppletData *applet_data );
 void print_element_names	( xmlNode *root_element );
-char *parse_week_day_name	( const char *day_name );
 
 #endif

@@ -232,6 +232,7 @@ void display_about_dialog 	( BonoboUIComponent *uic, gpointer user_data, const c
 gboolean start_applet 		( PanelApplet *applet, const gchar *iid, gpointer data );
 
 char *convert_str_to_utf8 	( char *string );
+void unset_images	 	( AppletData *applet_data );
 GdkPixbuf *load_image		( const char *url );
 void create_window 		( AppletData *applet_data, const char *name );
 void quit 			( GtkWidget *widget );

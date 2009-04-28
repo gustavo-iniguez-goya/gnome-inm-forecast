@@ -331,6 +331,7 @@ void print_element_names 		( xmlNode *root_element )
 	}
 }
 
+/*
 gboolean check_latest_data	( AppletData *applet_data )
 {
 	GnomeVFSResult    result;
@@ -359,7 +360,7 @@ gboolean check_latest_data	( AppletData *applet_data )
 				if (tokens[3]){
 					printf ("%s: %s\n", suffix[i], tokens[3]);
 
-					if (strcmp(suffix[i], "TT") == 0){ /* Temperatura */
+					if (strcmp(suffix[i], "TT") == 0){ // Temperatura
 						if (strcmp (tokens[3], "") != 0){
 							snprintf (temp, 32, _("%s C"), tokens[3]);
 						}
@@ -371,31 +372,31 @@ gboolean check_latest_data	( AppletData *applet_data )
 						snprintf (temp, 128, _("Temperature: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
-					if (strcmp(suffix[i], "RM") == 0){ /* Hora oficial */
+					if (strcmp(suffix[i], "RM") == 0){ // Hora oficial 
 						snprintf (temp, 128, _("Maximum wind velocity: %s Km/h\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
-					if (strcmp(suffix[i], "P0") == 0){ /* Presion atmosferica */
+					if (strcmp(suffix[i], "P0") == 0){ // Presion atmosferica 
 						snprintf (temp, 128, _("Atmosferic presion: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
-					if (strcmp(suffix[i], "PP") == 0){ /* Precipitacion acumulada */
+					if (strcmp(suffix[i], "PP") == 0){ // Precipitacion acumulada 
 						snprintf (temp, 128, _("Rainfall: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
-					if (strcmp(suffix[i], "TR") == 0){ /* Humedad relativa */
+					if (strcmp(suffix[i], "TR") == 0){ // Humedad relativa 
 						snprintf (temp, 128, _("Humidity: %s %\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
-					if (strcmp(suffix[i], "VV") == 0){ /* Direccion del viento */
+					if (strcmp(suffix[i], "VV") == 0){ // Direccion del viento
 						snprintf (temp, 128, _("Wind velocity: %s Km/h\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
-					if (strcmp(suffix[i], "DV") == 0){ /* Direccion del viento */
+					if (strcmp(suffix[i], "DV") == 0){ // Direccion del viento 
 						snprintf (temp, 128, _("Wind: %s\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
-					if (strcmp(suffix[i], "HO") == 0){ /* Hora oficial */
+					if (strcmp(suffix[i], "HO") == 0){ // Hora oficial 
 						snprintf (temp, 128, _("Last update: %sh\n"), tokens[3]);
 						strncat (tp, temp, 50);
 					}
@@ -435,7 +436,7 @@ gboolean check_latest_data	( AppletData *applet_data )
 
 	return TRUE;
 }
-
+*/
 
 gboolean check_inm_url 			( AppletData *applet_data )
 {

@@ -46,7 +46,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_gnome_inm_forecast_OBJECTS = main.$(OBJEXT) preferences.$(OBJEXT) \
-	html_parser.$(OBJEXT) callbacks.$(OBJEXT) connection.$(OBJEXT)
+	html_parser.$(OBJEXT) connection.$(OBJEXT) gui.$(OBJEXT) \
+	callbacks.$(OBJEXT)
 gnome_inm_forecast_OBJECTS = $(am_gnome_inm_forecast_OBJECTS)
 gnome_inm_forecast_DEPENDENCIES =
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -190,9 +191,11 @@ gnome_inm_forecast_SOURCES = \
 		preferences.h \
 		html_parser.c \
 		html_parser.h \
-		callbacks.c \
 		connection.c \
 		connection.h \
+		gui.c \
+		gui.h \
+		callbacks.c \
 		callbacks.h 
 
 AM_CFLAGS = @GTK_CFLAGS@ @LIBGLADE_CFLAGS@ @LIBPANELAPPLET_CFLAGS@ @LIBGVFS_CFLAGS@ -DG_DISABLE_DEPRECATED
@@ -283,6 +286,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/callbacks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/connection.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gui.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/html_parser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/preferences.Po@am__quote@

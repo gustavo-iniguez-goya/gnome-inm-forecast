@@ -11,9 +11,11 @@ gnome_inm_forecast_SOURCES = \
 		preferences.h \
 		html_parser.c \
 		html_parser.h \
-		callbacks.c \
 		connection.c \
 		connection.h \
+		gui.c \
+		gui.h \
+		callbacks.c \
 		callbacks.h 
 
 AM_CFLAGS = @GTK_CFLAGS@ @LIBGLADE_CFLAGS@ @LIBPANELAPPLET_CFLAGS@ @LIBGVFS_CFLAGS@ -DG_DISABLE_DEPRECATED

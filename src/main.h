@@ -215,26 +215,12 @@ typedef struct _AppletData {
 void update_station_data	( AppletData *applet_data );
 void update_data		( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void update_location		( AppletData *applet_data );
-void display_tomorrow_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_nextdays_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_wwarnings_t	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_wwarnings_tm	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_wwarnings_n	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_today_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_satellite_radar 	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_spanish_forecast_img	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_prob_precipitation	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_snow_warnings	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_mountain_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_preferences_dialog	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_inm_website	( BonoboUIComponent *uic, gpointer user_data, const char *name );
-void display_about_dialog 	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 gboolean start_applet 		( PanelApplet *applet, const gchar *iid, gpointer data );
 
+void message_box 		( AppletData *applet_data, GtkMessageType type, GtkButtonsType buttons, const char *text, const char *secondary_text );
 char *convert_str_to_utf8 	( char *string );
 void unset_images	 	( AppletData *applet_data );
 GdkPixbuf *load_image		( const char *url );
-void create_window 		( AppletData *applet_data, const char *name );
 void quit 			( GtkWidget *widget );
 void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip );
 gboolean check_inm_url 		( AppletData *applet_data );

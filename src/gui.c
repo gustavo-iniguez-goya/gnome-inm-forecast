@@ -30,6 +30,7 @@ void create_window 		( AppletData *applet_data, const char *name )
 	char *day;
 	GdkColor color;
 	static int window_shown;
+	PanelAppletOrient panel_orient;
 
 	if (strcmp (name, "event11") == 0){
 		return ;
@@ -124,10 +125,31 @@ void create_window 		( AppletData *applet_data, const char *name )
 		//printf ("state: %s\n",  applet_data->day_info[idx].state);
 
 		gtk_window_get_position (GTK_WINDOW (win), &x, &y);
-		y += applet_data->applet_size;
-		gtk_window_move (GTK_WINDOW(win), x, y);
-		gtk_widget_show (win);
+		
+		panel_orient = panel_applet_get_orient (PANEL_APPLET(applet_data->applet));
+		if (panel_orient == PANEL_APPLET_ORIENT_DOWN){ // panel on the up side
+			y += applet_data->applet_size;
+			gtk_window_move (GTK_WINDOW(win), x, y);
+			gtk_widget_show (win);
+		}
+		else if (panel_orient == PANEL_APPLET_ORIENT_UP){ // panel on the bottom side
+			y -= applet_data->applet_size;
+			gtk_window_move (GTK_WINDOW(win), x, y);
+			gtk_widget_show (win);
+		}
+		else if (panel_orient == PANEL_APPLET_ORIENT_LEFT){ // panel on the right side
+			x -= applet_data->applet_size;
+			gtk_window_move (GTK_WINDOW(win), x, y); 
+			gtk_widget_show (win);
+		}
+		else if (panel_orient == PANEL_APPLET_ORIENT_RIGHT){ // panel on the left side...
+			x += applet_data->applet_size;
+			gtk_window_move (GTK_WINDOW(win), x, y);
+			gtk_widget_show (win);
+		}
+			
 		x = y = 0;
+
 		g_object_unref (G_OBJECT (xml));
 		if (day){
 			g_free (day);

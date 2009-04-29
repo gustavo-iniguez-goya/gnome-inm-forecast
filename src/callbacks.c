@@ -769,6 +769,9 @@ void on_applet_destroy 			( GtkWidget *widget, AppletData *applet_data )
 		gtk_widget_destroy (applet_data->hbox);
 		gtk_widget_destroy (GTK_WIDGET (applet_data->applet));
 		g_free (applet_data);
+
+		// free allocated memory by gnome vfs subsystem
+		gnome_vfs_shutdown ();
 	}
 
 }

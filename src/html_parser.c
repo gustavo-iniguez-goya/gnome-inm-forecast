@@ -43,7 +43,7 @@ char *parse_week_day_name	( const char *day_name )
 				snprintf (day_temp, 64, _("Thursday %s"), tokens[1]);
 			else if (strstr (day_name, "vie "))
 				snprintf (day_temp, 64, _("Friday %s"), tokens[1]);
-			else if (strstr (day_name, "s&aacute;b ") || strstr (day_name, "sáb "))
+			else if (strstr (day_name, "s&aacute;b ") || strstr (day_name, "sáb ") || strstr (day_name, "b "))
 				snprintf (day_temp, 64, _("Saturday %s"), tokens[1]);
 			else if (strstr (day_name, "dom "))
 				snprintf (day_temp, 64, _("Sunday %s"), tokens[1]);
@@ -294,7 +294,8 @@ void parse_dates_data		( AppletData *applet_data, char *buf, int type )
 							strstr(tokens[x], "mi") ||
 							strstr(tokens[x], "jue ") ||
 							strstr(tokens[x], "vie ") ||
-							strstr(tokens[x], "sáb ") || strstr(tokens[x], "s&aacute;b") ||
+							strstr(tokens[x], "sáb") || strstr(tokens[x], "s&aacute;b") || 
+							strstr(tokens[x], "b ") ||
 							strstr(tokens[x], "dom ")
 							){
 						day_temp = parse_week_day_name(tokens[x]);

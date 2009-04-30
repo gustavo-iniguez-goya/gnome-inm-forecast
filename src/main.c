@@ -174,9 +174,10 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 	char *temp=0;
 	char *str_morning=_("Morning");
 	char *str_afternoon=_("Afternoon");
-	temp = g_new0 (char, 512);
 	
 	if (!applet_data) return;
+	
+	temp = g_new0 (char, 512);
 
 	if (id == 0 || id == 2 || id == 4)
 		snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, str_morning, tip, applet_data->last_update);

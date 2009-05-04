@@ -193,12 +193,30 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 	}
 	else if (id == MAX_DAYS){ // Morning - 10 images
 		for (x=0;x < id;x++){
-			if (id == 0 || id == 2 || id == 4)
-				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, str_morning, applet_data->day_info[id].state, applet_data->last_update);
-			else if (id == 1 || id == 3 || id == 5)
-				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[id].day, str_afternoon, applet_data->day_info[id].state, applet_data->last_update);
+			// FIXME: We should take in mind the number of days displayed on the panel
+			if (x == 0 || x == 2 || x == 4)
+				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", 
+							applet_data->city_name, 
+							applet_data->provincia, 
+							applet_data->day_info[x].day, 
+							str_morning, 
+							applet_data->day_info[x].state, 
+							applet_data->last_update);
+			else if (x == 1 || x == 3 || x == 5)
+				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", 
+							applet_data->city_name, 
+							applet_data->provincia, 
+							applet_data->day_info[x].day, 
+							str_afternoon, 
+							applet_data->day_info[x].state, 
+							applet_data->last_update);
 			else
-				snprintf (temp, 512, "%s %s\n%s\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[x].day, tip, applet_data->last_update);
+				snprintf (temp, 512, "%s %s\n%s\n\n%s\n%s", 
+							applet_data->city_name, 
+							applet_data->provincia, 
+							applet_data->day_info[x].day, 
+							tip, 
+							applet_data->last_update);
 
 			gtk_tooltips_set_tip (applet_data->tips, applet_data->event_box[x], temp, NULL);
 			gtk_tooltips_enable (applet_data->tips);

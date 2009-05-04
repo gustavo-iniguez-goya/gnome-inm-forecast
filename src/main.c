@@ -181,8 +181,22 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 
 	if (id == (MAX_DAYS - 1)){ //Afternoon - 9 images
 		for (x=1;x < id;x++){
-			if (x > 1)
-				snprintf (temp, 512, "%s %s\n%s\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[x].day, tip, applet_data->last_update);
+			if (x == 0 || x == 2 || x == 4)
+				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", 
+							applet_data->city_name, 
+							applet_data->provincia, 
+							applet_data->day_info[x].day, 
+							str_morning, 
+							applet_data->day_info[x].state, 
+							applet_data->last_update);
+			else if (x == 1 || x == 3 || x == 5)
+				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", 
+							applet_data->city_name, 
+							applet_data->provincia, 
+							applet_data->day_info[x].day, 
+							str_afternoon, 
+							applet_data->day_info[x].state, 
+							applet_data->last_update);
 			else
 				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[x].day, str_afternoon, applet_data->day_info[x].state, applet_data->last_update);
 				

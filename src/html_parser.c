@@ -165,10 +165,12 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				}
 				x++;
 			}
-			if (id_img == 9)
-				gtk_widget_hide (applet_data->event_box[9]);
+			// Hide the last item of the panel if it's afternoon
+			// since AEMET removes that information.
+			if (id_img == 10)
+				gtk_widget_show (applet_data->event_box[10]);
 			else
-				gtk_widget_show (applet_data->event_box[9]);
+				gtk_widget_hide (applet_data->event_box[10]);
 	
 
 		set_tooltip (applet_data, id_img, "");

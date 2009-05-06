@@ -198,7 +198,12 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 							applet_data->day_info[x].state, 
 							applet_data->last_update);
 			else
-				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", applet_data->city_name, applet_data->provincia, applet_data->day_info[x].day, str_afternoon, applet_data->day_info[x].state, applet_data->last_update);
+				snprintf (temp, 512, "%s %s\n%s\n\n%s\n%s", 
+							applet_data->city_name, 
+							applet_data->provincia, 
+							applet_data->day_info[x].day, 
+							tip, 
+							applet_data->last_update);
 				
 	
 			gtk_tooltips_set_tip (applet_data->tips, applet_data->event_box[x-1], temp, NULL);

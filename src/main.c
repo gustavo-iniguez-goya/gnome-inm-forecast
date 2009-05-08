@@ -180,7 +180,7 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 	temp = g_new0 (char, 512);
 
 	if (id == (MAX_DAYS - 1)){ //Afternoon - 9 images
-		for (x=1;x < id;x++){
+		for (x=1;x < MAX_DAYS;x++){
 			if (x == 0 || x == 2 || x == 4)
 				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", 
 							applet_data->city_name, 

@@ -69,11 +69,16 @@
 			<submenu name="mountain_forecast" _label="_Mountain weather forecast">
 				<menuitem name="Informe Aludes1"
 					verb="InformeAludes1"
-					_label="_Snowfall report (Navarra y Aragon)"
+					_label="_Snowfall report (Navarra and Aragon)"
 					pixtype="stock"
 					pixname=""/>
 				<menuitem name="Informe Aludes2"
 					verb="InformeAludes2"
+					_label="_Snowfall report (Aragonese Pyrenees) "
+					pixtype="stock"
+					pixname=""/>
+				<menuitem name="Informe Aludes3"
+					verb="InformeAludes3"
 					_label="_Snowfall report (Catalonya) "
 					pixtype="stock"
 					pixname=""/>

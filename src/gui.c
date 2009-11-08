@@ -516,6 +516,13 @@ void display_snow_warnings_nav		 ( BonoboUIComponent *uic, gpointer user_data, c
 	gnome_vfs_async_open (&applet_data->gvfs_handle, INM_SNOW_WARNINGS_URL_1, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
 }
 
+void display_snow_warnings_arg		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
+{
+	AppletData *applet_data = (AppletData *) user_data;
+	applet_data->gvfs_cnx_type = 6;
+	gnome_vfs_async_open (&applet_data->gvfs_handle, INM_SNOW_WARNINGS_URL_3, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
+}
+
 void display_snow_warnings_cat		 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
 {
 	AppletData *applet_data = (AppletData *) user_data;

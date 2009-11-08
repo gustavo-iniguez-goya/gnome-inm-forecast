@@ -37,6 +37,7 @@ void display_spanish_forecast_img	( BonoboUIComponent *uic, gpointer user_data, 
 void display_prob_precipitation	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_snow_warnings	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_snow_warnings_nav		 ( BonoboUIComponent *uic, gpointer user_data, const char *name );
+void display_snow_warnings_arg		 ( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_snow_warnings_cat		 ( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_mountain_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );
 void display_marine_forecast	( BonoboUIComponent *uic, gpointer user_data, const char *name );

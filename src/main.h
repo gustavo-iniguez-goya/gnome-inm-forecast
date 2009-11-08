@@ -62,8 +62,9 @@
 #define INM_WWARNINGS_TOMORROW_URL "http://www.aemet.es/es/eltiempo/prediccion/avisos?w=mna&datos=img"
 #define INM_WWARNINGS_NEXT_DAYS_URL "http://www.aemet.es/es/eltiempo/prediccion/avisos?w=pmna&datos=img"
 
-#define INM_SNOW_WARNINGS_URL_1 "http://www2.inm.es/wwb/predi/mont/p18tarn1.txt"
-#define INM_SNOW_WARNINGS_URL_2 "http://www2.inm.es/wwb/predi/mont/p18tcat1.txt"
+#define INM_SNOW_WARNINGS_URL_1 "http://www.aemet.es/es/eltiempo/prediccion/montana?w=2&p=nav1"
+#define INM_SNOW_WARNINGS_URL_2 "http://www.aemet.es/es/eltiempo/prediccion/montana?p=cat1&w=2"
+#define INM_SNOW_WARNINGS_URL_3 "http://www.aemet.es/es/eltiempo/prediccion/montana?p=arn1&w=2"
 
 #define INM_MARINE_FORECAST_1 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=can1"
 #define INM_MARINE_FORECAST_2 "http://www.aemet.es/en/eltiempo/prediccion/maritima?opc1=0&opc2=0&zona=gal1"
@@ -92,7 +93,7 @@
 #define INM_MOUNTAIN_FORECAST_GREDOS "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=gre1"
 #define INM_MOUNTAIN_FORECAST_GUADARRAMA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=mad2"
 #define INM_MOUNTAIN_FORECAST_SIERRA_NEVADA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=nev1"
-#define INM_NATIONAL_FORECAST_IMG "http://www.aemet.es/imagenes_d/eltiempo/prediccion/pais/p01wesp1.jpg"
+#define INM_NATIONAL_FORECAST_IMG "http://www.aemet.es/imagenes_d/eltiempo/prediccion/espa/200911081224_p01wesp0.jpg"
 
 #define INM_DAILY_TEMPERATURE_MAX "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp099.gif"
 #define INM_DAILY_TEMPERATURE_MIN "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp098.gif"

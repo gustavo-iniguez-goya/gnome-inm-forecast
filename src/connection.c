@@ -37,8 +37,8 @@ void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, 
 			if (strstr (applet_data->buffer, "Fecha"))
 				parse_dates_data (applet_data, strstr(applet_data->buffer, "Fecha"), 1);
 
-			if (strstr (applet_data->buffer, "Prob. precip"))
-				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Prob. precip"), PRECIP);
+			if (strstr (applet_data->buffer, "Prob. precip."))
+				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Prob. precip."), PRECIP);
 			
 			if (strstr (applet_data->buffer, "xima (")) // Maxima (C)
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "xima ("), MAX);

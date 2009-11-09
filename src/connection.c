@@ -169,6 +169,7 @@ void gvfs_close_cb		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, gpoint
 		win = glade_xml_get_widget (xml, "win_today_forecast");
 		g_signal_connect_swapped (G_OBJECT(win), "destroy", G_CALLBACK(quit), win);
 		
+		gtk_window_set_icon_from_file ((GtkWindow *)win, "/usr/share/pixmaps/"PACKAGE".png", NULL);
 		textview = glade_xml_get_widget (xml, "textview");
 		textview_buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(textview));
 		gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW(textview), GTK_WRAP_WORD_CHAR);

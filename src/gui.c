@@ -252,6 +252,8 @@ void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, con
 	win = glade_xml_get_widget (xml, "win_radar");
 	img = glade_xml_get_widget (xml, "radar_img");
 	combo_hour = glade_xml_get_widget (xml, "combo_hour");
+
+	gtk_window_set_icon_from_file ((GtkWindow *)win, "/usr/share/pixmaps/"PACKAGE".png", NULL);
 	
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 	g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_sat_combo_hour_changed), img);
@@ -284,6 +286,7 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 	combo_hour = glade_xml_get_widget (xml, "combo_hour");
 	
 	gtk_widget_hide (combo_hour);
+	gtk_window_set_icon_from_file ((GtkWindow *)win, "/usr/share/pixmaps/"PACKAGE".png", NULL);
 
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 	
@@ -314,6 +317,8 @@ void display_daily_temperatures 	( BonoboUIComponent *uic, gpointer user_data, c
 	//gtk_widget_hide (rb1);
 	//gtk_widget_hide (rb2);
 	
+	gtk_window_set_icon_from_file ((GtkWindow *)win, "/usr/share/pixmaps/"PACKAGE".png", NULL);
+
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 	g_signal_connect (G_OBJECT(rb1), "toggled", G_CALLBACK(on_daily_temp_rb1_toggled), img);
 	g_signal_connect (G_OBJECT(rb2), "toggled", G_CALLBACK(on_daily_temp_rb2_toggled), img);
@@ -359,6 +364,8 @@ void display_prob_precipitation 	( BonoboUIComponent *uic, gpointer user_data, c
 	//gtk_widget_hide (rb1);
 	//gtk_widget_hide (rb2);
 	
+	gtk_window_set_icon_from_file ((GtkWindow *)win, "/usr/share/pixmaps/"PACKAGE".png", NULL);
+
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 	g_signal_connect (G_OBJECT(rb_005), "toggled", G_CALLBACK(on_prob_precip_toggled_005), img);
 	g_signal_connect (G_OBJECT(rb_020), "toggled", G_CALLBACK(on_prob_precip_toggled_020), img);
@@ -392,6 +399,8 @@ void display_air_mass	 	( BonoboUIComponent *uic, gpointer user_data, const char
 	img = glade_xml_get_widget (xml, "radar_img");
 	combo_hour = glade_xml_get_widget (xml, "combo_hour");
 	
+	gtk_window_set_icon_from_file ((GtkWindow *)win, "/usr/share/pixmaps/"PACKAGE".png", NULL);
+	
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 	g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_airmass_combo_hour_changed), img);
 
@@ -424,6 +433,7 @@ void display_radar	 	( BonoboUIComponent *uic, gpointer user_data, const char *n
 	img = glade_xml_get_widget (xml, "radar_img");
 	combo_hour = glade_xml_get_widget (xml, "combo_hour");
 	
+	gtk_window_set_icon_from_file ((GtkWindow *)win, "/usr/share/pixmaps/"PACKAGE".png", NULL);
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
@@ -463,6 +473,7 @@ void display_lightnings	 	( BonoboUIComponent *uic, gpointer user_data, const ch
 	img = glade_xml_get_widget (xml, "radar_img");
 	combo_hour = glade_xml_get_widget (xml, "combo_hour");
 	
+	gtk_window_set_icon_from_file ((GtkWindow *)win, "/usr/share/pixmaps/"PACKAGE".png", NULL);
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);

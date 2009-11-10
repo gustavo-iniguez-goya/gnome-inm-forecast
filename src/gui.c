@@ -279,6 +279,24 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 	GtkWidget *img;
 	GtkWidget *win;
 	GtkWidget *combo_hour;
+	GDate *g_date=NULL;
+	GTimeVal g_timeval;
+	gchar *str_date=NULL;
+	gchar *str_tmp=NULL;
+
+	g_get_current_time (&g_timeval);
+	g_date = g_date_new ();
+	g_date_set_time_val (g_date, &g_timeval);
+
+	if (!g_date_valid (g_date)){
+		printf ("display_spanish_forecast_img(): the g_date object is not valid. I couldn't parse the date\n");
+		return;
+	}
+
+	str_date = g_new0 (gchar, 24);
+	str_tmp = g_new0 (gchar, 1024);
+	g_date_strftime (str_date, 24, "%Y%m%d", g_date);
+
 
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
@@ -290,7 +308,8 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 	
-	pixbuf = load_image (INM_NATIONAL_FORECAST_IMG);
+	snprintf (str_tmp, 1024, "%s%s%s\0", INM_NATIONAL_FORECAST_IMG, str_date, INM_NATIONAL_FORECAST_END); 
+	pixbuf = load_image (str_tmp);
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
 		gtk_window_set_title (GTK_WINDOW(win), _("Spanish weather forecast image"));
@@ -299,6 +318,9 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 		pixbuf = 0;
 	}
 	g_object_unref (G_OBJECT(xml));
+	g_free (str_date);
+	g_free (str_tmp);
+	g_date_free (g_date);
 }
 
 void display_daily_temperatures 	( BonoboUIComponent *uic, gpointer user_data, const char *name )

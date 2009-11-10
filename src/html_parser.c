@@ -185,10 +185,12 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 		printf ("Days: %d\n", id_img);	
 		// Hide the last item of the panel if it's afternoon
 		// since AEMET removes that information.
-		if (id_img == 10)
-			gtk_widget_show (applet_data->event_box[9]);
-		else
-			gtk_widget_hide (applet_data->event_box[9]);
+		for (x=0;x < id_img;x++){
+			gtk_widget_show (applet_data->event_box[x]);
+		}
+		for (x=id_img;x < MAX_DAYS;x++){
+			gtk_widget_hide (applet_data->event_box[x]);
+		}
 	}
 	if (tokens)
 		g_strfreev (tokens);

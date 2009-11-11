@@ -68,7 +68,7 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	GdkPixbuf *temp_pixbuf=0, *temp_pixbuf2=0;
 	int x=0,id_img=0;
 	//int iDays = g_ascii_strtod (panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "days", NULL), NULL);
-	int iDays = MAX_DAYS;
+ 	int iDays = atoi (applet_data->show_days);
 	// FIXME: This value should be dynamic: strlen (PIXMAPS_DIR) + strlen (applet_data->theme)
 	int theme_len = 128;
 
@@ -185,11 +185,22 @@ void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 		printf ("Days: %d\n", id_img);	
 		// Hide the last item of the panel if it's afternoon
 		// since AEMET removes that information.
-		for (x=0;x < id_img;x++){
-			gtk_widget_show (applet_data->event_box[x]);
-		}
-		for (x=id_img;x < MAX_DAYS;x++){
-			gtk_widget_hide (applet_data->event_box[x]);
+		if (iDays > 7){
+			if (id_img == 10){
+				gtk_widget_show (applet_data->event_box[9]);
+				gtk_widget_show (applet_data->event_box[8]);
+				gtk_widget_show (applet_data->event_box[7]);
+			}
+			else if (id_img == 9){
+				gtk_widget_hide (applet_data->event_box[9]);
+				gtk_widget_show (applet_data->event_box[8]);
+				gtk_widget_show (applet_data->event_box[7]);
+			}
+			else if (id_img == 8){
+				gtk_widget_hide (applet_data->event_box[9]);
+				gtk_widget_hide (applet_data->event_box[8]);
+				gtk_widget_show (applet_data->event_box[7]);
+			}
 		}
 	}
 	if (tokens)

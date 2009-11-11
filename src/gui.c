@@ -293,11 +293,6 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 		return;
 	}
 
-	str_date = g_new0 (gchar, 24);
-	str_tmp = g_new0 (gchar, 1024);
-	g_date_strftime (str_date, 24, "%Y%m%d", g_date);
-
-
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
 	img = glade_xml_get_widget (xml, "radar_img");
@@ -308,7 +303,30 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 
 	g_signal_connect (G_OBJECT(win), "destroy", G_CALLBACK(on_window_terminate), img);
 	
-	snprintf (str_tmp, 1024, "%s%s%s\0", INM_NATIONAL_FORECAST_IMG, str_date, INM_NATIONAL_FORECAST_END); 
+	str_date = g_new0 (gchar, 24);
+	str_tmp = g_new0 (gchar, 1024);
+	
+	// If the map we want to get, is not the current one, we have to increase
+	// the current day by 1 or 2.
+	if (strncmp (name, "SpanishForecastImg_Tomorrow0012", strlen(name)) == 0 ||
+			strncmp (name, "SpanishForecastImg_Tomorrow1224", strlen(name)) == 0)
+		g_date_add_days (g_date, 1);
+	//else if (strncmp (name, "SpanishForecastImg_ATomorrow1224", strlen(name)) == 0 ||
+	//		strncmp (name, "SpanishForecastImg_ATomorrow0012", strlen(name)) == 0)
+	//	g_date_add_days (g_date, 2);
+
+	g_date_strftime (str_date, 24, "%Y%m%d", g_date);
+	
+	if (strncmp (name, "SpanishForecastImg_Today0012", strlen(name)) == 0 ||
+			strncmp (name, "SpanishForecastImg_Tomorrow0012", strlen(name)) == 0)
+	//		strncmp (name, "SpanishForecastImg_ATomorrow0012", strlen(name)) == 0 )
+		snprintf (str_tmp, 1024, "%s%s%s\0", INM_NATIONAL_FORECAST_IMG, str_date, INM_NATIONAL_FORECAST_0012);
+	else if (strncmp (name, "SpanishForecastImg_Today1224", strlen(name)) == 0 ||
+			strncmp (name, "SpanishForecastImg_Tomorrow1224", strlen(name)) == 0)
+	//		strncmp (name, "SpanishForecastImg_ATomorrow1224", strlen(name)) == 0)
+		snprintf (str_tmp, 1024, "%s%s%s\0", INM_NATIONAL_FORECAST_IMG, str_date, INM_NATIONAL_FORECAST_1224);
+
+	printf ("Loading %s\n", str_tmp);
 	pixbuf = load_image (str_tmp);
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);

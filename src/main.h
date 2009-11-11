@@ -94,7 +94,8 @@
 #define INM_MOUNTAIN_FORECAST_GUADARRAMA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=mad2"
 #define INM_MOUNTAIN_FORECAST_SIERRA_NEVADA "http://www.aemet.es/es/eltiempo/prediccion/montana?w=&p=nev1"
 #define INM_NATIONAL_FORECAST_IMG "http://www.aemet.es/imagenes_d/eltiempo/prediccion/espa/"
-#define INM_NATIONAL_FORECAST_END "1224_p01wesp0.jpg"
+#define INM_NATIONAL_FORECAST_1224 "1224_p01wesp0.jpg"
+#define INM_NATIONAL_FORECAST_0012 "0012_p01wesp0.jpg"
 
 #define INM_DAILY_TEMPERATURE_MAX "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp099.gif"
 #define INM_DAILY_TEMPERATURE_MIN "http://www.aemet.es/imagenes_d/eltiempo/prediccion/temperaturas/tw2gp098.gif"

@@ -14,11 +14,32 @@
 			</submenu>
 			<separator />
 			<submenu name="forecast_images" _label="_Weather maps">
-				<menuitem name="SpanishForecastImage"
-				             verb="SpanishForecastImg"
-				           _label="_Tomorrow weather map"
-				          pixtype="stock"
-				          pixname=""/>
+				<submenu name="SFItoday" _label="_Map weather forecast for today">
+					<menuitem name="SpanishForecastImage"
+					             verb="SpanishForecastImg_Today0012"
+					           _label="_Morning"
+					          pixtype="stock"
+					          pixname=""/>
+					<menuitem name="SpanishForecastImage"
+					             verb="SpanishForecastImg_Today1224"
+					           _label="_Afternoon"
+					          pixtype="stock"
+					          pixname=""/>
+
+				</submenu>
+				<submenu name="SFItomorrow" _label="_Map weather forecast for tomorrow">
+					<menuitem name="SpanishForecastImage"
+					             verb="SpanishForecastImg_Tomorrow0012"
+					           _label="_Morning"
+					          pixtype="stock"
+					          pixname=""/>
+					<menuitem name="SpanishForecastImage"
+					             verb="SpanishForecastImg_Tomorrow1224"
+					           _label="_Afternoon"
+					          pixtype="stock"
+					          pixname=""/>
+
+				</submenu>
 				<menuitem name="Satellite radar images"
 					verb="SatelliteImages"
 					_label="_Satellite radar images"

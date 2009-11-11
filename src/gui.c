@@ -335,6 +335,9 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 		g_object_unref (G_OBJECT (pixbuf));
 		pixbuf = 0;
 	}
+	else if (!pixbuf && strncmp (name, "SpanishForecastImg_Tomorrow1224", strlen(name)) == 0)
+		message_box ((AppletData *)user_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("The map weather forecast is not still available"), "Check it out later.");
+
 	g_object_unref (G_OBJECT(xml));
 	g_free (str_date);
 	g_free (str_tmp);

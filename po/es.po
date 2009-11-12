@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-inm-forecast 0.6.1\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2009-11-08 21:25+0100\n"
+"POT-Creation-Date: 2009-11-12 15:25+0100\n"
 "PO-Revision-Date: 2009-03-31 00:22+0100\n"
 "Last-Translator: Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>\n"
 "Language-Team: es <es@li.org>\n"
@@ -26,11 +26,11 @@ msgstr "Mañana"
 msgid "Afternoon"
 msgstr "Tarde"
 
-#: ../src/main.c:551
+#: ../src/main.c:556
 msgid "Error loading the GNOME VFS subsystem"
 msgstr "Error al cargar el subsistema GNOME VFS"
 
-#: ../src/main.c:551
+#: ../src/main.c:556
 msgid "An error ocurred loading the GNOME VFS subsystem"
 msgstr "Ha ocurrido un error al cargar el subsistema GNOME VFS"
 
@@ -290,172 +290,187 @@ msgid "_About..."
 msgstr "_Acerca de..."
 
 #: ../GNOME_INM_menu.xml.h:10
+msgid "_Afternoon"
+msgstr "T_arde"
+
+#: ../GNOME_INM_menu.xml.h:11
 msgid "_Asturias, Basque Country and Cantabria Coasts"
 msgstr "Costas de Asturias, País Vasco y Cantabria"
 
-#: ../GNOME_INM_menu.xml.h:11
+#: ../GNOME_INM_menu.xml.h:12
 msgid "_Balearic Islands Coast"
 msgstr "Costa de las Islas Baleares"
 
-#: ../GNOME_INM_menu.xml.h:12
+#: ../GNOME_INM_menu.xml.h:13
 msgid "_Canary Islands Coast"
 msgstr "Costa de las Islas Canarias"
 
-#: ../GNOME_INM_menu.xml.h:13
+#: ../GNOME_INM_menu.xml.h:14
 msgid "_Catalonia Coast"
 msgstr "Costa de Cataluña"
 
-#: ../GNOME_INM_menu.xml.h:14
+#: ../GNOME_INM_menu.xml.h:15
 msgid "_Coastal areas"
 msgstr "Áreas costeras"
 
-#: ../GNOME_INM_menu.xml.h:15
+#: ../GNOME_INM_menu.xml.h:16
 msgid "_Eastern Andalusia, Melilla and Alboran Coast"
 msgstr "Costa de Andalucía Oriental, Melilla y Alborán"
 
-#: ../GNOME_INM_menu.xml.h:16
+#: ../GNOME_INM_menu.xml.h:17
 msgid "_Galicia Coast"
 msgstr "Costa de Galicia"
 
-#: ../GNOME_INM_menu.xml.h:17
+#: ../GNOME_INM_menu.xml.h:18
 msgid "_Iberica Aragonesa"
 msgstr "Ibérica Aragonesa"
 
-#: ../GNOME_INM_menu.xml.h:18
+#: ../GNOME_INM_menu.xml.h:19
 msgid "_Iberica Riojana"
 msgstr "Ibérica Riojana"
 
-#: ../GNOME_INM_menu.xml.h:19
+#: ../GNOME_INM_menu.xml.h:20
 msgid "_Last warning"
 msgstr "Último aviso"
 
-#: ../GNOME_INM_menu.xml.h:20
+#: ../GNOME_INM_menu.xml.h:21
 msgid "_Lightnings"
 msgstr "_Rayos"
 
-#: ../GNOME_INM_menu.xml.h:21
+#: ../GNOME_INM_menu.xml.h:22
+msgid "_Map weather forecast for today"
+msgstr "Previsión para hoy"
+
+#: ../GNOME_INM_menu.xml.h:23
+msgid "_Map weather forecast for tomorrow"
+msgstr "Previsión para mañana"
+
+#: ../GNOME_INM_menu.xml.h:24
 msgid "_Marine weather forecast"
 msgstr "Pronóstico marítimo"
 
-#: ../GNOME_INM_menu.xml.h:22
+#: ../GNOME_INM_menu.xml.h:25
 msgid "_Mediterranean"
-msgstr "Mediterráneo"
+msgstr "_Mediterráneo"
 
-#: ../GNOME_INM_menu.xml.h:23
+#: ../GNOME_INM_menu.xml.h:26
+msgid "_Morning"
+msgstr "_Mañana"
+
+#: ../GNOME_INM_menu.xml.h:27
 msgid "_Mountain weather forecast"
 msgstr "Pronóstico de montaña"
 
-#: ../GNOME_INM_menu.xml.h:24
+#: ../GNOME_INM_menu.xml.h:28
 msgid "_Next days weather report"
 msgstr "Previsión próximos días"
 
-#: ../GNOME_INM_menu.xml.h:25
+#: ../GNOME_INM_menu.xml.h:29
 msgid "_Next days weather warnings"
 msgstr "Avisos próximos días"
 
-#: ../GNOME_INM_menu.xml.h:26
+#: ../GNOME_INM_menu.xml.h:30
 msgid "_Next hours"
 msgstr "Próximas horas"
 
-#: ../GNOME_INM_menu.xml.h:27
+#: ../GNOME_INM_menu.xml.h:31
 msgid "_North Atlantic"
 msgstr "Atlántico Norte"
 
-#: ../GNOME_INM_menu.xml.h:28
+#: ../GNOME_INM_menu.xml.h:32
 msgid "_Open sea"
 msgstr "Mar abierto"
 
-#: ../GNOME_INM_menu.xml.h:29
+#: ../GNOME_INM_menu.xml.h:33
 msgid "_Picos de Europa"
 msgstr ""
 
-#: ../GNOME_INM_menu.xml.h:30
+#: ../GNOME_INM_menu.xml.h:34
 msgid "_Pirineo Aragones"
 msgstr "Pirineo Aragonés"
 
-#: ../GNOME_INM_menu.xml.h:31
+#: ../GNOME_INM_menu.xml.h:35
 msgid "_Pirineo Catalan"
 msgstr "Pirineo Catalán"
 
-#: ../GNOME_INM_menu.xml.h:32
+#: ../GNOME_INM_menu.xml.h:36
 msgid "_Pirineo Navarro"
 msgstr ""
 
-#: ../GNOME_INM_menu.xml.h:33
+#: ../GNOME_INM_menu.xml.h:37
 msgid "_Preferences..."
 msgstr "_Preferencias"
 
-#: ../GNOME_INM_menu.xml.h:34
+#: ../GNOME_INM_menu.xml.h:38
 msgid "_Radar"
 msgstr ""
 
-#: ../GNOME_INM_menu.xml.h:35
+#: ../GNOME_INM_menu.xml.h:39
 msgid "_Satellite radar images"
 msgstr "Imágenes de satélite"
 
-#: ../GNOME_INM_menu.xml.h:36
+#: ../GNOME_INM_menu.xml.h:40
 msgid "_Sierra Nevada"
 msgstr ""
 
-#: ../GNOME_INM_menu.xml.h:37
+#: ../GNOME_INM_menu.xml.h:41
 msgid "_Sierra de Gredos"
 msgstr ""
 
-#: ../GNOME_INM_menu.xml.h:38
+#: ../GNOME_INM_menu.xml.h:42
 msgid "_Sierra de Guadarrama y Somosierra"
 msgstr ""
 
-#: ../GNOME_INM_menu.xml.h:39
+#: ../GNOME_INM_menu.xml.h:43
 msgid "_Snowfall report (Aragon) "
 msgstr "In_forme de aludes (Aragón)"
 
-#: ../GNOME_INM_menu.xml.h:40
+#: ../GNOME_INM_menu.xml.h:44
 msgid "_Snowfall report (Catalonya) "
 msgstr "In_forme de aludes (Cataluña)"
 
-#: ../GNOME_INM_menu.xml.h:41
+#: ../GNOME_INM_menu.xml.h:45
 msgid "_Snowfall report (Navarra)"
 msgstr "_Informe de aludes (Navarra)"
 
-#: ../GNOME_INM_menu.xml.h:42
+#: ../GNOME_INM_menu.xml.h:46
 msgid "_SouthAtlantic"
 msgstr "Atlántico Sur"
 
-#: ../GNOME_INM_menu.xml.h:43
+#: ../GNOME_INM_menu.xml.h:47
 msgid "_Tendency"
 msgstr "Tendencia"
 
-#: ../GNOME_INM_menu.xml.h:44
+#: ../GNOME_INM_menu.xml.h:48
 msgid "_Today weather warnings"
 msgstr "_Avisos para hoy"
 
-#: ../GNOME_INM_menu.xml.h:45
-msgid "_Tomorrow weather map"
-msgstr "_Mapa para mañana"
-
-#: ../GNOME_INM_menu.xml.h:46
+#: ../GNOME_INM_menu.xml.h:49
 msgid "_Tomorrow weather report"
 msgstr "Pronóstico para mañana"
 
-#: ../GNOME_INM_menu.xml.h:47
+#: ../GNOME_INM_menu.xml.h:50
 msgid "_Update now"
 msgstr "Actualizar ahora"
 
-#: ../GNOME_INM_menu.xml.h:48
+#: ../GNOME_INM_menu.xml.h:51
 msgid "_Valencia and Murcia Coast"
 msgstr "Costa de Valencia y Murcia"
 
-#: ../GNOME_INM_menu.xml.h:49
+#: ../GNOME_INM_menu.xml.h:52
 msgid "_Visit AEMET web site"
 msgstr "_Visita la web de la AEMET"
 
-#: ../GNOME_INM_menu.xml.h:50
+#: ../GNOME_INM_menu.xml.h:53
 msgid "_Weather maps"
 msgstr "_Mapas meteorológicos"
 
-#: ../GNOME_INM_menu.xml.h:51
+#: ../GNOME_INM_menu.xml.h:54
 msgid "_Western Andalusia and Ceuta Coast"
 msgstr "Costa de Andalucía Occidental y Ceuta"
+
+#~ msgid "_Tomorrow weather map"
+#~ msgstr "_Mapa para mañana"
 
 #~ msgid "_Snowfall report (Aragonese Pyrenees) "
 #~ msgstr "In_forme de aludes (Pirineo Aragonés)"

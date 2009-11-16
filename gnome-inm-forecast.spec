@@ -3,8 +3,8 @@
 # Copyright (c) 2007-2009 Gustavo Iñiguez Goya ga@kutxa.homeunix.org
 #
 %define name gnome-inm-forecast
-%define version 0.8.0
-%define release 0
+%define version 0.8.1
+%define release 1
 %define manifest %{_builddir}/%{name}-%{version}-%{release}.manifest
 
 # required items
@@ -22,7 +22,7 @@ URL: http://kutxa.homeunix.org/trac/gnome-inm-forecast/
 Packager: Gustavo Iñiguez Goya ga@kutxa.homeunix.org
 
 # source + patches
-Source: %{name}-%{version}.tar.gz
+Source: http://kutxa.homeunix.org/debian/dists/unstable/i386/%{name}-%{version}.tar.gz
 #Source1:
 #Patch:
 #Patch1:
@@ -93,14 +93,14 @@ find . -type l \
 #%preun
 #%postun
 
+%files -f ../%{name}-%{version}-%{release}.manifest
+%defattr(-,root,root)
+%doc README AUTHORS COPYING INSTALL THANKS
+#%docdir
+#%config
+
 %clean
 rm -f %{manifest}
 rm -rf $RPM_BUILD_ROOT
-
-%files -f %{manifest}
-%defattr(-,root,root)
-%doc README AUTHORS COPYING INSTALL
-#%docdir
-#%config
 
 %changelog

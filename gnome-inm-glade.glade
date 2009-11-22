@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Fri Apr  3 12:23:50 2009 -->
+<?xml version="1.0"?>
 <glade-interface>
+  <!-- interface-requires gtk+ 2.10 -->
+  <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="win_today_forecast">
     <property name="width_request">640</property>
     <property name="height_request">400</property>
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="title" translatable="yes">Today weather forecast </property>
-    <property name="window_position">GTK_WIN_POS_CENTER</property>
+    <property name="window_position">center</property>
     <child>
       <widget class="GtkTable" id="table1">
         <property name="visible">True</property>
@@ -18,9 +18,9 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-            <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-            <property name="shadow_type">GTK_SHADOW_IN</property>
+            <property name="hscrollbar_policy">automatic</property>
+            <property name="vscrollbar_policy">automatic</property>
+            <property name="shadow_type">in</property>
             <child>
               <widget class="GtkTextView" id="textview">
                 <property name="visible">True</property>
@@ -42,7 +42,7 @@
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="title" translatable="yes">Preferences</property>
     <property name="resizable">False</property>
-    <property name="window_position">GTK_WIN_POS_CENTER</property>
+    <property name="window_position">center</property>
     <signal name="destroy_event" handler="on_preferences_destroy"/>
     <child>
       <widget class="GtkTable" id="table2">
@@ -61,7 +61,7 @@
                 <property name="visible">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label_xalign">0</property>
-                <property name="shadow_type">GTK_SHADOW_NONE</property>
+                <property name="shadow_type">none</property>
                 <child>
                   <widget class="GtkAlignment" id="alignment1">
                     <property name="visible">True</property>
@@ -75,12 +75,6 @@
                         <property name="n_columns">2</property>
                         <property name="column_spacing">5</property>
                         <property name="row_spacing">5</property>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
                         <child>
                           <widget class="GtkEntry" id="entry_code">
                             <property name="visible">True</property>
@@ -111,20 +105,6 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="GtkLabel" id="label14">
-                            <property name="visible">True</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">&lt;small&gt;Codes: http://www.aemet.es/es/eltiempo/prediccion/localidades&lt;/small&gt;</property>
-                            <property name="use_markup">True</property>
-                            <property name="selectable">True</property>
-                          </widget>
-                          <packing>
-                            <property name="right_attach">2</property>
-                            <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                          </packing>
-                        </child>
-                        <child>
                           <widget class="GtkLabel" id="location_lbl">
                             <property name="visible">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -137,6 +117,18 @@
                             <property name="bottom_attach">2</property>
                             <property name="y_options">GTK_FILL</property>
                           </packing>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
                         </child>
                       </widget>
                     </child>
@@ -164,8 +156,8 @@
                 <property name="label" translatable="yes">Location</property>
               </widget>
               <packing>
-                <property name="type">tab</property>
                 <property name="tab_fill">False</property>
+                <property name="type">tab</property>
               </packing>
             </child>
             <child>
@@ -173,7 +165,7 @@
                 <property name="visible">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="label_xalign">0</property>
-                <property name="shadow_type">GTK_SHADOW_NONE</property>
+                <property name="shadow_type">none</property>
                 <child>
                   <widget class="GtkAlignment" id="alignment2">
                     <property name="visible">True</property>
@@ -188,30 +180,15 @@
                         <property name="column_spacing">5</property>
                         <property name="row_spacing">5</property>
                         <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
                           <widget class="GtkCheckButton" id="chk_show_after">
+                            <property name="label" translatable="yes">Show afternoon data</property>
                             <property name="width_request">240</property>
                             <property name="height_request">30</property>
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">Show afternoon data</property>
-                            <property name="response_id">0</property>
                             <property name="draw_indicator">True</property>
                           </widget>
                           <packing>
@@ -221,14 +198,14 @@
                         </child>
                         <child>
                           <widget class="GtkCheckButton" id="chk_show_morning">
+                            <property name="label" translatable="yes">Show morning data</property>
                             <property name="width_request">240</property>
                             <property name="height_request">30</property>
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="label" translatable="yes">Show morning data</property>
-                            <property name="response_id">0</property>
                             <property name="draw_indicator">True</property>
                           </widget>
                           <packing>
@@ -312,6 +289,21 @@
                             <property name="bottom_attach">5</property>
                           </packing>
                         </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <placeholder/>
+                        </child>
                       </widget>
                     </child>
                   </widget>
@@ -341,9 +333,9 @@
                 <property name="label" translatable="yes">Panel</property>
               </widget>
               <packing>
-                <property name="type">tab</property>
                 <property name="position">1</property>
                 <property name="tab_fill">False</property>
+                <property name="type">tab</property>
               </packing>
             </child>
             <child>
@@ -359,8 +351,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
-                    <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                    <property name="hscrollbar_policy">never</property>
+                    <property name="vscrollbar_policy">automatic</property>
                     <child>
                       <widget class="GtkTreeView" id="tree_prov">
                         <property name="visible">True</property>
@@ -376,14 +368,14 @@
                 </child>
                 <child>
                   <widget class="GtkCheckButton" id="chk_station">
+                    <property name="label" translatable="yes">Show station 
+on the panel</property>
                     <property name="visible">True</property>
                     <property name="sensitive">False</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="tooltip" translatable="yes">The meteorological stations data is updated each hour and will be disponible 30 minutes after as maximum</property>
-                    <property name="label" translatable="yes">Show station 
-on the panel</property>
-                    <property name="response_id">0</property>
                     <property name="draw_indicator">True</property>
                   </widget>
                   <packing>
@@ -394,11 +386,11 @@ on the panel</property>
                 </child>
                 <child>
                   <widget class="GtkRadioButton" id="rb_altitud">
+                    <property name="label" translatable="yes">Altitude</property>
                     <property name="sensitive">False</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="label" translatable="yes">Altitude</property>
-                    <property name="response_id">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
                   </widget>
@@ -413,11 +405,11 @@ on the panel</property>
                 </child>
                 <child>
                   <widget class="GtkRadioButton" id="rb_temp">
+                    <property name="label" translatable="yes">Temperature</property>
                     <property name="sensitive">False</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="label" translatable="yes">Temperature</property>
-                    <property name="response_id">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">rb_altitud</property>
@@ -433,11 +425,11 @@ on the panel</property>
                 </child>
                 <child>
                   <widget class="GtkRadioButton" id="rb_hum">
+                    <property name="label" translatable="yes">Humidity</property>
                     <property name="sensitive">False</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="label" translatable="yes">Humidity</property>
-                    <property name="response_id">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">rb_altitud</property>
@@ -453,11 +445,11 @@ on the panel</property>
                 </child>
                 <child>
                   <widget class="GtkRadioButton" id="rb_precip">
+                    <property name="label" translatable="yes">Rainfall</property>
                     <property name="sensitive">False</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="label" translatable="yes">Rainfall</property>
-                    <property name="response_id">0</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">rb_altitud</property>
@@ -497,9 +489,9 @@ on the panel</property>
                 <property name="label" translatable="yes">Meteorological stations</property>
               </widget>
               <packing>
-                <property name="type">tab</property>
                 <property name="position">2</property>
                 <property name="tab_fill">False</property>
+                <property name="type">tab</property>
               </packing>
             </child>
             <child>
@@ -520,13 +512,12 @@ on the panel</property>
         </child>
         <child>
           <widget class="GtkButton" id="cmd_ok">
+            <property name="label">gtk-apply</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="label" translatable="yes">gtk-apply</property>
             <property name="use_stock">True</property>
-            <property name="response_id">0</property>
             <signal name="clicked" handler="on_cmd_ok_clicked" object="GtkWidget, AppletData"/>
           </widget>
           <packing>
@@ -539,13 +530,12 @@ on the panel</property>
         </child>
         <child>
           <widget class="GtkButton" id="cmd_cancel">
+            <property name="label">gtk-cancel</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="label" translatable="yes">gtk-cancel</property>
             <property name="use_stock">True</property>
-            <property name="response_id">0</property>
             <signal name="clicked" handler="on_cmd_cancel_clicked" object="AppletData"/>
           </widget>
           <packing>
@@ -567,8 +557,8 @@ on the panel</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">About GNOME INM forecast</property>
     <property name="resizable">False</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
     <property name="version">0.1.0</property>
     <property name="copyright" translatable="yes">This program is licensed under the GPL-2 license</property>
@@ -619,11 +609,12 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
           <widget class="GtkHButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
           </widget>
           <packing>
             <property name="expand">False</property>
-            <property name="pack_type">GTK_PACK_END</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
           </packing>
         </child>
       </widget>
@@ -632,7 +623,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
   <widget class="GtkWindow" id="win_radar">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="title" translatable="yes">Satellite image</property>
-    <property name="window_position">GTK_WIN_POS_CENTER</property>
+    <property name="window_position">center</property>
     <property name="urgency_hint">True</property>
     <signal name="size_allocate" handler="on_win_radar_size_allocate"/>
     <child>
@@ -641,9 +632,6 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
         <property name="n_rows">2</property>
         <property name="n_columns">5</property>
-        <child>
-          <placeholder/>
-        </child>
         <child>
           <widget class="GtkImage" id="radar_img">
             <property name="visible">True</property>
@@ -697,7 +685,6 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         <child>
           <widget class="GtkLabel" id="label17">
             <property name="visible">True</property>
-            <property name="label" translatable="yes"></property>
           </widget>
           <packing>
             <property name="top_attach">1</property>
@@ -708,15 +695,18 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
             <property name="y_padding">5</property>
           </packing>
         </child>
+        <child>
+          <placeholder/>
+        </child>
       </widget>
     </child>
   </widget>
   <widget class="GtkWindow" id="win_day">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-    <property name="type">GTK_WINDOW_POPUP</property>
+    <property name="type">popup</property>
     <property name="resizable">False</property>
-    <property name="window_position">GTK_WIN_POS_MOUSE</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DROPDOWN_MENU</property>
+    <property name="window_position">mouse</property>
+    <property name="type_hint">dropdown-menu</property>
     <property name="urgency_hint">True</property>
     <property name="decorated">False</property>
     <property name="deletable">False</property>
@@ -957,7 +947,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
             <property name="xpad">10</property>
             <property name="ypad">10</property>
             <property name="stock">gtk-missing-image</property>
-            <property name="icon_size">5</property>
+            <property name="icon-size">5</property>
           </widget>
           <packing>
             <property name="left_attach">1</property>
@@ -972,7 +962,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
   <widget class="GtkWindow" id="win_day_temps">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="title" translatable="yes">Satellite image</property>
-    <property name="window_position">GTK_WIN_POS_CENTER</property>
+    <property name="window_position">center</property>
     <child>
       <widget class="GtkTable" id="table8">
         <property name="visible">True</property>
@@ -991,11 +981,11 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         </child>
         <child>
           <widget class="GtkRadioButton" id="rb_1">
+            <property name="label" translatable="yes">Min</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="label" translatable="yes">Min</property>
-            <property name="response_id">0</property>
             <property name="draw_indicator">True</property>
           </widget>
           <packing>
@@ -1008,11 +998,11 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         </child>
         <child>
           <widget class="GtkRadioButton" id="rb_2">
+            <property name="label" translatable="yes">Max</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="label" translatable="yes">Max</property>
-            <property name="response_id">0</property>
             <property name="draw_indicator">True</property>
             <property name="group">rb_1</property>
           </widget>
@@ -1032,7 +1022,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
   <widget class="GtkWindow" id="win_prob_precip">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="title" translatable="yes">Rainfall probability</property>
-    <property name="window_position">GTK_WIN_POS_CENTER</property>
+    <property name="window_position">center</property>
     <child>
       <widget class="GtkTable" id="table9">
         <property name="visible">True</property>
@@ -1051,11 +1041,11 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         </child>
         <child>
           <widget class="GtkRadioButton" id="rb_005">
+            <property name="label" translatable="yes">&gt; 0.5 mm</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="label" translatable="yes">&gt; 0.5 mm</property>
-            <property name="response_id">0</property>
             <property name="draw_indicator">True</property>
           </widget>
           <packing>
@@ -1068,11 +1058,11 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         </child>
         <child>
           <widget class="GtkRadioButton" id="rb_020">
+            <property name="label" translatable="yes">&gt; 2 mm</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="receives_default">False</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="label" translatable="yes">&gt; 2 mm</property>
-            <property name="response_id">0</property>
             <property name="draw_indicator">True</property>
             <property name="group">rb_005</property>
           </widget>
@@ -1088,10 +1078,10 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         </child>
         <child>
           <widget class="GtkRadioButton" id="rb_100">
+            <property name="label" translatable="yes">&gt; 10 mm</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="label" translatable="yes">&gt; 10 mm</property>
-            <property name="response_id">0</property>
+            <property name="receives_default">False</property>
             <property name="draw_indicator">True</property>
             <property name="group">rb_005</property>
           </widget>
@@ -1105,10 +1095,10 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         </child>
         <child>
           <widget class="GtkRadioButton" id="rb_200">
+            <property name="label" translatable="yes">&gt; 20 mm</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="label" translatable="yes">&gt; 20 mm</property>
-            <property name="response_id">0</property>
+            <property name="receives_default">False</property>
             <property name="draw_indicator">True</property>
             <property name="group">rb_005</property>
           </widget>
@@ -1123,10 +1113,10 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         </child>
         <child>
           <widget class="GtkRadioButton" id="rb_avg">
+            <property name="label" translatable="yes">avg</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="label" translatable="yes">avg</property>
-            <property name="response_id">0</property>
+            <property name="receives_default">False</property>
             <property name="draw_indicator">True</property>
             <property name="group">rb_005</property>
           </widget>
@@ -1141,10 +1131,10 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
         </child>
         <child>
           <widget class="GtkRadioButton" id="rb_max">
+            <property name="label" translatable="yes">max</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="label" translatable="yes">max</property>
-            <property name="response_id">0</property>
+            <property name="receives_default">False</property>
             <property name="draw_indicator">True</property>
             <property name="group">rb_005</property>
           </widget>

@@ -1,4 +1,7 @@
 	../src/main.c \
+	../src/html_parser.c \
+	../src/gui.c \
+	../src/connection.c \
 	../src/callbacks.c \
 	../src/preferences.c \
 	../gnome-inm-glade.glade \

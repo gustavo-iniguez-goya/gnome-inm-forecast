@@ -29,7 +29,9 @@ Source: http://kutxa.homeunix.org/debian/dists/unstable/i386/%{name}-%{version}.
 
 # RPM info
 #Provides:
-#Requires:
+Requires(pre): GConf2
+Requires(post): GConf2
+Requires(preun): GConf2
 #Conflicts:
 #Prereq:
 
@@ -53,7 +55,9 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
+export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 mkdir -p $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/gconf/schemas/
 mkdir -p $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmaps/inm/
 mkdir -p $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/pixmaps/aemet/
 mkdir -p $RPM_BUILD_ROOT/usr/libexec/
@@ -68,6 +72,7 @@ install -m 644 pixmaps/espcan.jpg $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/p
 install -m 644 pixmaps/gnome-inm-forecast.png $RPM_BUILD_ROOT/usr/share/pixmaps/
 install -m 655 src/gnome-inm-forecast $RPM_BUILD_ROOT/usr/libexec/
 install -m 644 local_codes.txt $RPM_BUILD_ROOT/usr/share/gnome-inm-forecast/
+install -m 644 gnome_inm.schemas $RPM_BUILD_ROOT/%{_sysconfdir}/gconf/schemas/
 %makeinstall
 
 # __os_install_post is implicitly expanded after the
@@ -92,6 +97,25 @@ find . -type l \
 #%post
 #%preun
 #%postun
+
+%pre
+if [ "$1" -gt 1 ] ; then
+export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
+gconftool-2 --makefile-uninstall-rule \
+%{_sysconfdir}/gconf/schemas/gnome_inm.schemas >/dev/null || :
+fi
+
+%post
+export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
+gconftool-2 --makefile-install-rule \
+%{_sysconfdir}/gconf/schemas/gnome_inm.schemas > /dev/null || :
+
+%preun
+if [ "$1" -eq 0 ] ; then
+export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
+gconftool-2 --makefile-uninstall-rule \
+%{_sysconfdir}/gconf/schemas/gnome_inm.schemas > /dev/null || :
+fi
 
 %files -f ../%{name}-%{version}-%{release}.manifest
 %defattr(-,root,root)

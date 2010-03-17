@@ -5,7 +5,7 @@
         <key>/schemas/apps/gnome-inm/prefs/code</key>
         <owner>gnome-inm_applet</owner>
         <type>string</type>
-	<default>48130</default>
+	<default>barakaldo-48130</default>
         <locale name="C">
           <short>Location code of the city</short>
           <long></long>

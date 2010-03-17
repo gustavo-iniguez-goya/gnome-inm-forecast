@@ -83,7 +83,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 
 	tmp = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "city", NULL);
 	gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->entry_code), tmp);
-	applet_data->prefs->code = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL);
+	g_strlcpy (applet_data->prefs->code, (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL), 256);
 
 	if (tmp){
 		g_free (tmp);
@@ -230,13 +230,12 @@ void 		create_stations_tree ( AppletData *applet_data )
 void 		on_preferences_destroy ( GtkWidget *widget, AppletData *applet_data )
 {
 	printf ("Destroying object preferences\n");
-	close_prefs_window (applet_data);
+	close_prefs_window (applet_data->prefs);
 }
 
 void		on_cmd_cancel_clicked ( GtkWidget *widget, AppletData *applet_data )
 {
-	printf ("cmd cancel\n");
-	close_prefs_window (applet_data);
+	close_prefs_window (applet_data->prefs);
 }
 
 void		on_cmd_ok_clicked ( GtkWidget *widget, AppletData *applet_data )
@@ -263,7 +262,7 @@ void		on_cmd_ok_clicked ( GtkWidget *widget, AppletData *applet_data )
 		g_free (text);
 
 		update_location (applet_data);
-		close_prefs_window (applet_data);
+		close_prefs_window (applet_data->prefs);
 	}
 }
 
@@ -334,9 +333,11 @@ gboolean 	station_entry_event ( GtkWidget *widget, GdkEventKey *event, AppletDat
 gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int type )
 {
 	GtkTreeIter iter;
-	gchar *code;
-	gchar *city;
+	gchar *new_city=0;
+	gchar *code=0;
+	gchar *city=0;
 	gboolean valid;
+
 	if (type == 0){
 		valid = gtk_tree_model_get_iter_first (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter);
 	}
@@ -347,20 +348,19 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 	while (valid){
 		if (type == 0){
 			gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter, 1, &city, -1);
-
 			if (city && strcasecmp (city, gtk_entry_get_text (GTK_ENTRY(applet_data->prefs->entry_code))) == 0){
 				gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter, 0, &code, -1);
-				strncpy (applet_data->prefs->code, code, 5);
-				printf ("0-Code for %s: %s\n", city, code);
-				if (code){
-					g_free (code);
-					code = 0;
-				}
 				
-				if (city){
-					g_free (city);
-					city = 0;
+				new_city = translate_city_to_url (city);
+				
+				if (new_city && code){
+					g_snprintf (applet_data->prefs->code, 256, "%s-%s\0", new_city, code);
+					//printf ("0-Code for (%d) \"%s\": %s\n", strlen(applet_data->prefs->code), applet_data->prefs->code, code);
 				}
+
+				g_free (city);
+				g_free (code);
+				g_free (new_city);
 
 				break;
 			}
@@ -369,22 +369,19 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 			gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->tree_store), &iter, 0, &city, -1);
 			if (city && strcasecmp (city, gtk_entry_get_text (GTK_ENTRY(applet_data->prefs->prov_search_entry))) == 0){
 				gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->tree_store), &iter, 1, &code, -1);
-				if (code){
-					strncpy (applet_data->prefs->code, code, 5);
-					printf ("1-Code for %s: %s\n", city, code);
-					g_free (code);
-					code = 0;
+
+				new_city = translate_city_to_url (city);
+				
+				if (new_city && code){
+					g_snprintf (applet_data->prefs->code, 256, "%s-%s\0", new_city, code);
 				}
-				if (city){
-					g_free (city);
-					city = 0;
-				}
+				
+				g_free (code);
+				g_free (city);
+				g_free (new_city);
+
 				break;
 			}
-		}
-		if (city){
-			g_free (city);
-			city = 0;
 		}
 
 		if (type == 0)
@@ -396,8 +393,65 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 	return FALSE;
 }
 
+gchar*		translate_city_to_url ( const char *str_city )
+{
+	int i=0,x=0;
+	gchar* str_tmp=NULL;
+	gchar* str_dup=NULL;
+	gchar* tmp_buf=NULL;
+	
+	if (str_city && g_utf8_validate (str_city, -1, NULL)){
+		str_dup = g_strdup (str_city);
+		tmp_buf = g_convert (str_dup, -1, "ASCII//TRANSLIT", "UTF-8", 0, 0, NULL);
+		str_tmp = g_ascii_strdown (tmp_buf, -1);
 
-void 		close_prefs_window ( AppletData *applet_data )
+		for (i=0;i < strlen(str_tmp); i++){
+			if (str_tmp[i] == '/'){
+				str_tmp[i] = '-';
+			}
+			else if (str_tmp[i] == 0x20){
+				str_tmp[i] = '-';
+			}
+			else if (str_tmp[i] == '.' || str_tmp[i] == '(' || str_tmp[i] == ')'){
+				for (x=i; x < strlen(str_tmp)+1; x++){
+					printf ("punto: %c | %c\n", str_tmp[x], str_tmp[x+1]);
+					if (str_tmp[x+1])
+						str_tmp[x] = str_tmp[x+1];
+				}
+				str_tmp[strlen(str_tmp)-1] = '\0';
+				i--;
+			}
+			else if (str_tmp[i] == ','){
+				str_tmp[i] = '-';
+				for (x=i+1; x < strlen(str_tmp); x++){
+					if (str_tmp[x+1])
+						str_tmp[x] = str_tmp[x+1];
+				}
+				str_tmp[strlen(str_tmp)-1] = '\0';
+			}
+			else if (str_tmp[i] == '\''){
+				str_tmp[i] = '-';
+			}
+			else if (str_tmp[i] == 'ç'){
+				str_tmp[i] = '-';
+			}
+		}
+
+		if (str_tmp[strlen(str_tmp)-1] == '-')
+			str_tmp[strlen(str_tmp)-1] = '\0';
+
+		//printf ("translate_city_to_url: %s - new -> %s\n", str_city, str_tmp);
+
+		g_free (str_dup);
+		g_free (tmp_buf);
+		
+		return str_tmp;
+	}
+
+	return NULL;
+}
+
+void 		close_prefs_window ( PrefsWin *prefs )
 {
 	/* Clean not needed data */
 
@@ -405,20 +459,20 @@ void 		close_prefs_window ( AppletData *applet_data )
 	//g_object_unref (G_OBJECT (applet_data->prefs->tree_store));
 	
 	printf ("Freeing memory: entry_cmpt\n");
-	gtk_entry_completion_set_model (applet_data->prefs->entry_cmpt, NULL);
-	g_object_unref (G_OBJECT (applet_data->prefs->entry_cmpt));
+	gtk_entry_completion_set_model (prefs->entry_cmpt, NULL);
+	g_object_unref (G_OBJECT (prefs->entry_cmpt));
 
 	printf ("Freeing memory: list_store\n");
-	gtk_list_store_clear (GTK_LIST_STORE(applet_data->prefs->list_store));
-	g_object_unref (G_OBJECT (applet_data->prefs->list_store));
+	gtk_list_store_clear (GTK_LIST_STORE(prefs->list_store));
+	g_object_unref (G_OBJECT (prefs->list_store));
 
 	printf ("Freeing memory: combo_theme\n");
-	gtk_widget_destroy (GTK_WIDGET(applet_data->prefs->combo_theme));
+	if (prefs->combo_theme)
+		gtk_widget_destroy (GTK_WIDGET(prefs->combo_theme));
 	
 	printf ("Freeing memory: common widgets\n");
-	gtk_widget_destroy (GTK_WIDGET (applet_data->prefs->entry_code));
+	gtk_widget_destroy (GTK_WIDGET (prefs->entry_code));
 
-	if (applet_data->prefs->win)
-		quit (applet_data->prefs->win);
-
+	if (prefs->win != 0x0)
+		quit (prefs->win);
 }

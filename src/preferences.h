@@ -32,6 +32,7 @@ gboolean 	location_entry_event ( GtkWidget *widget, GdkEventKey *event, AppletDa
 void 	 	station_entry_changed ( GtkWidget *widget, AppletData *applet_data );
 gboolean 	station_entry_event ( GtkWidget *widget, GdkEventKey *event, AppletData *applet_data );
 gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int type );
-void 		close_prefs_window ( AppletData *applet_data );
+gchar*		translate_city_to_url ( const char *str_city );
+void 		close_prefs_window ( PrefsWin *prefs );
 
 #endif

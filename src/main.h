@@ -43,7 +43,8 @@
 
 #define INM_URL "http://www.aemet.es"
 
-#define INM_FORECAST_URL "http://www.aemet.es/es/eltiempo/prediccion/localidades?l="
+/*#define INM_FORECAST_URL "http://www.aemet.es/es/eltiempo/prediccion/localidades?l="*/
+#define INM_FORECAST_URL "http://www.aemet.es/es/eltiempo/prediccion/localidades/"
 #define INM_RADAR_AIR_MASS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s91g"
 
 #define INM_RADAR_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/r8pb"
@@ -169,6 +170,7 @@ typedef struct _DayInformation {
 } DayInf;
 
 typedef struct _PreferencesWin {
+	PanelApplet *applet;
 	GtkWidget *cmd_ok, *cmd_cancel;
 	GtkWidget *entry_code;
 	GtkWidget *theme_entry, *combo_theme;
@@ -176,7 +178,6 @@ typedef struct _PreferencesWin {
 	GtkWidget *prov_search_entry, *tree_prov;
 	GtkWidget *chk_station;
 	GtkWidget *win;
-	PanelApplet *applet;
 	char *code;
 	char *station_code;
 	GtkEntryCompletion 	*entry_cmpt;

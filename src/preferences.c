@@ -138,6 +138,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 	
 	gtk_label_set_text (GTK_LABEL(loc_lbl), applet_data->city_long_desc);
 
+	gtk_window_set_icon_from_file ((GtkWindow *)applet_data->prefs->win, "/usr/share/pixmaps/"PACKAGE".png", NULL);
 	cmd_ok = glade_xml_get_widget (xml, "cmd_ok");
 	cmd_cancel = glade_xml_get_widget (xml, "cmd_cancel");
 	g_signal_connect (G_OBJECT(applet_data->prefs->win), "destroy", G_CALLBACK(gtk_widget_destroyed), &applet_data->prefs->win);

@@ -379,7 +379,7 @@ gboolean check_inm_url 			( AppletData *applet_data )
 		char *code = g_new0(char, 256);
 	
 		g_strlcpy (code, (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL), 256);
-		g_snprintf (temp, 512, "%s%s\0", INM_FORECAST_URL, code);
+		g_snprintf (temp, 512, "%s%s.xml\0", INM_FORECAST_URL, code);
 		printf ("url: %s\n", temp);
 
 		gnome_vfs_async_open (&applet_data->gvfs_handle, temp, GNOME_VFS_OPEN_READ, 0, check_inm_url_status, applet_data);
@@ -560,6 +560,8 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		}
 	}
 
+	printf ("start_applet()\n");
+
 	AppletData *applet_data = g_new0(AppletData, 1);
 	applet_data->prefs = g_new0 (PrefsWin, 1);
 	applet_data->day_info = g_new0 (DayInf, MAX_DAYS);
@@ -610,7 +612,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		applet_data->day_info[x].t_max = g_new0 (char, 6);
 		applet_data->day_info[x].t_min = g_new0 (char, 6);
 		applet_data->day_info[x].day = g_new0 (char, 32);
-		applet_data->day_info[x].wind = g_new0 (char, 12);
+		applet_data->day_info[x].wind = g_new0 (char, 32);
 	}
 
 	LIBXML_TEST_VERSION

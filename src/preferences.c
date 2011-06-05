@@ -334,7 +334,6 @@ gboolean 	station_entry_event ( GtkWidget *widget, GdkEventKey *event, AppletDat
 gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int type )
 {
 	GtkTreeIter iter;
-	gchar *new_city=0;
 	gchar *code=0;
 	gchar *city=0;
 	gboolean valid;
@@ -347,21 +346,18 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 	}
 	
 	while (valid){
-		if (type == 0){
+		if (type == 0){ // city EntryText changed
 			gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter, 1, &city, -1);
 			if (city && strcasecmp (city, gtk_entry_get_text (GTK_ENTRY(applet_data->prefs->entry_code))) == 0){
 				gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter, 0, &code, -1);
 				
-				new_city = translate_city_to_url (city);
-				
-				if (new_city && code){
-					g_snprintf (applet_data->prefs->code, 256, "%s-%s\0", new_city, code);
+				if (city && code){
+					g_snprintf (applet_data->prefs->code, 256, "%s\0", code);
 					//printf ("0-Code for (%d) \"%s\": %s\n", strlen(applet_data->prefs->code), applet_data->prefs->code, code);
 				}
 
 				g_free (city);
 				g_free (code);
-				g_free (new_city);
 
 				break;
 			}
@@ -371,15 +367,12 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 			if (city && strcasecmp (city, gtk_entry_get_text (GTK_ENTRY(applet_data->prefs->prov_search_entry))) == 0){
 				gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->tree_store), &iter, 1, &code, -1);
 
-				new_city = translate_city_to_url (city);
-				
-				if (new_city && code){
-					g_snprintf (applet_data->prefs->code, 256, "%s-%s\0", new_city, code);
+				if (city && code){
+					g_snprintf (applet_data->prefs->code, 256, "%s\0", code);
 				}
 				
 				g_free (code);
 				g_free (city);
-				g_free (new_city);
 
 				break;
 			}

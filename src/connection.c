@@ -24,20 +24,20 @@ void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, 
 	int x=0;
 	AppletData *applet_data = (AppletData *)callback_data;
 		if (applet_data->buffer){
-			//printf ("BUFFER: %s\n", applet_data->buffer);
+			printf ("BUFFER: %s\n", applet_data->buffer);
 			if (strstr (applet_data->buffer, "Capital:"))
 				parse_dates_data (applet_data, strstr(applet_data->buffer, "Capital:"), 2);
 			
 			if (strstr (applet_data->buffer, "altitud:"))
 				parse_dates_data (applet_data, strstr(applet_data->buffer, "altitud:"), 3);
 
-			if (strstr (applet_data->buffer, "Elaborado:"))
-				parse_dates_data (applet_data, strstr(applet_data->buffer, "Elaborado:"), 0);
+			if (strstr (applet_data->buffer, "elaborado"))
+				parse_dates_data (applet_data, strstr(applet_data->buffer, "elaborado"), 0);
 			
-			if (strstr (applet_data->buffer, "Fecha"))
-				parse_dates_data (applet_data, strstr(applet_data->buffer, "Fecha"), 1);
+			if (strstr (applet_data->buffer, "fecha"))
+				parse_dates_data (applet_data, strstr(applet_data->buffer, "fecha"), 1);
 
-			if (strstr (applet_data->buffer, "Prob. precip."))
+			if (strstr (applet_data->buffer, "prob_precip"))
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Prob. precip."), PRECIP);
 			
 			if (strstr (applet_data->buffer, "xima (")) // Maxima (C)
@@ -46,7 +46,7 @@ void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, 
 			if (strstr (applet_data->buffer, "nima (")) // Minima (C)
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "nima ("), MIN);
 	
-			if (strstr (applet_data->buffer, "Cota de nieve"))
+			if (strstr (applet_data->buffer, "cota_nieve"))
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Cota de nieve"), SNOW);
 			else if (strstr (applet_data->buffer, "Cota nieve"))
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Cota nieve"), SNOW);
@@ -57,9 +57,9 @@ void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, 
 			
 			if (strstr (applet_data->buffer, "iconos_viento"))
 				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "iconos_viento"), WIND);
-			
-			if (strstr (applet_data->buffer, "estado_cielo"))
-				parse_sky_data (PANEL_APPLET(applet_data->applet), applet_data, strstr(applet_data->buffer, "estado_cielo"));
+			//if (strstr (applet_data->buffer, "estado_cielo"))
+			if (strstr (applet_data->buffer, "localidades.xsd"))
+				parse_xml_data (PANEL_APPLET(applet_data->applet), applet_data, applet_data->buffer);
 		
 		g_free (applet_data->buffer);
 		applet_data->buffer = 0;
@@ -121,7 +121,7 @@ void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 	char *buf=0;
 	buf = g_malloc0(8192);
 	AppletData *applet_data = (AppletData *) callback_data;
-//	printf ("check_inm_url_status() gvfs_async_open(): %s\n", gnome_vfs_result_to_string (result));
+	printf ("check_inm_url_status() gvfs_async_open(): %s\n", gnome_vfs_result_to_string (result));
 
 	if (applet_data->buffer){
 		g_free (applet_data->buffer);

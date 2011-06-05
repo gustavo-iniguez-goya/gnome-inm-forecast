@@ -33,7 +33,7 @@
 #include <gconf/gconf-client.h>
 #include "config.h"
 
-#define THEME "inm"
+#define THEME "aemet"
 #define KEY_GNOME_PROXY_HOST "/system/http_proxy/host"
 #define KEY_GNOME_PROXY_PORT "/system/http_proxy/port"
 #define KEY_GNOME_PROXY_USER "/system/http_proxy/authentication_user"
@@ -44,7 +44,8 @@
 #define INM_URL "http://www.aemet.es"
 
 /*#define INM_FORECAST_URL "http://www.aemet.es/es/eltiempo/prediccion/localidades?l="*/
-#define INM_FORECAST_URL "http://www.aemet.es/es/eltiempo/prediccion/municipios/"
+/*#define INM_FORECAST_URL "http://www.aemet.es/es/eltiempo/prediccion/municipios/"*/
+#define INM_FORECAST_URL "http://www.aemet.es/xml/municipios/localidad_"
 #define INM_RADAR_AIR_MASS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s91g"
 
 #define INM_RADAR_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/r8pb"

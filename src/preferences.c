@@ -387,6 +387,7 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 	return FALSE;
 }
 
+/*
 gchar*		translate_city_to_url ( const char *str_city )
 {
 	int i=0,x=0;
@@ -444,6 +445,7 @@ gchar*		translate_city_to_url ( const char *str_city )
 
 	return NULL;
 }
+*/
 
 void 		close_prefs_window ( PrefsWin *prefs )
 {

@@ -17,6 +17,8 @@
 */
 
 #include "html_parser.h"
+#define TEMPERATURES 0
+#define THERMAL_SENSE 1
 
 char *parse_week_day_name	( const char *day_name )
 {
@@ -60,11 +62,7 @@ char *parse_week_day_name	( const char *day_name )
 
 void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf )
 {
-	int theme_len = 128;
-	char *theme = g_new0(char, theme_len);
 	int id_img=0;
-	GDate *g_date=NULL;
-	GTimeVal *g_timeval=NULL;
 
 	//g_get_current_time (&g_timeval);
 	//g_date = g_date_new ();
@@ -113,126 +111,83 @@ void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				}
 				xmlFree(key3);
 			}
-
-			if (strcmp(cur_node->name, (const char *)"prediccion") == 0){
-				xmlNodePtr cur = cur_node->xmlChildrenNode;
-				while (cur != NULL){
-					if (strcmp(cur->name, (const char *)"dia") == 0){
-						xmlChar *key = xmlNodeListGetString(doc, cur->xmlChildrenNode, 1);
-						xmlChar *key2 = xmlGetProp(cur, "fecha");
-						printf ("\tfecha[%d]: %s - Img: %s\n", id_img, key2, key);
-						// date
-						g_date_set_parse (g_date, key2);
-						if (g_date_valid(g_date)){
-							if (g_date_get_weekday (g_date) == G_DATE_MONDAY)
-								strncpy (applet_data->day_info[id_img].day, _("Monday"), 32);
-							else if (g_date_get_weekday (g_date) == G_DATE_TUESDAY)
-								strncpy (applet_data->day_info[id_img].day, _("Tuesday"), 32);
-							else if (g_date_get_weekday (g_date) == G_DATE_WEDNESDAY)
-								strncpy (applet_data->day_info[id_img].day, _("Wednesday"), 32);
-							else if (g_date_get_weekday (g_date) == G_DATE_THURSDAY)
-								strncpy (applet_data->day_info[id_img].day, _("Thursday"), 32);
-							else if (g_date_get_weekday (g_date) == G_DATE_FRIDAY)
-								strncpy (applet_data->day_info[id_img].day, _("Friday"), 32);
-							else if (g_date_get_weekday (g_date) == G_DATE_SATURDAY)
-								strncpy (applet_data->day_info[id_img].day, _("Saturday"), 32);
-							else if (g_date_get_weekday (g_date) == G_DATE_SUNDAY)
-								strncpy (applet_data->day_info[id_img].day, _("Sunday"), 32);
-							else if (g_date_get_weekday (g_date) == G_DATE_BAD_WEEKDAY)
-								strncpy (applet_data->day_info[id_img].day, key2, 32);
-						}
-						else
-							strncpy (applet_data->day_info[id_img].day, key2, 32);
-
-						xmlFree(key);
-						xmlFree(key2);
-
-						xmlNodePtr cur_dia = cur->xmlChildrenNode;
-						while (cur_dia != NULL){
-							printf ("\t[%d]dia: %s\n", id_img, cur_dia->name);
-							if (strcmp(cur_dia->name, (const char *)"estado_cielo") == 0){
-								xmlChar *desc = xmlGetProp(cur_dia, "descripcion");
-								xmlChar *img_num = xmlNodeListGetString(doc, cur_dia->xmlChildrenNode, 1);
-								// weather description
-								strncpy (applet_data->day_info[id_img].state, _(desc), 36);
-								printf ("\t[%d]estado_cielo->descripcion: %s - %s\n", id_img, desc, img_num);
-								snprintf (theme, theme_len, "%s%s/%s.png", PIXMAPS_DIR, applet_data->theme, img_num);
-								gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
-								xmlFree (desc);
-								xmlFree (img_num);
-							}
-							//strcpy (applet_data->day_info[1].cota_nieve, "");
-							else if (strcmp(cur_dia->name, (const char *)"cota_nieve_prov") == 0){
-								xmlChar *cota = xmlNodeListGetString(doc, cur_dia->xmlChildrenNode, 1);
-								if (cota != NULL)
-									strcpy (applet_data->day_info[id_img].cota_nieve, cota);
-								else
-									strcpy (applet_data->day_info[id_img].cota_nieve, "");
-
-								xmlFree (cota);
-							}
-							//strncpy (applet_data->day_info[idx].precip, tokens[yy], 4); 
-							else if (strcmp(cur_dia->name, (const char *)"prob_precipitacion") == 0){
-								xmlChar *precip = xmlNodeListGetString(doc, cur_dia->xmlChildrenNode, 1);
-								if (precip != NULL)
-									snprintf (applet_data->day_info[id_img].precip, 4, "%s%%\0", precip);
-								else
-									strcpy (applet_data->day_info[id_img].precip, "");
-
-								xmlFree (precip);
-							}
-							//strcpy (applet_data->day_info[x].t_max, "");
-							else if (strcmp(cur_dia->name, (const char *)"temperatura") == 0){
-								xmlNodePtr cur_tmax = cur_dia->xmlChildrenNode->next; // maxima
-                                                                xmlNodePtr cur_tmin = cur_tmax->next->next; //minima
-
-								xmlChar *tmax = xmlNodeListGetString(doc, cur_tmax->xmlChildrenNode, 1);
-								xmlChar *tmin = xmlNodeListGetString(doc, cur_tmin->xmlChildrenNode, 1);
-								if (tmax != NULL){
-									snprintf (applet_data->day_info[id_img].t_max, 4, "%s", tmax);
-									snprintf (applet_data->day_info[id_img].t_min, 4, "%s", tmin);
-								}
-								else{
-									strcpy (applet_data->day_info[id_img].t_max, "");
-									strcpy (applet_data->day_info[id_img].t_min, "");
-								}
-
-								xmlFree (tmax);
-								xmlFree (tmin);
-							}
-							//strncpy (applet_data->day_info[idx].wind, _("Calma"), 8);
-							else if (strcmp(cur_dia->name, (const char *)"viento") == 0){
-								xmlNodePtr cur_tdir = cur_dia->xmlChildrenNode->next; // direccion
-                                                                xmlNodePtr cur_tvel = cur_tdir->next->next; // velocidad
-								xmlChar *direction = xmlNodeListGetString(doc, cur_tdir->xmlChildrenNode, 1);
-								xmlChar *vel = xmlNodeListGetString(doc, cur_tvel->xmlChildrenNode, 1);
-								if (direction != NULL)
-									snprintf (applet_data->day_info[id_img].wind, 32, "%s (%s km/h)\0", direction, vel);
-								else
-									strcpy (applet_data->day_info[id_img].wind, "");
-
-								xmlFree (direction);
-								xmlFree (vel);
-							}
-						
-						cur_dia = cur_dia->next; // dia
-						}
-						id_img++;
-					} // new day
-				cur = cur->next; //prediccion
-				}
-			}
 		}
 
 		cur_node = cur_node->next;
 	}
+	
+	xmlXPathContextPtr ctx = xmlXPathNewContext(doc);
+	xmlXPathCompExprPtr p = xmlXPathCtxtCompile(ctx, (xmlChar *)"/root");
+	xmlXPathObjectPtr res = xmlXPathCompiledEval(p, ctx);
+
+	 if (XPATH_NODESET != res->type)
+		     return 1;
+
+	fprintf(stdout, "Got object from first query:\n");
+	xmlXPathDebugDumpObject(stdout, res, 0);
+	xmlNodeSetPtr ns = res->nodesetval;
+	if (!ns->nodeNr)
+		return 1;
+	ctx->node = ns->nodeTab[0];
+	xmlXPathFreeObject(res);
+
+	// sky data
+	p = xmlXPathCtxtCompile(ctx, (xmlChar *)"prediccion/dia/estado_cielo");
+	res = xmlXPathCompiledEval(p, ctx);
+	parse_xml_sky (applet_data, doc, res->nodesetval);
+	xmlXPathFreeObject(res);
+	
+	// Rain data
+	p = xmlXPathCtxtCompile(ctx, (xmlChar *)"prediccion/dia/prob_precipitacion");
+	res = xmlXPathCompiledEval(p, ctx);
+	parse_xml_precip (applet_data, doc, res->nodesetval);
+	xmlXPathFreeObject(res);
+	
+	// Snow data
+	p = xmlXPathCtxtCompile(ctx, (xmlChar *)"prediccion/dia/cota_nieve_prov");
+	res = xmlXPathCompiledEval(p, ctx);
+	parse_xml_snow (applet_data, doc, res->nodesetval);
+	xmlXPathFreeObject(res);
+
+	// Temperatures data
+	p = xmlXPathCtxtCompile(ctx, (xmlChar *)"prediccion/dia/temperatura");
+	res = xmlXPathCompiledEval(p, ctx);
+	parse_xml_temperatures (applet_data, doc, res->nodesetval, TEMPERATURES);
+	xmlXPathFreeObject(res);
+	
+	// Thermal sense data
+	p = xmlXPathCtxtCompile(ctx, (xmlChar *)"prediccion/dia/sens_termica");
+	res = xmlXPathCompiledEval(p, ctx);
+	parse_xml_temperatures (applet_data, doc, res->nodesetval, THERMAL_SENSE);
+	xmlXPathFreeObject(res);
+	
+	// Wind data
+	p = xmlXPathCtxtCompile(ctx, (xmlChar *)"prediccion/dia/viento");
+	res = xmlXPathCompiledEval(p, ctx);
+	parse_xml_wind (applet_data, doc, res->nodesetval);
+	xmlXPathFreeObject(res);
+	
+	p = xmlXPathCtxtCompile(ctx, (xmlChar *)"prediccion/dia");
+	res = xmlXPathCompiledEval(p, ctx);
+	//if (XPATH_NODESET != res->type)
+	//	return ;
+	parse_xml_dates (applet_data, doc, res->nodesetval);
+	xmlXPathFreeObject(res);
+
+	
+	//xmlXPathDebugDumpObject(stdout, res, 0);
+	xmlXPathFreeContext(ctx);
 	xmlFreeDoc (doc);
-		
-	set_tooltip (applet_data, id_img, "");
+					
+	if (applet_data->city_name != NULL && applet_data->provincia != NULL)
+		g_snprintf (applet_data->city_long_desc, 64, "%s (%s)\0", applet_data->city_name, applet_data->provincia);
+
+	
+	set_tooltip (applet_data, 9, "");
 	int x=0;
 	GdkPixbuf *temp_pixbuf=0, *temp_pixbuf2=0;
 
-	for (x=0;x < id_img;x++){
+	for (x=0;x < MAX_DAYS;x++){
 		if (applet_data->image[id_img]){
 			temp_pixbuf = gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[x]));
 			temp_pixbuf2 = gdk_pixbuf_scale_simple (temp_pixbuf, applet_data->applet_size - 3, applet_data->applet_size - 3, GDK_INTERP_BILINEAR);
@@ -247,6 +202,7 @@ void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	}
 
 
+	/*
  	int iDays = atoi (applet_data->show_days);
 	if (iDays > 7){
 		if (id_img == 10){
@@ -265,384 +221,325 @@ void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 			gtk_widget_show (applet_data->event_box[7]);
 		}
 	}
+	*/
+}
+
+/*
+ * parse_xml_dates ()
+ * Parses the property fecha="" of the <dia> tags.
+ *
+ */
+void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns )
+{
+	GDate *g_date=NULL;
+	int i = 0;
+	int id_img = 0;
+	
+	if (doc == NULL || ns == 0){
+		printf ("parse_xml_dates(). doc or ns null\n");
+		return;
+	}
+
+	g_date = g_date_new ();
+	g_date_set_time_t (g_date, time(NULL));
+
+	// Get the first 4 days, to obtain the morning and afternoon data
+	for (i = 0; i < 4;i++){
+		xmlChar *fecha = xmlGetProp(ns->nodeTab[i], "fecha");
+		printf ("\tfecha[%d]: %s\n", id_img, fecha);
+		// date
+		g_date_set_parse (g_date, fecha);
+		if (g_date_valid(g_date)){
+			if (g_date_get_weekday (g_date) == G_DATE_MONDAY){
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Monday"), _("Morning"));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Monday"), _("Afternoon"));
+				id_img++;
+			}
+			else if (g_date_get_weekday (g_date) == G_DATE_TUESDAY){
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Tuesday"), _("Morning"));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Tuesday"), _("Afternoon"));
+				id_img++;
+			}
+			else if (g_date_get_weekday (g_date) == G_DATE_WEDNESDAY){
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Wednesday"), _("Morning"));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Wednesday"), _("Afternoon"));
+				id_img++;
+			}
+			else if (g_date_get_weekday (g_date) == G_DATE_THURSDAY){
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Thursday"), _("Morning"));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Thursday"), _("Afternoon"));
+				id_img++;
+			}
+			else if (g_date_get_weekday (g_date) == G_DATE_FRIDAY){
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Friday"), _("Morning"));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Friday"), _("Afternoon"));
+				id_img++;
+			}
+			else if (g_date_get_weekday (g_date) == G_DATE_SATURDAY){
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Saturday"), _("Morning"));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Saturday"), _("Afternoon"));
+				id_img++;
+			}
+			else if (g_date_get_weekday (g_date) == G_DATE_SUNDAY){
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Sunday"), _("Morning"));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Sunday"), _("Afternoon"));
+				id_img++;
+			}
+			else if (g_date_get_weekday (g_date) == G_DATE_BAD_WEEKDAY){
+				strncpy (applet_data->day_info[id_img].day, fecha, 32);
+				strncpy (applet_data->day_info[id_img+1].day, fecha, 32);
+				id_img++;
+			}
+		}
+		else{
+			strncpy (applet_data->day_info[id_img].day, fecha, 32);
+			strncpy (applet_data->day_info[id_img+1].day, fecha, 32);
+			id_img++;
+		}
+
+		xmlFree(fecha);
+		id_img++;
+	}
+	// Now get the last 3 days, which don't have morning && afternoon data
+	for (i = 4; i < 6;i++){
+		xmlChar *fecha = xmlGetProp(ns->nodeTab[i], "fecha");
+		printf ("\tfecha[%d]: %s\n", id_img, fecha);
+		// date
+		g_date_set_parse (g_date, fecha);
+		if (g_date_valid(g_date)){
+			if (g_date_get_weekday (g_date) == G_DATE_MONDAY)
+				strncpy (applet_data->day_info[id_img].day, _("Monday"), 32);
+			else if (g_date_get_weekday (g_date) == G_DATE_TUESDAY)
+				strncpy (applet_data->day_info[id_img].day, _("Tuesday"), 32);
+			else if (g_date_get_weekday (g_date) == G_DATE_WEDNESDAY)
+				strncpy (applet_data->day_info[id_img].day, _("Wednesday"), 32);
+			else if (g_date_get_weekday (g_date) == G_DATE_THURSDAY)
+				strncpy (applet_data->day_info[id_img].day, _("Thursday"), 32);
+			else if (g_date_get_weekday (g_date) == G_DATE_FRIDAY)
+				strncpy (applet_data->day_info[id_img].day, _("Friday"), 32);
+			else if (g_date_get_weekday (g_date) == G_DATE_SATURDAY)
+				strncpy (applet_data->day_info[id_img].day, _("Saturday"), 32);
+			else if (g_date_get_weekday (g_date) == G_DATE_SUNDAY)
+				strncpy (applet_data->day_info[id_img].day, _("Sunday"), 32);
+			else if (g_date_get_weekday (g_date) == G_DATE_BAD_WEEKDAY)
+				strncpy (applet_data->day_info[id_img].day, fecha, 32);
+		}
+		else
+			strncpy (applet_data->day_info[id_img].day, fecha, 32);
+
+		xmlFree(fecha);
+		id_img++;
+	}
+	
+	g_date_free (g_date);
+}
+
+/*
+ * parse_xml_sky ()
+ * Parses the tags <estado_cielo>
+ *
+ */
+void parse_xml_sky		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns )
+{
+	int theme_len = 128;
+	char *theme = g_new0(char, theme_len);
+	int id_img = 0;
+	int i=0;
+
+	if (doc == NULL || ns == 0){
+		printf ("parse_xml_sky(). doc or ns null\n");
+		return;
+	}
+
+	for (i = 0; i < ns->nodeNr - 1;i++){
+		//printf ("i = %d\n", i);
+		xmlChar *horario= xmlGetProp(ns->nodeTab[i], "periodo");
+		xmlChar *desc = xmlGetProp(ns->nodeTab[i], "descripcion");
+		// img
+		xmlChar *img_num = xmlNodeListGetString(doc, ns->nodeTab[i]->xmlChildrenNode, 1);
+
+		if (horario != NULL && (strcmp (horario, "00-12") == 0 || strcmp(horario, "12-24") == 0)){
+			strncpy (applet_data->day_info[id_img].state, _(desc), 36);
+			printf ("\t[%d]estado_cielo: %s - %s - %s\n", id_img, desc, horario, img_num);
+			snprintf (theme, theme_len, "%s%s/%s.png", PIXMAPS_DIR, applet_data->theme, img_num);
+			gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
+			
+			id_img++;
+		}
+		else if (horario == NULL){
+			strncpy (applet_data->day_info[id_img].state, _(desc), 36);
+			printf ("\t[%d]estado_cielo: %s - %s - %s\n", id_img, desc, horario, img_num);
+			snprintf (theme, theme_len, "%s%s/%s.png", PIXMAPS_DIR, applet_data->theme, img_num);
+			gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
+
+			id_img++;
+		}
+		xmlFree (desc);
+		xmlFree (img_num);
+		xmlFree (horario);
+	}
 	
 	if (theme){
 		g_free (theme);
 		theme = 0;
 	}
 }
-
-void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf )
-{
-}
-
-
-void parse_dates_data		( AppletData *applet_data, char *buf, int type )
-{
-	char *temp_buf=0, *temp_buf2=0;
-	int x=0;
-	char **tokens=0;
-	char *day_temp=0;
-
-	if (buf && applet_data){
-//		printf ("\n\n\n##############################################\n\n\nparse_dates_data(%d) %s\n", type, buf);
-		temp_buf = strdup (buf);
-		if (type == 2){ // capital
-			tokens = g_strsplit_set (temp_buf, "<>&;", 6);
-			//printf ("Capital: %s\n", tokens[4]);
-			
-			if (tokens[4]){
-				temp_buf2 = convert_str_to_utf8 (tokens[4]);
-				if (temp_buf2){
-					strncpy (applet_data->city_name, temp_buf2, 64);
-					strncpy (applet_data->city_long_desc, temp_buf2, 64);
-					g_free (temp_buf2);
-					temp_buf2 = 0;
-				}
-				else
-					strcpy (applet_data->city_name, "");
-			}
-			else
-				strcpy (applet_data->city_name, "");
-					
-			g_strfreev (tokens);
-			// provincia
 	
-			/*
-			tokens = g_strsplit_set (strstr(buf, "selected=\"selected\">"), "<>", 6);
-			if (tokens[1])
-				strncpy (applet_data->provincia, tokens[1], 64);
-			else
-				strcpy (applet_data->provincia, "");
-			
-			g_strfreev (tokens);
-			printf ("Prov: %s\n", applet_data->provincia);
-			*/
-			strcpy (applet_data->provincia, "");
-		}
-                else if (type == 3){ // Altitud estacion
-                        tokens = g_strsplit_set (temp_buf, "<>&:; ", 6);
-                        if (tokens[3]){
-                                g_snprintf (applet_data->city_long_desc, 126, _("%s\nAltitude: %s mts.\0"), applet_data->city_name, tokens[3]);
-                        }
-                        g_strfreev (tokens);
-                }
-		else if (type == 1){ // Fecha
-			int idx=0;
-			tokens = g_strsplit_set (temp_buf, "<>&;", -1);
-			for (x=0;x < 32;x++){
-				if (tokens[x]){
-					//	printf ("\n\t#############  parse_dates_data(FECHA) %d - %s\n", x, tokens[x]);
-					if (strncmp(tokens[x], "/th", 3) == 0) continue;
-					if (strncmp(tokens[x], "/tr", 3) == 0) continue;
-					if (strncmp(tokens[x], "/td", 3) == 0) continue;
-					if (strncmp(tokens[x], "nbsp", 4) == 0) continue;
-					if (strncmp(tokens[x], "/div", 4) == 0) continue;
-					if (strncmp(tokens[x], "th ", 3) == 0) continue;
-					if (strstr(tokens[x], "lun ") || 
-							strstr(tokens[x], "mar ") ||
-							strstr(tokens[x], "mi") ||
-							strstr(tokens[x], "jue ") ||
-							strstr(tokens[x], "vie ") ||
-							strstr(tokens[x], "sáb") || strstr(tokens[x], "s&aacute;b") || 
-							strstr(tokens[x], "b ") ||
-							strstr(tokens[x], "dom ")
-							){
-						day_temp = parse_week_day_name(tokens[x]);
-						if (idx == 0){
-							strncpy (applet_data->day_info[0].day, day_temp, 32);
-							strncpy (applet_data->day_info[1].day, day_temp, 32);
-							idx=2;
-						}
-						else if (idx == 2){
-							strncpy (applet_data->day_info[2].day, day_temp, 32);
-							strncpy (applet_data->day_info[3].day, day_temp, 32);
-							idx=4;
-						}
-						else if (idx == 4){
-							strncpy (applet_data->day_info[4].day, day_temp, 32);
-							strncpy (applet_data->day_info[5].day, day_temp, 32);
-							idx=6;
-						}
-						else {
-							strncpy (applet_data->day_info[idx].day, day_temp, 32);
-							idx++;
-						}
-						g_free (day_temp);
-						day_temp = NULL;
-					}
-				}
-			}
-			
-			g_strfreev (tokens);
-		}
-		g_free (temp_buf);
-		temp_buf = NULL;
+/*
+ * parse_xml_snow ()
+ * Parses the tags <cota_nieve_prov>
+ *
+ */
+void parse_xml_snow		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns )
+{
+	int i = 0;
+	int id_img = 0;
+	
+	if (doc == NULL || ns == 0){
+		printf ("parse_xml_snow(). doc or ns null\n");
+		return;
 	}
-	temp_buf = 0;
-	temp_buf2 = 0;
-	tokens=0;
-	day_temp = 0;
+
+	for (i = 0; i < ns->nodeNr - 1;i++){
+		//strcpy (applet_data->day_info[1].cota_nieve, "");
+		xmlChar *cota = xmlNodeListGetString(doc, ns->nodeTab[i]->xmlChildrenNode, 1);
+		xmlChar *horario= xmlGetProp(ns->nodeTab[i], "periodo");
+		if (cota != NULL && horario != NULL && (strcmp (horario, "00-12") == 0 || strcmp(horario, "12-24") == 0)){
+			strcpy (applet_data->day_info[id_img].cota_nieve, cota);
+			id_img++;
+		}
+		else if (horario == NULL && cota != NULL){
+			strcpy (applet_data->day_info[id_img].cota_nieve, cota);
+			id_img++;
+		}
+		else
+			strcpy (applet_data->day_info[id_img].cota_nieve, "-");
+
+		xmlFree (cota);
+		xmlFree (horario);
+	}
 }
 
-
-void parse_temperatures_data 		( AppletData *applet_data, char *buf, int type )
+/*
+ * parse_xml_precip ()
+ * Parses the tags <prob_precipitacion>
+ *
+ */
+void parse_xml_precip		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns )
 {
-	char *temp_buf=0;
-	char **tokens=0;
-	char **tk_snow=0;
-	int yy=0,idx=0;
-	/*
-	xmlOutputBufferPtr bufPtr;
-	htmlParserCtxtPtr cxt = htmlCreateMemoryParserCtxt (buf, strlen(buf));
-	htmlDocPtr docPtr = htmlCtxtReadMemory (cxt, buf, strlen(buf), "http://www.inm.es", "iso-8859-15", HTML_PARSE_RECOVER);
-		
-	xmlNode *root_element=NULL;
-	root_element = xmlDocGetRootElement (docPtr);
-	print_element_names (root_element);
-	*/	    
-
-	if (buf){
-		temp_buf = strdup (buf);
-		tokens = g_strsplit_set (temp_buf, "<>&", -1);
-		
-		if (type == SNOW){
-			idx=0;
-			//printf ("SNOW[0]: %s\n", tokens[0]);
-			for (yy=1;yy < 38;yy++){
-				if (strncmp(tokens[yy], "/td", 3) == 0) continue;
-				if (strncmp(tokens[yy], "td ", 3) == 0) continue;
-				if (strncmp(tokens[yy], "nbsp", 4) == 0) continue;
-				//printf ("SNOW[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
-				if (tokens[yy] && idx < MAX_DAYS){
-					if (strlen(tokens[yy]) == 0 && idx < 10){
-						if (idx == 0){
-							strcpy (applet_data->day_info[0].cota_nieve, "");
-							strcpy (applet_data->day_info[1].cota_nieve, "");
-							idx = 2;
-						}
-						else if (idx == 2){
-							strcpy (applet_data->day_info[2].cota_nieve, "");
-							strcpy (applet_data->day_info[3].cota_nieve, "");
-							idx=4;
-						}
-						else if (idx == 4){
-							strcpy (applet_data->day_info[4].cota_nieve, "");
-							strcpy (applet_data->day_info[5].cota_nieve, "");
-							idx=6;
-						}
-						else{
-							strcpy (applet_data->day_info[idx].cota_nieve, "");
-							idx++;
-						}
-					}
-					else if ((tokens[yy][0] >= '0' && tokens[yy][0] <= '9') || 
-						(tokens[yy][1] >= '0' && tokens[yy][1] <= '9')){
-						if (idx == 0){
-							strncpy (applet_data->day_info[0].cota_nieve, tokens[yy], 10);
-							strncpy (applet_data->day_info[1].cota_nieve, tokens[yy], 10);
-							idx = 2;
-						}
-						else if (idx == 2){
-							strncpy (applet_data->day_info[2].cota_nieve, tokens[yy], 10);
-							strncpy (applet_data->day_info[3].cota_nieve, tokens[yy], 10);
-							idx=4;
-						}
-						else if (idx == 4){
-							strncpy (applet_data->day_info[4].cota_nieve, tokens[yy], 10);
-							strncpy (applet_data->day_info[5].cota_nieve, tokens[yy], 10);
-							idx=6;
-						}
-						else{
-							strncpy (applet_data->day_info[idx].cota_nieve, tokens[yy], 10);
-							idx++;
-						}
-					}
-				}
-
-			}
-		}
-		else if (type == WIND){
-			idx = 0;
-			for (yy=0;yy < 100;yy++){
-				if (strncmp(tokens[yy], "/td", 3) == 0) continue;
-				if (strncmp(tokens[yy], "nbsp", 4) == 0) continue;
-				if (strncmp(tokens[yy], "td ", 3) == 0) continue;
-				//printf ("WIND[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
-				if (tokens[yy] && strstr(tokens[yy], "S.gif")){
-					strncpy (applet_data->day_info[idx].wind, _("Sur"), 3);
-					idx++;
-				}
-				else if (tokens[yy] && strstr(tokens[yy], "SE.gif")){
-					strncpy (applet_data->day_info[idx].wind, _("Sureste"), 8);
-					idx++;
-				}
-				else if (tokens[yy] && strstr(tokens[yy], "SO.gif")){
-					strncpy (applet_data->day_info[idx].wind, _("Suroeste"), 8);
-					idx++;
-				}
-				else if (tokens[yy] && strstr(tokens[yy], "N.gif")){
-					strncpy (applet_data->day_info[idx].wind, _("Norte"), 8);
-					idx++;
-				}
-				else if (tokens[yy] && strstr(tokens[yy], "NE.gif")){
-					strncpy (applet_data->day_info[idx].wind, _("Nordeste"), 8);
-					idx++;
-				}
-				else if (tokens[yy] && strstr(tokens[yy], "NO.gif")){
-					strncpy (applet_data->day_info[idx].wind, _("Noroeste"), 8);
-					idx++;
-				}
-				else if (tokens[yy] && strstr(tokens[yy], "E.gif")){
-					strncpy (applet_data->day_info[idx].wind, _("Este"), 8);
-					idx++;
-				}
-				else if (tokens[yy] && strstr(tokens[yy], "O.gif")){
-					strncpy (applet_data->day_info[idx].wind, _("Oeste"), 8);
-					idx++;
-				}
-				else if (tokens[yy] && strstr(tokens[yy], "C.gif")){
-					strncpy (applet_data->day_info[idx].wind, _("Calma"), 8);
-					idx++;
-				}
-				//else if (tokens[yy]){
-				//	strncpy (applet_data->day_info[idx].wind, "", 8);
-				//	idx++;
-				//}
-			}
-		}
-		else if (type == PRECIP){
-			idx=0;
-			for (yy=1;yy < 40;yy++){
-				if (tokens[yy][0] >= '0' && tokens[yy][0] <= '9'){
-				//	printf ("\tPRECIP[%d]: %s - len: %d - idx: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]), idx);
-					if (idx < MAX_DAYS){
-						if (idx == 0){ // morning 0 + afternoon 1 => idx = 1
-							strncpy (applet_data->day_info[0].precip, tokens[yy], 4); // 0
-							strncpy (applet_data->day_info[1].precip, tokens[yy], 4);// 1
-							idx=2;
-							continue;
-						}
-						else if (idx == 2){
-							strncpy (applet_data->day_info[2].precip, tokens[yy], 4); // 2
-							strncpy (applet_data->day_info[3].precip, tokens[yy], 4); // 3
-							idx=4;
-							continue;
-						}
-						else if (idx == 4){
-							strncpy (applet_data->day_info[4].precip, tokens[yy], 4); // 4
-							strncpy (applet_data->day_info[5].precip, tokens[yy], 4); // 5
-							idx=6;
-							continue;
-						}
-						else{
-							strncpy (applet_data->day_info[idx].precip, tokens[yy], 4); 
-							idx++;
-						}
-					}
-				}
-			}
-		}
-		else if (type == MAX){
-			idx=0;
-			for (yy=0;yy < 61;yy++){
-				if (strlen(tokens[yy]) > 2 || strlen(tokens[yy]) == 0) continue;
-				if (strncmp(tokens[yy], "tr", 2) == 0) continue;
-//				printf ("TMAX[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
-				if ((tokens[yy][0] >= '0' && tokens[yy][0] <= '9') || tokens[yy][0] == '-'){
-			//		printf ("\tTMAX[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
-					if (idx < MAX_DAYS){
-						if (idx == 0){ // morning 0 + afternoon 1 => idx = 1
-							strncpy (applet_data->day_info[0].t_max, tokens[yy], 4);
-							strncpy (applet_data->day_info[1].t_max, tokens[yy], 4);
-							idx=2;
-							continue;
-						}
-						else if (idx == 2){ // morning 0 + afternoon 1 => idx = 1
-							strncpy (applet_data->day_info[2].t_max, tokens[yy], 4);
-							strncpy (applet_data->day_info[3].t_max, tokens[yy], 4);
-							idx=4;
-							continue;
-						}
-						else if (idx == 4){ // morning 0 + afternoon 1 => idx = 1
-							strncpy (applet_data->day_info[4].t_max, tokens[yy], 4);
-							strncpy (applet_data->day_info[5].t_max, tokens[yy], 4);
-							idx=6;
-							continue;
-						}
-						else{
-							strncpy (applet_data->day_info[idx].t_max, tokens[yy], 4);
-							idx++;
-						}
-					}
-				}
-			}
-		}
-		else if (type == MIN){
-			idx=0;
-			for (yy=0;yy < 80;yy++){
-				if (strlen(tokens[yy]) > 2 || strlen(tokens[yy]) == 0) continue;
-				if (strncmp(tokens[yy], "tr", 2) == 0) continue;
-//				printf ("TMIN[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
-				if ((tokens[yy][0] >= '0' && tokens[yy][0] <= '9') || tokens[yy][0] == '-'){
-				//	printf ("\tTMIN[%d]: %s - len: %d\n", yy,(tokens[yy]) ? tokens[yy] : NULL, strlen(tokens[yy]));
-					if (idx < MAX_DAYS){
-						if (idx == 0){ // morning 0 + afternoon 1 => idx = 1
-							strncpy (applet_data->day_info[0].t_min, tokens[yy], 4);
-							strncpy (applet_data->day_info[1].t_min, tokens[yy], 4);
-							idx=2;
-							continue;
-						}
-						else if (idx == 2){ // morning 0 + afternoon 1 => idx = 1
-							strncpy (applet_data->day_info[2].t_min, tokens[yy], 4);
-							strncpy (applet_data->day_info[3].t_min, tokens[yy], 4);
-							idx=4;
-							continue;
-						}
-						else if (idx == 4){ // morning 0 + afternoon 1 => idx = 1
-							strncpy (applet_data->day_info[4].t_min, tokens[yy], 4);
-							strncpy (applet_data->day_info[5].t_min, tokens[yy], 4);
-							idx=6;
-							continue;
-						}
-						else{
-							strncpy (applet_data->day_info[idx].t_min, tokens[yy], 4);
-							idx++;
-						}
-					}
-				}
-			}
-		}
-			//strncpy (applet_data->day_info[9].cota_nieve, tk_snow[1], 10);
-			//printf ("Max: %s\n", tokens[idx]);
-		g_strfreev (tokens);
-		if (temp_buf){
-			g_free (temp_buf);
-			temp_buf = 0;
-		}
+	int i = 0;
+	int id_img = 0;
+	
+	if (doc == NULL || ns == 0){
+		printf ("parse_xml_precip(). doc or ns null\n");
+		return;
 	}
-	else{
-		int x;
-		for (x=0;x < 7;x++){
-			if (type == MAX){
-				strcpy (applet_data->day_info[x].t_max, "");
+
+	for (i = 0; i < ns->nodeNr - 1;i++){
+		//strcpy (applet_data->day_info[1].cota_nieve, "");
+		xmlChar *precip = xmlNodeListGetString(doc, ns->nodeTab[i]->xmlChildrenNode, 1);
+		xmlChar *horario= xmlGetProp(ns->nodeTab[i], "periodo");
+		if (precip != NULL && horario != NULL && (strcmp (horario, "00-12") == 0 || strcmp(horario, "12-24") == 0)){
+			snprintf (applet_data->day_info[id_img].precip, 4, "%s%%\0", precip);
+			id_img++;
+		}
+		else if (horario == NULL){
+			snprintf (applet_data->day_info[id_img].precip, 4, "%s%%\0", precip);
+			id_img++;
+		}
+		else
+			strcpy (applet_data->day_info[id_img].cota_nieve, "-");
+
+		xmlFree (precip);
+		xmlFree (horario);
+	}
+}
+
+/*
+ * parse_xml_temperatures ()
+ * Parses the tags <temperatura>
+ *
+ */
+void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns, int type )
+{
+	int i = 0;
+	int id_img = 0;
+	
+	if (doc == NULL || ns == 0){
+		printf ("parse_xml_temperatures(). doc or ns null\n");
+		return;
+	}
+
+	for (i = 0; i < ns->nodeNr - 1;i++){
+		xmlNodePtr cur_tmax = ns->nodeTab[i]->xmlChildrenNode->next; // maxima
+	        xmlNodePtr cur_tmin = cur_tmax->next->next; //minima
+		//xmlChar *horario= xmlGetProp(ns->nodeTab[i], "hora");
+		xmlChar *tmax = xmlNodeListGetString(doc, cur_tmax->xmlChildrenNode, 1);
+		xmlChar *tmin = xmlNodeListGetString(doc, cur_tmin->xmlChildrenNode, 1);
+		
+		if (tmax != NULL){
+			if (type == TEMPERATURES){
+				printf ("Temperatura max.: %s\n", tmax);
+				snprintf (applet_data->day_info[id_img].t_max, 4, "%s", tmax);
+				printf ("Temperatura min.: %s\n", tmin);
+				snprintf (applet_data->day_info[id_img].t_min, 4, "%s", tmin);
 			}
-			else if (type == MIN){
-				strcpy (applet_data->day_info[x].t_min, "");
-			}	
-			else if (type == PRECIP){
-				strcpy (applet_data->day_info[x].precip, "");
-			}
-			else if (type == SNOW){
-				strcpy (applet_data->day_info[x].cota_nieve, "");
-			}
-			else if (type == WIND){
-				strcpy (applet_data->day_info[x].wind, "");
+			else{
+				char *temp = applet_data->day_info[id_img].t_max;				
+				snprintf (applet_data->day_info[id_img].t_max, 8, "%s (%s)\0", temp, tmax);
+				printf ("Sensacion termica max: %s - %s\n", temp, tmax);
+				temp = applet_data->day_info[id_img].t_min;
+				snprintf (applet_data->day_info[id_img].t_min, 8, "%s (%s)\0", temp, tmin);
+				printf ("Sensacion termica: %s - %s\n", temp, tmin);
 			}
 		}
+		else{
+			strcpy (applet_data->day_info[id_img].t_max, "-");
+			strcpy (applet_data->day_info[id_img].t_min, "-");
+		}
 
+		xmlFree (tmax);
+		xmlFree (tmin);
+
+		id_img++;
 	}
-		
-	tokens=0;
-	tk_snow=0;
+}
+
+/*
+ * parse_xml_wind ()
+ * Parses the tags <viento>
+ *
+ */
+void parse_xml_wind		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns )
+{
+	int i = 0;
+	int id_img = 0;
+	
+	if (doc == NULL || ns == 0){
+		printf ("parse_xml_wind(). doc or ns null\n");
+		return;
+	}
+
+	for (i = 0; i < ns->nodeNr - 1;i++){
+		xmlNodePtr cur_tdir = ns->nodeTab[i]->xmlChildrenNode->next; // direccion
+		xmlNodePtr cur_tvel = cur_tdir->next->next; // velocidad
+		xmlChar *direction = xmlNodeListGetString(doc, cur_tdir->xmlChildrenNode, 1);
+		xmlChar *vel = xmlNodeListGetString(doc, cur_tvel->xmlChildrenNode, 1);
+		xmlChar *horario= xmlGetProp(ns->nodeTab[i], "periodo");
+
+		if (direction != NULL && horario != NULL && (strcmp (horario, "00-12") == 0 || strcmp(horario, "12-24") == 0)){
+			snprintf (applet_data->day_info[id_img].wind, 32, "%s (%s km/h)\0", direction, vel);
+			id_img++;
+		}
+		else if (horario == NULL){
+			snprintf (applet_data->day_info[id_img].wind, 32, "%s (%s km/h)\0", direction, vel);
+			id_img++;
+		}
+		else
+			strcpy (applet_data->day_info[id_img].wind, "-");
+
+		xmlFree (direction);
+		xmlFree (horario);
+		xmlFree (vel);
+	}
 }

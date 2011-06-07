@@ -20,11 +20,16 @@
 #define HTMLPARSER_H
 
 #include "main.h"
+#include <libxml/xpath.h>
 
 
 char *parse_week_day_name	( const char *day_name );
-void parse_sky_data 		( PanelApplet *applet, AppletData *applet_data, char *buf );
-void parse_dates_data		( AppletData *applet_data, char *buf, int type );
-void parse_temperatures_data 	( AppletData *applet_data, char *buf, int type );
+void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns );
+void parse_xml_sky		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns );
+void parse_xml_snow		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns );
+void parse_xml_precip		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns );
+void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns, int type );
+void parse_xml_wind		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns );
+
 
 #endif

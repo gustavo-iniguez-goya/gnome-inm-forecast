@@ -172,70 +172,32 @@ void set_tooltip		( AppletData *applet_data, const int id, const gchar* tip )
 {
 	int x=0;
 	char *temp=0;
-	char *str_morning=_("Morning");
-	char *str_afternoon=_("Afternoon");
 	
 	if (!applet_data) return;
 	
 	temp = g_new0 (char, 512);
 
 	if (id == (MAX_DAYS - 1)){ //Afternoon - 9 images
-		for (x=1;x < MAX_DAYS;x++){
-			if (x == 0 || x == 2 || x == 4)
-				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", 
-							applet_data->city_name, 
-							applet_data->provincia, 
-							applet_data->day_info[x].day, 
-							str_morning, 
-							applet_data->day_info[x].state, 
-							applet_data->last_update);
-			else if (x == 1 || x == 3 || x == 5)
-				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", 
-							applet_data->city_name, 
-							applet_data->provincia, 
-							applet_data->day_info[x].day, 
-							str_afternoon, 
-							applet_data->day_info[x].state, 
-							applet_data->last_update);
-			else
-				snprintf (temp, 512, "%s %s\n%s\n\n%s\n%s", 
-							applet_data->city_name, 
-							applet_data->provincia, 
-							applet_data->day_info[x].day, 
-							tip, 
-							applet_data->last_update);
-				
+		for (x=0;x < MAX_DAYS;x++){
+			snprintf (temp, 512, "%s (%s)\n%s \n\n%s\n%s", 
+				applet_data->city_name, 
+				applet_data->provincia, 
+				applet_data->day_info[x].day, 
+				applet_data->day_info[x].state, 
+				applet_data->last_update);
 	
-			gtk_tooltips_set_tip (applet_data->tips, applet_data->event_box[x-1], temp, NULL);
+			gtk_tooltips_set_tip (applet_data->tips, applet_data->event_box[x], temp, NULL);
 			gtk_tooltips_enable (applet_data->tips);
 		}
 	}
 	else if (id == MAX_DAYS){ // Morning - 10 images
 		for (x=0;x < id;x++){
-			// FIXME: We should take in mind the number of days displayed on the panel
-			if (x == 0 || x == 2 || x == 4)
-				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", 
-							applet_data->city_name, 
-							applet_data->provincia, 
-							applet_data->day_info[x].day, 
-							str_morning, 
-							applet_data->day_info[x].state, 
-							applet_data->last_update);
-			else if (x == 1 || x == 3 || x == 5)
-				snprintf (temp, 512, "%s %s\n%s (%s)\n\n%s\n%s", 
-							applet_data->city_name, 
-							applet_data->provincia, 
-							applet_data->day_info[x].day, 
-							str_afternoon, 
-							applet_data->day_info[x].state, 
-							applet_data->last_update);
-			else
-				snprintf (temp, 512, "%s %s\n%s\n\n%s\n%s", 
-							applet_data->city_name, 
-							applet_data->provincia, 
-							applet_data->day_info[x].day, 
-							tip, 
-							applet_data->last_update);
+			snprintf (temp, 512, "%s (%s)\n%s \n\n%s\n%s", 
+				applet_data->city_name, 
+				applet_data->provincia, 
+				applet_data->day_info[x].day, 
+				applet_data->day_info[x].state, 
+				applet_data->last_update);
 
 			gtk_tooltips_set_tip (applet_data->tips, applet_data->event_box[x], temp, NULL);
 			gtk_tooltips_enable (applet_data->tips);
@@ -380,8 +342,9 @@ gboolean check_inm_url 			( AppletData *applet_data )
 	
 		g_strlcpy (code, (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL), 256);
 		g_snprintf (temp, 512, "%s%s.xml\0", INM_FORECAST_URL, code);
-		printf ("url: %s\n", temp);
+		printf ("check_inm_url(): %s\n", temp);
 
+		gnome_vfs_async_close (&applet_data->gvfs_handle, NULL, NULL);
 		gnome_vfs_async_open (&applet_data->gvfs_handle, temp, GNOME_VFS_OPEN_READ, 0, check_inm_url_status, applet_data);
 		g_free (temp);
 		g_free (code);
@@ -436,7 +399,7 @@ void update_location 			( AppletData *applet_data )
 		//update_station_data (applet_data);
 
  		iDays = atoi (applet_data->show_days);
-// 		printf ("Days to show: %d\n", iDays);
+ 		printf ("update_location(). days to show: %d\n", iDays);
  		for (x=0;x < iDays;x++)
  			gtk_widget_show (applet_data->event_box[x]);
  		
@@ -609,8 +572,8 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		applet_data->day_info[x].state = g_new0 (char, 36);
 		applet_data->day_info[x].precip = g_new0 (char, 12);
 		applet_data->day_info[x].cota_nieve = g_new0 (char, 12);
-		applet_data->day_info[x].t_max = g_new0 (char, 6);
-		applet_data->day_info[x].t_min = g_new0 (char, 6);
+		applet_data->day_info[x].t_max = g_new0 (char, 8);
+		applet_data->day_info[x].t_min = g_new0 (char, 8);
 		applet_data->day_info[x].day = g_new0 (char, 32);
 		applet_data->day_info[x].wind = g_new0 (char, 32);
 	}

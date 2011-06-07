@@ -24,40 +24,8 @@ void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, 
 	int x=0;
 	AppletData *applet_data = (AppletData *)callback_data;
 		if (applet_data->buffer){
-			printf ("BUFFER: %s\n", applet_data->buffer);
-			if (strstr (applet_data->buffer, "Capital:"))
-				parse_dates_data (applet_data, strstr(applet_data->buffer, "Capital:"), 2);
+			//printf ("BUFFER: %s\n", applet_data->buffer);
 			
-			if (strstr (applet_data->buffer, "altitud:"))
-				parse_dates_data (applet_data, strstr(applet_data->buffer, "altitud:"), 3);
-
-			if (strstr (applet_data->buffer, "elaborado"))
-				parse_dates_data (applet_data, strstr(applet_data->buffer, "elaborado"), 0);
-			
-			if (strstr (applet_data->buffer, "fecha"))
-				parse_dates_data (applet_data, strstr(applet_data->buffer, "fecha"), 1);
-
-			if (strstr (applet_data->buffer, "prob_precip"))
-				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Prob. precip."), PRECIP);
-			
-			if (strstr (applet_data->buffer, "xima (")) // Maxima (C)
-				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "xima ("), MAX);
-	
-			if (strstr (applet_data->buffer, "nima (")) // Minima (C)
-				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "nima ("), MIN);
-	
-			if (strstr (applet_data->buffer, "cota_nieve"))
-				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Cota de nieve"), SNOW);
-			else if (strstr (applet_data->buffer, "Cota nieve"))
-				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "Cota nieve"), SNOW);
-			else{
-				for (x=0;x < MAX_DAYS;x++)
-					strcpy (applet_data->day_info[x].cota_nieve, "");
-			}
-			
-			if (strstr (applet_data->buffer, "iconos_viento"))
-				parse_temperatures_data (applet_data, strstr(applet_data->buffer, "iconos_viento"), WIND);
-			//if (strstr (applet_data->buffer, "estado_cielo"))
 			if (strstr (applet_data->buffer, "localidades.xsd"))
 				parse_xml_data (PANEL_APPLET(applet_data->applet), applet_data, applet_data->buffer);
 		
@@ -103,6 +71,7 @@ void check_inm_url_read 		( GnomeVFSAsyncHandle *handle,
 		applet_data->gvfs_handle = NULL;
 		printf ("Error de lectura gnome_vfs_asyncred()\n");
 		//message_box (applet_data, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, _("Error gnome vfs (async read)"), gnome_vfs_result_to_string (result));
+		gnome_vfs_async_close (handle, check_inm_url_close, applet_data);
 		unset_images (applet_data);
 		if (buf)
 			g_free (buf);
@@ -130,7 +99,7 @@ void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 	
 
 	if (result != GNOME_VFS_OK){
-		printf ("Conexion no abierta\n");
+		printf ("Conexion no abierta: %s - Code: %s\n", gnome_vfs_result_to_string (result), applet_data->prefs->code);
 		//message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Connection error"), gnome_vfs_result_to_string (result));
 		unset_images (applet_data);
 		applet_data->gvfs_handle = NULL;

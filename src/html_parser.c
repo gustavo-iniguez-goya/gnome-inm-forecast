@@ -253,43 +253,37 @@ void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns
 			if (g_date_get_weekday (g_date) == G_DATE_MONDAY){
 				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Monday"), _("Morning"));
 				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Monday"), _("Afternoon"));
-				id_img++;
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_TUESDAY){
 				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Tuesday"), _("Morning"));
 				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Tuesday"), _("Afternoon"));
-				id_img++;
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_WEDNESDAY){
 				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Wednesday"), _("Morning"));
 				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Wednesday"), _("Afternoon"));
-				id_img++;
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_THURSDAY){
 				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Thursday"), _("Morning"));
 				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Thursday"), _("Afternoon"));
-				id_img++;
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_FRIDAY){
 				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Friday"), _("Morning"));
 				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Friday"), _("Afternoon"));
-				id_img++;
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_SATURDAY){
 				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Saturday"), _("Morning"));
 				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Saturday"), _("Afternoon"));
-				id_img++;
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_SUNDAY){
 				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Sunday"), _("Morning"));
 				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Sunday"), _("Afternoon"));
-				id_img++;
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_BAD_WEEKDAY){
 				strncpy (applet_data->day_info[id_img].day, fecha, 32);
 				strncpy (applet_data->day_info[id_img+1].day, fecha, 32);
-				id_img++;
 			}
+				
+			id_img++;
 		}
 		else{
 			strncpy (applet_data->day_info[id_img].day, fecha, 32);
@@ -463,37 +457,92 @@ void parse_xml_precip		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr n
 void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns, int type )
 {
 	int i = 0;
-	int id_img = 0;
+	volatile int id_img = 0;
+	char *temp=0;
 	
 	if (doc == NULL || ns == 0){
 		printf ("parse_xml_temperatures(). doc or ns null\n");
 		return;
 	}
 
+	if (type == THERMAL_SENSE)
+		temp = g_new0 (char, 4);
+
 	for (i = 0; i < ns->nodeNr - 1;i++){
 		xmlNodePtr cur_tmax = ns->nodeTab[i]->xmlChildrenNode->next; // maxima
 	        xmlNodePtr cur_tmin = cur_tmax->next->next; //minima
+
 		//xmlChar *horario= xmlGetProp(ns->nodeTab[i], "hora");
 		xmlChar *tmax = xmlNodeListGetString(doc, cur_tmax->xmlChildrenNode, 1);
 		xmlChar *tmin = xmlNodeListGetString(doc, cur_tmin->xmlChildrenNode, 1);
 		
-		if (tmax != NULL){
+		if (tmax != NULL && tmin != NULL && id_img < 10){
 			if (type == TEMPERATURES){
-				printf ("Temperatura max.: %s\n", tmax);
-				snprintf (applet_data->day_info[id_img].t_max, 4, "%s", tmax);
-				printf ("Temperatura min.: %s\n", tmin);
-				snprintf (applet_data->day_info[id_img].t_min, 4, "%s", tmin);
+				if (tmax != NULL && cur_tmin->next != NULL){
+					printf ("Temperatura max.: %s\n", tmax);
+					printf ("Temperatura min.: %s\n", tmin);
+					// Morning
+					snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
+					snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
+					
+					id_img++;
+					// Afternoon
+					snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
+					snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
+				}
+				else if (cur_tmin->next == NULL){
+					// Last days with general info
+					printf ("Temperatura max.: %s\n", tmax);
+					printf ("Temperatura min.: %s\n", tmin);
+					snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
+					snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
+				}
+				else{
+					strcpy (applet_data->day_info[id_img].t_max, "-");
+					strcpy (applet_data->day_info[id_img].t_min, "-");
+				}
+
+				id_img++;
 			}
-			else{
-				char *temp = applet_data->day_info[id_img].t_max;				
-				snprintf (applet_data->day_info[id_img].t_max, 8, "%s (%s)\0", temp, tmax);
-				printf ("Sensacion termica max: %s - %s\n", temp, tmax);
-				temp = applet_data->day_info[id_img].t_min;
-				snprintf (applet_data->day_info[id_img].t_min, 8, "%s (%s)\0", temp, tmin);
-				printf ("Sensacion termica: %s - %s\n", temp, tmin);
+			else{ // <sens_termica>
+
+				if (tmax != NULL && cur_tmin->next != NULL){
+					strncpy (temp, applet_data->day_info[id_img].t_max, 4);
+
+					if (strcmp (tmax, applet_data->day_info[id_img].t_max) != 0){
+						snprintf (applet_data->day_info[id_img].t_max, 8, "%s (%s)", temp, tmax);
+						printf ("Sensacion termica max: %s - %s\n", temp, tmax);
+					}
+
+					strncpy (temp, applet_data->day_info[id_img].t_min, 4);
+					if (strcmp (tmin, applet_data->day_info[id_img].t_min) != 0){
+						snprintf (applet_data->day_info[id_img].t_min, 8, "%s (%s)", temp, tmin);
+						printf ("Sensacion termica: %s - %s\n", temp, tmin);
+					}
+					
+					id_img++;
+				}
+				else if (cur_tmin->next == NULL){
+					// Last days with general info
+					strncpy (temp, applet_data->day_info[id_img].t_max, 4);
+					if (strcmp (tmax, applet_data->day_info[id_img].t_max) != 0){
+						snprintf (applet_data->day_info[id_img].t_max, 8, "%s (%s)", temp, tmax);
+						printf ("Sensacion termica max: %s - %s\n", temp, tmax);
+					}
+
+					strncpy (temp, applet_data->day_info[id_img].t_min, 4);
+					if (strcmp (tmin, applet_data->day_info[id_img].t_min) != 0){
+						snprintf (applet_data->day_info[id_img].t_min, 8, "%s (%s)", temp, tmin);
+						printf ("Sensacion termica: %s - %s\n", temp, tmin);
+					}
+				}
+				else{
+				}
+				
+				id_img++;
 			}
 		}
-		else{
+		else if (id_img < 10){
 			strcpy (applet_data->day_info[id_img].t_max, "-");
 			strcpy (applet_data->day_info[id_img].t_min, "-");
 		}
@@ -501,8 +550,11 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 		xmlFree (tmax);
 		xmlFree (tmin);
 
-		id_img++;
+		//id_img++;
 	}
+
+	if (type == THERMAL_SENSE)
+		g_free (temp);
 }
 
 /*

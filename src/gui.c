@@ -247,6 +247,9 @@ void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, con
 	GtkWidget *combo_hour=0;
 	GdkPixbuf *pixbuf=0;
 	char img_radar[256]={0};
+	GDate *d = NULL;
+	d = g_date_new ();
+	g_date_set_time_t (d, time(NULL));
 	
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
@@ -260,7 +263,7 @@ void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, con
 
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 
-	g_snprintf ((char *)&img_radar, 256, "%s%s", INM_SAT_IMG, "1900.gif");
+	g_snprintf ((char *)&img_radar, 256, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_s93g.gif");
 	pixbuf = load_image ((char *)&img_radar);
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
@@ -270,6 +273,7 @@ void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, con
 		pixbuf = 0;
 	}
 	g_object_unref (G_OBJECT(xml));
+	g_date_free (d);
 }
 
 void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
@@ -474,6 +478,9 @@ void display_radar	 	( BonoboUIComponent *uic, gpointer user_data, const char *n
 	GtkWidget *win=0;
 	GtkWidget *combo_hour=0;
 	char rdr_img[256]={0};
+	GDate *d = NULL;
+	d = g_date_new ();
+	g_date_set_time_t (d, time(NULL));
 	
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
@@ -486,11 +493,11 @@ void display_radar	 	( BonoboUIComponent *uic, gpointer user_data, const char *n
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 	
 	if (strncmp (name, "RadarPeninsulaProb", 18) == 0){
-		g_snprintf ((char *)&rdr_img, 256, "%s%s", INM_RADAR_IMG, "1900.gif");
+		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r8pb.gif");
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_radar_combo_hour_changed), img);
 	}
 	else{
-		g_snprintf ((char *)&rdr_img, 256, "%s%s", INM_RADAR_CANARIAS_IMG, "1900.gif");
+		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r98g.gif");
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_radar_canarias_combo_hour_changed), img);
 	}
 
@@ -504,6 +511,7 @@ void display_radar	 	( BonoboUIComponent *uic, gpointer user_data, const char *n
 		pixbuf = 0;
 	}
 	g_object_unref (G_OBJECT(xml));
+	g_date_free (d);
 }
 
 void display_lightnings	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )
@@ -514,6 +522,9 @@ void display_lightnings	 	( BonoboUIComponent *uic, gpointer user_data, const ch
 	GtkWidget *win=0;
 	GtkWidget *combo_hour=0;
 	char rdr_img[256]={0};
+	GDate *d = NULL;
+	d = g_date_new ();
+	g_date_set_time_t (d, time(NULL));
 	
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
@@ -526,11 +537,11 @@ void display_lightnings	 	( BonoboUIComponent *uic, gpointer user_data, const ch
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 	
 	if (strncmp (name, "RayosP", 6) == 0){
-		g_snprintf ((char *)&rdr_img, 256, "%s%s", INM_RAYOS_IMG, "1900.gif");
+		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r79g.gif");
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_rayos_combo_hour_changed), img);
 	}
 	else{
-		g_snprintf ((char *)&rdr_img, 256, "%s%s", INM_RAYOS_CANARIAS_IMG, "1900.gif");
+		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r78g.gif");
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_rayos_canarias_combo_hour_changed), img);
 	}
 
@@ -544,6 +555,7 @@ void display_lightnings	 	( BonoboUIComponent *uic, gpointer user_data, const ch
 		pixbuf = 0;
 	}
 	g_object_unref (G_OBJECT(xml));
+	g_date_free (d);
 }
 
 void display_nextdays_forecast	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )

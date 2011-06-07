@@ -89,81 +89,85 @@ void on_sat_combo_hour_changed			 ( GtkWidget *widget, gpointer data )
 	#define rdr_size 512
 	char img_radar[rdr_size]={0};
 	if (img){
+		GDate *d = NULL;
+		d = g_date_new ();
+		g_date_set_time_t (d, time(NULL));
+
 		tmp_buf = gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget));
 		if (strncmp (tmp_buf, "19:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "20:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "2000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2000_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "21:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "2100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2100_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "22:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "2200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2200_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "23:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "2300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2300_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "00:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "01:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0100_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "02:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0200_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "03:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0300_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "04:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0400_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "05:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0500_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "06:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0600_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "07:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0700_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "08:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0800_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "09:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "0900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0900_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "10:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1000_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "11:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1100_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "12:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1200_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "13:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1300_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "14:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1400_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "15:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1500_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "16:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1600_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "17:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1700_s93g.gif");
 		}
 		else if (strncmp (tmp_buf, "18:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1800_s93g.gif");
 		}
 		else
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_SAT_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_s93g.gif");
 
 		pixbuf = load_image ((char *)&img_radar);
 		if (pixbuf){
@@ -173,6 +177,8 @@ void on_sat_combo_hour_changed			 ( GtkWidget *widget, gpointer data )
 		}
 		if (tmp_buf)
 			g_free (tmp_buf);
+
+		g_date_free (d);
 	}
 }
 
@@ -185,81 +191,85 @@ void on_rayos_combo_hour_changed			 ( GtkWidget *widget, gpointer data )
 	#define rdr_size 512
 	char img_radar[rdr_size]={0};
 	if (img){
+		GDate *d = NULL;
+		d = g_date_new ();
+		g_date_set_time_t (d, time(NULL));
+
 		tmp_buf = gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget));
 		if (strncmp (tmp_buf, "19:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "20:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "2000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2000_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "21:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "2100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2100_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "22:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "2200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2200_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "23:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "2300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2300_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "00:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "01:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0100_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "02:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0200_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "03:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0300_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "04:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0400_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "05:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0500_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "06:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0600_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "07:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0700_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "08:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0800_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "09:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "0900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0900_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "10:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1000_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "11:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1100_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "12:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1200_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "13:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1300_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "14:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1400_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "15:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1500_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "16:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1600_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "17:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1700_r79g.gif");
 		}
 		else if (strncmp (tmp_buf, "18:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1800_r79g.gif");
 		}
 		else
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r79g.gif");
 
 		pixbuf = load_image ((char *)&img_radar);
 		if (pixbuf){
@@ -269,6 +279,8 @@ void on_rayos_combo_hour_changed			 ( GtkWidget *widget, gpointer data )
 		}
 		if (tmp_buf)
 			g_free (tmp_buf);
+		
+		g_date_free (d);
 	}
 }
 
@@ -281,81 +293,85 @@ void on_rayos_canarias_combo_hour_changed		 ( GtkWidget *widget, gpointer data )
 	#define rdr_size 512
 	char img_radar[rdr_size]={0};
 	if (img){
+		GDate *d = NULL;
+		d = g_date_new ();
+		g_date_set_time_t (d, time(NULL));
+
 		tmp_buf = gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget));
 		if (strncmp (tmp_buf, "19:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "20:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "2000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2000_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "21:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "2100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2100_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "22:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "2200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2200_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "23:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "2300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2300_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "00:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "01:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0100_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "02:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0200_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "03:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0300_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "04:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0400_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "05:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0500_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "06:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0600_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "07:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0700_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "08:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0800_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "09:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "0900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0900_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "10:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1000_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "11:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1100_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "12:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1200_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "13:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1300_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "14:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1400_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "15:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1500_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "16:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1600_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "17:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1700_r78g.gif");
 		}
 		else if (strncmp (tmp_buf, "18:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1800_r78g.gif");
 		}
 		else
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RAYOS_CANARIAS_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r78g.gif");
 
 		pixbuf = load_image ((char *)&img_radar);
 		if (pixbuf){
@@ -365,6 +381,8 @@ void on_rayos_canarias_combo_hour_changed		 ( GtkWidget *widget, gpointer data )
 		}
 		if (tmp_buf)
 			g_free (tmp_buf);
+
+		g_date_free (d);
 	}
 }
 
@@ -377,81 +395,85 @@ void on_radar_combo_hour_changed			 ( GtkWidget *widget, gpointer data )
 	#define rdr_size 512
 	char img_radar[rdr_size]={0};
 	if (img){
+		GDate *d = NULL;
+		d = g_date_new ();
+		g_date_set_time_t (d, time(NULL));
+
 		tmp_buf = gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget));
 		if (strncmp (tmp_buf, "19:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "20:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "2000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2000_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "21:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "2100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2100_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "22:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "2200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2200_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "23:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "2300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "2300_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "00:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "01:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0100_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "02:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0200_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "03:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0300_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "04:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0400_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "05:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0500_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "06:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0600_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "07:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0700_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "08:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0800_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "09:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "0900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0900_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "10:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1000_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "11:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1100_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "12:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1200_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "13:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1300_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "14:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1400_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "15:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1500_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "16:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1600_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "17:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1700_r8pb.gif");
 		}
 		else if (strncmp (tmp_buf, "18:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1800_r8pb.gif");
 		}
 		else
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r8pb.gif");
 
 		pixbuf = load_image ((char *)&img_radar);
 		if (pixbuf){
@@ -461,6 +483,8 @@ void on_radar_combo_hour_changed			 ( GtkWidget *widget, gpointer data )
 		}
 		if (tmp_buf)
 			g_free (tmp_buf);
+
+		g_date_free (d);
 	}
 }
 
@@ -473,81 +497,85 @@ void on_radar_canarias_combo_hour_changed		 ( GtkWidget *widget, gpointer data )
 	#define rdr_size 512
 	char img_radar[rdr_size]={0};
 	if (img){
+		GDate *d = NULL;
+		d = g_date_new ();
+		g_date_set_time_t (d, time(NULL));
+
 		tmp_buf = gtk_combo_box_get_active_text (GTK_COMBO_BOX(widget));
 		if (strncmp (tmp_buf, "19:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1900_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "20:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "2000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "2000_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "21:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "2100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "2100_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "22:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "2200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "2200_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "23:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "2300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "2300_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "00:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0000_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "01:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0100_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "02:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0200_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "03:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0300_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "04:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0400_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "05:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0500_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "06:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0600_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "07:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0700_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "08:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0800_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "09:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "0900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "0900_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "10:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1000.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1000_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "11:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1100.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1100_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "12:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1200.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1200_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "13:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1300.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1300_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "14:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1400.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1400_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "15:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1500.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1500_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "16:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1600.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1600_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "17:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1700.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1700_r98g.gif");
 		}
 		else if (strncmp (tmp_buf, "18:00", 5) == 0){
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1800.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1800_r98g.gif");
 		}
 		else
-			g_snprintf ((char *)&img_radar, rdr_size, "%s%s", INM_RADAR_CANARIAS_IMG, "1900.gif");
+			g_snprintf ((char *)&img_radar, rdr_size, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, "1900_r98g.gif");
 
 		pixbuf = load_image ((char *)&img_radar);
 		if (pixbuf){
@@ -557,6 +585,8 @@ void on_radar_canarias_combo_hour_changed		 ( GtkWidget *widget, gpointer data )
 		}
 		if (tmp_buf)
 			g_free (tmp_buf);
+
+		g_date_free (d);
 	}
 }
 

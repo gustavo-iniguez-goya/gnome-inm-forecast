@@ -48,13 +48,13 @@
 #define INM_FORECAST_URL "http://www.aemet.es/xml/municipios/localidad_"
 #define INM_RADAR_AIR_MASS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/"
 
-#define INM_RADAR_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/r8pb"
-#define INM_RAYOS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/r79g"
+#define INM_RADAR_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/"
+#define INM_RAYOS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/"
 
-#define INM_RAYOS_CANARIAS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/r78g"
-#define INM_RADAR_CANARIAS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/r98g"
+#define INM_RAYOS_CANARIAS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/"
+#define INM_RADAR_CANARIAS_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/radar/"
 
-#define INM_SAT_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/s93g"
+#define INM_SAT_IMG "http://www.aemet.es/imagenes_d/eltiempo/observacion/satelite/"
 
 #define INM_FORECAST_NEXTDAYS_URL "http://www.aemet.es/es/eltiempo/prediccion/espana?w=5"
 #define INM_FORECAST_TOMORROW_URL "http://www.aemet.es/es/eltiempo/prediccion/espana?w=3"

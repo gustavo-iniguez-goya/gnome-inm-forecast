@@ -434,11 +434,11 @@ void parse_xml_precip		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr n
 		xmlChar *precip = xmlNodeListGetString(doc, ns->nodeTab[i]->xmlChildrenNode, 1);
 		xmlChar *horario= xmlGetProp(ns->nodeTab[i], "periodo");
 		if (precip != NULL && horario != NULL && (strcmp (horario, "00-12") == 0 || strcmp(horario, "12-24") == 0)){
-			snprintf (applet_data->day_info[id_img].precip, 4, "%s%%\0", precip);
+			snprintf (applet_data->day_info[id_img].precip, 6, "%s%%\0", precip);
 			id_img++;
 		}
 		else if (horario == NULL){
-			snprintf (applet_data->day_info[id_img].precip, 4, "%s%%\0", precip);
+			snprintf (applet_data->day_info[id_img].precip, 6, "%s%%\0", precip);
 			id_img++;
 		}
 		else

@@ -436,6 +436,9 @@ void display_air_mass	 	( BonoboUIComponent *uic, gpointer user_data, const char
 	GtkWidget *win=0;
 	GtkWidget *combo_hour=0;
 	char rdr_img[256]={0};
+	GDate *d = NULL;
+	d = g_date_new ();
+	g_date_set_time_t (d, time(NULL));
 	
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
@@ -449,7 +452,7 @@ void display_air_mass	 	( BonoboUIComponent *uic, gpointer user_data, const char
 
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 	
-	g_snprintf ((char *)&rdr_img, 256, "%s%s", INM_RADAR_AIR_MASS_IMG, "1900.jpg");
+	g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_AIR_MASS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_s91g.jpg");
 	printf ("displaying %s\n", rdr_img);
 	pixbuf = load_image ((char *)&rdr_img);
 	if (pixbuf){
@@ -460,6 +463,7 @@ void display_air_mass	 	( BonoboUIComponent *uic, gpointer user_data, const char
 		pixbuf = 0;
 	}
 	g_object_unref (G_OBJECT(xml));
+	g_date_free (d);
 }
 
 void display_radar	 	( BonoboUIComponent *uic, gpointer user_data, const char *name )

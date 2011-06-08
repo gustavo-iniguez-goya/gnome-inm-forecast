@@ -334,13 +334,12 @@ gboolean check_latest_data	( AppletData *applet_data )
 
 gboolean check_inm_url 			( AppletData *applet_data )
 {
-	
 	if (applet_data && applet_data->applet){
 		gchar *temp = NULL;
 		temp = g_new0 (char, 512);
-		char *code = g_new0(char, 256);
+		char *code = g_new0(char, 12);
 	
-		g_strlcpy (code, (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL), 256);
+		g_strlcpy (code, (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL), 12);
 		g_snprintf (temp, 512, "%s%s.xml\0", INM_FORECAST_URL, code);
 		printf ("check_inm_url(): %s\n", temp);
 
@@ -348,28 +347,10 @@ gboolean check_inm_url 			( AppletData *applet_data )
 		gnome_vfs_async_open (&applet_data->gvfs_handle, temp, GNOME_VFS_OPEN_READ, 0, check_inm_url_status, applet_data);
 		g_free (temp);
 		g_free (code);
-
-		/*
-		xmlDoc *doc=NULL;
-		xmlNode *root_element=NULL;
-		xmlNode *cur_node=NULL, *a_node=NULL;
-		doc = xmlReadMemory (buf, strlen(buf), NULL, NULL, XML_PARSE_RECOVER);
-		root_element = xmlDocGetRootElement (doc);
-		a_node = root_element;
-		for (cur_node = a_node; cur_node; cur_node = cur_node->next) {
-			if (cur_node->type == XML_ELEMENT_NODE) {
-				printf("node type: Element, name: %s\n", cur_node->name);
-			}
-			//print_element_names(cur_node->children);
-	        }
-		xmlFreeDoc (doc);
-		*/
-		
 	}
 	else{
 		printf ("check_inm_url() no applet no fun\n");
 	}
-
 		
 	return TRUE;
 }
@@ -528,7 +509,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	AppletData *applet_data = g_new0(AppletData, 1);
 	applet_data->prefs = g_new0 (PrefsWin, 1);
 	applet_data->day_info = g_new0 (DayInf, MAX_DAYS);
-	applet_data->prefs->code = g_new0 (char, 256);
+	applet_data->prefs->code = g_new0 (char, 12);
 	applet_data->prefs->station_code = g_new0 (char, 12);
 	applet_data->city_name = g_new0 (char, 128);
 	applet_data->city_long_desc = g_new0 (char, 128);

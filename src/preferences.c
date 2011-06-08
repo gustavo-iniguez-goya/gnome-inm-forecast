@@ -83,7 +83,7 @@ void 		create_preferences_win ( AppletData *applet_data )
 
 	tmp = (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "city", NULL);
 	gtk_entry_set_text (GTK_ENTRY(applet_data->prefs->entry_code), tmp);
-	g_strlcpy (applet_data->prefs->code, (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL), 256);
+	g_strlcpy (applet_data->prefs->code, (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL), 12);
 
 	if (tmp){
 		g_free (tmp);
@@ -352,7 +352,7 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 				gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->list_store), &iter, 0, &code, -1);
 				
 				if (city && code){
-					g_snprintf (applet_data->prefs->code, 256, "%s\0", code);
+					g_snprintf (applet_data->prefs->code, 12, "%s\0", code);
 					//printf ("0-Code for (%d) \"%s\": %s\n", strlen(applet_data->prefs->code), applet_data->prefs->code, code);
 				}
 
@@ -368,7 +368,7 @@ gboolean 	find_location_code ( GtkWidget *widget, AppletData *applet_data, int t
 				gtk_tree_model_get (GTK_TREE_MODEL(applet_data->prefs->tree_store), &iter, 1, &code, -1);
 
 				if (city && code){
-					g_snprintf (applet_data->prefs->code, 256, "%s\0", code);
+					g_snprintf (applet_data->prefs->code, 12, "%s\0", code);
 				}
 				
 				g_free (code);

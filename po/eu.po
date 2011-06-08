@@ -10,224 +10,196 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: ga@kutxa.homeunix.org\n"
-"POT-Creation-Date: 2009-12-12 16:40+0100\n"
-"PO-Revision-Date: 2009-04-02 22:40+0200\n"
-"Last-Translator: Ander Elortondo <ander.elor@gmail.com>\n"
+"POT-Creation-Date: 2011-06-08 20:50+0200\n"
+"PO-Revision-Date: 2011-06-08 20:54+0100\n"
+"Last-Translator: Gustavo Iñiguez Goya <ga@kutxa.homeunix.org>\n"
 "Language-Team: Basque\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/main.c:175
-msgid "Morning"
-msgstr "Goizean"
-
-#: ../src/main.c:176
-msgid "Afternoon"
-msgstr "Arratsaldean"
-
-#: ../src/main.c:556
+#: ../src/main.c:521
 msgid "Error loading the GNOME VFS subsystem"
 msgstr "Errorea GNOME VFS azpi-sistema kargatzean"
 
-#: ../src/main.c:556
+#: ../src/main.c:521
 msgid "An error ocurred loading the GNOME VFS subsystem"
 msgstr "GNOME VFS azpi-sistema kargatzean errore bat eman da"
 
-#: ../src/html_parser.c:33 ../src/html_parser.c:41
+#: ../src/html_parser.c:36
+#: ../src/html_parser.c:44
 #, c-format
 msgid "Wednesday %s"
 msgstr "Azteazkena %s"
 
-#: ../src/html_parser.c:35 ../src/html_parser.c:47
+#: ../src/html_parser.c:38
+#: ../src/html_parser.c:50
 #, c-format
 msgid "Saturday %s"
 msgstr "Larunbata %s"
 
-#: ../src/html_parser.c:37
+#: ../src/html_parser.c:40
 #, c-format
 msgid "Monday %s"
 msgstr "Astelehena %s"
 
-#: ../src/html_parser.c:39
+#: ../src/html_parser.c:42
 #, c-format
 msgid "Tuesday %s"
 msgstr "Asteartea %s"
 
-#: ../src/html_parser.c:43
+#: ../src/html_parser.c:46
 #, c-format
 msgid "Thursday %s"
 msgstr "Osteguna %s"
 
-#: ../src/html_parser.c:45
+#: ../src/html_parser.c:48
 #, c-format
 msgid "Friday %s"
 msgstr "Ostirala %s"
 
-#: ../src/html_parser.c:49
+#: ../src/html_parser.c:52
 #, c-format
 msgid "Sunday %s"
 msgstr "Igandea %s"
 
-#: ../src/html_parser.c:86
-msgid "Despejado"
-msgstr "Oskarbi"
-
-#: ../src/html_parser.c:92
-msgid "Poco nuboso"
-msgstr "Hodei gutxi"
-
-#: ../src/html_parser.c:98
-msgid "Intervalos nubosos"
-msgstr "Hodeiak"
-
-#: ../src/html_parser.c:104
-msgid "Nuboso"
-msgstr "Hodeitsu"
-
-#: ../src/html_parser.c:110
-msgid "Muy nuboso"
-msgstr "Oso hodeitsu"
-
-#: ../src/html_parser.c:121
-msgid "Intervalos nubosos con lluvia"
-msgstr "Hodeiak eta euria"
-
-#: ../src/html_parser.c:127
-msgid "Nuboso con lluvia"
-msgstr "Hodeitsu eta euria"
-
-#: ../src/html_parser.c:133 ../src/html_parser.c:139
-msgid "Muy nuboso con lluvia"
-msgstr "Oso hodeitsu eta euria"
-
-#: ../src/html_parser.c:145
-msgid "Nieve"
-msgstr "Edurra"
-
-#: ../src/html_parser.c:151
-msgid "Nuboso con nieve"
-msgstr "hodeitsu eta edurra"
-
-#: ../src/html_parser.c:157 ../src/html_parser.c:163
-msgid "Muy nuboso con nieve"
-msgstr "Oso hodeitsu eta edurra"
-
-#: ../src/html_parser.c:238
+#: ../src/html_parser.c:109
 msgid "Last update: "
 msgstr "Azken eguneratzea: "
 
+#: ../src/html_parser.c:261
+#: ../src/html_parser.c:262
+#: ../src/html_parser.c:312
+msgid "Monday"
+msgstr "Astelehena"
+
+#: ../src/html_parser.c:261
+#: ../src/html_parser.c:265
+#: ../src/html_parser.c:269
+#: ../src/html_parser.c:273
+#: ../src/html_parser.c:277
+#: ../src/html_parser.c:281
 #: ../src/html_parser.c:285
-#, c-format
-msgid ""
-"%s\n"
-"Altitude: %s mts."
-msgstr ""
-"%s\n"
-"Altuera: %s m."
+msgid "Morning"
+msgstr "Goizean"
 
-#: ../src/html_parser.c:432
-msgid "Sur"
-msgstr "Hego"
+#: ../src/html_parser.c:262
+#: ../src/html_parser.c:266
+#: ../src/html_parser.c:270
+#: ../src/html_parser.c:274
+#: ../src/html_parser.c:278
+#: ../src/html_parser.c:282
+#: ../src/html_parser.c:286
+msgid "Afternoon"
+msgstr "Arratsaldean"
 
-#: ../src/html_parser.c:436
-msgid "Sureste"
-msgstr "Hego-ekialde"
+#: ../src/html_parser.c:265
+#: ../src/html_parser.c:266
+#: ../src/html_parser.c:314
+msgid "Tuesday"
+msgstr "Asteartea"
 
-#: ../src/html_parser.c:440
-msgid "Suroeste"
-msgstr "Hego-mendebalde"
+#: ../src/html_parser.c:269
+#: ../src/html_parser.c:270
+#: ../src/html_parser.c:316
+msgid "Wednesday"
+msgstr "Azteazkena"
 
-#: ../src/html_parser.c:444
-msgid "Norte"
-msgstr "Ipar"
+#: ../src/html_parser.c:273
+#: ../src/html_parser.c:274
+#: ../src/html_parser.c:318
+msgid "Thursday"
+msgstr "Osteguna"
 
-#: ../src/html_parser.c:448
-msgid "Nordeste"
-msgstr "Ipar-ekialde"
+#: ../src/html_parser.c:277
+#: ../src/html_parser.c:278
+#: ../src/html_parser.c:320
+msgid "Friday"
+msgstr "Ostirala"
 
-#: ../src/html_parser.c:452
-msgid "Noroeste"
-msgstr "Ipar-mendebalde"
+#: ../src/html_parser.c:281
+#: ../src/html_parser.c:282
+#: ../src/html_parser.c:322
+msgid "Saturday"
+msgstr "Larunbata"
 
-#: ../src/html_parser.c:456
-msgid "Este"
-msgstr "Ekialde"
+#: ../src/html_parser.c:285
+#: ../src/html_parser.c:286
+#: ../src/html_parser.c:324
+msgid "Sunday"
+msgstr "Igandea"
 
-#: ../src/html_parser.c:460
-msgid "Oeste"
-msgstr "Mendebalde"
-
-#: ../src/html_parser.c:464
-msgid "Calma"
-msgstr "Lasai"
-
-#: ../src/gui.c:177
+#: ../src/gui.c:179
 msgid "Error loading www.aemet.es"
 msgstr "Errorea www.aemet.es kargatzean"
 
-#: ../src/gui.c:188 ../src/gui.c:198 ../src/gui.c:208
+#: ../src/gui.c:190
+#: ../src/gui.c:200
+#: ../src/gui.c:210
 msgid "Error loading "
 msgstr "Errorea www.aemet.es kargatzean"
 
-#: ../src/gui.c:267 ../gnome-inm-glade.glade.h:52
+#: ../src/gui.c:276
+#: ../gnome-inm-glade.glade.h:53
 msgid "Satellite image"
 msgstr "Satelite irudia"
 
-#: ../src/gui.c:333
+#: ../src/gui.c:346
 msgid "Spanish weather forecast image"
 msgstr "Iragarpen meteorologikoaren irudia"
 
-#: ../src/gui.c:339
+#: ../src/gui.c:352
 #, fuzzy
 msgid "The map weather forecast is not still available"
 msgstr "Itsas eguraldi iragarpena"
 
-#: ../src/gui.c:382
+#: ../src/gui.c:395
 msgid "Temperatures for the next days"
 msgstr "Hurrengo egunetako tenperaturak"
 
-#: ../src/gui.c:423 ../gnome-inm-glade.glade.h:51 ../GNOME_INM_menu.xml.h:4
+#: ../src/gui.c:436
+#: ../gnome-inm-glade.glade.h:52
+#: ../GNOME_INM_menu.xml.h:4
 msgid "Rainfall probability"
 msgstr "Prezipitazio iragarpena"
 
-#: ../src/gui.c:457 ../GNOME_INM_menu.xml.h:1
+#: ../src/gui.c:472
+#: ../GNOME_INM_menu.xml.h:1
 msgid "Air mass"
 msgstr "Aire-masak"
 
-#: ../src/gui.c:497
+#: ../src/gui.c:519
 msgid "Radar images"
 msgstr "_Radar irudiak"
 
-#: ../src/gui.c:537
+#: ../src/gui.c:565
 msgid "Lightnings images"
 msgstr "Tximista irudiak"
 
-#: ../src/connection.c:233
+#: ../src/connection.c:202
 msgid "Next days forecast"
 msgstr "Hurrengo egunen iragarpena"
 
-#: ../src/connection.c:243
+#: ../src/connection.c:212
 msgid "Snowfalls reports"
 msgstr "Elurte eta elor-jausi txostena "
 
-#: ../src/connection.c:248 ../src/connection.c:249 ../src/connection.c:255
-#: ../src/connection.c:256
+#: ../src/connection.c:217
+#: ../src/connection.c:218
+#: ../src/connection.c:224
+#: ../src/connection.c:225
 msgid "No data"
 msgstr "Datu gabe"
 
-#: ../src/connection.c:355
+#: ../src/connection.c:324
 #, c-format
 msgid "Connection error\n"
 msgstr "Konexio errorea\n"
 
 #: ../gnome-inm-glade.glade.h:1
+#, fuzzy
 msgid ""
-"19:00\n"
-"20:00\n"
-"21:00\n"
-"22:00\n"
-"23:00\n"
 "00:00\n"
 "01:00\n"
 "02:00\n"
@@ -246,7 +218,12 @@ msgid ""
 "15:00\n"
 "16:00\n"
 "17:00\n"
-"18:00"
+"18:00\n"
+"19:00\n"
+"20:00\n"
+"21:00\n"
+"22:00\n"
+"23:00"
 msgstr ""
 "19:00\n"
 "20:00\n"
@@ -278,114 +255,118 @@ msgid "<b>General</b>"
 msgstr "<b>Orokorra</b>"
 
 #: ../gnome-inm-glade.glade.h:26
+msgid "<b>Humidity</b>"
+msgstr "<b>Hezetasuna</b>"
+
+#: ../gnome-inm-glade.glade.h:27
 msgid "<b>Location options</b>"
 msgstr "<b>Toki aukerak</b>"
 
-#: ../gnome-inm-glade.glade.h:27
+#: ../gnome-inm-glade.glade.h:28
 msgid "<b>Max temp</b>"
 msgstr "<b>Max temp</b>"
 
-#: ../gnome-inm-glade.glade.h:28
+#: ../gnome-inm-glade.glade.h:29
 msgid "<b>Min temp</b>"
 msgstr "<b>Min temp</b>"
 
-#: ../gnome-inm-glade.glade.h:29
+#: ../gnome-inm-glade.glade.h:30
 msgid "<b>Rainfall prob.</b>"
 msgstr "<b>Prezipitazio iragarpena</b>"
 
-#: ../gnome-inm-glade.glade.h:30
+#: ../gnome-inm-glade.glade.h:31
 msgid "<b>Snow</b>"
 msgstr "<b>Edurra</b>"
 
-#: ../gnome-inm-glade.glade.h:31
+#: ../gnome-inm-glade.glade.h:32
 msgid "<b>State</b>"
 msgstr "<b>Egoera</b>"
 
-#: ../gnome-inm-glade.glade.h:32
+#: ../gnome-inm-glade.glade.h:33
 msgid "<b>Wind</b>"
 msgstr "<b>Haizea</b>"
 
-#: ../gnome-inm-glade.glade.h:33
+#: ../gnome-inm-glade.glade.h:34
 msgid "> 0.5 mm"
 msgstr "> 0.5 mm"
 
-#: ../gnome-inm-glade.glade.h:34
+#: ../gnome-inm-glade.glade.h:35
 msgid "> 10 mm"
 msgstr "> 10 mm"
 
-#: ../gnome-inm-glade.glade.h:35
+#: ../gnome-inm-glade.glade.h:36
 msgid "> 2 mm"
 msgstr "> 2 mm"
 
-#: ../gnome-inm-glade.glade.h:36
+#: ../gnome-inm-glade.glade.h:37
 msgid "> 20 mm"
 msgstr "> 20 mm"
 
-#: ../gnome-inm-glade.glade.h:37
+#: ../gnome-inm-glade.glade.h:38
 msgid "About GNOME INM forecast"
 msgstr "GNOME INM forecast buruz"
 
-#: ../gnome-inm-glade.glade.h:38
+#: ../gnome-inm-glade.glade.h:39
 msgid "Altitude"
 msgstr "Altura"
 
-#: ../gnome-inm-glade.glade.h:39
+#: ../gnome-inm-glade.glade.h:40
 msgid "City"
 msgstr "Herria"
 
-#: ../gnome-inm-glade.glade.h:40
+#: ../gnome-inm-glade.glade.h:41
 msgid "Days to show"
 msgstr "Ikusteko egunak"
 
-#: ../gnome-inm-glade.glade.h:41
+#: ../gnome-inm-glade.glade.h:42
 msgid "GNOME INM forecast"
 msgstr "GNOME INM forecast"
 
-#: ../gnome-inm-glade.glade.h:42
+#: ../gnome-inm-glade.glade.h:43
 msgid "Humidity"
 msgstr "Hezetasuna"
 
-#: ../gnome-inm-glade.glade.h:43
+#: ../gnome-inm-glade.glade.h:44
 msgid "Interval update (Minutes)"
 msgstr "Eguneratze tartean (Minutuak)"
 
-#: ../gnome-inm-glade.glade.h:44
+#: ../gnome-inm-glade.glade.h:45
 msgid "Location"
 msgstr "Tokia"
 
-#: ../gnome-inm-glade.glade.h:45
+#: ../gnome-inm-glade.glade.h:46
 msgid "Max"
 msgstr "Max"
 
-#: ../gnome-inm-glade.glade.h:46
+#: ../gnome-inm-glade.glade.h:47
 msgid "Meteorological stations"
 msgstr "Estazio meteoroligikoak"
 
-#: ../gnome-inm-glade.glade.h:47
+#: ../gnome-inm-glade.glade.h:48
 msgid "Min"
 msgstr "Min"
 
-#: ../gnome-inm-glade.glade.h:48
+#: ../gnome-inm-glade.glade.h:49
 msgid "Panel"
 msgstr "Panela"
 
-#: ../gnome-inm-glade.glade.h:49
+#: ../gnome-inm-glade.glade.h:50
 msgid "Preferences"
 msgstr "Hobespenak"
 
-#: ../gnome-inm-glade.glade.h:50
+#: ../gnome-inm-glade.glade.h:51
 msgid "Rainfall"
 msgstr "Prezipitazio"
 
-#: ../gnome-inm-glade.glade.h:53
+#: ../gnome-inm-glade.glade.h:54
 msgid "Show afternoon data"
 msgstr "Ikus arratsaldeko informazioa"
 
-#: ../gnome-inm-glade.glade.h:54
+#: ../gnome-inm-glade.glade.h:55
 msgid "Show morning data"
 msgstr "Ikus goizeko informazioa"
 
-#: ../gnome-inm-glade.glade.h:55
+#: ../gnome-inm-glade.glade.h:56
 msgid ""
 "Show station \n"
 "on the panel"
@@ -393,57 +374,51 @@ msgstr ""
 "Ikus estazioa \n"
 "panelean"
 
-#: ../gnome-inm-glade.glade.h:57
+#: ../gnome-inm-glade.glade.h:58
 msgid "Temperature"
 msgstr "Tenperatura"
 
-#: ../gnome-inm-glade.glade.h:58
+#: ../gnome-inm-glade.glade.h:59
 #, fuzzy
 msgid ""
-"The information you get with this program is property of the Spanish "
-"metereological Agency\n"
+"The information you get with this program is property of the Spanish metereological Agency\n"
 "\n"
 "http://www.aemet.es"
 msgstr ""
-"Programa honen bidez lortutako informazioa Agencia Nacional de Meteorología "
-"españolaren jabetza da\n"
+"Programa honen bidez lortutako informazioa Agencia Nacional de Meteorología españolaren jabetza da\n"
 "\n"
 "http://www.aemet.es"
-
-#: ../gnome-inm-glade.glade.h:61
-msgid ""
-"The meteorological stations data is updated each hour and will be disponible "
-"30 minutes after as maximum"
-msgstr ""
-"Estazio meteorologikoen datuak orduro eguneratzen dira eta 30 minutu "
-"beranduago egongo dira eskuragarri beranduen."
 
 #: ../gnome-inm-glade.glade.h:62
+msgid "The meteorological stations data is updated each hour and will be disponible 30 minutes after as maximum"
+msgstr "Estazio meteorologikoen datuak orduro eguneratzen dira eta 30 minutu beranduago egongo dira eskuragarri beranduen."
+
+#: ../gnome-inm-glade.glade.h:63
 msgid "Theme"
 msgstr "Gaia"
 
-#: ../gnome-inm-glade.glade.h:63
+#: ../gnome-inm-glade.glade.h:64
 #, fuzzy
 msgid "This program is licensed under the GPL-2 license"
 msgstr "Programa honek GPL lizentzia du."
 
-#: ../gnome-inm-glade.glade.h:64
+#: ../gnome-inm-glade.glade.h:65
 msgid "Today weather forecast "
 msgstr "Gaurko iragarpena"
 
-#: ../gnome-inm-glade.glade.h:65
+#: ../gnome-inm-glade.glade.h:66
 msgid "avg"
 msgstr "Batazbeste"
 
-#: ../gnome-inm-glade.glade.h:66
+#: ../gnome-inm-glade.glade.h:67
 msgid "day"
 msgstr "eguna"
 
-#: ../gnome-inm-glade.glade.h:67
+#: ../gnome-inm-glade.glade.h:68
 msgid "label"
 msgstr "Etiketa"
 
-#: ../gnome-inm-glade.glade.h:68
+#: ../gnome-inm-glade.glade.h:69
 msgid "max"
 msgstr "Max"
 
@@ -476,9 +451,8 @@ msgid "_About..."
 msgstr "Honi buru_z..."
 
 #: ../GNOME_INM_menu.xml.h:10
-#, fuzzy
 msgid "_Afternoon"
-msgstr "Arratsaldean"
+msgstr "_Arratsaldean"
 
 #: ../GNOME_INM_menu.xml.h:11
 msgid "_Asturias, Basque Country and Cantabria Coasts"
@@ -543,9 +517,8 @@ msgid "_Mediterranean"
 msgstr "Mediterraneoa"
 
 #: ../GNOME_INM_menu.xml.h:26
-#, fuzzy
 msgid "_Morning"
-msgstr "Goizean"
+msgstr "_Goizean"
 
 #: ../GNOME_INM_menu.xml.h:27
 msgid "_Mountain weather forecast"
@@ -612,18 +585,16 @@ msgid "_Sierra de Guadarrama y Somosierra"
 msgstr "_Guadarrama mendilerroa eta Somosierra"
 
 #: ../GNOME_INM_menu.xml.h:43
-#, fuzzy
 msgid "_Snowfall report (Aragon) "
-msgstr "_Elur jausi txostena (Katalunia)"
+msgstr "_Elur jausi txostena (Aragoi)"
 
 #: ../GNOME_INM_menu.xml.h:44
 msgid "_Snowfall report (Catalonya) "
 msgstr "_Elur jausi txostena (Katalunia)"
 
 #: ../GNOME_INM_menu.xml.h:45
-#, fuzzy
 msgid "_Snowfall report (Navarra)"
-msgstr "_Elur jausi txostena (Nafarroa eta Aragoi)"
+msgstr "_Elur jausi txostena (Nafarroa)"
 
 #: ../GNOME_INM_menu.xml.h:46
 msgid "_SouthAtlantic"
@@ -660,6 +631,73 @@ msgstr "_Mapa meteorologikoak"
 #: ../GNOME_INM_menu.xml.h:54
 msgid "_Western Andalusia and Ceuta Coast"
 msgstr "Andaluziako mendebaldeko itsasertza eta Ceuta"
+
+#~ msgid "Despejado"
+#~ msgstr "Oskarbi"
+
+#~ msgid "Poco nuboso"
+#~ msgstr "Hodei gutxi"
+
+#~ msgid "Intervalos nubosos"
+#~ msgstr "Hodeiak"
+
+#~ msgid "Nuboso"
+#~ msgstr "Hodeitsu"
+
+#~ msgid "Muy nuboso"
+#~ msgstr "Oso hodeitsu"
+
+#~ msgid "Intervalos nubosos con lluvia"
+#~ msgstr "Hodeiak eta euria"
+
+#~ msgid "Nuboso con lluvia"
+#~ msgstr "Hodeitsu eta euria"
+
+#~ msgid "Muy nuboso con lluvia"
+#~ msgstr "Oso hodeitsu eta euria"
+
+#~ msgid "Nieve"
+#~ msgstr "Edurra"
+
+#~ msgid "Nuboso con nieve"
+#~ msgstr "hodeitsu eta edurra"
+
+#~ msgid "Muy nuboso con nieve"
+#~ msgstr "Oso hodeitsu eta edurra"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "Altitude: %s mts."
+#~ msgstr ""
+#~ "%s\n"
+#~ "Altuera: %s m."
+
+#~ msgid "Sur"
+#~ msgstr "Hego"
+
+#~ msgid "Sureste"
+#~ msgstr "Hego-ekialde"
+
+#~ msgid "Suroeste"
+#~ msgstr "Hego-mendebalde"
+
+#~ msgid "Norte"
+#~ msgstr "Ipar"
+
+#~ msgid "Nordeste"
+#~ msgstr "Ipar-ekialde"
+
+#~ msgid "Noroeste"
+#~ msgstr "Ipar-mendebalde"
+
+#~ msgid "Este"
+#~ msgstr "Ekialde"
+
+#~ msgid "Oeste"
+#~ msgstr "Mendebalde"
+
+#~ msgid "Calma"
+#~ msgstr "Lasai"
 
 #~ msgid ""
 #~ "<small>Codes: http://www.aemet.es/es/eltiempo/prediccion/localidades</"

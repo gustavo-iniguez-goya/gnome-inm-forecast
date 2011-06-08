@@ -167,6 +167,7 @@ typedef struct _DayInformation {
 	char		*precip;
 	char		*cota_nieve;
 	char		*t_max, *t_min;
+	char 		*humidity;
 	char 		*wind;
 } DayInf;
 

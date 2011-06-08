@@ -575,6 +575,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 		applet_data->day_info[x].t_max = g_new0 (char, 8);
 		applet_data->day_info[x].t_min = g_new0 (char, 8);
 		applet_data->day_info[x].day = g_new0 (char, 32);
+		applet_data->day_info[x].humidity = g_new0 (char, 8);
 		applet_data->day_info[x].wind = g_new0 (char, 32);
 	}
 

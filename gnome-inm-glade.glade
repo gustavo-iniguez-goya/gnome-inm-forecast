@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <glade-interface>
   <!-- interface-requires gtk+ 2.10 -->
   <!-- interface-naming-policy toplevel-contextual -->
@@ -558,7 +558,6 @@ on the panel</property>
     <property name="resizable">False</property>
     <property name="window_position">center-on-parent</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <property name="version">0.1.0</property>
     <property name="copyright" translatable="yes">This program is licensed under the GPL-2 license</property>
     <property name="comments" translatable="yes">The information you get with this program is property of the Spanish metereological Agency
@@ -645,12 +644,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
           <widget class="GtkComboBox" id="combo_hour">
             <property name="visible">True</property>
             <property name="active">1</property>
-            <property name="items" translatable="yes">19:00
-20:00
-21:00
-22:00
-23:00
-00:00
+            <property name="items" translatable="yes">00:00
 01:00
 02:00
 03:00
@@ -668,7 +662,12 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
 15:00
 16:00
 17:00
-18:00</property>
+18:00
+19:00
+20:00
+21:00
+22:00
+23:00</property>
           </widget>
           <packing>
             <property name="left_attach">2</property>
@@ -713,24 +712,8 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
       <widget class="GtkTable" id="table4">
         <property name="visible">True</property>
         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-        <property name="n_rows">7</property>
+        <property name="n_rows">8</property>
         <property name="n_columns">2</property>
-        <child>
-          <widget class="GtkLabel" id="label10">
-            <property name="visible">True</property>
-            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="xalign">0</property>
-            <property name="label" translatable="yes">&lt;b&gt;Wind&lt;/b&gt;</property>
-            <property name="use_markup">True</property>
-          </widget>
-          <packing>
-            <property name="top_attach">6</property>
-            <property name="bottom_attach">7</property>
-            <property name="x_options">GTK_FILL</property>
-            <property name="x_padding">10</property>
-            <property name="y_padding">10</property>
-          </packing>
-        </child>
         <child>
           <widget class="GtkLabel" id="label9">
             <property name="visible">True</property>
@@ -816,25 +799,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkLabel" id="label_day6">
-            <property name="visible">True</property>
-            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-            <property name="xalign">1</property>
-            <property name="label" translatable="yes">label</property>
-            <property name="use_markup">True</property>
-          </widget>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="right_attach">2</property>
-            <property name="top_attach">6</property>
-            <property name="bottom_attach">7</property>
-            <property name="x_options">GTK_FILL</property>
-            <property name="x_padding">10</property>
-            <property name="y_padding">10</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="GtkLabel" id="label_day5">
+          <widget class="GtkLabel" id="label_tmin">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="xalign">1</property>
@@ -852,7 +817,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkLabel" id="label_day4">
+          <widget class="GtkLabel" id="label_tmax">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="xalign">1</property>
@@ -870,7 +835,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkLabel" id="label_day3">
+          <widget class="GtkLabel" id="label_snow">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="xalign">1</property>
@@ -888,7 +853,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkLabel" id="label_day2">
+          <widget class="GtkLabel" id="label_rain">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="xalign">1</property>
@@ -906,7 +871,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkLabel" id="label_day1">
+          <widget class="GtkLabel" id="label_state">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="xalign">0</property>
@@ -924,7 +889,7 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkLabel" id="label_day7">
+          <widget class="GtkLabel" id="label_day">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="xalign">0</property>
@@ -953,6 +918,74 @@ Josep M. Mendoza      &lt;josep@mendoza-ginesta.net&gt;, 2008-2009</property>
             <property name="right_attach">2</property>
             <property name="x_options">GTK_FILL</property>
             <property name="y_options"></property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkLabel" id="label10">
+            <property name="visible">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <property name="xalign">0</property>
+            <property name="label" translatable="yes">&lt;b&gt;Wind&lt;/b&gt;</property>
+            <property name="use_markup">True</property>
+          </widget>
+          <packing>
+            <property name="top_attach">7</property>
+            <property name="bottom_attach">8</property>
+            <property name="x_options">GTK_FILL</property>
+            <property name="x_padding">10</property>
+            <property name="y_padding">10</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkLabel" id="label_wind">
+            <property name="visible">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <property name="xalign">1</property>
+            <property name="label" translatable="yes">label</property>
+            <property name="use_markup">True</property>
+          </widget>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="right_attach">2</property>
+            <property name="top_attach">7</property>
+            <property name="bottom_attach">8</property>
+            <property name="x_options">GTK_FILL</property>
+            <property name="x_padding">10</property>
+            <property name="y_padding">10</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkLabel" id="label1">
+            <property name="visible">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <property name="xalign">0</property>
+            <property name="label" translatable="yes">&lt;b&gt;Humidity&lt;/b&gt;</property>
+            <property name="use_markup">True</property>
+          </widget>
+          <packing>
+            <property name="top_attach">6</property>
+            <property name="bottom_attach">7</property>
+            <property name="x_options">GTK_FILL</property>
+            <property name="x_padding">10</property>
+            <property name="y_padding">10</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkLabel" id="label_humidity">
+            <property name="visible">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <property name="xalign">1</property>
+            <property name="label" translatable="yes">label</property>
+            <property name="use_markup">True</property>
+          </widget>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="right_attach">2</property>
+            <property name="top_attach">6</property>
+            <property name="bottom_attach">7</property>
+            <property name="x_options">GTK_FILL</property>
+            <property name="x_padding">10</property>
+            <property name="y_padding">10</property>
           </packing>
         </child>
       </widget>

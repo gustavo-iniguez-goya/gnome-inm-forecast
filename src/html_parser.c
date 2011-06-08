@@ -19,6 +19,7 @@
 #include "html_parser.h"
 #define TEMPERATURES 0
 #define THERMAL_SENSE 1
+#define HUMIDITY 2
 
 char *parse_week_day_name	( const char *day_name )
 {
@@ -159,6 +160,12 @@ void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	p = xmlXPathCtxtCompile(ctx, (xmlChar *)"prediccion/dia/sens_termica");
 	res = xmlXPathCompiledEval(p, ctx);
 	parse_xml_temperatures (applet_data, doc, res->nodesetval, THERMAL_SENSE);
+	xmlXPathFreeObject(res);
+	
+	// Humidity data
+	p = xmlXPathCtxtCompile(ctx, (xmlChar *)"prediccion/dia/humedad_relativa");
+	res = xmlXPathCompiledEval(p, ctx);
+	parse_xml_temperatures (applet_data, doc, res->nodesetval, HUMIDITY);
 	xmlXPathFreeObject(res);
 	
 	// Wind data
@@ -477,29 +484,53 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 		xmlChar *tmin = xmlNodeListGetString(doc, cur_tmin->xmlChildrenNode, 1);
 		
 		if (tmax != NULL && tmin != NULL && id_img < 10){
-			if (type == TEMPERATURES){
+			if (type == TEMPERATURES || type == HUMIDITY){
 				if (tmax != NULL && cur_tmin->next != NULL){
-					printf ("Temperatura max.: %s\n", tmax);
-					printf ("Temperatura min.: %s\n", tmin);
 					// Morning
-					snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
-					snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
+					if (type == TEMPERATURES){
+						printf ("Temperatura max.: %s\n", tmax);
+						printf ("Temperatura min.: %s\n", tmin);
+						snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
+						snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
+					}
+					else{ // HUMIDITY
+						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmax);
+						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmin);
+					}
 					
 					id_img++;
 					// Afternoon
-					snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
-					snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
+					if (type == TEMPERATURES){
+						snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
+						snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
+					}
+					else{
+						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmax);
+						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmin);
+					}
 				}
 				else if (cur_tmin->next == NULL){
 					// Last days with general info
-					printf ("Temperatura max.: %s\n", tmax);
-					printf ("Temperatura min.: %s\n", tmin);
-					snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
-					snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
+					if (type == TEMPERATURES){
+						printf ("Temperatura max.: %s\n", tmax);
+						printf ("Temperatura min.: %s\n", tmin);
+						snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
+						snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
+					}
+					else{
+						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmax);
+						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmin);
+					}
 				}
 				else{
-					strcpy (applet_data->day_info[id_img].t_max, "-");
-					strcpy (applet_data->day_info[id_img].t_min, "-");
+					if (type == TEMPERATURES){
+						strcpy (applet_data->day_info[id_img].t_max, "-");
+						strcpy (applet_data->day_info[id_img].t_min, "-");
+					}
+					else{
+						strcpy (applet_data->day_info[id_img].humidity, "-");
+						strcpy (applet_data->day_info[id_img].humidity, "-");
+					}
 				}
 
 				id_img++;

@@ -24,7 +24,7 @@ void create_window 		( AppletData *applet_data, const char *name )
 	GladeXML *xml;
 	static GdkPixbuf *pix;
 	static GtkWidget *win=0;
-	GtkWidget *lb1=0, *lb2=0, *lb3=0, *lb4=0, *lb5=0, *lb6=0, *lb7=0, *img=0;// *table=0;
+	GtkWidget *lb1=0, *lb2=0, *lb3=0, *lb4=0, *lb5=0, *lb6=0, *lb7=0, *lb8=0, *img=0;// *table=0;
 	int x,y=0;
 	short int idx=0,img_idx=0;
 	char *day;
@@ -50,13 +50,14 @@ void create_window 		( AppletData *applet_data, const char *name )
 
 		xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_day", NULL);
 		win = glade_xml_get_widget (xml, "win_day");
-		lb1 = glade_xml_get_widget (xml, "label_day1");
-		lb2 = glade_xml_get_widget (xml, "label_day2");
-		lb3 = glade_xml_get_widget (xml, "label_day3");
-		lb4 = glade_xml_get_widget (xml, "label_day4");
-		lb5 = glade_xml_get_widget (xml, "label_day5");
-		lb6 = glade_xml_get_widget (xml, "label_day6");
-		lb7 = glade_xml_get_widget (xml, "label_day7");
+		lb1 = glade_xml_get_widget (xml, "label_state");
+		lb2 = glade_xml_get_widget (xml, "label_rain");
+		lb3 = glade_xml_get_widget (xml, "label_snow");
+		lb4 = glade_xml_get_widget (xml, "label_tmax");
+		lb5 = glade_xml_get_widget (xml, "label_tmin");
+		lb6 = glade_xml_get_widget (xml, "label_humidity");
+		lb7 = glade_xml_get_widget (xml, "label_wind");
+		lb8 = glade_xml_get_widget (xml, "label_day");
 		img = glade_xml_get_widget (xml, "img");
 		
 		g_signal_connect_swapped (G_OBJECT(win), "destroy", G_CALLBACK(quit), win);
@@ -115,13 +116,14 @@ void create_window 		( AppletData *applet_data, const char *name )
 		gtk_label_set_text (GTK_LABEL(lb3), applet_data->day_info[idx].cota_nieve);
 		gtk_label_set_markup (GTK_LABEL(lb4), applet_data->day_info[idx].t_max);
 		gtk_label_set_markup (GTK_LABEL(lb5), applet_data->day_info[idx].t_min);
-		gtk_label_set_markup (GTK_LABEL(lb6), applet_data->day_info[idx].wind);
+		gtk_label_set_markup (GTK_LABEL(lb6), applet_data->day_info[idx].humidity);
+		gtk_label_set_markup (GTK_LABEL(lb7), applet_data->day_info[idx].wind);
 		pix = gtk_image_get_pixbuf (GTK_IMAGE(applet_data->image[img_idx]));
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pix);
 		
 		snprintf (day, 128, "<span weight=\"bold\">%s</span>", applet_data->day_info[idx].day);
 		//printf ("Day: %s\n", day);
-		gtk_label_set_markup (GTK_LABEL(lb7), day);
+		gtk_label_set_markup (GTK_LABEL(lb8), day);
 		//printf ("state: %s\n",  applet_data->day_info[idx].state);
 
 		gtk_window_get_position (GTK_WINDOW (win), &x, &y);
@@ -250,7 +252,11 @@ void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, con
 	GDate *d = NULL;
 	d = g_date_new ();
 	g_date_set_time_t (d, time(NULL));
-	
+
+	//GTimeVal *t = NULL;
+	//g_get_current_time( &t );
+	//g_date_set_time_val( d, &t );
+
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
 	img = glade_xml_get_widget (xml, "radar_img");
@@ -263,15 +269,18 @@ void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, con
 
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 
-	g_snprintf ((char *)&img_radar, 256, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_s93g.gif");
+	g_snprintf ((char *)&img_radar, 256, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_s93g.gif");
+	printf ("displaying %s\n", img_radar);
 	pixbuf = load_image ((char *)&img_radar);
+		
+	gtk_window_set_title (GTK_WINDOW(win), _("Satellite image"));
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-		gtk_window_set_title (GTK_WINDOW(win), _("Satellite image"));
-		gtk_widget_show (win);
 		g_object_unref (G_OBJECT (pixbuf));
 		pixbuf = 0;
 	}
+		
+	gtk_widget_show (win);
 	g_object_unref (G_OBJECT(xml));
 	g_date_free (d);
 }
@@ -456,16 +465,18 @@ void display_air_mass	 	( BonoboUIComponent *uic, gpointer user_data, const char
 
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 	
-	g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_AIR_MASS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_s91g.jpg");
+	g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_AIR_MASS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_s91g.jpg");
 	printf ("displaying %s\n", rdr_img);
 	pixbuf = load_image ((char *)&rdr_img);
+		
+	gtk_window_set_title (GTK_WINDOW(win), _("Air mass"));
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-		gtk_window_set_title (GTK_WINDOW(win), _("Air mass"));
-		gtk_widget_show (win);
 		g_object_unref (G_OBJECT (pixbuf));
 		pixbuf = 0;
 	}
+	
+	gtk_widget_show (win);
 	g_object_unref (G_OBJECT(xml));
 	g_date_free (d);
 }
@@ -481,6 +492,7 @@ void display_radar	 	( BonoboUIComponent *uic, gpointer user_data, const char *n
 	GDate *d = NULL;
 	d = g_date_new ();
 	g_date_set_time_t (d, time(NULL));
+
 	
 	xml = glade_xml_new (PACKAGE_DIR"/gnome-inm-glade.glade", "win_radar", NULL);
 	win = glade_xml_get_widget (xml, "win_radar");
@@ -493,23 +505,25 @@ void display_radar	 	( BonoboUIComponent *uic, gpointer user_data, const char *n
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 	
 	if (strncmp (name, "RadarPeninsulaProb", 18) == 0){
-		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r8pb.gif");
+		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_r8pb.gif");
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_radar_combo_hour_changed), img);
 	}
 	else{
-		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r98g.gif");
+		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_r98g.gif");
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_radar_canarias_combo_hour_changed), img);
 	}
 
 	printf ("displaying %s\n", rdr_img);
 	pixbuf = load_image ((char *)&rdr_img);
+		
+	gtk_window_set_title (GTK_WINDOW(win), _("Radar images"));
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-		gtk_window_set_title (GTK_WINDOW(win), _("Radar images"));
-		gtk_widget_show (win);
 		g_object_unref (G_OBJECT (pixbuf));
 		pixbuf = 0;
 	}
+		
+	gtk_widget_show (win);
 	g_object_unref (G_OBJECT(xml));
 	g_date_free (d);
 }
@@ -537,23 +551,25 @@ void display_lightnings	 	( BonoboUIComponent *uic, gpointer user_data, const ch
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 	
 	if (strncmp (name, "RayosP", 6) == 0){
-		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r79g.gif");
+		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RAYOS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_r79g.gif");
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_rayos_combo_hour_changed), img);
 	}
 	else{
-		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "1900_r78g.gif");
+		g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RAYOS_CANARIAS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_r78g.gif");
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_rayos_canarias_combo_hour_changed), img);
 	}
 
 	printf ("displaying %s\n", rdr_img);
 	pixbuf = load_image ((char *)&rdr_img);
+		
+	gtk_window_set_title (GTK_WINDOW(win), _("Lightnings images"));
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
-		gtk_window_set_title (GTK_WINDOW(win), _("Lightnings images"));
-		gtk_widget_show (win);
 		g_object_unref (G_OBJECT (pixbuf));
 		pixbuf = 0;
 	}
+		
+	gtk_widget_show (win);
 	g_object_unref (G_OBJECT(xml));
 	g_date_free (d);
 }

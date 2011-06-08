@@ -258,32 +258,32 @@ void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns
 		g_date_set_parse (g_date, fecha);
 		if (g_date_valid(g_date)){
 			if (g_date_get_weekday (g_date) == G_DATE_MONDAY){
-				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Monday"), _("Morning"));
-				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Monday"), _("Afternoon"));
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)  %d", _("Monday"), _("Morning"), g_date_get_day (g_date));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s) - %d", _("Monday"), _("Afternoon"), g_date_get_day (g_date));
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_TUESDAY){
-				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Tuesday"), _("Morning"));
-				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Tuesday"), _("Afternoon"));
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s) - %d", _("Tuesday"), _("Morning"), g_date_get_day (g_date));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s) - %d", _("Tuesday"), _("Afternoon"), g_date_get_day (g_date));
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_WEDNESDAY){
-				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Wednesday"), _("Morning"));
-				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Wednesday"), _("Afternoon"));
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s) - %d", _("Wednesday"), _("Morning"), g_date_get_day (g_date));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s) - %d", _("Wednesday"), _("Afternoon"), g_date_get_day (g_date));
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_THURSDAY){
-				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Thursday"), _("Morning"));
-				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Thursday"), _("Afternoon"));
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s) - %d", _("Thursday"), _("Morning"), g_date_get_day (g_date));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s) - %d", _("Thursday"), _("Afternoon"), g_date_get_day (g_date));
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_FRIDAY){
-				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Friday"), _("Morning"));
-				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Friday"), _("Afternoon"));
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s) - %d", _("Friday"), _("Morning"), g_date_get_day (g_date));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s) - %d", _("Friday"), _("Afternoon"), g_date_get_day (g_date));
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_SATURDAY){
-				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Saturday"), _("Morning"));
-				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Saturday"), _("Afternoon"));
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s) - %d", _("Saturday"), _("Morning"), g_date_get_day (g_date));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s) - %d", _("Saturday"), _("Afternoon"), g_date_get_day (g_date));
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_SUNDAY){
-				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s)", _("Sunday"), _("Morning"));
-				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s)", _("Sunday"), _("Afternoon"));
+				snprintf (applet_data->day_info[id_img].day, 32, "%s (%s) - %d", _("Sunday"), _("Morning"), g_date_get_day (g_date));
+				snprintf (applet_data->day_info[id_img+1].day, 32, "%s (%s) - %d", _("Sunday"), _("Afternoon"), g_date_get_day (g_date));
 			}
 			else if (g_date_get_weekday (g_date) == G_DATE_BAD_WEEKDAY){
 				strncpy (applet_data->day_info[id_img].day, fecha, 32);
@@ -309,19 +309,19 @@ void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns
 		g_date_set_parse (g_date, fecha);
 		if (g_date_valid(g_date)){
 			if (g_date_get_weekday (g_date) == G_DATE_MONDAY)
-				strncpy (applet_data->day_info[id_img].day, _("Monday"), 32);
+				snprintf (applet_data->day_info[id_img].day, 32, "%s - %d", _("Monday"), g_date_get_day (g_date));
 			else if (g_date_get_weekday (g_date) == G_DATE_TUESDAY)
-				strncpy (applet_data->day_info[id_img].day, _("Tuesday"), 32);
+				snprintf (applet_data->day_info[id_img].day, 32, "%s - %d", _("Tuesday"), g_date_get_day (g_date));
 			else if (g_date_get_weekday (g_date) == G_DATE_WEDNESDAY)
-				strncpy (applet_data->day_info[id_img].day, _("Wednesday"), 32);
+				snprintf (applet_data->day_info[id_img].day, 32, "%s - %d", _("Wednesday"), g_date_get_day (g_date));
 			else if (g_date_get_weekday (g_date) == G_DATE_THURSDAY)
-				strncpy (applet_data->day_info[id_img].day, _("Thursday"), 32);
+				snprintf (applet_data->day_info[id_img].day, 32, "%s - %d", _("Thursday"), g_date_get_day (g_date));
 			else if (g_date_get_weekday (g_date) == G_DATE_FRIDAY)
-				strncpy (applet_data->day_info[id_img].day, _("Friday"), 32);
+				snprintf (applet_data->day_info[id_img].day, 32, "%s - %d", _("Friday"), g_date_get_day (g_date));
 			else if (g_date_get_weekday (g_date) == G_DATE_SATURDAY)
-				strncpy (applet_data->day_info[id_img].day, _("Saturday"), 32);
+				snprintf (applet_data->day_info[id_img].day, 32, "%s - %d", _("Saturday"), g_date_get_day (g_date));
 			else if (g_date_get_weekday (g_date) == G_DATE_SUNDAY)
-				strncpy (applet_data->day_info[id_img].day, _("Sunday"), 32);
+				snprintf (applet_data->day_info[id_img].day, 32, "%s - %d", _("Sunday"), g_date_get_day (g_date));
 			else if (g_date_get_weekday (g_date) == G_DATE_BAD_WEEKDAY)
 				strncpy (applet_data->day_info[id_img].day, fecha, 32);
 		}

@@ -80,16 +80,16 @@ void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	cur_node = a_node->next;
 
 	// http://xmlsoft.org/tutorial/apg.html
-	printf("parse_xml_data(): %s\n", root_element->name);
+	//printf("parse_xml_data(): %s", root_element->name);
 	
 	while (cur_node != NULL){
 		if (cur_node->type == XML_ELEMENT_NODE) {
-			printf("ELEMENT: %s\n", cur_node->name);
+			g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "ELEMENT: %s", cur_node->name);
 			if (strcmp(cur_node->name, (const char *)"nombre") == 0){
 				xmlChar *key1 = xmlNodeListGetString(doc, cur_node->xmlChildrenNode, 1);
 				if (key1 != NULL){
 					strncpy (applet_data->city_name, key1, 64);
-					printf ("\tLocalidad: %s\n", key1);
+					g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "\tLocalidad: %s", key1);
 				}
 
 				xmlFree(key1);
@@ -99,7 +99,7 @@ void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				xmlChar *key2 = xmlNodeListGetString(doc, cur_node->xmlChildrenNode, 1);
 				if (key2 != NULL){
 					strncpy (applet_data->provincia, key2, 64);
-					printf ("\tProvincia: %s\n", key2);
+					g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "\tProvincia: %s", key2);
 				}
 				xmlFree(key2);
 			}else
@@ -108,7 +108,7 @@ void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 				if (key3 != NULL){
 					strncpy (applet_data->last_update, _("Last update: "), 64);
 					strncat (applet_data->last_update, key3, 64);
-					printf ("\tElaborado: %s\n", key3);
+					g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "\tElaborado: %s", key3);
 				}
 				xmlFree(key3);
 			}
@@ -124,7 +124,7 @@ void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	 if (XPATH_NODESET != res->type)
 		     return 1;
 
-	fprintf(stdout, "Got object from first query:\n");
+	fprintf(stdout, "Got object from first query:");
 	xmlXPathDebugDumpObject(stdout, res, 0);
 	xmlNodeSetPtr ns = res->nodesetval;
 	if (!ns->nodeNr)
@@ -243,7 +243,7 @@ void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns
 	int id_img = 0;
 	
 	if (doc == NULL || ns == 0){
-		printf ("parse_xml_dates(). doc or ns null\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "parse_xml_dates(). doc or ns null");
 		return;
 	}
 
@@ -253,7 +253,7 @@ void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns
 	// Get the first 4 days, to obtain the morning and afternoon data
 	for (i = 0; i < 4;i++){
 		xmlChar *fecha = xmlGetProp(ns->nodeTab[i], "fecha");
-		printf ("\tfecha[%d]: %s\n", id_img, fecha);
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "\tfecha[%d]: %s", id_img, fecha);
 		// date
 		g_date_set_parse (g_date, fecha);
 		if (g_date_valid(g_date)){
@@ -304,7 +304,7 @@ void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns
 	// Now get the last 3 days, which don't have morning && afternoon data
 	for (i = 4; i < 6;i++){
 		xmlChar *fecha = xmlGetProp(ns->nodeTab[i], "fecha");
-		printf ("\tfecha[%d]: %s\n", id_img, fecha);
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "\tfecha[%d]: %s", id_img, fecha);
 		// date
 		g_date_set_parse (g_date, fecha);
 		if (g_date_valid(g_date)){
@@ -348,12 +348,12 @@ void parse_xml_sky		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns )
 	int i=0;
 
 	if (doc == NULL || ns == 0){
-		printf ("parse_xml_sky(). doc or ns null\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "parse_xml_sky(). doc or ns null");
 		return;
 	}
 
 	for (i = 0; i < ns->nodeNr - 1;i++){
-		//printf ("i = %d\n", i);
+		//printf ("i = %d", i);
 		xmlChar *horario= xmlGetProp(ns->nodeTab[i], "periodo");
 		xmlChar *desc = xmlGetProp(ns->nodeTab[i], "descripcion");
 		// img
@@ -361,7 +361,7 @@ void parse_xml_sky		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns )
 
 		if (horario != NULL && (strcmp (horario, "00-12") == 0 || strcmp(horario, "12-24") == 0)){
 			strncpy (applet_data->day_info[id_img].state, _(desc), 36);
-			printf ("\t[%d]estado_cielo: %s - %s - %s\n", id_img, desc, horario, img_num);
+			g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "\t[%d]estado_cielo: %s - %s - %s", id_img, desc, horario, img_num);
 			snprintf (theme, theme_len, "%s%s/%s.png", PIXMAPS_DIR, applet_data->theme, img_num);
 			gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 			
@@ -369,7 +369,7 @@ void parse_xml_sky		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns )
 		}
 		else if (horario == NULL){
 			strncpy (applet_data->day_info[id_img].state, _(desc), 36);
-			printf ("\t[%d]estado_cielo: %s - %s - %s\n", id_img, desc, horario, img_num);
+			g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "\t[%d]estado_cielo: %s - %s - %s", id_img, desc, horario, img_num);
 			snprintf (theme, theme_len, "%s%s/%s.png", PIXMAPS_DIR, applet_data->theme, img_num);
 			gtk_image_set_from_file (GTK_IMAGE(applet_data->image[id_img]), theme);
 
@@ -397,7 +397,7 @@ void parse_xml_snow		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns 
 	int id_img = 0;
 	
 	if (doc == NULL || ns == 0){
-		printf ("parse_xml_snow(). doc or ns null\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "parse_xml_snow(). doc or ns null");
 		return;
 	}
 
@@ -432,7 +432,7 @@ void parse_xml_precip		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr n
 	int id_img = 0;
 	
 	if (doc == NULL || ns == 0){
-		printf ("parse_xml_precip(). doc or ns null\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "parse_xml_precip(). doc or ns null");
 		return;
 	}
 
@@ -468,7 +468,7 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 	char *temp=0;
 	
 	if (doc == NULL || ns == 0){
-		printf ("parse_xml_temperatures(). doc or ns null\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "parse_xml_temperatures(). doc or ns null");
 		return;
 	}
 
@@ -488,8 +488,8 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 				if (tmax != NULL && cur_tmin->next != NULL){
 					// Morning
 					if (type == TEMPERATURES){
-						printf ("Temperatura max.: %s\n", tmax);
-						printf ("Temperatura min.: %s\n", tmin);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Temperatura max.: %s", tmax);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Temperatura min.: %s", tmin);
 						snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
 						snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
 					}
@@ -512,8 +512,8 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 				else if (cur_tmin->next == NULL){
 					// Last days with general info
 					if (type == TEMPERATURES){
-						printf ("Temperatura max.: %s\n", tmax);
-						printf ("Temperatura min.: %s\n", tmin);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Temperatura max.: %s", tmax);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Temperatura min.: %s", tmin);
 						snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
 						snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
 					}
@@ -542,13 +542,13 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 
 					if (strcmp (tmax, applet_data->day_info[id_img].t_max) != 0){
 						snprintf (applet_data->day_info[id_img].t_max, 8, "%s (%s)", temp, tmax);
-						printf ("Sensacion termica max: %s - %s\n", temp, tmax);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Sensacion termica max.: %s - %s", temp, tmax);
 					}
 
 					strncpy (temp, applet_data->day_info[id_img].t_min, 4);
 					if (strcmp (tmin, applet_data->day_info[id_img].t_min) != 0){
 						snprintf (applet_data->day_info[id_img].t_min, 8, "%s (%s)", temp, tmin);
-						printf ("Sensacion termica: %s - %s\n", temp, tmin);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Sensacion termica min.: %s - %s", temp, tmin);
 					}
 					
 					id_img++;
@@ -558,13 +558,13 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 					strncpy (temp, applet_data->day_info[id_img].t_max, 4);
 					if (strcmp (tmax, applet_data->day_info[id_img].t_max) != 0){
 						snprintf (applet_data->day_info[id_img].t_max, 8, "%s (%s)", temp, tmax);
-						printf ("Sensacion termica max: %s - %s\n", temp, tmax);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Sensacion termica max.: %s - %s", temp, tmin);
 					}
 
 					strncpy (temp, applet_data->day_info[id_img].t_min, 4);
 					if (strcmp (tmin, applet_data->day_info[id_img].t_min) != 0){
 						snprintf (applet_data->day_info[id_img].t_min, 8, "%s (%s)", temp, tmin);
-						printf ("Sensacion termica: %s - %s\n", temp, tmin);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Sensacion termica min.: %s - %s", temp, tmin);
 					}
 				}
 				else{
@@ -599,7 +599,7 @@ void parse_xml_wind		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns 
 	int id_img = 0;
 	
 	if (doc == NULL || ns == 0){
-		printf ("parse_xml_wind(). doc or ns null\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "parse_xml_wind(). doc or ns null");
 		return;
 	}
 

@@ -270,7 +270,7 @@ void display_satellite_radar 		( BonoboUIComponent *uic, gpointer user_data, con
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 
 	g_snprintf ((char *)&img_radar, 256, "%s%d%.2d%.2d%s", INM_SAT_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_s93g.gif");
-	printf ("displaying %s\n", img_radar);
+	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "displaying %s", img_radar);
 	pixbuf = load_image ((char *)&img_radar);
 		
 	gtk_window_set_title (GTK_WINDOW(win), _("Satellite image"));
@@ -339,7 +339,7 @@ void display_spanish_forecast_img 	( BonoboUIComponent *uic, gpointer user_data,
 	//		strncmp (name, "SpanishForecastImg_ATomorrow1224", strlen(name)) == 0)
 		snprintf (str_tmp, 1024, "%s%s%s\0", INM_NATIONAL_FORECAST_IMG, str_date, INM_NATIONAL_FORECAST_1224);
 
-	printf ("Loading %s\n", str_tmp);
+	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Loading %s", str_tmp);
 	pixbuf = load_image (str_tmp);
 	if (pixbuf){
 		gtk_image_set_from_pixbuf (GTK_IMAGE(img), pixbuf);
@@ -466,7 +466,7 @@ void display_air_mass	 	( BonoboUIComponent *uic, gpointer user_data, const char
 	gtk_combo_box_set_active (GTK_COMBO_BOX(combo_hour), 0);
 	
 	g_snprintf ((char *)&rdr_img, 256, "%s%d%.2d%.2d%s", INM_RADAR_AIR_MASS_IMG, g_date_get_year(d), g_date_get_month(d), g_date_get_day(d), "0000_s91g.jpg");
-	printf ("displaying %s\n", rdr_img);
+	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "displaying %s\n", rdr_img);
 	pixbuf = load_image ((char *)&rdr_img);
 		
 	gtk_window_set_title (GTK_WINDOW(win), _("Air mass"));
@@ -513,7 +513,7 @@ void display_radar	 	( BonoboUIComponent *uic, gpointer user_data, const char *n
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_radar_canarias_combo_hour_changed), img);
 	}
 
-	printf ("displaying %s\n", rdr_img);
+	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "displaying %s", rdr_img);
 	pixbuf = load_image ((char *)&rdr_img);
 		
 	gtk_window_set_title (GTK_WINDOW(win), _("Radar images"));
@@ -559,7 +559,7 @@ void display_lightnings	 	( BonoboUIComponent *uic, gpointer user_data, const ch
 		g_signal_connect (G_OBJECT(combo_hour), "changed", G_CALLBACK(on_rayos_canarias_combo_hour_changed), img);
 	}
 
-	printf ("displaying %s\n", rdr_img);
+	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "displaying %s", rdr_img);
 	pixbuf = load_image ((char *)&rdr_img);
 		
 	gtk_window_set_title (GTK_WINDOW(win), _("Lightnings images"));
@@ -648,7 +648,7 @@ void display_mountain_forecast		 ( BonoboUIComponent *uic, gpointer user_data, c
 		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MOUNTAIN_FORECAST_SIERRA_NEVADA, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
 	}
 	else{
-		printf ("display_mountain_forecast(): No name supplied (%s)\n", name);
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "display_mountain_forecast(): No name supplied (%s)", name);
 	}
 	
 }
@@ -709,7 +709,7 @@ void display_marine_forecast		 ( BonoboUIComponent *uic, gpointer user_data, con
 		gnome_vfs_async_open (&applet_data->gvfs_handle, INM_MARINE_OPENSEA_9, GNOME_VFS_OPEN_READ, 0, gvfs_status_cb, applet_data);
 	}
 	else{
-		printf ("display_mountain_forecast(): No name supplied (%s)\n", name);
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "display_marine_forecast(): No name supplied (%s)", name);
 	}
 	
 }

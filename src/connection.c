@@ -69,7 +69,7 @@ void check_inm_url_read 		( GnomeVFSAsyncHandle *handle,
 	}
 	else if (result != GNOME_VFS_OK){
 		applet_data->gvfs_handle = NULL;
-		printf ("Error de lectura gnome_vfs_asyncred()\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, "Error de lectura gnome_vfs_async_read()");
 		//message_box (applet_data, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, _("Error gnome vfs (async read)"), gnome_vfs_result_to_string (result));
 		gnome_vfs_async_close (handle, check_inm_url_close, applet_data);
 		unset_images (applet_data);
@@ -90,7 +90,7 @@ void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 	char *buf=0;
 	buf = g_malloc0(8192);
 	AppletData *applet_data = (AppletData *) callback_data;
-	printf ("check_inm_url_status() gvfs_async_open(): %s\n", gnome_vfs_result_to_string (result));
+	g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "check_inm_url_status() gvfs_async_open(): %s", gnome_vfs_result_to_string (result));
 
 	if (applet_data->buffer){
 		g_free (applet_data->buffer);
@@ -99,7 +99,7 @@ void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 	
 
 	if (result != GNOME_VFS_OK){
-		printf ("Conexion no abierta: %s - Code: %s\n", gnome_vfs_result_to_string (result), applet_data->prefs->code);
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Conexion no abierta: %s - Code: %s", gnome_vfs_result_to_string (result), applet_data->prefs->code);
 		//message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Connection error"), gnome_vfs_result_to_string (result));
 		unset_images (applet_data);
 		applet_data->gvfs_handle = NULL;
@@ -274,7 +274,7 @@ void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 
 	//printf ("gvfs_async_read(): %s\n", gnome_vfs_result_to_string (result));
 	if (result == GNOME_VFS_ERROR_EOF){
-		printf ("Fin de lectura gnome_vfs_async_read()\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Fin de lectura gnome_vfs_async_read()");
 		if (strstr(applet_data->buffer, "texto_entradilla") || 
 				strstr(applet_data->buffer, "texto_normal2") ||
 				strstr(applet_data->buffer, "PREDICCION") || 
@@ -294,7 +294,7 @@ void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 	}
 	else if (result != GNOME_VFS_OK){
 		applet_data->gvfs_handle = NULL;
-		printf ("Error de lectura gnome_vfs_async_read(): %s\n", gnome_vfs_result_to_string (result));
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, "Error de lectura gnome_vfs_async_read(): %s", gnome_vfs_result_to_string (result));
 		if (applet_data->buffer){
 			g_free (applet_data->buffer);
 			applet_data->buffer = NULL;
@@ -319,9 +319,8 @@ void gvfs_status_cb			( GnomeVFSAsyncHandle *handle,
 	char *buf=0;
 	buf = (char *)malloc(8192);
 
-	printf ("gvfs_status_cb() gvfs_async_open(): %s\n", gnome_vfs_result_to_string (result));
 	if (result != GNOME_VFS_OK){
-		printf (_("Connection error\n"));
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, "gvfs_status_cb(): %s", gnome_vfs_result_to_string (result));
 		//message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Connection error"), gnome_vfs_result_to_string (result));
 		unset_images (applet_data);
 		applet_data->gvfs_handle = NULL;

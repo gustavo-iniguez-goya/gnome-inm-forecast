@@ -219,7 +219,7 @@ void print_element_names 		( xmlNode *root_element )
 	a_node = root_element;
 	for (cur_node = a_node; cur_node; cur_node = cur_node->next) {
 		if (cur_node->type == XML_ELEMENT_NODE) {
-			printf("TEMP node type: Element, name: %s\n", cur_node->name);
+			g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "TEMP node type: Element, name: %s", cur_node->name);
 		}
 		print_element_names(cur_node->children);
 	}
@@ -341,7 +341,7 @@ gboolean check_inm_url 			( AppletData *applet_data )
 	
 		g_strlcpy (code, (char *)panel_applet_gconf_get_string (PANEL_APPLET(applet_data->applet), "code", NULL), 12);
 		g_snprintf (temp, 512, "%s%s.xml\0", INM_FORECAST_URL, code);
-		printf ("check_inm_url(): %s\n", temp);
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "check_inm_url(): %s", temp);
 
 		gnome_vfs_async_close (&applet_data->gvfs_handle, NULL, NULL);
 		gnome_vfs_async_open (&applet_data->gvfs_handle, temp, GNOME_VFS_OPEN_READ, 0, check_inm_url_status, applet_data);
@@ -349,7 +349,7 @@ gboolean check_inm_url 			( AppletData *applet_data )
 		g_free (code);
 	}
 	else{
-		printf ("check_inm_url() no applet no fun\n");
+		g_print ("check_inm_url() no applet no fun\n");
 	}
 		
 	return TRUE;
@@ -380,7 +380,7 @@ void update_location 			( AppletData *applet_data )
 		//update_station_data (applet_data);
 
  		iDays = atoi (applet_data->show_days);
- 		printf ("update_location(). days to show: %d\n", iDays);
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "update_location(). days to show: %d", iDays);
  		for (x=0;x < iDays;x++)
  			gtk_widget_show (applet_data->event_box[x]);
  		
@@ -392,7 +392,7 @@ void update_location 			( AppletData *applet_data )
 		applet_data->timer = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	}
 	else
-		printf ("update_location() no *applet object\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "update_location() no *applet object");
 }
 
 void update_data			 ( BonoboUIComponent *uic, gpointer user_data, const char *name )
@@ -416,7 +416,7 @@ void update_data			 ( BonoboUIComponent *uic, gpointer user_data, const char *na
 		applet_data->timer = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 	}
 	else
-		printf ("update_data() no *applet object\n");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "update_data() no *applet object");
 }
 
 
@@ -503,8 +503,6 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 			return FALSE;
 		}
 	}
-
-	printf ("start_applet()\n");
 
 	AppletData *applet_data = g_new0(AppletData, 1);
 	applet_data->prefs = g_new0 (PrefsWin, 1);

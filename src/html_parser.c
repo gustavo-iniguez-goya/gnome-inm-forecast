@@ -488,14 +488,13 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 				if (tmax != NULL && cur_tmin->next != NULL){
 					// Morning
 					if (type == TEMPERATURES){
-						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Temperatura max.: %s", tmax);
-						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Temperatura min.: %s", tmin);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "[%d] Temperatura max.: %s", id_img, tmax);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "[%d] Temperatura min.: %s", id_img, tmin);
 						snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
 						snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
 					}
 					else{ // HUMIDITY
-						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmax);
-						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmin);
+						snprintf (applet_data->day_info[id_img].humidity, 12, "%s%% - %s%%", tmax, tmin);
 					}
 					
 					id_img++;
@@ -505,21 +504,19 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 						snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
 					}
 					else{
-						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmax);
-						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmin);
+						snprintf (applet_data->day_info[id_img].humidity, 12, "%s%% - %s%%", tmax, tmin);
 					}
 				}
 				else if (cur_tmin->next == NULL){
 					// Last days with general info
 					if (type == TEMPERATURES){
-						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Temperatura max.: %s", tmax);
-						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Temperatura min.: %s", tmin);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "[%d] Temperatura max.: %s", id_img, tmax);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "[%d] Temperatura min.: %s", id_img, tmin);
 						snprintf (applet_data->day_info[id_img].t_max, 8, "%s", tmax);
 						snprintf (applet_data->day_info[id_img].t_min, 8, "%s", tmin);
 					}
 					else{
-						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmax);
-						snprintf (applet_data->day_info[id_img].humidity, 8, "%s%%", tmin);
+						snprintf (applet_data->day_info[id_img].humidity, 12, "%s%% - %s%%", tmax, tmin);
 					}
 				}
 				else{
@@ -542,13 +539,13 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 
 					if (strcmp (tmax, applet_data->day_info[id_img].t_max) != 0){
 						snprintf (applet_data->day_info[id_img].t_max, 8, "%s (%s)", temp, tmax);
-						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Sensacion termica max.: %s - %s", temp, tmax);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "[%d] Sensacion termica max.: %s - %s", id_img, temp, tmax);
 					}
 
 					strncpy (temp, applet_data->day_info[id_img].t_min, 4);
 					if (strcmp (tmin, applet_data->day_info[id_img].t_min) != 0){
 						snprintf (applet_data->day_info[id_img].t_min, 8, "%s (%s)", temp, tmin);
-						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Sensacion termica min.: %s - %s", temp, tmin);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "[%d] Sensacion termica min.: %s - %s", id_img, temp, tmin);
 					}
 					
 					id_img++;
@@ -558,13 +555,13 @@ void parse_xml_temperatures	( AppletData *applet_data, xmlDocPtr doc, xmlNodeSet
 					strncpy (temp, applet_data->day_info[id_img].t_max, 4);
 					if (strcmp (tmax, applet_data->day_info[id_img].t_max) != 0){
 						snprintf (applet_data->day_info[id_img].t_max, 8, "%s (%s)", temp, tmax);
-						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Sensacion termica max.: %s - %s", temp, tmin);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "[%d] Sensacion termica max.: %s - %s", id_img, temp, tmin);
 					}
 
 					strncpy (temp, applet_data->day_info[id_img].t_min, 4);
 					if (strcmp (tmin, applet_data->day_info[id_img].t_min) != 0){
 						snprintf (applet_data->day_info[id_img].t_min, 8, "%s (%s)", temp, tmin);
-						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Sensacion termica min.: %s - %s", temp, tmin);
+						g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "[%d] Sensacion termica min.: %s - %s", id_img, temp, tmin);
 					}
 				}
 				else{

@@ -343,7 +343,7 @@ gboolean check_inm_url 			( AppletData *applet_data )
 		g_snprintf (temp, 512, "%s%s.xml\0", INM_FORECAST_URL, code);
 		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "check_inm_url(): %s", temp);
 
-		gnome_vfs_async_close (&applet_data->gvfs_handle, NULL, NULL);
+		gnome_vfs_async_close (&applet_data->gvfs_handle, check_inm_url_close, applet_data);
 		gnome_vfs_async_open (&applet_data->gvfs_handle, temp, GNOME_VFS_OPEN_READ, 0, check_inm_url_status, applet_data);
 		g_free (temp);
 		g_free (code);

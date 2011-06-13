@@ -114,6 +114,7 @@
 #define INM_SPAIN_IMG PACKAGE_DIR"pixmaps/espcan.jpg"
 
 #define INTERVAL_TIME 60000
+#define DISCONNECTED_INTERVAL_TIME 2000
 
 #define MAX_DAYS 10
 
@@ -209,6 +210,7 @@ typedef struct _AppletData {
 	int		location_code; /* Location code */
 	int		timer, timer_station; /* timeout ID */
 	int		interval; /* Interval update * 1000 */
+	int		update_mode; /* 0 - every 60', 1 - every 1' */
 	int		applet_size;
 	char		*last_update;
 	char		*city_name;

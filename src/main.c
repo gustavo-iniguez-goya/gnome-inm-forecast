@@ -389,7 +389,14 @@ void update_location 			( AppletData *applet_data )
 
 		g_source_remove (applet_data->timer);
 		check_inm_url (applet_data);
-		applet_data->timer = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
+		if (applet_data->update_mode == 0){
+			printf ("*** Consulting data every %d minutes\n", applet_data->interval * INTERVAL_TIME);
+			applet_data->timer = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
+		}
+		else{
+			printf ("*** Consulting data every %d minutes\n", applet_data->interval * DISCONNECTED_INTERVAL_TIME);
+			applet_data->timer = g_timeout_add(applet_data->interval * DISCONNECTED_INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
+		}
 	}
 	else
 		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "update_location() no *applet object");
@@ -518,6 +525,7 @@ gboolean start_applet 			( PanelApplet *applet, const gchar *iid, gpointer data 
 	applet_data->st_info = NULL;
 	applet_data->st_list = NULL;
 	applet_data->buffer = NULL;
+	applet_data->update_mode = 0;
 
 	applet_data->client = gconf_client_get_default ();
 	

@@ -31,7 +31,11 @@ void check_inm_url_close		( GnomeVFSAsyncHandle *handle, GnomeVFSResult result, 
 		
 		g_free (applet_data->buffer);
 		applet_data->buffer = 0;
+
+			g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "check_inm_url_close(). applet_data->buffer freed");
 		}
+		else
+			g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "check_inm_url_close(). applet_data->buffer already freed");
 	
 }
 
@@ -46,7 +50,7 @@ void check_inm_url_read 		( GnomeVFSAsyncHandle *handle,
 	gchar *buf, *temp=0;
 	buf = (gchar *)buffer;
 	buf[bytes_read] = '\0';
-
+		
 	if (applet_data->buffer == NULL)
 		applet_data->buffer = g_strdup(buf);
 	else{
@@ -69,10 +73,11 @@ void check_inm_url_read 		( GnomeVFSAsyncHandle *handle,
 	}
 	else if (result != GNOME_VFS_OK){
 		applet_data->gvfs_handle = NULL;
-		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, "Error de lectura gnome_vfs_async_read()");
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Error de lectura gnome_vfs_async_read()");
 		//message_box (applet_data, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, _("Error gnome vfs (async read)"), gnome_vfs_result_to_string (result));
 		gnome_vfs_async_close (handle, check_inm_url_close, applet_data);
 		unset_images (applet_data);
+		
 		if (buf)
 			g_free (buf);
 
@@ -104,8 +109,22 @@ void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 		unset_images (applet_data);
 		applet_data->gvfs_handle = NULL;
 		applet_data->buffer = NULL;
+	
+		/* Since we have not been able to connect to the website, check out every minute for it */
+		if (applet_data->update_mode == 0){
+			applet_data->update_mode == 1;
+			g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Error conectando. Consultando cada minuto.");
+			g_source_remove (applet_data->timer);
+			applet_data->timer = g_timeout_add(applet_data->interval * DISCONNECTED_INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
+		}
+
 	}
 	else{
+		if (applet_data->update_mode == 1){
+			g_source_remove (applet_data->timer);
+			applet_data->timer = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
+		}
+		applet_data->update_mode == 0;
 		gnome_vfs_async_read (handle, buf, 8192, check_inm_url_read, applet_data);
 //		printf ("gvfs_async_status()\n");
 	}
@@ -294,7 +313,7 @@ void gvfs_read_cb 		( GnomeVFSAsyncHandle *handle,
 	}
 	else if (result != GNOME_VFS_OK){
 		applet_data->gvfs_handle = NULL;
-		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, "Error de lectura gnome_vfs_async_read(): %s", gnome_vfs_result_to_string (result));
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Error de lectura gnome_vfs_async_read(): %s", gnome_vfs_result_to_string (result));
 		if (applet_data->buffer){
 			g_free (applet_data->buffer);
 			applet_data->buffer = NULL;
@@ -320,7 +339,7 @@ void gvfs_status_cb			( GnomeVFSAsyncHandle *handle,
 	buf = (char *)malloc(8192);
 
 	if (result != GNOME_VFS_OK){
-		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_ERROR, "gvfs_status_cb(): %s", gnome_vfs_result_to_string (result));
+		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "gvfs_status_cb(): %s", gnome_vfs_result_to_string (result));
 		//message_box (applet_data, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("Connection error"), gnome_vfs_result_to_string (result));
 		unset_images (applet_data);
 		applet_data->gvfs_handle = NULL;

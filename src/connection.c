@@ -112,7 +112,7 @@ void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 	
 		/* Since we have not been able to connect to the website, check out every minute for it */
 		if (applet_data->update_mode == 0){
-			applet_data->update_mode == 1;
+			applet_data->update_mode = 1;
 			g_log (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Error conectando. Consultando cada minuto.");
 			g_source_remove (applet_data->timer);
 			applet_data->timer = g_timeout_add(applet_data->interval * DISCONNECTED_INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
@@ -124,7 +124,7 @@ void check_inm_url_status 	( GnomeVFSAsyncHandle *handle,
 			g_source_remove (applet_data->timer);
 			applet_data->timer = g_timeout_add(applet_data->interval * INTERVAL_TIME, (GtkFunction)check_inm_url, applet_data );
 		}
-		applet_data->update_mode == 0;
+		applet_data->update_mode = 0;
 		gnome_vfs_async_read (handle, buf, 8192, check_inm_url_read, applet_data);
 //		printf ("gvfs_async_status()\n");
 	}

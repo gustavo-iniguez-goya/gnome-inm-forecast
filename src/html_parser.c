@@ -63,8 +63,6 @@ char *parse_week_day_name	( const char *day_name )
 
 void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf )
 {
-	int id_img=0;
-
 	//g_get_current_time (&g_timeval);
 	//g_date = g_date_new ();
 	//g_date_set_time_val (g_date, &g_timeval);
@@ -73,6 +71,7 @@ void parse_xml_data 		( PanelApplet *applet, AppletData *applet_data, char *buf 
 	xmlNodePtr root_element=NULL;
 	xmlNodePtr cur_node=NULL;
 	xmlNodePtr a_node=NULL;
+	int id_img=0;
 	
 	doc = xmlReadMemory (buf, strlen(buf), NULL, NULL, XML_PARSE_RECOVER);
 	root_element = xmlDocGetRootElement (doc);
@@ -256,7 +255,7 @@ void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns
 		g_log (G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "\tfecha[%d]: %s", id_img, fecha);
 		// date
 		g_date_set_parse (g_date, fecha);
-		if (g_date_valid(g_date)){
+		if (fecha != NULL && g_date_valid(g_date)){
 			if (g_date_get_weekday (g_date) == G_DATE_MONDAY){
 				snprintf (applet_data->day_info[id_img].day, 32, "%s %d (%s)",  _("Monday"), g_date_get_day (g_date), _("Morning"));
 				snprintf (applet_data->day_info[id_img+1].day, 32, "%s %d (%s)",  _("Monday"), g_date_get_day (g_date), _("Afternoon"));
@@ -293,8 +292,14 @@ void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns
 			id_img++;
 		}
 		else{
-			strncpy (applet_data->day_info[id_img].day, fecha, 32);
-			strncpy (applet_data->day_info[id_img+1].day, fecha, 32);
+			if (fecha != NULL){
+				strncpy (applet_data->day_info[id_img].day, fecha, 32);
+				strncpy (applet_data->day_info[id_img+1].day, fecha, 32);
+			}
+			else{
+				strncpy (applet_data->day_info[id_img].day, "<No date>", 32);
+				strncpy (applet_data->day_info[id_img+1].day, "<No date>", 32);
+			}
 			id_img++;
 		}
 
@@ -342,8 +347,8 @@ void parse_xml_dates		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns
  */
 void parse_xml_sky		( AppletData *applet_data, xmlDocPtr doc, xmlNodeSetPtr ns )
 {
+	char *theme = g_new0(char, 128);
 	int theme_len = 128;
-	char *theme = g_new0(char, theme_len);
 	int id_img = 0;
 	int i=0;
 
